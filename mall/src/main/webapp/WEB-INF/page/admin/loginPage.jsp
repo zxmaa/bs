@@ -44,7 +44,7 @@
             <img id="img_profile_picture"
                 src="${pageContext.request.contextPath}/res/img/admin/loginPage/default_profile_picture-128x128.png"
                 <%--当图片无法加载时，用文本代替显示--%>
-                alt="头像" title="头像"
+                al t="头像" title="头像"
                 <%--图片装在失败时，触发onerror事件，图片不存在将显示logoError.png。以下图片--%>
                 onerror="this.url='${pageContext.request.contextPath}/res/img/admin/loginPage/default_profile_picture-128x128.png'"/>
             <form id="form_login">
@@ -55,7 +55,7 @@
             </form>
         </div>
     </div>
-    <div>
+    <div id="div_foot">
         <span>毕业设计<a href="#" target="_blank">xihuauniversity</a> </span>
     </div>
 </div>
