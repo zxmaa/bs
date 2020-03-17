@@ -6,6 +6,7 @@ html,body,#div_background{
 #div_background{
     /*相对位置*/
     position: relative;
+    /*min是设置宽高的最小值*/
     min-width: 1000px;
     min-height: 650px;
     background-repeat: no-repeat;
@@ -18,10 +19,161 @@ html,body,#div_background{
     background-color: rgba(0,0,0,0.4);
 }
 #div_nav>#txt_date,#div_nav>#txt_peel{
+    /*padding<border<margin*/
     padding-left: 10px;
     color: rgba(255,255,255,0.8);
     line-height: 30px;
+    /*设置浏览器中和用户选择文本块，以下是用户选择不了文本*/
     -moz-user-select: none;
-
-
+    -webkit-user-select: none;
+    user-select: none;
+}
+#txt_peel:hover{
+    /*鼠标移动到区域上是鼠标的形状，pointer为一只手*/
+    cursor: pointer;
+    text-decoration: underline;
+}
+#div_nav>#div_peelPanel{
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 0;
+    display: none;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 0 0 5px 5px;
+    /*该属性设置一个定位元素沿 z 轴的位置，z 轴定义为垂直延伸到显示区的轴。如果为正数，则离用户更近，为负数则表示离用户更远。*/
+    position: absolute;
+    z-index: 100;
+}
+#div_peelPanel>li{
+    /*转换成行内块*/
+    display: inline-block;
+    padding: 10px;
+    list-style: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#div_peelPanel>li>img{
+    width: 128px;
+    height: 80px;
+    cursor: pointer;
+    border-radius: 0 0 5px 5px;
+    /*将鼠标悬停在一个div元素上，逐步改变表格的宽度*/
+    /*box-shadow属性可以设置一个或多个下拉阴影的框。ease-in-out规定以慢速开始和结束的过渡效果*/
+    transition: box-shadow ease-in-out .15s;
+}
+#div_peelPanel>li>img:hover{
+    box-shadow: 0 0 8px rgba(102,175,255,.8);
+}
+#div_background>#div_main{
+    position: absolute;
+    top: 0;bottom: 0;left: 0;right: 0;
+    margin: auto;
+    width: 360px;
+    height: 550px;
+}
+#div_main>#div_head{
+    width: 100%;
+    height: 100px;
+}
+#div_head>p{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0;
+    line-height: 100px;
+    height: 100%;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    font-family: "Trebuchet MS", cursive;
+}
+#div_head>p>span{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+    bottom: 2px;
+    font-weight: bold;
+    font-size: 26px;
+    font-family: "幼圆", "Microsoft YaHei UI", serif;
+}
+#div_main>#div_content{
+    width: 100%;
+    padding: 50px;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 5px;
+}
+#div_content #img_profile_picture{
+    width: 84px;
+    height: 84px;
+    border-radius: 84px;
+    display: block;
+    margin: 0 auto 40px;
+}
+#div_content .form_control{
+    height: 38px;
+    margin: 20px 0;
+    background-color: #9F9FA1;
+    border: 1px solid #9F9FA1;
+}
+#div_content .form_control:focus{
+    background-color: white;
+    border: 1px solid #cccccc;
+}
+#div_content #txt_error_msg{
+    display: inline-block;
+    min-width: 10px;
+    min-height: 20px;
+    float: right;
+    position: relative;
+    color: #c33;
+    /*设置div的不透明级别*/
+    opacity: 0;
+    left: 20px;
+    bottom: 10px;
+}
+#div_content #btn_login{
+    width: 100%;
+    height: 38px;
+    display: block;
+    /*轮廓*/
+    outline: none;
+}
+#div_background>#div_foot{
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.4);
+    /*overflow属性指定如果内容溢出一个元素的框，会发生什么*/
+    /*5个属性，hidden溢出来的内容会被修剪，并且不可见*/
+    overflow: hidden;
+    text-align: center;
+    padding: 10px 6px 0px 6px;
+    height: 33px;
+    font-size: 0.7rem !important;
+    color: #FFF;
+    /*letter-spacing 属性增加或减少字符间的空白（字符间距）,单位用em和px*/
+    letter-spacing: 0.8px;
+    font-family: Arial, sans-serif !important;
+    z-index: 99;
+    width: 100%;
+}
+#div_foot a {
+    color: #FFF;
+}
+/*修改输入框placeholder文字默认颜色*/
+.form_control::-webkit-input-placeholder{
+    color:#444;
+}
+.form_control::-moz-placeholder{   /* Mozilla Firefox 19+ */
+    color:#444;
+}
+.form_control:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+    color:#444;
+}
+.form_control:-ms-input-placeholder{  /* Internet Explorer 10-11 */
+    color:#444;
 }
