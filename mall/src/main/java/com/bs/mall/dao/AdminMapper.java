@@ -1,7 +1,7 @@
 package com.bs.mall.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.bs.mall.dao.pojo.Admin;
+import com.bs.mall.entity.Admin;
 import com.bs.mall.util.PageUtil;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

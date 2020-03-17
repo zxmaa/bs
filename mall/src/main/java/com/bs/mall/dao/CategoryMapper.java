@@ -2,7 +2,7 @@ package com.bs.mall.dao;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.bs.mall.dao.pojo.Category;
+import com.bs.mall.entity.Category;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

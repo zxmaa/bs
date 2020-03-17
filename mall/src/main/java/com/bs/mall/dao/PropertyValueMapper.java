@@ -1,7 +1,7 @@
 package com.bs.mall.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.bs.mall.dao.pojo.PropertyValue;
+import com.bs.mall.entity.PropertyValue;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
