@@ -21,7 +21,8 @@ public class OrderGroup {
         if (productOrder_pay_date != null) {
             SimpleDateFormat time = new SimpleDateFormat("MM/dd", Locale.UK);
             return time.format(productOrder_pay_date);
-        }        return null;
+        }
+        return null;
     }
 
 }
