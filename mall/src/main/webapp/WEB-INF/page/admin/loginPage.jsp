@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8;charset=UTF-8"%><%--language="java"--%>
 <html>
 <head>
+    <script src="${pageContext.request.contextPath}/res/js/admin/admin_login.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/admin/admin_login.css"/>
     <title>mall 后台管理-登录</title>
 </head>
 <body>
