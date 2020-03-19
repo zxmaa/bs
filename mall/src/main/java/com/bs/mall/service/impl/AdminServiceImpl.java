@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.bs.mall.dao.AdminMapper;
 import com.bs.mall.dao.pojo.Admin;
 import com.bs.mall.service.IAdminService;
-import com.bs.mall.util.PageUtil;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -12,7 +11,7 @@ import java.util.List;
 
 @Service("adminService")
 public class AdminServiceImpl implements IAdminService {
-    AdminMapper adminMapper;
+   /* AdminMapper adminMapper;
 
 
     @Override
@@ -63,6 +62,6 @@ public class AdminServiceImpl implements IAdminService {
     }
 
 
-
+*/
 
 }

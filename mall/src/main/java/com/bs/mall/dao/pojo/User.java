@@ -45,35 +45,38 @@ public class User {
     private Date registerTime;
 
     /**
-     * 用户姓名
+     *     用户姓名
      */
-    //  private String userRealname;
+      private String userRealname;
 
     /**
      * 用户昵称
      */
-    //  private String userNickname;
+     private String userNickname;
 
 
-    /*    *//***
+    /**
      * 用户头像路径
-     *//*
-    private String  userProfilePictureSrc;*/
-/*
-    *//**
+     */
+
+    private String  userProfilePictureSrc;
+
+    /**
      * 生日
-     *//*
+     */
+
     private Date userBirthday;
 
-    *//**
-     * 用户现居地
-     *//*
+    /**
+     *     用户现居地
+     */
     private String userAddress;
 
-    *//**
-     * 用户家乡地址
-     *//*
-    private String userHomeplace;*/
+    /**
+     *  用户家乡地址
+      */
 
-;
+    private String userHomeplace;
+
+
 }

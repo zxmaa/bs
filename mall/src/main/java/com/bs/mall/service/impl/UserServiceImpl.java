@@ -15,7 +15,7 @@ import java.util.Date;
 @Service
 public class UserServiceImpl implements IUserService {
     @Autowired
-    UserMapper userMapper;
+    private  UserMapper userMapper;
 
     //=====================user========================================================
     /**

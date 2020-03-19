@@ -10,8 +10,8 @@ import org.apache.ibatis.annotations.Param;
  */
 @Mapper
 public interface AdminMapper extends BaseMapper<Admin> {
-    Admin selectByLogin(@Param("admin_name") String admin_name, @Param("admin_password") String admin_password);
+  /*  Admin selectByLogin(@Param("admin_name") String admin_name, @Param("admin_password") String admin_password);
 
     Admin selectOne(@Param("admin_name") String admin_name, @Param("admin_id") Integer admin_id);
-
+*/
 }
