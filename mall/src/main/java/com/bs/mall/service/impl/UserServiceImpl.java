@@ -1,58 +1,88 @@
 package com.bs.mall.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.bs.mall.dao.UserMapper;
-import com.bs.mall.entity.User;
-import com.bs.mall.service.UserService;
-import com.bs.mall.util.OrderUtil;
-import com.bs.mall.util.PageUtil;
+import com.bs.mall.dao.pojo.User;
+import com.bs.mall.dto.UserDto;
+import com.bs.mall.dto.req.UserReqDto;
+import com.bs.mall.service.IUserService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.Date;
 
-/**
- * author:xs
- * date:2020/3/15 20:49
- * description:UserService实现
- */
-@Service("userService")
-public class UserServiceImpl implements UserService {
-    private UserMapper userMapper;
+@Service
+public class UserServiceImpl implements IUserService {
+    @Autowired
+    UserMapper userMapper;
 
-    public void setUserMapper(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    //=====================user========================================================
+    /**
+     * 新增用户
+     * @param userDto
+     */
     @Override
-    public boolean add(User user) {
-        return userMapper.insertOne(user)>0;
+    public void addUser(UserDto userDto) {
+        User user = new User();
+        BeanUtils.copyProperties(userDto,user);
+        user.setRegisterTime(new Date());
+        userMapper.insert(user);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    /**
+     * 修改用户信息
+     * @param userDto
+     */
     @Override
-    public boolean update(User user) {
-        return userMapper.updateOne(user)>0;
+    public void updateUser(UserDto userDto) {
+        User user = new User();
+        BeanUtils.copyProperties(userDto,user);
+        userMapper.updateById(user);
     }
 
+    /**
+     * 用户登录
+     * @param userReqDto
+     * @return
+     */
     @Override
-    public List<User> getList(User user, OrderUtil orderUtil, PageUtil pageUtil) {
-        return userMapper.select(user,orderUtil,pageUtil);
+    public  UserDto userLogin(UserReqDto userReqDto) {
+
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_name",userReqDto.getUserName())
+                .eq("user_password",userReqDto.getUserPassword());
+
+        User user = userMapper.selectOne(wrapper);
+        UserDto userDto = new UserDto();
+        BeanUtils.copyProperties(user,userDto);
+        return userDto;
     }
 
+    /**
+     * 根据username查找用户
+     * @param userName
+     * @return
+     */
     @Override
-    public User get(Integer user_id) {
-        return userMapper.selectOne(user_id);
+    public UserDto findUserByUsereName(String userName) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_name",userName);
+        User user = userMapper.selectOne(wrapper);
+        UserDto userDto = new UserDto();
+        BeanUtils.copyProperties(user,userDto);
+        return userDto;
     }
 
-    @Override
-    public User login(String user_name, String user_password) {
-        return userMapper.selectByLogin(user_name,user_password);
-    }
 
     @Override
-    public Integer getTotal(User user) {
-        return userMapper.selectTotal(user);
+    public UserDto findUserByUserId(Integer userId) {
+        User user = userMapper.selectById(userId);
+        UserDto userDto = new UserDto();
+        BeanUtils.copyProperties(user,userDto);
+        return userDto;
     }
+
+
+    //======================admin===========================================================
 }

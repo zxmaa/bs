@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.bs.mall.dao.ProductMapper">
+    <select id="queryProductList" resultType="com.bs.mall.dao.pojo.Product">
+        select *
+        from product
+        <where>
+            <if test="null != categoryId">
+               and  product_category_id = #{categoryId}
+            </if>
+            <if test="null != searchValue and searchValue != ''">
+                and
+                <foreach collection="searchValueSplit" index="index" item="item" open="(" separator="or" close=")">
+                    product_name LIKE concat('%',#{item},'%')
+                </foreach>
+            </if>
+
+        </where>
+        <if test="null != orderBy and orderBy!= ''">
+            order by ${orderBy}
+            <if test="null != isDesc and isDesc = true"> <!--注：不写默认为升序-->
+                desc
+            </if>
+        </if>
+    </select>
+</mapper>

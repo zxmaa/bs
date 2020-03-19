@@ -1,14 +1,12 @@
 package com.bs.mall.service.impl;
 
+import com.bs.mall.service.IReviewService;
 
-import com.bs.mall.service.IProductOrderService;
-
-public class ProductOrderServiceImpl implements IProductOrderService {
+public class ReviewServiceImpl implements IReviewService {
 
     //=====================user=================================================================
 
 
 
     //======================admin==========================
-
 }

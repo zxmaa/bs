@@ -1,49 +1,78 @@
 package com.bs.mall.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.bs.mall.dao.CategoryMapper;
-import com.bs.mall.entity.Category;
-import com.bs.mall.service.CategoryService;
-import com.bs.mall.util.PageUtil;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
+import com.bs.mall.dao.ProductMapper;
+import com.bs.mall.dao.pojo.Category;
+import com.bs.mall.dao.pojo.Product;
+import com.bs.mall.dto.ProductSimpleDto;
+import com.bs.mall.dto.res.CategoryAndProductResDto;
+import com.bs.mall.service.ICategoryService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
- * author:xs
- * date:2020/3/17 15:18
- * description:产品类型service实现类
+ * 类型的service实现类
  */
-public class CategoryServiceImpl implements CategoryService {
+@Service
+public class CategoryServiceImpl implements ICategoryService {
+    @Autowired
     private CategoryMapper categoryMapper;
-    public void setCategoryMapper(CategoryMapper categoryMapper) {
-        this.categoryMapper = categoryMapper;
+    @Autowired
+    private ProductMapper productMapper;
+
+    //=====================user========================================================
+
+    /***
+     * 得到所有的category
+     * @return
+     */
+    @Override
+    public List<Category> getAllCategory() {
+        List<Category> categories = categoryMapper.selectList(new QueryWrapper<Category>());
+        return categories;
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    /**
+     * 得到每个category下的产品的部分信息:用于首页
+     * @return
+     */
     @Override
-    public boolean add(Category category) {
-        return categoryMapper.insertOne(category)>0;
-    }
+    public List<CategoryAndProductResDto> getCategoryAndProduct() {
+        List<CategoryAndProductResDto> result = new ArrayList<>();
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    @Override
-    public boolean update(Category category) {
-        return categoryMapper.updateOne(category)>0;
-    }
+        //得到所有的类型
+        List<Category> categories = categoryMapper.selectList(new QueryWrapper<Category>());
 
-    @Override
-    public List<Category> getList(String category_name, PageUtil pageUtil) {
-        return categoryMapper.select(category_name,pageUtil);
-    }
+        //得到所有的出售的产品
+        QueryWrapper<Product> wrapper = new QueryWrapper<>();
+        wrapper.ne("product_isEnabled",1); //1：停售
+        List<Product> products = productMapper.selectList(wrapper);
+        CategoryAndProductResDto temp = null;
+        List<ProductSimpleDto> productSimpleDtos = null;
+        for (Category category : categories) {//遍历每个类型
+            temp = new CategoryAndProductResDto();
+            BeanUtils.copyProperties(category,temp);
+            //筛选出该类型下的产品
+            List<Product> productTemp = products.stream().filter(product -> product.getProductCategoryId().equals(category.getCategoryId())).limit(8).collect(Collectors.toList());
+            productSimpleDtos = new ArrayList<>();
+            for (Product product : productTemp) {
+                ProductSimpleDto productSimpleDto = new ProductSimpleDto();
+                BeanUtils.copyProperties(product,productSimpleDto);
+                productSimpleDtos.add(productSimpleDto);
+            }
+            temp.setProductSimpleDtos(productSimpleDtos);
+            result.add(temp);
+        }
 
-    @Override
-    public Category get(Integer category_id) {
-        return categoryMapper.selectOne(category_id);
-    }
+        return result;
 
-    @Override
-    public Integer getTotal(String category_name) {
-        return categoryMapper.selectTotal(category_name);
+
+        //======================admin===================================================
     }
 }

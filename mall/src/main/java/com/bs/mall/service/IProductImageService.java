@@ -1,14 +1,11 @@
-package com.bs.mall.service.impl;
+package com.bs.mall.service;
 
+public interface IProductImageService {
 
-import com.bs.mall.service.IProductOrderService;
-
-public class ProductOrderServiceImpl implements IProductOrderService {
 
     //=====================user=================================================================
 
 
 
     //======================admin==========================
-
 }
