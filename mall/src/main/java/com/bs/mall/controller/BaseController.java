@@ -20,4 +20,15 @@ public class BaseController {
         }
         return userId;
     }
+
+    //获取管理员信息
+    protected Object checkAdmin(HttpSession session){
+        Object o = session.getAttribute("adminId");
+        if(o==null){
+            logger.info("无管理权限，返回管理员登陆页");
+            return null;
+        }
+        logger.info("当前登录管理员ID：{}",o);
+        return o;
+    }
 }
