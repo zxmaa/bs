@@ -24,7 +24,7 @@ public class Admin {
     /**
      * 管理员昵称
      */
-    private String adminNickname;
+    private String adminNickName;
 
     /**
      * 管理员密码
