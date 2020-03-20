@@ -1,9 +1,11 @@
 package com.bs.mall.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.bs.mall.dao.AdminMapper;
 import com.bs.mall.dao.pojo.Admin;
 import com.bs.mall.service.IAdminService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -11,7 +13,12 @@ import java.util.List;
 
 @Service("adminService")
 public class AdminServiceImpl implements IAdminService {
+    @Autowired
     AdminMapper adminMapper;
+    public void setAdminMapper(AdminMapper adminMapper) {
+        this.adminMapper = adminMapper;
+    }
+
 
     @Override
     public String checkLogin(HttpSession session, String username, String password) {
@@ -31,7 +38,9 @@ public class AdminServiceImpl implements IAdminService {
 
     @Override
     public String getAdminProfilePicture(String username) {
-        Admin admin=adminMapper.selectOne(username, null);
+        QueryWrapper<Admin> wrapper=new QueryWrapper<>();
+        wrapper.eq("admin_name", username);
+        Admin admin=adminMapper.selectOne(wrapper);
         JSONObject object = new JSONObject();
         if(admin == null){
             //logger.info("未找到头像路径");
