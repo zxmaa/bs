@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 @RestController
 @RequestMapping("/admin")
 public class AdminLoginController extends BaseController {
-  /*  @Autowired
+    @Autowired
     private IAdminService adminService;
 
     //转到后台管理-登录页
@@ -37,8 +37,5 @@ public class AdminLoginController extends BaseController {
     public String getAdminProfilePicture(@RequestParam String username){
         return adminService.getAdminProfilePicture(username);
     }
-
-    //
-*/
 
 }
