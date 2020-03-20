@@ -11,18 +11,7 @@ import java.util.List;
 
 @Service("adminService")
 public class AdminServiceImpl implements IAdminService {
-   /* AdminMapper adminMapper;
-
-
-    @Override
-    public boolean add(Admin admin) {
-        return adminMapper.insert(admin)>0;
-    }
-
-    @Override
-    public boolean update(Admin admin) {
-        return adminMapper.updateById(admin)>0;
-    }
+    AdminMapper adminMapper;
 
     @Override
     public String checkLogin(HttpSession session, String username, String password) {
@@ -61,7 +50,5 @@ public class AdminServiceImpl implements IAdminService {
         return adminMapper.selectByLogin(admin_name, admin_password);
     }
 
-
-*/
 
 }
