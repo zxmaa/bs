@@ -4,9 +4,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.bs.mall.dao.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * 用户Mapper接口
  */
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
+    List<User> findUser();
 }
