@@ -1,6 +1,7 @@
 package com.bs.mall.dao.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
@@ -50,6 +51,7 @@ public class Product {
     /**
      * 产品状态:销售中0 停售中1 促销中2
      */
+    @TableField("product_isEnable")
     private Integer productIsEnabled;
 
     /**

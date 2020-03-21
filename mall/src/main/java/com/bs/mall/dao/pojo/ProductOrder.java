@@ -67,6 +67,6 @@ public class ProductOrder {
     /**
      * 订单对应用户id
      */
-    private Integer productOrderUserId;
+    private Integer userId;
 
 }
