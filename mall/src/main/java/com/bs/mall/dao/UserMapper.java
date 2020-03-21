@@ -3,12 +3,14 @@ package com.bs.mall.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.bs.mall.dao.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * 用户Mapper接口
  */
+@Repository
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
     List<User> findUser();
