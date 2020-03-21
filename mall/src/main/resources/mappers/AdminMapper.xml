@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mall.dao.AdminMapper">
-    <select id="selectByLogin" resultType="admin">
+    <select id="selectByLogin" resultType="com.bs.mall.dao.pojo.Admin">
         SELECT admin_id FROM admin
         <where>
             admin_name = #{admin_name} and admin_password = #{admin_password}
