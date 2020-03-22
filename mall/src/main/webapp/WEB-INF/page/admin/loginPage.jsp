@@ -47,7 +47,7 @@
                 src="${pageContext.request.contextPath}/res/img/admin/loginPage/default_profile_picture-128x128.png"
                 <%--当图片无法加载时，用文本代替显示--%>
                 al t="头像" title="头像"
-                <%--图片装在失败时，触发onerror事件，图片不存在将显示logoError.png。以下图片--%>
+                <%--图片装载失败时，触发onerror事件，图片不存在将显示logoError.png。以下图片--%>
                 onerror="this.url='${pageContext.request.contextPath}/res/img/admin/loginPage/default_profile_picture-128x128.png'"/>
             <form id="form_login">
                 <input type="text" class="form-control form_control" placeholder="用户名" id="input_username" title="请输入用户名！">
