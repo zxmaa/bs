@@ -1,9 +1,8 @@
 package com.bs.mall.util;
 
 /**
- * author:xs
- * date:2020/3/9 15:39
- * description:分页查询工具
+ * 查询分页工具
+ *
  */
 public final class PageUtil {
     //当前页
@@ -20,7 +19,6 @@ public final class PageUtil {
         this.count = count;
     }
 
-    //是否有上一页
     public Boolean isHasPrev(){
         return index >= 1;
     }
@@ -29,12 +27,14 @@ public final class PageUtil {
         return index + 1 < getTotalPage();
     }
 
-    //获取总页数
     public Integer getTotalPage(){
         return (int) Math.ceil((double) total / count);
     }
 
-    //获取本页第一条的位置
+    public PageUtil(){
+
+    }
+
     public Integer getPageStart() {
         if (index != null) {
             return index * count;
@@ -74,5 +74,4 @@ public final class PageUtil {
         this.total = total;
         return this;
     }
-
 }

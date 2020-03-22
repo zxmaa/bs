@@ -1,58 +1,63 @@
 package com.bs.mall.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.bs.mall.dao.AdminMapper;
-import com.bs.mall.entity.Admin;
-import com.bs.mall.service.AdminService;
-import com.bs.mall.util.PageUtil;
+import com.bs.mall.dao.pojo.Admin;
+import com.bs.mall.service.IAdminService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
-/**
- * author:xs
- * date:2020/3/9 17:32
- * description:AdminService实现类
- */
 @Service("adminService")
-public class AdminServiceImpl implements AdminService {
-
-    private AdminMapper adminMapper;
-    public void setAdminMapper(AdminMapper adminMapper){
-        this.adminMapper=adminMapper;
+public class AdminServiceImpl implements IAdminService {
+    @Autowired
+    AdminMapper adminMapper;
+    public void setAdminMapper(AdminMapper adminMapper) {
+        this.adminMapper = adminMapper;
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    @Override
-    public boolean add(Admin admin) {
-        return adminMapper.insertOne(admin)>0;
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    @Override
-    public boolean update(Admin admin) {
-        return adminMapper.updateOne(admin)>0;
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    @Override
-    public List<Admin> getList(String admin_name, PageUtil pageUtil) {
-        return adminMapper.select(admin_name,pageUtil);
-    }
 
     @Override
-    public Admin get(String admin_name, Integer admin_id) {
-        return adminMapper.selectOne(admin_name,admin_id);
+    public String checkLogin(HttpSession session, String username, String password) {
+        Admin admin = adminMapper.selectByLogin(username,password);
+
+        JSONObject object = new JSONObject();
+        if(admin == null){
+            //logger.info("登录验证失败");
+            object.put("success",false);
+        } else {
+            //logger.info("登录验证成功，管理员ID传入会话");
+            session.setAttribute("adminId",admin.getAdminId());
+            object.put("success",true);
+        }
+        return object.toString();
     }
+
+    @Override
+    public String getAdminProfilePicture(String username) {
+        QueryWrapper<Admin> wrapper=new QueryWrapper<>();
+        wrapper.eq("admin_name", username);
+        Admin admin=adminMapper.selectOne(wrapper);
+        JSONObject object = new JSONObject();
+        if(admin == null){
+            //logger.info("未找到头像路径");
+            object.put("success",false);
+        } else {
+            //logger.info("成功获取头像路径");
+            object.put("success",true);
+            object.put("srcString",admin.getAdminProfilePictureSrc());
+        }
+        return object.toString();
+    }
+
 
     @Override
     public Admin login(String admin_name, String admin_password) {
-        return adminMapper.selectByLogin(admin_name,admin_password);
+        return adminMapper.selectByLogin(admin_name, admin_password);
     }
 
-    @Override
-    public Integer getTotal(String admin_name) {
-        return adminMapper.selectTotal(admin_name);
-    }
+
 }

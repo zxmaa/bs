@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "mybatis-3-mapper.dtd">
+<mapper namespace="com.bs.mall.dao.ProductOrderMapper">
+    <select id="selectTotal" resultType="int">
+        SELECT COUNT(product_order_id) FROM product_order
+        <where>
+            <if test="productOrder != null">
+                <if test="productOrder.productOrder_code">product_order_code LIKE concat('%',#{productOrder.productOrderCode},'%')</if>
+                <if test="productOrder.productOrder_post">and product_order_post LIKE concat('%',#{productOrder.productOrderPost},'%')</if>
+                <if test="productOrder.productOrder_user != null">and user_id =
+                    #{productOrder.userId}
+                </if>
+            </if>
+            <if test="productOrder_status_array != null">and product_order_status IN
+                <foreach collection="productOrder_status_array" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="getTotalByDate" resultType="com.bs.mall.util.OrderGroup">
+        SELECT
+        DATE_FORMAT(product_order_pay_date,'%Y-%m-%d') product_order_pay_date,count(product_order_id) as product_order_count ,product_order_status from product_order
+        <where>
+            product_order_pay_date BETWEEN #{beginDate} AND #{endDate} AND product_order_status != 4
+        </where>
+        GROUP BY DATE_FORMAT(product_order_pay_date,'%Y-%m-%d'),product_order_status
+        ORDER BY product_order_pay_date ASC,product_order_status ASC
+    </select>
+</mapper>
