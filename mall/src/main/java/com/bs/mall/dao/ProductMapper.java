@@ -5,6 +5,8 @@ import com.bs.mall.dao.pojo.Product;
 import com.bs.mall.dto.req.ForeQueryProductListReqDto;
 import com.bs.mall.dto.res.ForePropertyValueResDto;
 import com.bs.mall.dto.res.ForeReviewSimpleResDto;
+import com.bs.mall.util.OrderUtil;
+import com.bs.mall.util.PageUtil;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -20,6 +22,7 @@ public interface ProductMapper extends BaseMapper<Product> {
 
     List<Product> queryProductList(ForeQueryProductListReqDto queryProductListReqDto);
     Integer selectTotal(@Param("product") Product product, @Param("product_isEnabled_array") Byte[] product_isEnabled_array);
+    List<Product> select(@Param("product") Product product, @Param("product_isEnabled_array") Byte[] product_isEnabled_array, @Param("orderUtil") OrderUtil orderUtil, @Param("pageUtil") PageUtil pageUtil);
 
 
     //==============================fore=======================================================
