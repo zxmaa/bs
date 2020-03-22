@@ -1,7 +1,8 @@
 package com.bs.mall.controller.Admin;
 
 import com.bs.mall.controller.BaseController;
-import com.bs.mall.service.IAdminService;
+
+import com.bs.mall.service.admin.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

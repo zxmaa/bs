@@ -2,7 +2,9 @@ package com.bs.mall.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.bs.mall.dao.pojo.Product;
-import com.bs.mall.dto.req.QueryProductListReqDto;
+import com.bs.mall.dto.req.ForeQueryProductListReqDto;
+import com.bs.mall.dto.res.ForePropertyValueResDto;
+import com.bs.mall.dto.res.ForeReviewSimpleResDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -16,7 +18,31 @@ import java.util.List;
 @Mapper
 public interface ProductMapper extends BaseMapper<Product> {
 
-    List<Product> queryProductList(QueryProductListReqDto queryProductListReqDto);
+    List<Product> queryProductList(ForeQueryProductListReqDto queryProductListReqDto);
     Integer selectTotal(@Param("product") Product product, @Param("product_isEnabled_array") Byte[] product_isEnabled_array);
 
+
+    //==============================fore=======================================================
+
+    /**
+     * 输入的商品类型/商品名字模糊查询
+     * @param foreQueryProductListReqDto
+     * @return
+     */
+    List<Product> queryProductListFore(ForeQueryProductListReqDto foreQueryProductListReqDto);
+
+
+    /**
+     * 根据产品id得到产品的属性
+     * @param productId
+     * @return
+     */
+    List<ForePropertyValueResDto> getPropertyValueByProductIdFore(Integer productId);
+
+    /**
+     *
+     * @param productId
+     * @return
+     */
+    List<ForeReviewSimpleResDto> getReviewFore(Integer productId);
 }

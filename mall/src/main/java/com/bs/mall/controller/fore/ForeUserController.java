@@ -2,9 +2,9 @@ package com.bs.mall.controller.fore;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bs.mall.controller.BaseController;
-import com.bs.mall.dto.UserDto;
-import com.bs.mall.dto.req.UserReqDto;
-import com.bs.mall.service.impl.UserServiceImpl;
+import com.bs.mall.dto.ForeUserDto;
+import com.bs.mall.dto.req.ForeUserReqDto;
+import com.bs.mall.service.fore.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,8 +32,8 @@ public class ForeUserController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/login")
-    public String userLogin(@RequestBody UserReqDto userReqDto, Model model){
-        UserDto userDto = userServiceImpl.userLogin(userReqDto);
+    public String userLogin(@RequestBody ForeUserReqDto userReqDto, Model model){
+        ForeUserDto userDto = userServiceImpl.userLogin(userReqDto);
 
         JSONObject jsonObject = new JSONObject();
         if(null == userDto ){
@@ -67,16 +67,16 @@ public class ForeUserController extends BaseController {
     @RequestMapping("/getUserDetail")
     public ModelAndView getUserDetail(HttpSession session){
        ModelAndView modelAndView = new ModelAndView();
-       UserDto userDto = userServiceImpl.findUserByUserId((Integer)session.getAttribute("userId"));
+       ForeUserDto userDto = userServiceImpl.findUserByUserId((Integer)session.getAttribute("userId"));
         modelAndView.addObject("user",userDto);
         modelAndView.setViewName("fore/userDetails");
         return modelAndView;
     }
 
     @RequestMapping("/userRegister")
-    public String userRegister(@RequestBody UserDto userDto){
+    public String userRegister(@RequestBody ForeUserDto userDto){
          String userName = userDto.getUserName();
-         UserDto temp = userServiceImpl.findUserByUsereName(userName);
+         ForeUserDto temp = userServiceImpl.findUserByUsereName(userName);
         JSONObject jsonObject = new JSONObject();
          if(temp != null){
              logger.info("已存在该用户名");
@@ -96,9 +96,9 @@ public class ForeUserController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/updateUserInfo")
-    public String updateUserInfo(@RequestBody UserDto userDto){
+    public String updateUserInfo(@RequestBody ForeUserDto userDto){
         String userName = userDto.getUserName();
-        UserDto temp = userServiceImpl.findUserByUsereName(userName);
+        ForeUserDto temp = userServiceImpl.findUserByUsereName(userName);
         if(temp != null){
             logger.info("已存在该用户名");
             JSONObject jsonObject = new JSONObject();
