@@ -221,5 +221,19 @@ public class ProductServiceImpl implements IProductService {
         return product;
     }
 
+    /**
+     * 得到促销产品
+     * @return
+     */
+    @Override
+    public List<Product> getPromotionProduct() {
+        QueryWrapper<Product> wrapper = new QueryWrapper<>();
+        wrapper.eq("product_isEnabled",2);
+        List<Product> products = productMapper.selectList(wrapper);
+        //选出6个促销产品
+        List<Product> result = products.stream().limit(6).collect(Collectors.toList());
+        return result;
+    }
+
 
 }
