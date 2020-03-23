@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements IProductService {
+
     @Autowired
     private ProductMapper productMapper;
     @Autowired
@@ -212,6 +213,12 @@ public class ProductServiceImpl implements IProductService {
         Product product = productMapper.selectById(productId);
         Category category = categoryMapper.selectById(product.getProductCategoryId());
         return category.getCategoryName();
+    }
+
+    @Override
+    public Product getProductById(Integer productId) {
+        Product product = productMapper.selectById(productId);
+        return product;
     }
 
 

@@ -12,6 +12,7 @@ import com.github.pagehelper.PageInfo;
 
 public interface IProductService {
 
+
     /**
      *   根据商品类型，或是搜索框输入的商品类型/商品名字模糊查询
      *
@@ -55,4 +56,9 @@ public interface IProductService {
      * @return
      */
     String getCategoryNameByProductId(Integer productId);
+
+    /**
+     * 根据产品id得到产品
+     */
+    Product getProductById(Integer productId);
 }
