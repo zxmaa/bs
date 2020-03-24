@@ -60,7 +60,7 @@ public class CategoryServiceImpl implements ICategoryService {
         for (Category category : categories) {//遍历每个类型
             temp = new ForeCategoryAndProductResDto();
             BeanUtils.copyProperties(category,temp);
-            //筛选出该类型下的产品
+            //筛选出该类型下的产品:最多选8个
             List<Product> productTemp = products.stream().filter(product -> product.getProductCategoryId().equals(category.getCategoryId())).limit(8).collect(Collectors.toList());
             foreProductSimpleDtos = new ArrayList<>();
             for (Product product : productTemp) {
@@ -73,8 +73,28 @@ public class CategoryServiceImpl implements ICategoryService {
         }
 
         return result;
+    }
 
+    /**
+     * 根据categoryId返回产品信息
+     * @param categoryId
+     * @return
+     */
+    @Override
+    public List<ForeProductSimpleDto> getProductByCategoryId(Integer categoryId) {
+        QueryWrapper<Product> wrapper = new QueryWrapper<>();
+        wrapper.eq("product_category_id",categoryId)
+                .ne("product_isEnabled",1); //排除停售中的
 
-        //======================admin===================================================
+        List<Product> products = productMapper.selectList(wrapper);
+        List<Product> products1 = products.stream().limit(20).collect(Collectors.toList());
+        List<ForeProductSimpleDto> result = new ArrayList<>();
+        ForeProductSimpleDto temp = null;
+        for (Product product : products1) {
+            temp = new ForeProductSimpleDto();
+            BeanUtils.copyProperties(product,temp);
+            result.add(temp);
+        }
+        return result;
     }
 }

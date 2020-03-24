@@ -1,6 +1,7 @@
 package com.bs.mall.service.fore;
 
 import com.bs.mall.dao.pojo.Category;
+import com.bs.mall.dto.ForeProductSimpleDto;
 import com.bs.mall.dto.res.ForeCategoryAndProductResDto;
 
 import java.util.List;
@@ -23,5 +24,11 @@ public interface ICategoryService {
      */
     List<ForeCategoryAndProductResDto> getCategoryAndProduct();
 
+    /**
+     * 根据categoryId返回产品信息(最多返回20个)：用于首页的选中分类，显示产品title
+     * @param categoryId
+     * @return
+     */
+    List<ForeProductSimpleDto> getProductByCategoryId(Integer categoryId);
 
 }

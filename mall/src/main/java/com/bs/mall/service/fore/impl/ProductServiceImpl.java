@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements IProductService {
+
     @Autowired
     private ProductMapper productMapper;
     @Autowired
@@ -212,6 +213,26 @@ public class ProductServiceImpl implements IProductService {
         Product product = productMapper.selectById(productId);
         Category category = categoryMapper.selectById(product.getProductCategoryId());
         return category.getCategoryName();
+    }
+
+    @Override
+    public Product getProductById(Integer productId) {
+        Product product = productMapper.selectById(productId);
+        return product;
+    }
+
+    /**
+     * 得到促销产品
+     * @return
+     */
+    @Override
+    public List<Product> getPromotionProduct() {
+        QueryWrapper<Product> wrapper = new QueryWrapper<>();
+        wrapper.eq("product_isEnabled",2);
+        List<Product> products = productMapper.selectList(wrapper);
+        //选出6个促销产品
+        List<Product> result = products.stream().limit(6).collect(Collectors.toList());
+        return result;
     }
 
 

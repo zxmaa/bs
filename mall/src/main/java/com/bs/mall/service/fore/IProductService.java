@@ -10,7 +10,11 @@ import com.bs.mall.dto.res.ForeProductPropertyResDto;
 import com.bs.mall.dto.res.ForeReviewResDto;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+
+
 public interface IProductService {
+
 
     /**
      *   根据商品类型，或是搜索框输入的商品类型/商品名字模糊查询
@@ -55,4 +59,15 @@ public interface IProductService {
      * @return
      */
     String getCategoryNameByProductId(Integer productId);
+
+    /**
+     * 根据产品id得到产品
+     */
+    Product getProductById(Integer productId);
+
+    /**
+     * 得到促销产品
+     * @return
+     */
+    List<Product> getPromotionProduct();
 }
