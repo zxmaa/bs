@@ -22,7 +22,7 @@
     <script src="${pageContext.request.contextPath}/res/js/bootstrap-select.min.js"></script>
     <script src="${pageContext.request.contextPath}/res/js/defaults-zh_CN.min.js"></script>
     <script src="${pageContext.request.contextPath}/res/js/echarts.js"></script>
-    <script src="${pageContext.request.contextPath}/res/js/base.js"></script>
+    <script src="${pageContext.request.contextPath}/res/js/basebase.js.js"></script>
 </head>
 <body>
 
