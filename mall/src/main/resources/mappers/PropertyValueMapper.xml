@@ -3,4 +3,29 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mall.dao.PropertyValueMapper">
+    <resultMap id="propertyValueMap" type="com.bs.mall.entity.PropertyValue">
+
+        <association property="propertyValueProperty" javaType="com.bs.mall.entity.Property">
+            <id property="propertyId" column="property_id"/>
+        </association>
+        <association property="propertyValueProduct" javaType="com.bs.mall.entity.Product">
+            <id property="productId" column="product_id"/>
+        </association>
+    </resultMap>
+
+    <select id="select" resultMap="propertyValueMap">
+        SELECT property_value_id,property_value_value,property_id,product_id FROM property_value
+        <if test="propertyValue != null">
+            <where>
+                <if test="propertyValue.propertyValueValue">property_value_value = #{propertyValue.propertyValueValue}</if>
+                <if test="propertyValue.propertyValueProperty != null">
+                    <if test="propertyValue.propertyValueProperty.propertyId">property_id = #{propertyValue.propertyValueProperty.propertyId}</if>
+                </if>
+                <if test="propertyValue.propertyValueProduct != null">
+                    <if test="propertyValue.propertyValueProduct.productId">product_id = #{propertyValue.propertyValueProduct.productId}</if>
+                </if>
+            </where>
+        </if>
+    </select>
+
 </mapper>

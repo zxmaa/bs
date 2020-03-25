@@ -3,4 +3,26 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mall.dao.PropertyMapper">
+    <resultMap id="propertyMap" type="com.bs.mall.entity.Property">
+        <id property="propertyId" column="property_id"/>
+        <result property="propertyName" column="property_name"/>
+        <association property="propertyCategory" javaType="com.bs.mall.entity.Category">
+            <id property="categoryId" column="category_id"/>
+        </association>
+    </resultMap>
+
+    <select id="select" resultMap="propertyMap">
+        SELECT property_id,property_name,category_id FROM property
+        <if test="property != null">
+            <where>
+                <if test="property.propertyName != null">property_name LIKE concat('%',#{property.propertyName},'%')</if>
+                <if test="property.propertyCategory != null">
+                    <if test="property.propertyCategory.categoryId != null">category_id = #{property.propertyCategory.categoryId}</if>
+                </if>
+            </where>
+        </if>
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.pageStart},#{pageUtil.count}
+        </if>
+    </select>
 </mapper>

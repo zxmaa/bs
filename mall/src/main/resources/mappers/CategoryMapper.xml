@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mall.dao.CategoryMapper">
-
+    <select id="select" resultType="com.bs.mall.entity.Category">
+        SELECT category_id,category_name,category_image_src FROM category
+        <where>
+            <if test="category_name != null">category_name LIKE concat('%',#{category_name},'%')</if>
+        </where>
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.pageStart},#{pageUtil.count}
+        </if>
+    </select>
 </mapper>

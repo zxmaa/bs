@@ -2,17 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mall.dao.ProductMapper">
     <resultMap id="productMap" type="com.bs.mall.dao.pojo.Product">
-        <id property="product_id" column="product_id"/>
-        <result property="product_name" column="product_name"/>
-        <result property="product_title" column="product_title"/>
-        <result property="product_price" column="product_price"/>
-        <result property="product_sale_price" column="product_sale_price"/>
-        <result property="product_create_date" column="product_create_date"/>
-        <result property="product_isEnabled" column="product_isEnabled"/>
-        <result property="product_sale_count" column="product_sale_count"/>
-        <result property="product_review_count" column="product_review_count"/>
-        <association property="product_category" javaType="com.bs.mall.dao.pojo.Category">
-            <id property="category_id" column="product_category_id"/>
+        <id property="productId" column="product_id"/>
+        <result property="productName" column="product_name"/>
+        <result property="productTitle" column="product_title"/>
+        <result property="productPrice" column="product_price"/>
+        <result property="productSalePrice" column="product_sale_price"/>
+        <result property="productCreateDate" column="product_create_date"/>
+        <result property="productIsEnabled" column="product_isEnabled"/>
+        <result property="productSaleCount" column="product_sale_count"/>
+        <result property="productReviewCount" column="product_review_count"/>
+        <association property="productCategory" javaType="com.bs.mall.dao.pojo.Category">
+            <id property="categoryId" column="product_category_id"/>
         </association>
     </resultMap>
     <select id="queryProductList" resultType="com.bs.mall.dao.pojo.Product">
@@ -36,6 +36,10 @@
                 desc
             </if>
         </if>
+    </select>
+
+    <select id="selectOne" resultType="com.bs.mall.entity.Product">
+        select * from product where product_id = #{product_id}
     </select>
 
     <select id="selectTotal" resultType="int">
