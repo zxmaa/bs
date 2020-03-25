@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 属性
  */
@@ -24,6 +26,9 @@ public class Property {
      * 属性对应分类id
      */
     private Integer categoryId;
+
+
+
 
 
 }

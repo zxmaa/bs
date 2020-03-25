@@ -20,9 +20,10 @@ import java.util.List;
 @Mapper
 public interface ProductMapper extends BaseMapper<Product> {
 
-    List<Product> queryProductList(ForeQueryProductListReqDto queryProductListReqDto);
+    List<com.bs.mall.entity.Product> queryProductList(ForeQueryProductListReqDto queryProductListReqDto);
     Integer selectTotal(@Param("product") Product product, @Param("product_isEnabled_array") Byte[] product_isEnabled_array);
-    List<Product> select(@Param("product") Product product, @Param("product_isEnabled_array") Byte[] product_isEnabled_array, @Param("orderUtil") OrderUtil orderUtil, @Param("pageUtil") PageUtil pageUtil);
+    List<com.bs.mall.entity.Product> select(@Param("product") Product product, @Param("product_isEnabled_array") Byte[] product_isEnabled_array, @Param("orderUtil") OrderUtil orderUtil, @Param("pageUtil") PageUtil pageUtil);
+    com.bs.mall.entity.Product selectOne(@Param("product_id") Integer product_Id);
 
 
     //==============================fore=======================================================

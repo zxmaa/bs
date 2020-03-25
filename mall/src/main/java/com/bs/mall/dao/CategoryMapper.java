@@ -3,7 +3,9 @@ package com.bs.mall.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.bs.mall.dao.pojo.Category;
+import com.bs.mall.util.PageUtil;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,5 +16,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface CategoryMapper extends BaseMapper<Category> {
+    List<Category> select(@Param("category_name") String categoryName, @Param("pageUtil") PageUtil pageUtil);
+
 
 }

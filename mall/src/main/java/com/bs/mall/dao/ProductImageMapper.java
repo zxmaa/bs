@@ -2,8 +2,12 @@ package com.bs.mall.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.bs.mall.dao.pojo.ProductImage;
+import com.bs.mall.util.PageUtil;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 /**
@@ -12,4 +16,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface ProductImageMapper extends BaseMapper<ProductImage> {
+    List<com.bs.mall.entity.ProductImage> select(@Param("product_id") Integer product_id, @Param("product_image_type") Byte product_image_type, @Param("pageUtil") PageUtil pageUtil);
+
 }

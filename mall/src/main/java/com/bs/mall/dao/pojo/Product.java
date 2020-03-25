@@ -66,14 +66,7 @@ public class Product {
     private Integer productReviewCount;
 
 
-    /**
-     * 下面这部分是统计产品中复合属性的集合，表中无对应字段
-     */
-    private List<PropertyValue> propertyValueList/*产品属性值集合*/;
-    private List<ProductImage> singleProductImageList/*产品预览图片集合*/;
-    private List<ProductImage> detailProductImageList/*产品详细图片集合*/;
-    private List<Review> reviewList/*产品评论集合*/;
-    private List<ProductOrderItem> productOrderItemList/*产品订单项集合*/;
+
 
 
 }
