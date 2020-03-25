@@ -5,7 +5,7 @@ import com.bs.mall.dto.ForeUserDto;
 import com.bs.mall.dto.req.ForeUserReqDto;
 
 public interface IUserService {
-    //=====================user========================================================
+
     /**
      * 新增用户
      * @param foreUserDto
@@ -40,5 +40,4 @@ public interface IUserService {
     ForeUserDto findUserByUserId(Integer userId);
 
 
-    //======================admin===================================================
 }

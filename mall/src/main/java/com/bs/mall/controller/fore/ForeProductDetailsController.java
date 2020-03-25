@@ -25,8 +25,7 @@ import java.util.Map;
 @Controller
 public class ForeProductDetailsController extends BaseController {
 
-    @Autowired
-    private IUserService userService;
+
     @Autowired
     private IProductService productService;
 

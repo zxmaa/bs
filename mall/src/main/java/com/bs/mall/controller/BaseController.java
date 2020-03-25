@@ -14,11 +14,11 @@ public class BaseController {
 
     //检查用户是否已登录
     protected Object checkUser(HttpSession session){
-        Object userId = session.getAttribute("userId");
-        if(userId == null){
+        Object userName = session.getAttribute("userName");
+        if(userName == null){
             return null;
         }
-        return userId;
+        return userName;
     }
 
     //获取管理员信息

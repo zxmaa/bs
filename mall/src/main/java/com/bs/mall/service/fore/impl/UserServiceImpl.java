@@ -27,6 +27,7 @@ public class UserServiceImpl implements IUserService {
         User user = new User();
         BeanUtils.copyProperties(foreUserDto,user);
         user.setRegisterTime(new Date());
+        user.setIntegral(0);
         userMapper.insert(user);
     }
 
@@ -54,6 +55,9 @@ public class UserServiceImpl implements IUserService {
                 .eq("user_password", foreUserReqDto.getUserPassword());
 
         User user = userMapper.selectOne(wrapper);
+        if(null == user){
+            return null;
+        }
         ForeUserDto foreUserDto = new ForeUserDto();
         BeanUtils.copyProperties(user, foreUserDto);
         return foreUserDto;

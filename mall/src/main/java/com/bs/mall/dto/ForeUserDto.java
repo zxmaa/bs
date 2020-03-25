@@ -38,7 +38,18 @@ public class ForeUserDto {
     private String userTel;
 
     /**
+     * 生日
+     */
+    private Date userBirthday;
+
+    /**
      * 用户注册时间
      */
     private Date registerTime;
+
+    /**
+     * 用户头像路径
+     */
+
+    private String  userProfilePictureSrc;
 }

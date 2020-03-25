@@ -3,13 +3,16 @@ package com.bs.mall.controller.fore;
 import com.bs.mall.controller.BaseController;
 import com.bs.mall.dao.pojo.Category;
 import com.bs.mall.dao.pojo.Product;
+import com.bs.mall.dto.ForeProductSimpleDto;
 import com.bs.mall.dto.res.ForeCategoryAndProductResDto;
 import com.bs.mall.service.fore.ICategoryService;
 import com.bs.mall.service.fore.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -42,5 +45,27 @@ public class ForeHomeController extends BaseController {
         //转发到主页
         return "user/homePage";
     }
+
+    /**
+     * 转到前端的错误页
+     * @return
+     */
+    public String goToErrorPage(){
+        return  "user/errorPage";
+}
+
+    /**
+     * ajax：用于主页的导航页页：选中分页显示对应的信息
+     * @param categoryId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/product/nav/{categoryId}")
+    public List<ForeProductSimpleDto> getProductTitleByNav(@PathVariable("categoryId")Integer categoryId){
+        List<ForeProductSimpleDto> products = categoryService.getProductByCategoryId(categoryId);
+        return products;
+    }
+
+
 
 }

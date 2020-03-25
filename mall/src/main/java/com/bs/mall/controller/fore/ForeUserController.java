@@ -4,15 +4,21 @@ import com.alibaba.fastjson.JSONObject;
 import com.bs.mall.controller.BaseController;
 import com.bs.mall.dto.ForeUserDto;
 import com.bs.mall.dto.req.ForeUserReqDto;
+import com.bs.mall.service.fore.IUserService;
 import com.bs.mall.service.fore.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 /**
  * 用户controller
@@ -22,83 +28,79 @@ import javax.servlet.http.HttpSession;
 @SessionAttributes("userIdSession")
 public class ForeUserController extends BaseController {
     @Autowired
-    private UserServiceImpl userServiceImpl;
+    private IUserService userService;
+
 
     /**
-     * 用户登录
-     * @param userReqDto
+     * 得到用户详细信息，在转发到用户详情页
      * @param model
      * @return
      */
-    @ResponseBody
-    @RequestMapping("/login")
-    public String userLogin(@RequestBody ForeUserReqDto userReqDto, Model model){
-        ForeUserDto userDto = userServiceImpl.userLogin(userReqDto);
+    @RequestMapping("/userDetails")
+    public String goToUserDetail(Model model,HttpSession session){
 
+        String userName = (String) session.getAttribute("userName");
+        ForeUserDto userDto = userService.findUserByUsereName(userName);
+        model.addAttribute("user",userDto);
+
+        return "fore/userDetails";
+    }
+
+    @ResponseBody
+    @RequestMapping("/user/uploadUserHeadImage")
+    public String  uploadUserHeadImage(@RequestParam MultipartFile file, HttpSession session){
+        //获取上传文件的名字
+        String originalFileName = file.getOriginalFilename();
+        //取出该文件的扩展名
+        String extension = originalFileName.substring(originalFileName.lastIndexOf('.'));
+        String fileName = UUID.randomUUID() + extension;
+        //上传文件的位置
+        String filePath = session.getServletContext().getRealPath("/") + "res/images/item/userProfilePicture/" + fileName;
+        logger.info("文件上传路径：", filePath);
         JSONObject jsonObject = new JSONObject();
-        if(null == userDto ){
-            logger.info("登录验证失败：用户名或密码错误");
-            jsonObject.put("success","false");
-        }else{
-            //设置session的值
-            model.addAttribute("userIdSession",userDto.getUserId());
-            jsonObject.put("success",true);
+        try {
+            logger.info("文件上传中...");
+            file.transferTo(new File(filePath));
+            logger.info("文件上传成功！");
+            jsonObject.put("success", true);
+            jsonObject.put("fileName", fileName);
+        } catch (IOException e) {
+            logger.warn("文件上传失败！");
+            e.printStackTrace();
+            jsonObject.put("success", false);
         }
         return jsonObject.toJSONString();
     }
 
-    /**
-     * 退出登录
-     * @param sessionStatus
-     * @return
-     */
-    @RequestMapping("/logout")
-    public String logout(SessionStatus sessionStatus){
-        //清除session
-       sessionStatus.setComplete();
-        return "redirect:/fore/loginPages";
-    }
 
     /**
-     * 得到用户详细信息
-     * @param session
-     * @return
-     */
-    @RequestMapping("/getUserDetail")
-    public ModelAndView getUserDetail(HttpSession session){
-       ModelAndView modelAndView = new ModelAndView();
-       ForeUserDto userDto = userServiceImpl.findUserByUserId((Integer)session.getAttribute("userId"));
-        modelAndView.addObject("user",userDto);
-        modelAndView.setViewName("fore/userDetails");
-        return modelAndView;
-    }
-
-    @RequestMapping("/userRegister")
-    public String userRegister(@RequestBody ForeUserDto userDto){
-         String userName = userDto.getUserName();
-         ForeUserDto temp = userServiceImpl.findUserByUsereName(userName);
-        JSONObject jsonObject = new JSONObject();
-         if(temp != null){
-             logger.info("已存在该用户名");
-             jsonObject.put("success",false);
-             jsonObject.put("msg","用户名已存在，请重新输入！");
-             return jsonObject.toJSONString();
-         }
-         userServiceImpl.addUser(userDto);
-        jsonObject.put("success",true);
-        return jsonObject.toJSONString();
-    }
-
-    /**
-     * 修改用户信息
+     * 修改用户信息(格式的合法性：前端验证)
      * @param userDto
      * @return
      */
     @ResponseBody
-    @RequestMapping("/updateUserInfo")
+    @RequestMapping("/user/updateBasic")
     public String updateUserInfo(@RequestBody ForeUserDto userDto){
         String userName = userDto.getUserName();
-        ForeUserDto temp = userServiceImpl.findUserByUsereName(userName);
+        ForeUserDto temp = userService.findUserByUsereName(userName);
+        userService.updateUser(userDto);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("success",true);
+        //注：修改成功，由前端弹出提示窗口：个人资料修改成功
+        //然后前端，在跳到用户详情页，/userDetails
+        return jsonObject.toJSONString();
+    }
+
+    /**
+     * 修改用户名，密码(密码的强度，前端验证)
+     * @param userDto
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/user/updateAccount")
+    public String updateUserAccount(@RequestBody ForeUserDto userDto){
+        String userName = userDto.getUserName();
+        ForeUserDto temp = userService.findUserByUsereName(userName);
         if(temp != null){
             logger.info("已存在该用户名");
             JSONObject jsonObject = new JSONObject();
@@ -106,9 +108,11 @@ public class ForeUserController extends BaseController {
             jsonObject.put("msg","已存在该用户名，请重新修改！");
             return jsonObject.toJSONString();
         }
-        userServiceImpl.updateUser(userDto);
+        userService.updateUser(userDto);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("success",true);
+        //注：修改成功，由前端弹出提示窗口：用户名，密码修改成功，请重新登录；
+        //然后前端跳转到:/login/logout
         return jsonObject.toJSONString();
     }
 }
