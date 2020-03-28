@@ -1,0 +1,94 @@
+/*被homePage.jsp所引用*/
+html,body,#div_home_main{
+    width: 100%;
+    height: 100%;
+}
+/*左边导航栏*/
+#div_home_main{
+    min-width: 1000px;
+}
+/*通用类部分(整个ul部分)*/
+.text_info{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -ms-user-select: none;
+}
+/*标题栏部分，该部分是nav.jsp中的，被引入到home_page.jsp界面中来的【天猫数据管理后台】*/
+.nav_text{
+    font-szie:16px;
+    color:#444;
+}
+#div_home_main>#nav_main{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 1000px;
+    height: 57px;
+    background-color: #f5f6fb;
+    padding: 12px 35px;
+    border-bottom: 1px solid #e9ebef;
+    /*值设为1000是为了一直显示在最上面，不被其他层覆盖掉，值设的大一些*/
+    z-index: 1000;
+}
+#nav_main>.home_logo{
+    /*表格中垂直居中*/
+    vertical-align: middle;
+}
+#nav_main>#txt_home_title{
+    /*static relative absolute fixed*/
+    position: relative;
+    top: 4px;
+}
+#nav_main>#txt_home_nickname{
+    float: right;
+    position: relative;
+    top:7px;
+    font-size: 14px;
+    color: #8a8a8a;
+    margin-right: 5px;
+    /*小手*/
+    cursor: pointer;
+}
+#nav_main>#img_home_profile_picture{
+    float: right;
+    margin: 0 12px;
+    border-radius: 32px;
+}
+#nav_main>#i_nickname_slide{
+    cursor: pointer;
+    float: right;
+    position: relative;
+    top:14px;
+    width: 0;
+    height: 0;
+    border: 5px solid;
+    border-color: #8a8a8a transparent transparent transparent;
+}
+
+#nav_main > #nav_tools {
+    z-index: 1000;
+    position: absolute;
+    top: 57px;
+    right: 30px;
+    padding: 0;
+    /*阴影。从原点开始沿xy轴正方向的长度（值），阴影模糊度，阴影颜色*/
+    box-shadow: 0 0 10px #ddd;
+    display: none;
+}
+
+#nav_tools > li {
+    min-width: 110px;
+    /*设置列表项目相关内容，列表的样式显示，可以使图标样式或者其他的图形，disc默认是实心圆*/
+    list-style: none;
+    color: #666;
+    padding: 15px;
+    background-color: white;
+    cursor: pointer;
+}
+
+#nav_tools > li:hover {
+    color: white;
+    background-color: #ff7874;
+}
