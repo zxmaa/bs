@@ -29,4 +29,26 @@ public class UserAddress {
      * 详细地址
      */
     private String detailAddress;
+
+    /**
+     * 收货人
+     */
+    private String receiver;
+
+    /**
+     * 收货人电话
+     */
+    private String tel;
+
+    /**
+     *1：默认地址  0：非默认地址
+     */
+    private Integer flag;
+
+    /**
+     *邮政编码
+     */
+    private String postCode;
+
+
 }

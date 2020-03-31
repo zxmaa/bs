@@ -73,6 +73,9 @@ public class UserServiceImpl implements IUserService {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("user_name",userName);
         User user = userMapper.selectOne(wrapper);
+        if(null == user){
+            return null;
+        }
         ForeUserDto foreUserDto = new ForeUserDto();
         BeanUtils.copyProperties(user, foreUserDto);
         return foreUserDto;
@@ -82,11 +85,14 @@ public class UserServiceImpl implements IUserService {
     @Override
     public ForeUserDto findUserByUserId(Integer userId) {
         User user = userMapper.selectById(userId);
+        if(null == user){
+            return null;
+        }
         ForeUserDto foreUserDto = new ForeUserDto();
         BeanUtils.copyProperties(user, foreUserDto);
         return foreUserDto;
     }
 
 
-    //======================admin===========================================================
+
 }

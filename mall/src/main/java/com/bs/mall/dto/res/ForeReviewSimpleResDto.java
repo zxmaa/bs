@@ -1,8 +1,11 @@
 package com.bs.mall.dto.res;
 
 
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class ForeReviewSimpleResDto {
     /**
      * 用户登录名

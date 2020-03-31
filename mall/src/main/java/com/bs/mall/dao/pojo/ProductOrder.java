@@ -25,9 +25,12 @@ public class ProductOrder {
     /**
      * 订单地址
      */
-    private Integer userAddressId;
+    private String userAddressId;
 
-
+    /**
+     * 订单详细地址
+     */
+    private String productOrderDetailAddress;
 
     /**
      * 订单邮政编码
@@ -61,6 +64,7 @@ public class ProductOrder {
 
     /**
      * 订单状态
+     * 0：待付款
      */
     private  Integer productOrderStatus;
 

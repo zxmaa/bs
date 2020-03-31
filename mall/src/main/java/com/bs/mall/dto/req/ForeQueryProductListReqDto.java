@@ -13,13 +13,9 @@ public class ForeQueryProductListReqDto {
      */
     private Integer categoryId;
 
-    /**
-     *搜索框中的内容:以空白分割
-     */
-    private String searchValue;
 
     /**
-     * searchValue分割后的结果
+     * 搜索框的内容，以空白分割后的结果
      */
     private String[] searchValueSplit;
     /**

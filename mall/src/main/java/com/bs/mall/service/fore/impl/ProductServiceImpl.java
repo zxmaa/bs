@@ -15,6 +15,7 @@ import com.bs.mall.dto.req.ForeReviewReqDto;
 import com.bs.mall.dto.res.*;
 import com.bs.mall.service.fore.ICategoryService;
 import com.bs.mall.service.fore.IProductService;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,10 @@ public class ProductServiceImpl implements IProductService {
             //默认每页20个产品
             foreQueryProductListReqDto.setPageSize(20);
         }
+        if(null == foreQueryProductListReqDto.getIsDesc()){
+            //未传值，默认降序
+            foreQueryProductListReqDto.setIsDesc(true);
+        }
         PageHelper.startPage(foreQueryProductListReqDto.getPageNum(), foreQueryProductListReqDto.getPageSize());
         List<Product> products = productMapper.queryProductListFore(foreQueryProductListReqDto);
         PageInfo<Product> pageInfo = new PageInfo<Product>(products);
@@ -76,11 +81,12 @@ public class ProductServiceImpl implements IProductService {
             //默认每页3个产品
             foreProductGuessReqDto.setPageSize(3);
         }
-        PageHelper.startPage(foreProductGuessReqDto.getPageNum(), foreProductGuessReqDto.getPageSize());
+        Page<?> page = PageHelper.startPage(foreProductGuessReqDto.getPageNum(), foreProductGuessReqDto.getPageSize());
         QueryWrapper<Product>queryWrapper  = new QueryWrapper<>();
         queryWrapper.eq("product_category_id", foreProductGuessReqDto.getCategoryId());
         queryWrapper.ne("product_isEnabled",1); //排除停售的
         List<Product> products = productMapper.selectList(queryWrapper);
+
 
         List<ForeProductGuessResDto> productGuess = new ArrayList<>();
         ForeProductGuessResDto temp ;
@@ -92,13 +98,17 @@ public class ProductServiceImpl implements IProductService {
             wrapper.eq("product_image_product_id",product.getProductId());
             wrapper.eq("product_image_type",0);
             List<ProductImage> productImages = productImageMapper.selectList(wrapper);
-
-            temp.setProductImageSrc(productImages.get(0).getProductImageSrc());
+            if(null == productImages){
+                temp.setProductImageSrc(null);
+            }else {
+                temp.setProductImageSrc(productImages.get(0).getProductImageSrc());
+            }
             productGuess.add(temp);
 
         }
 
-        PageInfo<ForeProductGuessResDto>  pageInfo = new PageInfo<>(productGuess);
+       PageInfo pageInfo = new PageInfo(products);
+        pageInfo.setList(productGuess);
         return pageInfo;
     }
 
@@ -170,11 +180,9 @@ public class ProductServiceImpl implements IProductService {
         String categoryName = getCategoryNameByProductId(productId);
         result.setCategoryName(categoryName);
 
-        //三个类型名
+        //返回所有的类型名
         List<Category> allCategory = categoryService.getAllCategory();
-        //选出类型的前三个
-        List<Category> categories = allCategory.stream().limit(3).collect(Collectors.toList());
-        result.setCategories(categories);
+        result.setCategories(allCategory);
 
         //预览图片
         QueryWrapper<ProductImage> wrapper1 = new QueryWrapper<>();
