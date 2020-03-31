@@ -728,7 +728,7 @@ nav {
     font-size: 16px;
 }
 
-.context_addBuyCar {
+.context_addShopCart {
     width: 178px;
     background-color: #FF0036;
     border: 1px solid #FF0036;
@@ -902,13 +902,13 @@ nav {
     overflow: hidden;
 }
 
-.mainwrap > .J_TabBarBox {
+.mainwrap > .P_TabBarBox {
     width: 788px;
     border: 1px solid #dfdfdf;
     z-index: 9999;
 }
 
-.J_TabBarBox > ul {
+.P_TabBarBox > ul {
     width: 100%;
     height: 48px;
     position: relative;
@@ -916,7 +916,7 @@ nav {
     margin: 0;
 }
 
-.J_TabBarBox li {
+.P_TabBarBox li {
     float: left;
     line-height: 48px;
     display: block;
@@ -925,7 +925,7 @@ nav {
     height: 48px;
 }
 
-.J_TabBarBox a {
+.P_TabBarBox a {
     display: block;
     height: 100%;
     font-size: 10px;
@@ -935,11 +935,11 @@ nav {
     border-right: 1px dotted #d2d2d2;
 }
 
-.J_TabBarBox a:hover {
+.P_TabBarBox a:hover {
     text-decoration: none;
 }
 
-.J_TabBarBox .tab-selected {
+.P_TabBarBox .tab-selected {
     position: relative;
     border-top: 2px solid #FF0036;
     height: 47px;
@@ -948,7 +948,7 @@ nav {
     padding: 0;
 }
 
-.J_TabBarBox .tab-selected:after {
+.P_TabBarBox .tab-selected:after {
     content: ' ';
     display: block;
     border: 5px solid transparent;
@@ -962,7 +962,7 @@ nav {
     margin-left: -5px;
 }
 
-.J_TabBarBox .tab-selected > a {
+.P_TabBarBox .tab-selected > a {
     font-weight: 700;
     line-height: 46px;
     color: #FF0036;
@@ -970,18 +970,18 @@ nav {
     border-right: 1px solid #cfbfb1;
 }
 
-.J_TabBarBox .J_GoodsReviews span {
+.P_TabBarBox .P_GoodsReviews span {
     font-family: "Microsoft YaHei UI", serif;
     display: inline;
     margin: 0 5px;
     color: #38b;
 }
 
-.J_choose {
+.P_choose {
     width: 100%;
 }
 
-.J_img {
+.P_img {
     width: 790px;
     position: relative;
     overflow: hidden;

@@ -114,14 +114,14 @@ var ajaxUtil = {
         function (url,data,isChild) {
             if(url !== null && url !== ""){
                 $.ajax({
-                    url: "/tmall/admin/"+url,
+                    url: "/mall/admin/"+url,
                     type: "get",
                     data: data,
                     contentType: "text/html;charset=UTF-8",
                     success : function (data) {
                         $("#div_home_context_main").html(data);
                         window.scrollTo(0, 0);
-                        if(!isChild){
+                        if(!isChild){//测试窗口是否为指定父窗口的子窗口
                             /******
                              * event
                              ******/

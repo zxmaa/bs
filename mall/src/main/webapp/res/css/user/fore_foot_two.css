@@ -3,14 +3,14 @@
     padding: 0;
 }
 
-.banner_footer > .tmall-ensure {
+.banner_footer > .mall-ensure {
     background: url(../../img/user/WebsiteImage/TB14dANRXXXXXbdXXXXXXXXXXXX-1190-100.jpg);
     width: 1190px;
     height: 100px;
     margin: 25px auto;
 }
 
-.tmall-ensure > a {
+.mall-ensure > a {
     float: left;
     display: block;
     width: 297px;
@@ -18,7 +18,7 @@
     text-indent: -1000em;
 }
 
-.banner_footer > .tmall-desc {
+.banner_footer > .mall-desc {
     background: url(../../img/user/WebsiteImage/TB1dl28RXXXXXbzaFXXXXXXXXXX-136-50.png) 45px bottom no-repeat;
     background-size: 68px 25px;
     width: 1190px;
@@ -28,13 +28,13 @@
     border-top: 1px solid #ededed;
 }
 
-.tmall-desc > dl {
+.mall-desc > dl {
     float: left;
     width: 186px;
     padding-left: 52px;
 }
 
-.tmall-desc > dl > dt {
+.mall-desc > dl > dt {
     color: #646464;
     font-size: 16px;
     font-weight: 700;
@@ -43,11 +43,11 @@
     text-align: left;
 }
 
-.tmall-desc > dl > dd {
+.mall-desc > dl > dd {
     text-align: left;
 }
 
-.tmall-desc > dl > dd > a {
+.mall-desc > dl > dd > a {
     font-size: 12px;
     display: block;
     width: 100px;
@@ -58,7 +58,7 @@
     color: #8b8b8b;
 }
 
-.tmall-desc > dl > dd > .join {
+.mall-desc > dl > dd > .join {
     display: block;
     width: 105px;
     height: 105px;
