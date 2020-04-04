@@ -70,4 +70,10 @@ public interface IProductService {
      * @return
      */
     List<Product> getPromotionProduct();
+
+    /**
+     * 根据id修改产品
+     * @param product
+     */
+    void updateProduct(Product product);
 }

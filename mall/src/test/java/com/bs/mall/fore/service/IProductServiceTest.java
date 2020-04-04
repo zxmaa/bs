@@ -86,7 +86,7 @@ public class IProductServiceTest {
 
     @Test
     public void getProductByIdTest(){
-        Product productById = productService.getProductById(1);
+        Product productById = productService.getProductById(10000);
         System.out.println(productById);
     }
 

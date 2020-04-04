@@ -1,20 +1,18 @@
-package com.bs.mall.dao.pojo;
+package com.bs.mall.dto.res;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
- * 订单
+ *订单详情页 响应信息
  */
 @Data
-public class ProductOrder {
+public class ForeOrderShowResDto {
     /**
      * 订单id
      */
-    @TableId(type = IdType.AUTO)
     private Integer productOrderId;
 
     /**
@@ -82,4 +80,6 @@ public class ProductOrder {
      */
     private Integer userId;
 
+
+    List<ForeShowOrderItemResDto> orderItemList;
 }
