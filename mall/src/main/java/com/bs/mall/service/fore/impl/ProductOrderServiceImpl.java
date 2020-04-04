@@ -82,7 +82,7 @@ public class ProductOrderServiceImpl implements IProductOrderService {
         productOrderItem.setProductOrderId(productOrderId);
         productOrderItem.setUserId(createOrderByOneReqDto.getUserId());
         productOrderItem.setProductOrderItemUserMessage(createOrderByOneReqDto.getUserMessage());
-        productOrderItem.setProduceOrderPrice(product.getProductSalePrice());
+        productOrderItem.setProductSinglePrice(product.getProductSalePrice());
         productOrderItemService.addOrderItem(productOrderItem);
 
         return productOrder.getProductOrderCode();
@@ -130,7 +130,7 @@ public class ProductOrderServiceImpl implements IProductOrderService {
             //在订单项中，设置下订单时，产品的单价
             ProductOrderItem temp = productOrderItemService.selectOrderItemById(createOrderByListSimpleReqDto.getOrderItemId());
             Product product = productService.getProductById(temp.getProductId());
-            productOrderItem.setProduceOrderPrice(product.getProductSalePrice());
+            productOrderItem.setProductSinglePrice(product.getProductSalePrice());
             productOrderItemService.updateOrderItem(productOrderItem);
         }
 

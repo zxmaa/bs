@@ -48,6 +48,6 @@ public class ProductOrderItem {
      *
      * 下单前的单价：都从product中读取
      */
-    private Double produceOrderPrice;
+    private Double productSinglePrice;
 
 }
