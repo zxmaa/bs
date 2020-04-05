@@ -19,7 +19,7 @@ public class ProductImage {
     /**
      * 产品图片类型:0 概述图片 1详情图片
      */
-    private Integer productImageType;
+    private Byte productImageType;
 
     /**
      * 产品图片路径
