@@ -28,4 +28,32 @@
         </if>
     </select>
 
+    <select id="selectOne" resultMap="imageMap" parameterType="int">
+        SELECT product_image_id,product_image_type,product_image_src,product_image_product_id FROM product_image
+        <where>
+            product_image_id = #{productImageId}
+        </where>
+    </select>
+
+    <delete id="deleteList" parameterType="java.util.ArrayList">
+        DELETE FROM product_image
+        <where>
+            product_image_id IN
+            <foreach collection="productImage_id_list" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>
+    </delete>
+
+    <insert id="insertList" parameterType="list">
+        INSERT product_image (product_image_id,product_image_type,product_image_src,product_image_product_id)
+        VALUES
+        <foreach collection="productImageList" item="productImage" index="index" separator=",">
+            (null,
+            #{productImage.productImageType},
+            #{productImage.productImageSrc},
+            #{productImage.productImageProduct.productId})
+        </foreach>
+    </insert>
+
 </mapper>
