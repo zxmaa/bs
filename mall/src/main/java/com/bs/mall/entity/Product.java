@@ -53,7 +53,7 @@ public class Product {
      * 产品状态:销售中0 停售中1 促销中2
      */
     @TableField("product_isEnabled")
-    private Integer productIsEnabled;
+    private Byte productIsEnabled;
 
     /**
      * 销量数

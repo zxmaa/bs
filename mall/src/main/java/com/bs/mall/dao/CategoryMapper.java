@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface CategoryMapper extends BaseMapper<Category> {
-    List<Category> select(@Param("category_name") String categoryName, @Param("pageUtil") PageUtil pageUtil);
+    List<com.bs.mall.entity.Category> select(@Param("category_name") String categoryName, @Param("pageUtil") PageUtil pageUtil);
 
 
 }

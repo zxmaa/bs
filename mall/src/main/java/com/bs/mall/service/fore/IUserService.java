@@ -1,6 +1,7 @@
 package com.bs.mall.service.fore;
 
 
+import com.bs.mall.dao.pojo.User;
 import com.bs.mall.dto.ForeUserDto;
 import com.bs.mall.dto.req.ForeUserReqDto;
 
@@ -39,5 +40,10 @@ public interface IUserService {
      */
     ForeUserDto findUserByUserId(Integer userId);
 
+    /**
+     * 根据id,修改用户信息
+     * @param user
+     */
+    void updateUser(User user);
 
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mall.dao.ProductMapper">
-    <resultMap id="productMap" type="com.bs.mall.dao.pojo.Product">
+    <resultMap id="productMap" type="com.bs.mall.entity.Product">
         <id property="productId" column="product_id"/>
         <result property="productName" column="product_name"/>
         <result property="productTitle" column="product_title"/>
@@ -11,7 +11,7 @@
         <result property="productIsEnabled" column="product_isEnabled"/>
         <result property="productSaleCount" column="product_sale_count"/>
         <result property="productReviewCount" column="product_review_count"/>
-        <association property="productCategory" javaType="com.bs.mall.dao.pojo.Category">
+        <association property="productCategory" javaType="com.bs.mall.entity.Category">
             <id property="categoryId" column="product_category_id"/>
         </association>
     </resultMap>
@@ -37,6 +37,42 @@
             </if>
         </if>
     </select>
+    
+    <insert id="insertOne" parameterType="com.bs.mall.entity.Product">
+        INSERT product (product_id,product_name,product_title,product_price,product_sale_price,product_create_date,product_isEnabled,product_category_id)
+        VALUES(
+        null,
+        #{product.productName},
+        #{product.productTitle},
+        #{product.productPrice},
+        #{product.productSalePrice},
+        #{product.productCreateDate},
+        #{product.productIsEnabled},
+        #{product.productCategory.categoryId})
+    </insert>
+
+    <update id="updateOne" parameterType="com.bs.mall.entity.Product">
+        UPDATE product
+        <set>
+            <if test="product.productName != null">product_name = #{product.productName},</if>
+            <if test="product.productTitle != null">product_title = #{product.productTitle},</if>
+            <if test="product.productPrice != null">product_price = #{product.productPrice},</if>
+            <if test="product.productSalePrice != null">product_sale_price = #{product.productSalePrice},</if>
+            <if test="product.productIsEnabled != null">product_isEnabled = #{product.productIsEnabled},</if>
+            <if test="product.productCategory != null">
+                product_category_id = #{product.productCategory.categoryId},
+            </if>
+            <if test="product.productSaleCount != null">
+                product_sale_count = #{product.productSaleCount},
+            </if>
+            <if test="product.productReviewCount != null">
+                product_review_count = #{product.productReviewCount}
+            </if>
+        </set>
+        <where>
+            product_id = #{product.productId}
+        </where>
+    </update>
 
     <select id="selectOne" resultType="com.bs.mall.entity.Product">
         select * from product where product_id = #{product_id}
@@ -46,12 +82,12 @@
         SELECT COUNT(product_id) FROM product
         <where>
             <if test="product != null">
-                <if test="product.product_name != null">product_name LIKE concat('%',#{product.product_name},'%')</if>
-                <if test="product.product_price != null">and product_sale_price &lt;= #{product.product_price}</if>
-                <if test="product.product_sale_price != null">and product_sale_price &gt;= #{product.product_sale_price}</if>
-                <if test="product.product_category != null">
-                    <if test="product.product_category.category_id != null">and product_category_id =
-                        #{product.product_category.category_id}
+                <if test="product.productName != null">product_name LIKE concat('%',#{product.productName},'%')</if>
+                <if test="product.productPrice != null">and product_sale_price &lt;= #{product.productPrice}</if>
+                <if test="product.productSalePrice != null">and product_sale_price &gt;= #{product.productSalePrice}</if>
+                <if test="product.productCategory != null">
+                    <if test="product.productCategory.categoryId != null">and product_category_id =
+                        #{product.productCategory.categoryId}
                     </if>
                 </if>
             </if>
@@ -107,23 +143,29 @@
 
     <!--  ==================================fore=========================================-->
     <select id="queryProductListFore" resultType="com.bs.mall.dao.pojo.Product">
-        select *
-        from product
+        select p.*
+        from product p
+        left join category c on p.product_category_id = c.category_id
         <where>
+            product_isEnabled <![CDATA[!= ]]> 1
             <if test="null != categoryId">
                 and  product_category_id = #{categoryId}
             </if>
-            <if test="null != searchValue and searchValue != ''">
+            <if test="null != searchValueSplit">
                 and
-                <foreach collection="searchValueSplit" index="index" item="item" open="(" separator="or" close=")">
+                (<foreach collection="searchValueSplit" index="index" item="item" open="(" separator="or" close=")">
                     product_name LIKE concat('%',#{item},'%')
                 </foreach>
+                or
+                <foreach collection="searchValueSplit" index="index" item="item" open="(" separator="or" close=")">
+                    category_name LIKE concat('%',#{item},'%')
+                </foreach>)
             </if>
 
         </where>
         <if test="null != orderBy and orderBy!= ''">
             order by ${orderBy}
-            <if test="null != isDesc and isDesc = true"> <!--注：不写默认为升序-->
+            <if test="null != isDesc and 'true'.toString() == isDesc.toString() "> <!--注：不写默认为升序-->
                 desc
             </if>
         </if>
@@ -141,5 +183,6 @@
         from review t1
         left join user t2 on t1.user_id = t2.user_id
         where t1.product_id = #{productId}
+        order by review_createdate desc
     </select>
 </mapper>

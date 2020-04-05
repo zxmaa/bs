@@ -1,7 +1,9 @@
 package com.bs.mall.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.bs.mall.dao.pojo.Product;
 import com.bs.mall.dao.pojo.ProductOrder;
+import com.bs.mall.dto.req.ForeOrderShowReqDto;
 import com.bs.mall.util.OrderGroup;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -19,4 +21,12 @@ public interface ProductOrderMapper extends BaseMapper<ProductOrder> {
     Integer selectTotal(@Param("productOrder") ProductOrder productOrder, @Param("productOrder_status_array") Byte[] productOrder_status_array);
     List<OrderGroup> getTotalByDate(@Param("beginDate") Date beginDate, @Param("endDate") Date endDate);
 
+    //=========================fore===========================
+
+    /**
+     * 根据条件，得到显示的订单详情
+     * @param orderShowReqDto
+     * @return
+     */
+    List<ProductOrder>  getOrderShowFore(ForeOrderShowReqDto orderShowReqDto);
 }

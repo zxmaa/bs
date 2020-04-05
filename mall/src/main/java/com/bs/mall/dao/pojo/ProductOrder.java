@@ -25,9 +25,12 @@ public class ProductOrder {
     /**
      * 订单地址
      */
-    private Integer userAddressId;
+    private String productOrderAddress;
 
-
+    /**
+     * 订单详细地址
+     */
+    private String productOrderDetailAddress;
 
     /**
      * 订单邮政编码
@@ -43,6 +46,11 @@ public class ProductOrder {
      * 订单收货人号码
      */
     private String productOrderMobile;
+
+    /**
+     * 拍下商品的时间
+     */
+    private Date productOrderReserveDate;
 
     /**
      * 订单支付日期
@@ -61,6 +69,11 @@ public class ProductOrder {
 
     /**
      * 订单状态
+     * 0：待付款
+     * 1：已支付,待发货
+     * 2:已发货，待确认收货
+     * 3：已确认收货（交易成功）
+     * 4：交易关闭（即取消订单）
      */
     private  Integer productOrderStatus;
 

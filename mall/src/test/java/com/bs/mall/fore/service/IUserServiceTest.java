@@ -45,4 +45,16 @@ public class IUserServiceTest {
         ForeUserDto foreUserDto = userService.userLogin(userReqDto);
         System.out.println(foreUserDto);
     }
+
+    @Test
+    public void findUserByUsereNameTest(){
+        ForeUserDto zxm = userService.findUserByUsereName("zx");
+        System.out.println(zxm);
+    }
+
+    @Test
+    public void findUserByUserIdTest(){
+        ForeUserDto userByUserId = userService.findUserByUserId(150);
+        System.out.println(userByUserId);
+    }
 }

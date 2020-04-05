@@ -12,7 +12,6 @@ public class ForeUserDto {
     /**
      * 用户id
      */
-    @TableId(type = IdType.AUTO)
     private Integer userId;
 
     /**
@@ -52,4 +51,9 @@ public class ForeUserDto {
      */
 
     private String  userProfilePictureSrc;
+
+    /**
+     * 积分
+     */
+    private Integer integral;
 }

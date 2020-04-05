@@ -28,4 +28,35 @@
         </if>
     </select>
 
+    <update id="updateOne" parameterType="com.bs.mall.entity.PropertyValue">
+        UPDATE property_value
+        <set>
+            <if test="propertyValue.propertyValueValue != null">property_value_value = #{propertyValue.propertyValueValue}</if>
+        </set>
+        <where>
+            property_value_id = #{propertyValue.propertyValueId}
+        </where>
+    </update>
+
+    <delete id="deleteList" parameterType="java.util.ArrayList">
+        DELETE FROM property_value
+        <where>
+            property_value_id IN
+            <foreach collection="propertyValue_id_list" index="index" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </where>
+    </delete>
+
+    <insert id="insertList" parameterType="list">
+        INSERT property_value(property_value_id,property_value_value,property_id,product_id)
+        VALUES
+        <foreach collection="propertyValueList" index="index" item="propertyValue" separator=",">
+            (null,
+            #{propertyValue.propertyValueValue},
+            #{propertyValue.propertyValueProperty.propertyId},
+            #{propertyValue.propertyValueProduct.productId})
+        </foreach>
+    </insert>
+
 </mapper>
