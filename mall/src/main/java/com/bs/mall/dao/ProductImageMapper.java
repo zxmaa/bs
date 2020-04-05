@@ -17,5 +17,8 @@ import java.util.List;
 @Mapper
 public interface ProductImageMapper extends BaseMapper<ProductImage> {
     List<com.bs.mall.entity.ProductImage> select(@Param("product_id") Integer product_id, @Param("product_image_type") Byte product_image_type, @Param("pageUtil") PageUtil pageUtil);
+    Integer insertList(@Param("productImageList") List<com.bs.mall.entity.ProductImage> productImageList);
+    com.bs.mall.entity.ProductImage selectOne(@Param("productImageId") Integer productImageId);
+    Integer deleteList(@Param("productImage_id_list") Integer[] productImage_id_list);
 
 }
