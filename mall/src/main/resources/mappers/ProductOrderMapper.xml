@@ -30,4 +30,18 @@
         GROUP BY DATE_FORMAT(product_order_pay_date,'%Y-%m-%d'),product_order_status
         ORDER BY product_order_pay_date ASC,product_order_status ASC
     </select>
+
+    <select id="getOrderShowFore" resultType="com.bs.mall.dao.pojo.ProductOrder">
+        select *
+        from product_order
+        <where>
+            <if test="null != userId">
+               and  user_id = #{userId}
+            </if>
+            <if test="null != status">
+                and product_order_status = #{status}
+            </if>
+        </where>
+        order by product_order_id desc
+    </select>
 </mapper>

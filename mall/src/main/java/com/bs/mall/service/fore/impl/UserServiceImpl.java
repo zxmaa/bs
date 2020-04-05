@@ -93,6 +93,14 @@ public class UserServiceImpl implements IUserService {
         return foreUserDto;
     }
 
+    /**
+     * 根据id,修改用户信息
+     * @param user
+     */
+    @Override
+    public void updateUser(User user) {
+        userMapper.updateById(user);
+    }
 
 
 }

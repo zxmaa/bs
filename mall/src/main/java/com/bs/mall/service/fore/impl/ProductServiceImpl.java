@@ -243,5 +243,14 @@ public class ProductServiceImpl implements IProductService {
         return result;
     }
 
+    /**
+     * 根据id修改产品
+     * @param product
+     */
+    @Override
+    public void updateProduct(Product product) {
+        productMapper.updateById(product);
+    }
+
 
 }

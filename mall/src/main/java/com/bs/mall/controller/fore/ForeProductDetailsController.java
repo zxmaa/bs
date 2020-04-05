@@ -11,10 +11,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.Map;
@@ -67,7 +64,7 @@ public class ForeProductDetailsController extends BaseController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/review/{pid}")
+    @RequestMapping(value = "/product/review/{pid}",method = RequestMethod.GET)
     public ForeReviewResDto getProductReiewList(@PathVariable("pid")String pid,
                                                 @RequestParam Integer pageNum,
                                                 @RequestParam Integer pageSize){

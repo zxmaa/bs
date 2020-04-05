@@ -66,7 +66,10 @@ public class Product {
     private Integer productReviewCount;
 
 
-
+    /**
+     * 产品数量
+     */
+    private Integer productQuantity;
 
 
 }

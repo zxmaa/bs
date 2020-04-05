@@ -3,4 +3,16 @@
                 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 "mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mall.dao.AddressMapper">
+
+        <select id="getListByAreaIdFore" resultType="com.bs.mall.dao.pojo.Address">
+                select *
+                from address
+                where address_region_id = #{regionId} and address_region_id <![CDATA[!= ]]> address_area_id
+        </select>
+
+        <select id="getAllProvinceFore" resultType="com.bs.mall.dao.pojo.Address">
+                select *
+                from address
+                where address_region_id = address_area_id
+        </select>
 </mapper>
