@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 用户
@@ -67,16 +68,22 @@ public class User {
 
     private Date userBirthday;
 
-    /**
-     *     用户现居地
-     */
-    private String userAddress;
+//    /**
+//     *     用户现居地
+//     */
+//    private String userAddress;
+//
+//    /**
+//     *  用户家乡地址
+//      */
+//
+//    private String userHomeplace;
 
-    /**
-     *  用户家乡地址
-      */
-
-    private String userHomeplace;
+    private Address userAddress/*用户现居地*/;
+    private Address userHomeplace/*用户家乡地址*/;
+    private List<Review> reviewList/*评论集合*/;
+    private List<ProductOrderItem> productOrderItemList/*订单项（购物车）集合*/;
+    private List<ProductOrder> productOrderList/*订单集合*/;
 
 
 }
