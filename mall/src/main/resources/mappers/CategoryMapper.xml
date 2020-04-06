@@ -10,4 +10,37 @@
             LIMIT #{pageUtil.pageStart},#{pageUtil.count}
         </if>
     </select>
+
+    <insert id="insertOne" parameterType="com.bs.mall.entity.Category">
+        INSERT category (category_id,category_name,category_image_src)
+        VALUES (
+        null,
+        #{category.categoryName},
+        #{category.categoryImageSrc})
+    </insert>
+
+    <update id="updateOne" parameterType="com.bs.mall.entity.Category">
+        UPDATE category
+        <set>
+            <if test="category.categoryName != null">category_name = #{category.categoryName},</if>
+            <if test="category.categoryImageSrc != null">category_image_src = #{category.categoryImageSrc}</if>
+        </set>
+        <where>
+            category_id = #{category.categoryId}
+        </where>
+    </update>
+
+    <select id="selectTotal" resultType="int">
+        SELECT COUNT(category_id) FROM category
+        <where>
+            <if test="category_name != null">category_name LIKE concat('%',#{category_name},'%')</if>
+        </where>
+    </select>
+
+    <select id="selectOne" parameterType="int" resultType="com.bs.mall.entity.Category">
+        SELECT category_id,category_name,category_image_src FROM category
+        <where>
+            category_id = #{category_id}
+        </where>
+    </select>
 </mapper>

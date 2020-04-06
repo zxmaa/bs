@@ -1,8 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mall.dao.UserMapper">
+    <resultMap id="userMap" type="com.bs.mall.entity.User">
+
+        <association property="userAddress" javaType="com.bs.mall.entity.Address">
+            <id property="addressAreaId" column="user_address"/>
+        </association>
+        <association property="userHomeplace" javaType="com.bs.mall.entity.Address">
+            <id property="addressAreaId" column="user_homeplace"/>
+        </association>
+    </resultMap>
+
     <select id="findUser" resultType="com.bs.mall.dao.pojo.User">
         select *
         from user
+    </select>
+
+    <select id="selectList" resultMap="userMap">
+        SELECT user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace FROM user
+        <if test="user != null">
+            <where>
+                <if test="user.userName != null">
+                    (user_name LIKE concat('%',#{user.userName},'%') or user_nickname LIKE concat('%',#{user.userName},'%'))
+                </if>
+                <if test="user.userGender != null">
+                    and user_gender = #{user.userGender}
+                </if>
+            </where>
+        </if>
+        <if test="orderUtil != null">
+            ORDER BY ${orderUtil.orderBy}<if test="orderUtil.isDesc">desc </if>
+        </if>
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.pageStart},#{pageUtil.count}
+        </if>
+    </select>
+
+    <select id="selectTotal" resultType="int" parameterType="string">
+        SELECT COUNT(user_id) FROM user
+        <if test="user != null">
+            <where>
+                <if test="user.userName != null">
+                    (user_name LIKE concat('%',#{user.userName},'%') or user_nickname LIKE concat('%',#{user.userName},'%'))
+                </if>
+                <if test="user.userGender != null">
+                    and user_gender = #{user.userGender}
+                </if>
+            </where>
+        </if>
+    </select>
+
+    <select id="selectById" resultMap="userMap" parameterType="int">
+        SELECT user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace FROM user
+        <where>
+            user_id = #{user_id}
+        </where>
     </select>
 </mapper>
