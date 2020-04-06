@@ -3,6 +3,7 @@ package com.bs.mall.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.bs.mall.dao.pojo.Address;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,6 +14,9 @@ import java.util.List;
 @Repository
 @Mapper
 public interface AddressMapper extends BaseMapper<Address> {
+
+    com.bs.mall.entity.Address selectOne(@Param("addressAreaId") String addressAreaId);
+
     //=====================fore===================================
 
     /**
