@@ -3,4 +3,42 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mall.dao.ProductOrderItemMapper">
+    <resultMap id="productOrderItemMap" type="com.bs.mall.entity.ProductOrderItem">
+        <id property="productOrderItemId" column="product_order_item_id"/>
+        <result property="productOrderItemNumber" column="product_order_item_number"/>
+        <result property="productOrderItemPrice" column="product_order_item_price"/>
+        <result property="productOrderItemUserMessage" column="product_order_item_user_message"/>
+        <association property="productOrderItemProduct" javaType="com.bs.mall.entity.Product">
+            <id property="productId" column="product_id"/>
+        </association>
+        <association property="productOrderItemOrder" javaType="com.bs.mall.entity.ProductOrder">
+            <id property="productOrderId" column="product_order_id"/>
+        </association>
+        <association property="productOrderItemUser" javaType="com.bs.mall.entity.User">
+            <id property="userId" column="user_id"/>
+        </association>
+    </resultMap>
+
+    <select id="select" parameterType="com.bs.mall.util.PageUtil" resultMap="productOrderItemMap">
+        SELECT
+        product_order_item_id,product_order_item_number,product_order_item_price,product_id,order_id,user_id,product_order_item_userMessage
+        FROM product_order_item
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.index},#{pageUtil.count}
+        </if>
+    </select>
+
+    <select id="selectByUserId" resultMap="productOrderItemMap">
+        SELECT
+        product_order_item_id,product_order_item_number,product_order_item_price,product_id,product_order_id,user_id,product_order_item_user_message
+        FROM product_order_item
+        <where>
+            user_id = #{user_id} and product_order_id is null
+        </where>
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.index},#{pageUtil.count} AND product_order_item_order_id is null
+        </if>
+    </select>
+
+
 </mapper>

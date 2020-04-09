@@ -4,7 +4,9 @@
                 "mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mall.dao.AddressMapper">
         <resultMap id="addressMap" type="com.bs.mall.entity.Address">
-                <association property="address_regionId" javaType="com.xq.mall.entity.Address">
+                <id property="addressAreaId" column="address_area_id"/>
+                <result property="addressName" column="address_name"/>
+                <association property="addressRegionId" javaType="com.bs.mall.entity.Address">
                         <id property="addressAreaId" column="address_region_id"/>
                 </association>
         </resultMap>

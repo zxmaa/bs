@@ -2,7 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mall.dao.UserMapper">
     <resultMap id="userMap" type="com.bs.mall.entity.User">
-
+        <id property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="userNickname" column="user_nickname"/>
+        <result property="userPassword" column="user_password"/>
+        <result property="userRealname" column="user_realname"/>
+        <result property="userGender" column="user_gender"/>
+        <result property="userBirthday" column="user_birthday"/>
+        <result property="userProfilePictureSrc" column="user_profile_picture_src"/>
         <association property="userAddress" javaType="com.bs.mall.entity.Address">
             <id property="addressAreaId" column="user_address"/>
         </association>
@@ -50,7 +57,7 @@
         </if>
     </select>
 
-    <select id="selectById" resultMap="userMap" parameterType="int">
+    <select id="selectOne" resultMap="userMap" parameterType="int">
         SELECT user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace FROM user
         <where>
             user_id = #{user_id}
