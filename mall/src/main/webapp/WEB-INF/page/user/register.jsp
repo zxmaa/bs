@@ -73,8 +73,8 @@
             <label class="form-label form-label-b tsls">填写基本信息</label>
         </div>
         <div class="form-item">
-            <label class="form-label tsl">昵称：</label>
-            <input name="user_nickname" id="user_nickname" class="form-text err-input" placeholder="请输入昵称"
+            <label class="form-label tsl">联系电话：</label>
+            <input name="userTel" id="userTel" class="form-text err-input" placeholder="请输入联系电话"
                    maxlength="20">
             <span class="form_span"></span>
         </div>
@@ -88,7 +88,7 @@
             <input type="date" name="user_birthday" id="user_birthday" class="form-text err-input"/>
             <span class="form_span"></span>
         </div>
-        <div class="form-item">
+     <%--   <div class="form-item">
             <label class="form-label tsl">居住地址：</label>
             <select class="selectpicker" id="select_user_address_province" data-size="8" data-live-search="true">
                 <c:forEach items="${requestScope.addressList}" var="address" varStatus="i">
@@ -110,6 +110,7 @@
                 </c:forEach>
             </select>
         </div>
+        --%>
         <div class="form-item">
             <input type="button" id="register_sub" class="btns btn-large tsl" value="注 册"/>
         </div>
