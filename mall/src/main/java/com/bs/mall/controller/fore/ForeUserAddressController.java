@@ -34,7 +34,7 @@ public class ForeUserAddressController extends BaseController {
      */
     @RequestMapping(value = "/userAddress")
     public String goToUserAddressPage(HttpSession session, Model model){
-        logger.info("检查用户是否登录");
+      /*  logger.info("检查用户是否登录");
         Object o = checkUser(session);
         if(null == o){
             return "redirect:/login";
@@ -60,8 +60,8 @@ public class ForeUserAddressController extends BaseController {
         model.addAttribute("districAddress",districAddress);
         model.addAttribute("userAllAddress",userAllAddress);
 
-        logger.info("转到前台，用户地址管理页");
-        return "user/userAddresPage";
+        logger.info("转到前台，用户地址管理页");*/
+        return "user/userAddressPage";
 
     }
 

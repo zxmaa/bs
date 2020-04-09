@@ -34,7 +34,7 @@ public class ForeProductDetailsController extends BaseController {
      */
     @RequestMapping("/product/{pid}")
     public String goToProductDetailPage( @PathVariable("pid") String pid,Model model) {
-        Integer productId = Integer.parseInt(pid);
+      /*  Integer productId = Integer.parseInt(pid);
 
         Product product = productService.getProductById(productId);
         if(null == product){
@@ -49,7 +49,7 @@ public class ForeProductDetailsController extends BaseController {
         //属性列表
         model.addAttribute("propertyList",productDetails.getPropertyValue());
         //猜你喜欢
-        model.addAttribute("guessLikeList",productDetails.getProductGuess());
+        model.addAttribute("guessLikeList",productDetails.getProductGuess());*/
 
         logger.info("转发到产品详情页");
         return "user/productDetailsPage";

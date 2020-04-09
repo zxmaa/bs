@@ -41,12 +41,12 @@ public class UserAddress {
     private String tel;
 
     /**
-     *1：默认地址  0：非默认地址
+     * 1：默认地址  0：非默认地址
      */
     private Integer flag;
 
     /**
-     *邮政编码
+     * 邮政编码
      */
     private String postCode;
 

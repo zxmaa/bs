@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"><%-- 不同设备之间的自适应--%>
     <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/user/fore_nav.css"/>
+    <script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>
+    <script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>
     <script>
         $(function () {
             $(".quick_li").find("li").hover(
@@ -169,7 +171,6 @@
         </ul>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>
-<script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>
+
 </body>
 </html>

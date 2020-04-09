@@ -46,4 +46,11 @@ public interface IUserService {
      */
     void updateUser(User user);
 
+    /***
+     * 判断该号码是否被注册
+     * @param tel
+     * @return
+     */
+    Boolean telIsExist(String tel);
+
 }

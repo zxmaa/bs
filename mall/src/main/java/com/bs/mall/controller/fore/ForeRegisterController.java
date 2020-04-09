@@ -30,12 +30,17 @@ public class ForeRegisterController extends BaseController {
         String userName = userDto.getUserName();
         ForeUserDto temp = userService.findUserByUsereName(userName);
         JSONObject jsonObject = new JSONObject();
-        //注：其余的字段合法性，由前端直接验证
+        //注：其余的字段格式合法性，由前端直接验证
         if(temp != null){
             logger.info("已存在该用户名");
             jsonObject.put("success",false);
-            jsonObject.put("msg","用户名已存在，请重新输入！");
+            jsonObject.put("message","用户名已存在，请重新输入！");
             return jsonObject.toJSONString();
+        }
+        Boolean flag = userService.telIsExist(userDto.getUserTel());
+        if(flag){
+            jsonObject.put("success",false);
+            jsonObject.put("message","该号码已被注册，请重新输入！");
         }
         userService.addUser(userDto);
         jsonObject.put("success",true);

@@ -7,6 +7,9 @@
     <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
     <title>商品评价</title>
     <style rel="stylesheet">
+        body{
+            min-height:100vh;
+        }
         .P_reviews {
             width: 100%;
             display: none;

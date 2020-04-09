@@ -47,11 +47,10 @@
 
 .headerContext > .header-extra {
     margin-left: 0;
-    margin-right: -70px;
     width: 728px;
     position: absolute;
     top: 0;
-    right: 0;
+    right: -50px;
     padding: 20px 0 0;
     overflow: hidden;
     zoom: 1;
@@ -165,6 +164,69 @@
     border: 1px solid #cccccc;
     padding: 0 5px;
 }
+
+.address-list{
+    width: 1044px;
+    margin: 0 auto;
+    display:flex;
+    justify-content: start;
+    align-items: center;
+    flex-flow: row wrap;
+}
+.address-list .addr-item{
+    width: 237px;
+    height: 105px;
+    display: inline-block;
+    margin: 0 24px 14px 0;
+    padding: 11px 15px;
+    box-sizing: border-box;
+    color: #666;
+    font-size: 12px;
+    cursor: pointer;
+    position: relative;
+    background: #fff url("../../img/user/WebsiteImage/blackWhiteBorder.png") no-repeat;
+}
+.address-list .addr-item:hover{
+    background-image: url("../../img/user/WebsiteImage/colorfulBorder.png");
+}
+
+.address-list .addr-item .addr-hd{
+    width: 100%;
+    border-bottom: 1px solid #f2f2f2;
+    box-sizing: border-box;
+    padding: 0 0 5px;
+    margin-bottom: 5px;
+    line-height: 18px;
+    font-weight: 700;
+}
+.address-list .addr-item .addr-bd{
+    width: 100%;
+    height: auto;
+}
+.address-list .addr-item .tips{
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: 77px;
+    right: 1px;
+    background: #fff url("../../img/user/WebsiteImage/tips.png") no-repeat;
+}
+
+.order_address .manageAddr{
+    width: 100%;
+    position: relative;
+}
+.order_address .manageAddr a{
+    position: absolute;
+    right: 10px;
+    top: 0;
+    color: #c97;
+    text-decoration: none;
+}
+.order_address .manageAddr a:hover{
+    color: #FF0036;
+}
+
 
 .order_info > .table_order_orderItem {
     width: 100%;

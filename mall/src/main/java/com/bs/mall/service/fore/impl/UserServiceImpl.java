@@ -102,5 +102,21 @@ public class UserServiceImpl implements IUserService {
         userMapper.updateById(user);
     }
 
+    /**
+     * 判断该号码是否被注册
+     * @param tel
+     * @return
+     */
+    @Override
+    public Boolean telIsExist(String tel) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_tel",tel);
+        Integer count = userMapper.selectCount(wrapper);
+        if (count>0){
+            return true;
+        }
+        return false;
+    }
+
 
 }

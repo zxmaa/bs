@@ -90,7 +90,7 @@ public class ForeOrderController  extends BaseController {
     @RequestMapping(value = "/order/create/{productId}",method = RequestMethod.GET)
     public String goToOrderConfirmPage(@PathVariable("productId") Integer productId,
                                        @RequestParam(required = false, defaultValue = "1") Integer productNumber,HttpSession session,Model model){
-        Object o = checkUser(session);
+      /*  Object o = checkUser(session);
         if(null == o){
             return "redirect:/login";
         }
@@ -112,7 +112,7 @@ public class ForeOrderController  extends BaseController {
 
         model.addAttribute("allUserAddress",allUserAddress);
         model.addAttribute("orderItems",orderItems);
-        model.addAttribute("orderTotalMoney",orderTotalMoney);
+        model.addAttribute("orderTotalMoney",orderTotalMoney);*/
 
         logger.info("转到前台--订单建立页");
         return "user/productBuyPage";

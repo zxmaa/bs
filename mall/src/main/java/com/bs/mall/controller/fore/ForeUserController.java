@@ -24,8 +24,6 @@ import java.util.UUID;
  * 用户controller
  */
 @Controller
-@RequestMapping("/user")
-@SessionAttributes("userIdSession")
 public class ForeUserController extends BaseController {
     @Autowired
     private IUserService userService;
@@ -43,7 +41,7 @@ public class ForeUserController extends BaseController {
         ForeUserDto userDto = userService.findUserByUsereName(userName);
         model.addAttribute("user",userDto);
 
-        return "fore/userDetails";
+        return "user/userDetails";
     }
 
     @ResponseBody
@@ -81,10 +79,16 @@ public class ForeUserController extends BaseController {
     @ResponseBody
     @RequestMapping("/user/updateBasic")
     public String updateUserInfo(@RequestBody ForeUserDto userDto){
+        JSONObject jsonObject = new JSONObject();
+        Boolean flag = userService.telIsExist(userDto.getUserTel());
+        if(flag){
+            jsonObject.put("success",false);
+            jsonObject.put("message","该号码已被注册，请重新输入！");
+        }
         String userName = userDto.getUserName();
         ForeUserDto temp = userService.findUserByUsereName(userName);
         userService.updateUser(userDto);
-        JSONObject jsonObject = new JSONObject();
+
         jsonObject.put("success",true);
         //注：修改成功，由前端弹出提示窗口：个人资料修改成功
         //然后前端，在跳到用户详情页，/userDetails
@@ -105,7 +109,7 @@ public class ForeUserController extends BaseController {
             logger.info("已存在该用户名");
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("success",false);
-            jsonObject.put("msg","已存在该用户名，请重新修改！");
+            jsonObject.put("msg","已存在该用户名，请重新输入！");
             return jsonObject.toJSONString();
         }
         userService.updateUser(userDto);
