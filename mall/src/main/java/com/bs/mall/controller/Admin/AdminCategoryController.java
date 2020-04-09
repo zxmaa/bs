@@ -1,11 +1,14 @@
 package com.bs.mall.controller.Admin;
 
 import com.bs.mall.service.admin.IAdminCategoryService;
+import com.bs.mall.service.admin.impl.AdminCategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
