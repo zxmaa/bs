@@ -40,4 +40,11 @@ public class ProductOrderItem {
      */
     private String productOrderItemUserMessage;
 
+
+
+    private Product productOrderItemProduct/*订单项对应产品*/;
+    private ProductOrder productOrderItemOrder/*订单项对应订单*/;
+    private User productOrderItemUser/*订单项对应用户*/;
+    private Boolean isReview;/*是否评论*/
+
 }

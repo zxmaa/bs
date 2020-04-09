@@ -33,7 +33,7 @@ public class User {
     /**
      * 用户性别
      */
-    private Integer userGender;
+    private Byte userGender;
 
     /**
      * 用户电话号码

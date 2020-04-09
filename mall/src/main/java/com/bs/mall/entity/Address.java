@@ -20,5 +20,5 @@ public class Address {
     /**
      * 父级地址ID
      */
-    private String addressRegionId;
+    private Address addressRegionId;
 }
