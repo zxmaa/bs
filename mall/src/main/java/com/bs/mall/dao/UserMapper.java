@@ -22,5 +22,5 @@ public interface UserMapper extends BaseMapper<User> {
 
     Integer selectTotal(@Param("user") com.bs.mall.entity.User user);
 
-    com.bs.mall.entity.User selectById(@Param("user_id") Integer user_id);
+    com.bs.mall.entity.User selectOne(@Param("user_id") Integer user_id);
 }
