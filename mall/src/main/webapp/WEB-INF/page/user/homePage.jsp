@@ -29,9 +29,9 @@
             <ul>
                 <c:forEach items="${requestScope.categoryList}" var="category" varStatus="i">
                     <c:if test="${i.index<9}">
-                        <li><a href="${pageContext.request.contextPath}/product?category_id=${category.category_id}"
+                        <li><a href="${pageContext.request.contextPath}/product?categoryId=${category.categoryId}"
                                 <c:if
-                                        test="${i.index % 2 != 0}"> style="color: #FF0036"</c:if>>${fn:substring(category.category_name,0,fn:indexOf(category.category_name,' /'))}</a>
+                                        test="${i.index % 2 != 0}"> style="color: #FF0036"</c:if>>${fn:substring(category.categoryName,0,fn:indexOf(category.categoryName,' /'))}</a>
                         </li>
                     </c:if>
                 </c:forEach>
@@ -57,25 +57,28 @@
         <a href="https://suning.tmall.com/" target="_blank">苏宁易购</a>
     </div>
 </nav>
+<%--首页的那个大图片:促销产品--%>
 <div class="banner"><%-- 滚动横幅 --%>
-    <c:forEach var="product" items="${requestScope.specialProductList}" varStatus="i">
-        <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/banner/${product.product_id}.jpg"
-             name="${product.product_id}" id="banner${i.count}"
+    <c:forEach var="product" items="${requestScope.promotionProductList}" varStatus="i">
+        <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/banner/${product.productId}.jpg"
+             name="${product.productId}" id="banner${i.count}"
              <c:if test="${i.count == 1}">style="display: block;"</c:if> />
     </c:forEach>
 </div>
 <div class="banner_main">
+    <%--首页左侧的商品分类:点中某个分类，用json传递categoryid，显示对应的titile--%>
     <ul class="banner_nav">
         <c:forEach items="${requestScope.categoryList}" var="category">
-            <li data-toggle="${category.category_id}" data-status="">
-                <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/small/${category.category_id}.png">
-                <a href="${pageContext.request.contextPath}/product?category_id=${category.category_id}">${category.category_name}</a>
-                <div class="banner_div" name="${category.category_name}">
+            <li data-toggle="${category.categoryId}" data-status="">
+                <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/small/${category.categoryId}.png">
+                <a href="${pageContext.request.contextPath}/product?categoryId=${category.categoryId}">${category.categoryName}</a>
+                <div class="banner_div" name="${category.categoryName}">
 
                 </div>
             </li>
         </c:forEach>
     </ul>
+        <%--首页的那个大图片--%>
     <ul class="banner_slider">
         <li id="slider_1" style="background: rgba(255,255,255,0.4)"></li>
         <li id="slider_2"></li>
@@ -86,27 +89,29 @@
     </ul>
     <a href="#"></a>
 </div>
+<%----%>
 <div class="banner_do">
     <div class="banner_goods">
-        <c:forEach items="${requestScope.categoryList}" var="category">
-            <c:if test="${fn:length(category.productList)>0}">
+        <c:forEach items="${requestScope.productList}" var="categoryAndProduct">
+            <c:if test="${fn:length(categoryAndProduct.foreProductSimpleDtos)>0}">
                 <div class="banner_goods_type">
                     <div class="banner_goods_title">
                         <span></span>
-                        <p>${category.category_name}</p>
+                        <p>${categoryAndProduct.categoryName}</p>
                     </div>
-                    <a href="${pageContext.request.contextPath}/product?category_id=${category.category_id}">
+                        <%--每个分类显示的大图片，由category来显示--%>
+                    <a href="${pageContext.request.contextPath}/product?categoryId=${categoryAndProduct.categoryId}">
                         <img class="banner_goods_show"
-                            src="res/img/user/WebsiteImage/show/${category.category_id}.jpg"></a>
+                            src="res/img/user/WebsiteImage/show/${categoryAndProduct.categoryId}.jpg"></a>
                     <div class="banner_goods_items">
-                        <c:forEach items="${category.productList}" var="product" varStatus="i">
+                        <c:forEach items="${categoryAndProduct.foreProductSimpleDtos}" var="product" varStatus="i">
                             <c:if test="${i.index<8}">
                                 <div class="banner_goods_item">
-                                    <a href="product/${product.product_id}" class="goods_link"></a>
-                                    <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${product.singleProductImageList[0].productImage_src}">
-                                    <a href="product/${product.product_id}"
-                                       class="goods_name">${product.product_name}</a>
-                                    <span class="goods_price">￥${product.product_sale_price}</span>
+                                    <a href="product/${product.productId}" class="goods_link"></a>
+                                    <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${product.productImageSrc}">
+                                    <a href="product/${product.productId}"
+                                       class="goods_name">${product.productName}</a>
+                                    <span class="goods_price">￥${product.productSalePrice}</span>
                                 </div>
                             </c:if>
                         </c:forEach>

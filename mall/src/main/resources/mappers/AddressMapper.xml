@@ -21,7 +21,7 @@
         <select id="getListByAreaIdFore" resultType="com.bs.mall.dao.pojo.Address">
                 select *
                 from address
-                where address_region_id = #{regionId} and address_region_id <![CDATA[!= ]]> address_area_id
+                where address_region_id = #{areaId} and address_region_id <![CDATA[!= ]]> address_area_id
         </select>
 
         <select id="getAllProvinceFore" resultType="com.bs.mall.dao.pojo.Address">

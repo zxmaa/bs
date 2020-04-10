@@ -9,13 +9,16 @@ import com.bs.mall.service.fore.IProductService;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+@Controller
 public class ForeProductListController  extends BaseController {
     @Autowired
     private IProductService productService;
@@ -29,7 +32,7 @@ public class ForeProductListController  extends BaseController {
      * @param model
      * @return
      */
-    @RequestMapping("/product")
+    @RequestMapping(value = "product")
     public String goToProductListPage(Model model, Integer categoryId, String productName){
 
         if(null == categoryId && StringUtils.isBlank(productName)){

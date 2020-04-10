@@ -23,4 +23,9 @@ public class ForeProductSimpleDto {
      * 产品促销价格
      */
     private Double productSalePrice;
+
+    /**
+     * 一张概述图
+     */
+    private String productImageSrc;
 }

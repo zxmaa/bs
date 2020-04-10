@@ -23,7 +23,7 @@ $(function () {
             dataType: "json",
             success: function (data) {
                 if (data.success) {
-                    var list = data.category.complexProductList;
+                    var list = data.complexProductList;
                     for (var i = 0; i < list.length; i++) {
                         if (list[i].length === 0) {
                             continue;
@@ -31,12 +31,12 @@ $(function () {
                         div.append("<div class='hot_word'></div>");
                         var hot_word_div = div.children(".hot_word").last();
                         for (var j = 0; j < list[i].length; j++) {
-                            var product_title = list[i][j].product_title;
+                            var product_title = list[i][j].productTitle;
                             var index = product_title.indexOf(' ');
                             if (index !== -1) {
                                 product_title = product_title.substring(0, index);
                             }
-                            hot_word_div.append("<a href='product/" + list[i][j].product_id + "'>" + product_title + "</a>");
+                            hot_word_div.append("<a href='product/" + list[i][j].productId + "'>" + product_title + "</a>");
                         }
                     }
                     //热词样式

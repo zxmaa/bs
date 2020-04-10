@@ -1,5 +1,6 @@
 package com.bs.mall.controller.fore;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bs.mall.controller.BaseController;
 import com.bs.mall.dao.pojo.Category;
 import com.bs.mall.dao.pojo.Product;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -61,9 +63,31 @@ public class ForeHomeController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/product/nav/{categoryId}")
-    public List<ForeProductSimpleDto> getProductTitleByNav(@PathVariable("categoryId")Integer categoryId){
-        List<ForeProductSimpleDto> products = categoryService.getProductByCategoryId(categoryId);
-        return products;
+    public String getProductTitleByNav(@PathVariable("categoryId")Integer categoryId){
+        logger.info("主页导航页");
+        JSONObject object = new JSONObject();
+        if (categoryId == null) {
+            object.put("success", false);
+            return object.toJSONString();
+        }
+        List<ForeProductSimpleDto> productList = categoryService.getProductByCategoryId(categoryId);
+
+        List<List<ForeProductSimpleDto>> complexProductList = new ArrayList<>();
+        List<ForeProductSimpleDto> products = new ArrayList<>();
+        for (int i = 0; i < productList.size(); i++) {
+            //如果临时集合中产品数达到5个，加入到产品二维集合中，并重新实例化临时集合
+            if (i % 5 == 0) {
+                complexProductList.add(products);
+                products = new ArrayList<>(5);
+            }
+            products.add(productList.get(i));
+        }
+        complexProductList.add(products);
+
+
+        object.put("success", true);
+        object.put("complexProductList", complexProductList);
+        return object.toJSONString();
     }
 
 

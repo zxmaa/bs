@@ -5,9 +5,11 @@ import com.bs.mall.dao.CategoryMapper;
 import com.bs.mall.dao.ProductMapper;
 import com.bs.mall.dao.pojo.Category;
 import com.bs.mall.dao.pojo.Product;
+import com.bs.mall.dao.pojo.ProductImage;
 import com.bs.mall.dto.ForeProductSimpleDto;
 import com.bs.mall.dto.res.ForeCategoryAndProductResDto;
 import com.bs.mall.service.fore.ICategoryService;
+import com.bs.mall.service.fore.IProductImageService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,8 @@ public class CategoryServiceImpl implements ICategoryService {
     private CategoryMapper categoryMapper;
     @Autowired
     private ProductMapper productMapper;
+    @Autowired
+    private IProductImageService productImageService;
 
     //=====================user========================================================
 
@@ -66,6 +70,12 @@ public class CategoryServiceImpl implements ICategoryService {
             for (Product product : productTemp) {
                 ForeProductSimpleDto foreProductSimpleDto = new ForeProductSimpleDto();
                 BeanUtils.copyProperties(product, foreProductSimpleDto);
+
+                //得到每个产品的一张概述图
+                List<ProductImage> images = productImageService.getImagesByType(product.getProductId(), 0);
+                if(images != null){
+                    foreProductSimpleDto.setProductImageSrc(images.get(0).getProductImageSrc());
+                }
                 foreProductSimpleDtos.add(foreProductSimpleDto);
             }
             temp.setForeProductSimpleDtos(foreProductSimpleDtos);
