@@ -3,13 +3,33 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mall.dao.ProductOrderMapper">
+
+    <resultMap id="productOrderMap" type="com.bs.mall.entity.ProductOrder">
+        <id property="productOrderId" column="product_order_id"/>
+        <result property="productOrderCode" column="product_order_code"/>
+        <result property="productOrderDetailAddress" column="product_order_detail_address"/>
+        <result property="productOrderPost" column="product_order_post"/>
+        <result property="productOrderReceiver" column="product_order_receiver"/>
+        <result property="productOrderMobile" column="product_order_mobile"/>
+        <result property="productOrderPayDate" column="product_order_pay_date"/>
+        <result property="productOrderDeliveryDate" column="product_order_delivery_date"/>
+        <result property="productOrderConfirmDate" column="product_order_confirm_date"/>
+        <result property="productOrderStatus" column="product_order_status"/>
+        <association property="productOrderAddress" javaType="com.bs.mall.entity.Address">
+            <id property="addressAreaId" column="product_order_address"/>
+        </association>
+        <association property="productOrderUser" javaType="com.bs.mall.entity.User">
+            <id property="userId" column="user_id"/>
+        </association>
+    </resultMap>
+
     <select id="selectTotal" resultType="int">
         SELECT COUNT(product_order_id) FROM product_order
         <where>
             <if test="productOrder != null">
-                <if test="productOrder.productOrder_code">product_order_code LIKE concat('%',#{productOrder.productOrderCode},'%')</if>
-                <if test="productOrder.productOrder_post">and product_order_post LIKE concat('%',#{productOrder.productOrderPost},'%')</if>
-                <if test="productOrder.productOrder_user != null">and user_id =
+                <if test="productOrder.productOrderCode">product_order_code LIKE concat('%',#{productOrder.productOrderCode},'%')</if>
+                <if test="productOrder.productOrderPost">and product_order_post LIKE concat('%',#{productOrder.productOrderPost},'%')</if>
+                <if test="productOrder.productOrderUser != null">and user_id =
                     #{productOrder.userId}
                 </if>
             </if>
@@ -18,6 +38,47 @@
                     #{item}
                 </foreach>
             </if>
+        </where>
+    </select>
+
+    <select id="select" resultMap="productOrderMap">
+        SELECT
+        product_order_id,product_order_code,product_order_detail_address,product_order_post,product_order_receiver,product_order_mobile,product_order_pay_date,product_order_delivery_date,product_order_confirm_date,product_order_status,product_order_address,user_id
+        FROM product_order
+        <where>
+            <if test="productOrder != null">
+                <if test="productOrder.productOrderCode != null">product_order_code LIKE
+                    concat('%',#{productOrder.productOrderCode},'%')
+                </if>
+                <if test="productOrder.productOrderPost != null">and product_order_post LIKE
+                    concat('%',#{productOrder.productOrderPost},'%')
+                </if>
+                <if test="productOrder.productOrderUser != null">and product_order_user_id =
+                    #{productOrder.productOrderUser.userId}
+                </if>
+            </if>
+            <if test="product_order_status_array != null">
+                and product_order_status IN
+                <foreach collection="product_order_status_array" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        <if test="orderUtil != null">
+            ORDER BY ${orderUtil.orderBy}
+            <if test="orderUtil.isDesc">desc</if>
+        </if>
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.pageStart},#{pageUtil.count}
+        </if>
+    </select>
+
+    <select id="selectOne" resultMap="productOrderMap" parameterType="int">
+        SELECT
+        product_order_id,product_order_code,product_order_detail_address,product_order_post,product_order_receiver,product_order_mobile,product_order_pay_date,product_order_delivery_date,product_order_confirm_date,product_order_status,product_order_address,user_id
+        FROM product_order
+        <where>
+            product_order_id = #{productOrderId}
         </where>
     </select>
 
@@ -30,6 +91,36 @@
         GROUP BY DATE_FORMAT(product_order_pay_date,'%Y-%m-%d'),product_order_status
         ORDER BY product_order_pay_date ASC,product_order_status ASC
     </select>
+
+    <update id="updateOne" parameterType="com.bs.mall.entity.ProductOrder">
+        UPDATE product_order
+        <set>
+            <if test="productOrder.productOrderAddress != null">
+                product_order_address = #{productOrder.productOrderAddress},
+            </if>
+            <if test="productOrder.productOrderDetailAddress != null">
+                product_order_detail_address = #{productOrder.productOrderDetailAddress},
+            </if>
+            <if test="productOrder.productOrderPost != null">
+                product_order_post = #{productOrder.productOrderPost},
+            </if>
+            <if test="productOrder.productOrderStatus != null">
+                product_order_status = #{productOrder.productOrderStatus},
+            </if>
+            <if test="productOrder.productOrderPayDate != null">
+                product_order_pay_date = #{productOrder.productOrderPayDate},
+            </if>
+            <if test="productOrder.productOrderDeliveryDate != null">
+                product_order_delivery_date = #{productOrder.productOrderDeliveryDate},
+            </if>
+            <if test="productOrder.productOrderConfirmDate != null">
+                product_order_confirm_date = #{productOrder.productOrderConfirmDate}
+            </if>
+        </set>
+        <where>
+            product_order_id = #{productOrder.productOrderId}
+        </where>
+    </update>
 
     <select id="getOrderShowFore" resultType="com.bs.mall.dao.pojo.ProductOrder">
         select *
