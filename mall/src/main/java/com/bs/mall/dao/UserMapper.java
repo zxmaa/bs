@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 用户Mapper接口
  */
-@Repository
+/*@Repository*/
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
     List<User> findUser();
@@ -22,5 +22,5 @@ public interface UserMapper extends BaseMapper<User> {
 
     Integer selectTotal(@Param("user") com.bs.mall.entity.User user);
 
-    com.bs.mall.entity.User selectOne(@Param("user_id") Integer user_id);
+    com.bs.mall.entity.User selectOneUser(@Param("user_id") Integer user_id);
 }

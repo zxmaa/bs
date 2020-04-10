@@ -56,30 +56,14 @@ public class User {
     private Integer integral;
 
     /**
-     *     用户姓名
+     * 头像地址
      */
-   //   private String userRealname;
-
-    /**
-     * 用户昵称
-     */
-   // private String userNickname;
+    private String userProfilePictureSrc;
 
 
 
 
 
-
-    /**
-     *     用户现居地
-     */
-   // private String userAddress;
-
-    /**
-     *  用户家乡地址
-      */
-
-   // private String userHomeplace;
 
 
 }

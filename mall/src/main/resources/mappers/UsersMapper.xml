@@ -57,7 +57,7 @@
         </if>
     </select>
 
-    <select id="selectOne" resultMap="userMap" parameterType="int">
+    <select id="selectOneUser" resultMap="userMap" parameterType="int">
         SELECT user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace FROM user
         <where>
             user_id = #{user_id}

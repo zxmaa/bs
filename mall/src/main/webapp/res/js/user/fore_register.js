@@ -1,8 +1,8 @@
 $(function () {
-    //刷新下拉框
+  /*  //刷新下拉框
     $('#select_user_address_province').selectpicker('refresh');
     $('#select_user_address_city').selectpicker('refresh');
-    $('#select_user_address_district').selectpicker('refresh');
+    $('#select_user_address_district').selectpicker('refresh');*/
 
 
     //用户名input获取光标
@@ -21,9 +21,9 @@ $(function () {
             .next().text("请再次输入密码").css("display", "inline-block").css("color", "#00A0E9");
     });
     //昵称input获取光标
-    $("#user_nickname").focus(function () {
+    $("#userTel").focus(function () {
         $(this).css("border", "1px solid #3879D9")
-            .next().text("请输入昵称").css("display", "inline-block").css("color", "#00A0E9");
+            .next().text("请输入电话号码").css("display", "inline-block").css("color", "#00A0E9");
     });
     //出生日期input获取光标
     $("#user_birthday").focus(function () {
@@ -73,31 +73,33 @@ $(function () {
             $("#user_password_one").css("border", "1px solid red")
                 .next().text("两次输入密码不相同").css("display", "inline-block").css("color", "red");
             return false;
-        } else if (!tel.test(userTel) ) {
-            $("#user_nickname").css("border", "1px solid red")
+        }  else if (userTel == null || userTel === "") {
+            $("#userTel").css("border", "1px solid red")
+                .next().text("请输入联系电话").css("display", "inline-block").css("color", "red");
+            return false;
+        }else if (!tel.test(userTel) ) {
+            $("#userTel").css("border", "1px solid red")
                 .next().text("请输入正确的电话号码").css("display", "inline-block").css("color", "red");
             return false;
-        } else if (user_birthday == null || user_birthday === "") {
+        }else if (user_birthday == null || user_birthday === "") {
             $("#user_birthday").css("border", "1px solid red")
                 .next().text("请选择出生日期").css("display", "inline-block").css("color", "red");
             return false;
         }
-        else if (userTel == null || userTel === "") {
-            $("#userTel").css("border", "1px solid red")
-                .next().text("请输入联系电话").css("display", "inline-block").css("color", "red");
-            return false;
-        }
+
+        var obj = {};
+        obj['userName'] = user_name;
+        obj['userPassword'] = user_password;
+        obj['userTel'] = userTel;
+        obj['userBirthday'] = user_birthday;
+        obj['userGender'] = $("input[name=user_gender]:checked").val();
         $.ajax({
             type: "POST",
-            url: "/mall/userRegister",
-            data: {
-                "userName": user_name,
-                "userPassword": user_password,
-                "userTel": userTel,
-                "userBirthday": user_birthday,
-                "userGender": $("input[name=user_gender]:checked").val(),
-            },
+            url: "/mall/register/doRegister",
             dataType: "json",
+            contentType:"application/json",
+            data:JSON.stringify(obj),
+
             success: function (data) {
                 if (data.success) {
                     $(".msg").stop(true, true).animate({
@@ -113,7 +115,7 @@ $(function () {
                     alert(data.message);
                 }
             },
-            error: function (data) {
+          error: function (data) {
                 location.reload(true);
             },
             beforeSend: function () {

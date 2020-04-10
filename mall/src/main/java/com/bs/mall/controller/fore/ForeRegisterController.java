@@ -6,8 +6,7 @@ import com.bs.mall.dto.ForeUserDto;
 import com.bs.mall.service.fore.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.logging.Logger;
 
@@ -25,11 +24,15 @@ public class ForeRegisterController extends BaseController {
        return "user/register";
     }
 
-    @RequestMapping("/userRegister")
+    @RequestMapping(value = "/register/doRegister")
+    @ResponseBody
     public String userRegister(@RequestBody ForeUserDto userDto){
+        logger.info("用户注册");
+        System.out.println(userDto);
+        JSONObject jsonObject = new JSONObject();
         String userName = userDto.getUserName();
         ForeUserDto temp = userService.findUserByUsereName(userName);
-        JSONObject jsonObject = new JSONObject();
+
         //注：其余的字段格式合法性，由前端直接验证
         if(temp != null){
             logger.info("已存在该用户名");

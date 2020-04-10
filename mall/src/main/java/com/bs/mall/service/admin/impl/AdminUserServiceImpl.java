@@ -64,7 +64,7 @@ public class AdminUserServiceImpl extends BaseService implements IAdminUserServi
     @Override
     public String getUserById(HttpSession session, Map<String, Object> map, Integer uid) {
         logger.info("获取user_id为{}的用户信息",uid);
-        User user=userMapper.selectOne(uid);
+        User user=userMapper.selectOneUser(uid);
         logger.info("获取用户详情-所在地地址信息");
         Address address=addressMapper.selectOne(user.getUserAddress().getAddressAreaId());
         Stack<String> addressStack = new Stack<>();

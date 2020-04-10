@@ -74,8 +74,7 @@
         </div>
         <div class="form-item">
             <label class="form-label tsl">联系电话：</label>
-            <input name="userTel" id="userTel" class="form-text err-input" placeholder="请输入联系电话"
-                   maxlength="20">
+            <input name="userTel" id="userTel" class="form-text err-input" placeholder="请输入联系电话" maxlength="20">
             <span class="form_span"></span>
         </div>
         <div class="form-item">

@@ -20,7 +20,7 @@ public class IUserServiceTest {
     @Test
     public void addUserTest(){
         ForeUserDto foreUserDto = new ForeUserDto();
-        foreUserDto.setUserName("zxm");
+        foreUserDto.setUserName("zx");
         foreUserDto.setUserPassword("123");
         foreUserDto.setUserBirthday(new Date());
         foreUserDto.setUserGender(1);
@@ -48,13 +48,13 @@ public class IUserServiceTest {
 
     @Test
     public void findUserByUsereNameTest(){
-        ForeUserDto zxm = userService.findUserByUsereName("zx");
+        ForeUserDto zxm = userService.findUserByUsereName("zxm");
         System.out.println(zxm);
     }
 
     @Test
     public void findUserByUserIdTest(){
-        ForeUserDto userByUserId = userService.findUserByUserId(150);
+        ForeUserDto userByUserId = userService.findUserByUserId(29);
         System.out.println(userByUserId);
     }
 }
