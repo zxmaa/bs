@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 用户Mapper接口
  */
-/*@Repository*/
+@Repository
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
     List<User> findUser();
