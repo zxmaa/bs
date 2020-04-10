@@ -44,6 +44,7 @@ public class ForeRegisterController extends BaseController {
         if(flag){
             jsonObject.put("success",false);
             jsonObject.put("message","该号码已被注册，请重新输入！");
+            return jsonObject.toJSONString();
         }
         userService.addUser(userDto);
         jsonObject.put("success",true);
