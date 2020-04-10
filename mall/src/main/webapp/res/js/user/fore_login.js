@@ -43,10 +43,14 @@ $(function () {
             }
         });
         if (yn) {
+            var obj={};
+            obj["userName"]=$.trim($("#name").val());
+            obj["userPassword"]=$.trim($("#password").val());
             $.ajax({
                 type: "POST",
                 url: "/mall/login/doLogin",
-                data: {"username": $.trim($("#name").val()), "password": $.trim($("#password").val())},
+                data: JSON.stringify(obj),
+                contentType:"application/json",
                 dataType: "json",
                 success: function (data) {
                     $(".loginButton").val("登 录");

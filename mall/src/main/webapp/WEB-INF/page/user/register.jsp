@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"><%--以最高版本IE来渲染页面--%>
     <meta name="viewport" content="width=device-width, initial-scale=1"><%-- 不同设备之间的自适应--%>
     <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/res/js/user/fore_register.js"></script>
+    <script src="${pageContext.request.contextPath}/res/js/user/fore_register.js" type="text/javascript"></script>
     <link href="${pageContext.request.contextPath}/res/css/user/fore_register.css" rel="stylesheet">
     <title>网上注册</title>
     <script>
@@ -87,29 +87,7 @@
             <input type="date" name="user_birthday" id="user_birthday" class="form-text err-input"/>
             <span class="form_span"></span>
         </div>
-     <%--   <div class="form-item">
-            <label class="form-label tsl">居住地址：</label>
-            <select class="selectpicker" id="select_user_address_province" data-size="8" data-live-search="true">
-                <c:forEach items="${requestScope.addressList}" var="address" varStatus="i">
-                    <option value="${address.address_areaId}"
-                            <c:if test="${requestScope.addressId==address.address_areaId}">selected</c:if>>${address.address_name}</option>
-                </c:forEach>
-            </select>
-            <select class="selectpicker" id="select_user_address_city" data-size="8" data-live-search="true">
-                <c:forEach items="${requestScope.cityList}" var="address" varStatus="i">
-                    <option value="${address.address_areaId}"
-                            <c:if test="${requestScope.cityAddressId==address.address_areaId}">selected</c:if>>${address.address_name}</option>
-                </c:forEach>
-            </select>
-            <select name="user_address" class="selectpicker" id="select_user_address_district" data-size="8"
-                    data-live-search="true">
-                <c:forEach items="${requestScope.districtList}" var="address" varStatus="i">
-                    <option value="${address.address_areaId}"
-                            <c:if test="${requestScope.districtAddressId==address.address_areaId}">selected</c:if>>${address.address_name}</option>
-                </c:forEach>
-            </select>
-        </div>
-        --%>
+
         <div class="form-item">
             <input type="button" id="register_sub" class="btns btn-large tsl" value="注 册"/>
         </div>
