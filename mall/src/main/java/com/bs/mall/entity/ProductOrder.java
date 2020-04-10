@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 订单
@@ -25,7 +26,7 @@ public class ProductOrder {
     /**
      * 订单地址
      */
-    private Integer userAddressId;
+    private Address productOrderAddress;
 
 
 
@@ -62,11 +63,15 @@ public class ProductOrder {
     /**
      * 订单状态
      */
-    private  Integer productOrderStatus;
+    private  Byte productOrderStatus;
 
     /**
      * 订单对应用户id
      */
     private Integer userId;
+
+    private User productOrderUser/*订单对应用户*/;
+    private List<ProductOrderItem> productOrderItemList/*订单项集合*/;
+    private String productOrderDetailAddress/*订单详细地址*/;
 
 }
