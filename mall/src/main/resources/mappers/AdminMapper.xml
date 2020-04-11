@@ -10,4 +10,28 @@
         </where>
     </select>
 
+    <select id="selectOneAdmin" resultType="com.bs.mall.entity.Admin" parameterType="int">
+        SELECT admin_id,admin_name,admin_nick_name,admin_profile_picture_src FROM admin
+        <where>
+            <if test="admin_id != null">
+                admin_id = #{admin_id}
+            </if>
+            <if test="admin_name != null">
+                admin_name = #{admin_name}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateOne" parameterType="com.bs.mall.entity.Admin">
+        UPDATE admin
+        <set>
+            <if test="admin.adminProfilePictureSrc != null">admin_profile_picture_src = #{admin.adminProfilePictureSrc},</if>
+            <if test="admin.adminNickName != null">admin_nick_name = #{admin.adminNickName},</if>
+            <if test="admin.adminPassword != null">admin_password = #{admin.adminPassword}</if>
+        </set>
+        <where>
+            admin_id = #{admin.adminId}
+        </where>
+    </update>
+
 </mapper>
