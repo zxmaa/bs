@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 public interface AdminMapper extends BaseMapper<Admin> {
     Admin selectByLogin(@Param("admin_name") String admin_name, @Param("admin_password") String admin_password);
 
-    //Admin selectOne(@Param("admin_name") String admin_name, @Param("admin_id") Integer admin_id);
+    com.bs.mall.entity.Admin selectOneAdmin(@Param("admin_name") String admin_name, @Param("admin_id") Integer admin_id);
+    Integer updateOne(@Param("admin") com.bs.mall.entity.Admin admin);
 
 }
