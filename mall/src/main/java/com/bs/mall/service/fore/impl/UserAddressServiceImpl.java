@@ -38,9 +38,6 @@ public class UserAddressServiceImpl implements IUserAddressService {
                 .orderByDesc("user_address_id");
         List<UserAddress> userAddresses = userAddressMapper.selectList(wrapper);
 
-        if(null == userAddresses){
-            return null;
-        }
         ForeUserAddressResDto temp;
         for (UserAddress userAddress : userAddresses) {
             temp = new ForeUserAddressResDto();

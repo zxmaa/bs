@@ -44,6 +44,11 @@ public class ForeProductDetailsResDto {
     PageInfo<ForeProductGuessResDto> productGuess;
 
     /**
+     * 评论
+     */
+    ForeReviewResDto reviewResDto;
+
+    /**
      * 产品属性值
      */
     ForeProductPropertyResDto propertyValue;

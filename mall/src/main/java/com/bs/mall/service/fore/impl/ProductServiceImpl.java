@@ -133,33 +133,22 @@ public class ProductServiceImpl implements IProductService {
 
     /**
      * 根据productId得到评论详情以及评论总数
-     * @param foreReviewReqDto
+     * @param productId
      * @return
      */
     @Override
-    public ForeReviewResDto getReview(ForeReviewReqDto foreReviewReqDto) {
+    public ForeReviewResDto getReview(Integer productId) {
         ForeReviewResDto foreReviewResDto = new ForeReviewResDto();
 
-        Product product = productMapper.selectById(foreReviewReqDto.getProductId());
+        Product product = productMapper.selectById(productId);
         foreReviewResDto.setCount(product.getProductReviewCount());
         //该商品无评论时
         if(product.getProductReviewCount()==0){
             return foreReviewResDto;
         }
 
-        if(null == foreReviewReqDto.getPageNum()){
-            //默认第一页
-            foreReviewReqDto.setPageNum(1);
-        }
-        if(null == foreReviewReqDto.getPageSize()){
-            //默认每页5个评论
-            foreReviewReqDto.setPageSize(3);
-        }
-
-        PageHelper.startPage(foreReviewReqDto.getPageNum(), foreReviewReqDto.getPageSize());
-        List<ForeReviewSimpleResDto> reviewSimple = productMapper.getReviewFore(foreReviewReqDto.getProductId());
-        PageInfo<ForeReviewSimpleResDto> review = new PageInfo<>(reviewSimple);
-        foreReviewResDto.setReview(review);
+        List<ForeReviewSimpleResDto> reviewSimple = productMapper.getReviewFore(productId);
+        foreReviewResDto.setReview(reviewSimple);
         return foreReviewResDto;
     }
 
@@ -207,6 +196,10 @@ public class ProductServiceImpl implements IProductService {
         //商品属性值
         ForeProductPropertyResDto productProperty = getProductProperty(productId);
         result.setPropertyValue(productProperty);
+
+        //评论
+        ForeReviewResDto review = getReview(productId);
+        result.setReviewResDto(review);
 
         return result;
     }

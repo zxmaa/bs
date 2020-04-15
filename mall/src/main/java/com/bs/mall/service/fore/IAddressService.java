@@ -6,7 +6,7 @@ import com.bs.mall.dto.res.ForeAddressDetailResDto;
 import java.util.List;
 
 public interface IAddressService {
-    //=====================user=================================================================
+
 
     /**
      * 根据areaId，查出其下一级的市/县信息

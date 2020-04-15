@@ -3,6 +3,8 @@ package com.bs.mall.dto.res;
 import com.github.pagehelper.PageInfo;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 评论响应值
  */
@@ -16,5 +18,5 @@ public class ForeReviewResDto {
     /**
      * 评论详情
      */
-    PageInfo<ForeReviewSimpleResDto> review;
+    List<ForeReviewSimpleResDto> review;
 }

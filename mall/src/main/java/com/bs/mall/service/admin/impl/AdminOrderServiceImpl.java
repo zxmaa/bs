@@ -66,7 +66,7 @@ public class AdminOrderServiceImpl extends BaseService implements IAdminOrderSer
     @Override
     public String goToDetailsPage(HttpSession session, Map<String, Object> map, Integer oid) {
         logger.info("获取order_id为{}的订单信息",oid);
-        ProductOrder order=productOrderMapper.selectOne(oid);
+        ProductOrder order=productOrderMapper.selectOneProductOrder(oid);
         logger.info("获取订单详情-地址信息");
         Address address = addressMapper.selectOne(order.getProductOrderAddress().getAddressAreaId());
         Stack<String> addressStack = new Stack<>();
