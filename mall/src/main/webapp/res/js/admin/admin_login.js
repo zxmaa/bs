@@ -43,14 +43,14 @@ $(function () {
             return;
         }
         $.ajax({
-            url: "/tmall/admin/login/doLogin",
+            url: "/mall/admin/login/doLogin",
             type:"post",
             data: {"username":username,"password":password},
             success:function (data) {
                 $("#btn_login").val("登录");
                 if (data.success) {
                     cookieUtil.setCookie("username", username, 30);
-                    location.href = "/tmall/admin";
+                    location.href = "/mall/admin";
                 } else {
                     styleUtil.errorShow($("#txt_error_msg"), "用户名或密码错误");
                 }
@@ -85,14 +85,14 @@ function initialCookie() {
         if(url !== null) {
             $("#div_background").css("background-image", url);
         } else {
-            $("#div_background").css("background-image", "url(/tmall/res/images/admin/loginPage/background-4.jpg)");
+            $("#div_background").css("background-image", "url(/mall/res/img/admin/loginPage/background-4.jpg)");
         }
         if(username !== null){
             $("#input_username").val(username);
             getUserProfilePicture(username);
         }
     } else {
-        $("#div_background").css("background-image", "url(/tmall/res/images/admin/loginPage/background-1.jpg)");
+        $("#div_background").css("background-image", "url(/mall/res/img/admin/loginPage/background-1.jpg)");
     }
 
 }
@@ -115,14 +115,14 @@ function initialData() {
 //获取用户头像
 function getUserProfilePicture(username) {
     if(username !== null && username !== ""){
-        $.getJSON("/tmall/admin/login/profile_picture",{"username":username},function (data) {
+        $.getJSON("/mall/admin/login/profile_picture",{"username":username},function (data) {
             if(data.success){
                 if(data.srcString !== null){
-                    $("#img_profile_picture").attr("src", "/tmall/res/images/item/adminProfilePicture/" + data.srcString);
+                    $("#img_profile_picture").attr("src", "/mall/res/img/item/adminProfilePicture/" + data.srcString);
                     return true;
                 }
             }
         });
     }
-    $("#img_profile_picture").attr("src","/tmall/res/images/admin/loginPage/default_profile_picture-128x128.png");
+    $("#img_profile_picture").attr("src","/mall/res/img/admin/loginPage/default_profile_picture-128x128.png");
 }
