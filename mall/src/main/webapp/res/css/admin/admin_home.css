@@ -16,7 +16,7 @@ html,body,#div_home_main{
 }
 /*标题栏部分，该部分是nav.jsp中的，被引入到home_page.jsp界面中来的【天猫数据管理后台】*/
 .nav_text{
-    font-szie:16px;
+    font-size:16px;
     color:#444;
 }
 #div_home_main>#nav_main{
@@ -152,6 +152,8 @@ html,body,#div_home_main{
     text-indent: -9999em;
     animation: load-effect 1s infinite linear;
 }
+/*从正上方、右上方、正右方顺时针依次推*/
+/*5个参数依次为：左移、下移、模糊距离（0为纯色）、外扩、颜色*/
 @keyframes load-effect {
     0%{
         box-shadow:
