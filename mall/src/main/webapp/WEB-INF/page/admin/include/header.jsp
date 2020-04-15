@@ -14,7 +14,7 @@
     <title>Title</title>
     <meta charset="UTF-8">
     <%--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">--%>
-    <link href="${pageContext.request.contextPath}/res/images/admin/tmall_48px_1193412_easyicon.net.ico" rel="icon" type="image/x-ico">
+    <link href="${pageContext.request.contextPath}/res/img/admin/mall_48px_1193412_easyicon.net.ico" rel="icon" type="image/x-ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/bootstrap-select.min.css"/>
     <script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>
@@ -22,9 +22,8 @@
     <script src="${pageContext.request.contextPath}/res/js/bootstrap-select.min.js"></script>
     <script src="${pageContext.request.contextPath}/res/js/defaults-zh_CN.min.js"></script>
     <script src="${pageContext.request.contextPath}/res/js/echarts.js"></script>
-    <script src="${pageContext.request.contextPath}/res/js/basebase.js.js"></script>
+    <script src="${pageContext.request.contextPath}/res/js/base.js"></script>
 </head>
 <body>
-
 </body>
 </html>
