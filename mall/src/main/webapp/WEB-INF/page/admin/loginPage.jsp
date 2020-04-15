@@ -50,6 +50,7 @@
                 <%--图片装载失败时，触发onerror事件，图片不存在将显示logoError.png。以下图片--%>
                 onerror="this.url='${pageContext.request.contextPath}/res/img/admin/loginPage/default_profile_picture-128x128.png'"/>
             <form id="form_login">
+                <%--placeholder和value的区别是当鼠标focus时value（此时未输入值，只是聚焦状态）值会消失，而placeholder的值不会消失，当输入值不为空时才会消失--%>
                 <input type="text" class="form-control form_control" placeholder="用户名" id="input_username" title="请输入用户名！">
                 <input type="password" class="form-control form_control" placeholder="密码" id="input_password" title="请输入密码！">
                 <span id="txt_error_msg"></span>
