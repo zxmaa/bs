@@ -161,7 +161,7 @@
         </c:forEach>
         </tbody>
     </table>
-    <%@ include file="include/page.jsp" %>
+    <%@include file="include/page.jsp"%>
     <div class="loader"></div>
 </div>
 </body>
