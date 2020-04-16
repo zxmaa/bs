@@ -4,7 +4,8 @@
         "mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mall.dao.PropertyValueMapper">
     <resultMap id="propertyValueMap" type="com.bs.mall.entity.PropertyValue">
-
+        <id property="propertyValueId" column="property_value_id"/>
+        <result property="propertyValueValue" column="property_value_value"/>
         <association property="propertyValueProperty" javaType="com.bs.mall.entity.Property">
             <id property="propertyId" column="property_id"/>
         </association>

@@ -74,7 +74,7 @@
         </where>
     </update>
 
-    <select id="selectOne" resultType="com.bs.mall.entity.Product">
+    <select id="selectOne" resultMap="productMap" parameterType="int">
         select * from product where product_id = #{product_id}
     </select>
 
