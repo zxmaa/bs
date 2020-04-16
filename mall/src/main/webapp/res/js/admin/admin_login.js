@@ -1,4 +1,4 @@
-$(function () {
+$(document).ready(function(){
     //初始化
     initialCookie();
     initialData();
@@ -13,16 +13,15 @@ $(function () {
         }
     });
 //    当点击顶部的换肤img时
-    $("div_peelPanel").find(">li>img").click(function () {
-        var background=$("#div_background");
-        var url=$(this).parent("li").attr("value");
-        if(url !==null && url !==""){
+    $("#div_peelPanel").find(">li>img").click(function () {
+        var background = $("#div_background");
+        var url = $(this).parent("li").attr("value");
+        if(url !== null && url !== ""){
             if(url !== background.css("background-image")){
-                background.css("background-image",url);
-                cookieUtil.setCookie("backgroundImageUrl",url,365);
+                background.css("background-image", url);
+                cookieUtil.setCookie("backgroundImageUrl", url,365);
             }
         }
-
     });
 //    当点击顶部换肤标签时
     $("#txt_peel").click(function () {
