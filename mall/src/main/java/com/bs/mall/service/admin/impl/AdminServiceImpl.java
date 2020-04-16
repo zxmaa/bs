@@ -34,7 +34,7 @@ public class AdminServiceImpl implements IAdminService {
             session.setAttribute("adminId",admin.getAdminId());
             object.put("success",true);
         }
-        return object.toString();
+        return object.toJSONString();
     }
 
     @Override
