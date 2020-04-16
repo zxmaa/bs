@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 public class ForePayResDto {
     /**
-     * 产品详情：若待支付的只有产品，将其赋值
+     * 产品详情：若待支付的只有一个产品，将其赋值
      */
     private Product product;
 

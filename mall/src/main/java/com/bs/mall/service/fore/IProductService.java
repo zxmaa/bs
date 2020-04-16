@@ -41,10 +41,10 @@ public interface IProductService {
 
     /**
      * 根据productId得到评论详情以及评论总数
-     * @param foreReviewReqDto
+     * @param productId
      * @return
      */
-    ForeReviewResDto getReview(ForeReviewReqDto foreReviewReqDto);
+    ForeReviewResDto getReview(Integer productId);
 
     /**
      * 根据productId的到产品的详细信息

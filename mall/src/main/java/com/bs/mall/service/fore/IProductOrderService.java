@@ -14,14 +14,14 @@ public interface IProductOrderService {
      * @param createOrderByOneReqDto
      * @return 返回订单的code
      */
-   String  createOrderByOne(ForeCreateOrderByOneReqDto createOrderByOneReqDto);
+    ForeCreateOrderResDto  createOrderByOne(ForeCreateOrderByOneReqDto createOrderByOneReqDto);
 
     /**
      * 生成订单：用于购物车购买生成订单
      * @param createOrderByListReqDto
      * @return
      */
-    String createOrderByList(ForeCreateOrderByListReqDto createOrderByListReqDto);
+    ForeCreateOrderResDto createOrderByList(ForeCreateOrderByListReqDto createOrderByListReqDto);
 
     /**
      * 根据orderCode,得到订单
@@ -39,11 +39,11 @@ public interface IProductOrderService {
 
     /**
      * 点击确认支付的操作（顶单状态改为已支付）
-     * 若某个产品库存不足，则返回该产品的名称
-     * 成功：返回null
+     * //若某个产品库存不足，则返回该产品的名称
+     * //成功：返回null
      * @param orderCode
      */
-    String payOrder(String orderCode);
+    void payOrder(String orderCode);
 
     /**
      * 根据orderCode，得到支付成功显示的信息
@@ -54,7 +54,7 @@ public interface IProductOrderService {
 
     /**
      * 更改订单状态
-     *    0：待付款
+     *
      *    1：已支付,待发货
      *    2:已发货
      *    3：已确认收货（即交易成功）

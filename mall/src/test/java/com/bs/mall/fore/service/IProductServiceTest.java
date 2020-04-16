@@ -65,7 +65,7 @@ public class IProductServiceTest {
         }
     }
 
-    @Test
+    /*@Test
     public void getReviewTest(){
         ForeReviewReqDto foreReviewReqDto = new ForeReviewReqDto();
         foreReviewReqDto.setProductId(1);
@@ -76,7 +76,7 @@ public class IProductServiceTest {
         for (ForeReviewSimpleResDto foreReviewSimpleResDto : review.getReview().getList()) {
             System.out.println(foreReviewSimpleResDto);
         }
-    }
+    }*/
 
     @Test
     public void getCategoryNameByProductIdTest(){

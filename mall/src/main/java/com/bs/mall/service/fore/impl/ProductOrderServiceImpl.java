@@ -51,17 +51,27 @@ public class ProductOrderServiceImpl implements IProductOrderService {
      */
     @Override
     @Transactional(rollbackFor=Exception.class)
-    public String createOrderByOne(ForeCreateOrderByOneReqDto createOrderByOneReqDto) {
+    public ForeCreateOrderResDto createOrderByOne(ForeCreateOrderByOneReqDto createOrderByOneReqDto) {
+        ForeCreateOrderResDto result = new ForeCreateOrderResDto();
+        //得到product
+        Product product = productService.getProductById(createOrderByOneReqDto.getProductId());
+        //判断库存是否充足
+        if(product.getProductQuantity()<createOrderByOneReqDto.getProductNum()){
+            result.setFlag(false);
+            result.setProductName(product.getProductName());
+            return result;
+        }
+
         //生成订单编码
         StringBuffer productOrderCode = new StringBuffer()
                 .append(new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()))
                 .append(RandomStringUtils.randomNumeric(8));
         //得到用户地址的信息
         UserAddress userAddress = userAddressService.getUserAddressById(createOrderByOneReqDto.getUserAddressId());
-        //得到product
-        Product product = productService.getProductById(createOrderByOneReqDto.getProductId());
+
 
         ProductOrder productOrder = new ProductOrder();
+        productOrder.setUserId(createOrderByOneReqDto.getUserId());
         productOrder.setProductOrderCode(productOrderCode.toString());
         productOrder.setProductOrderAddress(userAddress.getAddressAreaId());
         productOrder.setProductOrderDetailAddress(userAddress.getDetailAddress());
@@ -85,7 +95,15 @@ public class ProductOrderServiceImpl implements IProductOrderService {
         productOrderItem.setProductSinglePrice(product.getProductSalePrice());
         productOrderItemService.addOrderItem(productOrderItem);
 
-        return productOrder.getProductOrderCode();
+        //修改商品的库存量
+        Product updateProduct = new Product();
+        updateProduct.setProductId(product.getProductId());
+        updateProduct.setProductQuantity(product.getProductQuantity()-createOrderByOneReqDto.getProductNum());
+        productService.updateProduct(updateProduct);
+
+        result.setFlag(true);
+        result.setProductOrderCode(productOrder.getProductOrderCode());
+        return result;
     }
 
     /**
@@ -95,8 +113,23 @@ public class ProductOrderServiceImpl implements IProductOrderService {
      */
     @Override
     @Transactional(rollbackFor=Exception.class)
-    public String createOrderByList(ForeCreateOrderByListReqDto createOrderByListReqDto) {
-        //生成订单编码
+    public ForeCreateOrderResDto createOrderByList(ForeCreateOrderByListReqDto createOrderByListReqDto) {
+        ForeCreateOrderResDto result = new ForeCreateOrderResDto();
+        //购买的商品的List
+        List<ForeCreateOrderByListSimpleReqDto> list = createOrderByListReqDto.getCreateOrderByListSimpleReqDtos();
+
+        //判断每个产品的库存是否充足
+        for (ForeCreateOrderByListSimpleReqDto createOrderByListSimpleReqDto : list) {
+            ProductOrderItem temp = productOrderItemService.selectOrderItemById(createOrderByListSimpleReqDto.getOrderItemId());
+            Product product = productService.getProductById(temp.getProductId());
+            if(product.getProductQuantity()<temp.getProductOrderItemNumber()){
+                result.setFlag(false);
+                result.setProductName(product.getProductName());
+                return result;
+            }
+
+        }
+
         //生成订单编码
         StringBuffer productOrderCode = new StringBuffer()
                 .append(new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()))
@@ -113,16 +146,16 @@ public class ProductOrderServiceImpl implements IProductOrderService {
         productOrder.setProductOrderMobile(userAddress.getTel());
         productOrder.setProductOrderStatus(0);
         productOrder.setProductOrderReserveDate(new Date());
+        productOrder.setUserId(createOrderByListReqDto.getUserId());
         //1、生成订单
         productOrderMapper.insert(productOrder);
         //得到刚刚插入的id
         Integer productOrderId = productOrder.getProductOrderId();
 
-        //2、修改订单项
-        List<ForeCreateOrderByListSimpleReqDto> list = createOrderByListReqDto.getCreateOrderByListSimpleReqDtos();
+
         ProductOrderItem productOrderItem;
         for (ForeCreateOrderByListSimpleReqDto createOrderByListSimpleReqDto : list) {
-
+            //2、修改订单项
             productOrderItem = new ProductOrderItem();
             productOrderItem.setProductOrderItemId(createOrderByListSimpleReqDto.getOrderItemId());
             productOrderItem.setProductOrderItemUserMessage(createOrderByListSimpleReqDto.getUserMessage());
@@ -131,10 +164,21 @@ public class ProductOrderServiceImpl implements IProductOrderService {
             ProductOrderItem temp = productOrderItemService.selectOrderItemById(createOrderByListSimpleReqDto.getOrderItemId());
             Product product = productService.getProductById(temp.getProductId());
             productOrderItem.setProductSinglePrice(product.getProductSalePrice());
+            productOrderItem.setProductOrderItemPrice(product.getProductSalePrice()*temp.getProductOrderItemNumber());
             productOrderItemService.updateOrderItem(productOrderItem);
+
+            //3、修改商品库存
+            Product updateProduct = new Product();
+            updateProduct.setProductId(product.getProductId());
+            updateProduct.setProductQuantity(product.getProductQuantity()-temp.getProductOrderItemNumber());
+            productService.updateProduct(updateProduct);
         }
 
-        return productOrderCode.toString();
+
+
+        result.setFlag(true);
+        result.setProductOrderCode(productOrder.getProductOrderCode());
+        return result;
     }
 
     @Override
@@ -178,14 +222,13 @@ public class ProductOrderServiceImpl implements IProductOrderService {
 
     /**
      * 点击确认支付的操作
-     * 若某个产品库存不足，则返回该产品的名称
      * @param orderCode
      */
     @Override
     @Transactional(rollbackFor=Exception.class)
-    public String payOrder(String orderCode) {
+    public void payOrder(String orderCode) {
         ProductOrder productOrder = getProductOrderByOrderCode(orderCode);
-        //得到该订单的订单项
+      /*  //得到该订单的订单项
         List<ProductOrderItem> orderItems = productOrderItemService.getOrderItemsByOrderId(productOrder.getProductOrderId());
 
         //若结算时，产品数量不够，则返回该产品名
@@ -195,9 +238,9 @@ public class ProductOrderServiceImpl implements IProductOrderService {
             if(product.getProductQuantity()<orderItem.getProductOrderItemNumber()){
                 return product.getProductName();
             }
-        }
+        }*/
 
-        Product updateProduct;
+    /*    Product updateProduct;
         for (ProductOrderItem orderItem : orderItems) {
             updateProduct= new Product();
             Integer productId = orderItem.getProductId();
@@ -207,15 +250,15 @@ public class ProductOrderServiceImpl implements IProductOrderService {
             updateProduct.setProductSaleCount(product.getProductSaleCount()+productOrderItemNumber);
             updateProduct.setProductQuantity(product.getProductQuantity()-productOrderItemNumber);
             productService.updateProduct(product);
-        }
+        }*/
 
-        ProductOrder updateProductOrder = new ProductOrder();
+        //支付后，修改订单状态
+        /*ProductOrder updateProductOrder = new ProductOrder();
         updateProductOrder.setProductOrderId(productOrder.getProductOrderId());
         updateProductOrder.setProductOrderPayDate(new Date());
         updateProductOrder.setProductOrderStatus(1);
-        productOrderMapper.updateById(updateProductOrder);
-
-        return null;
+        productOrderMapper.updateById(updateProductOrder);*/
+        updateOrderStatus(orderCode,1);
     }
 
     /**
@@ -246,7 +289,7 @@ public class ProductOrderServiceImpl implements IProductOrderService {
 
     /**
      * 更改订单状态
-     *      0：待付款
+     *
      *      1：已支付,待发货
      *     2:已发货
      *      3：已确认收货（即交易成功）
@@ -258,16 +301,13 @@ public class ProductOrderServiceImpl implements IProductOrderService {
     public void updateOrderStatus(String orderCode,Integer orderStatus) {
         QueryWrapper<ProductOrder> wrapper = new QueryWrapper<>();
         wrapper.eq("product_order_code",orderCode);
+        ProductOrder prodctOrder = getProductOrderByOrderCode(orderCode);
+        List<ProductOrderItem> orderItems = productOrderItemService.getOrderItemsByOrderId(prodctOrder.getProductOrderId());
 
         ProductOrder productOrder = new ProductOrder();
-        productOrder.setProductOrderStatus(orderStatus);
-        productOrder.setProductOrderDeliveryDate(new Date());
-        productOrderMapper.update(productOrder,wrapper);
-
         //若更改状态为已支付，则需修改用户的积分字段
         if(orderStatus == 1) {
-            ProductOrder prodctOrder = getProductOrderByOrderCode(orderCode);
-            List<ProductOrderItem> orderItems = productOrderItemService.getOrderItemsByOrderId(prodctOrder.getProductOrderId());
+
             //积分
             int integral = 0;
             for (ProductOrderItem orderItem : orderItems) {
@@ -278,6 +318,41 @@ public class ProductOrderServiceImpl implements IProductOrderService {
             updateUser.setUserId(prodctOrder.getUserId());
             updateUser.setIntegral(user.getIntegral() + integral);
             userService.updateUser(user);
+
+            //订单状态
+            productOrder.setProductOrderStatus(orderStatus);
+            productOrder.setProductOrderPayDate(new Date());
+            productOrderMapper.update(productOrder,wrapper);
+        }
+
+        //已发货：修改订单状态
+        if(orderStatus == 2){
+            productOrder.setProductOrderStatus(orderStatus);
+            productOrder.setProductOrderDeliveryDate(new Date());
+            productOrderMapper.update(productOrder,wrapper);
+        }
+
+        //确认收货：修改订单状态
+        if(orderStatus == 3){
+            productOrder.setProductOrderStatus(orderStatus);
+            productOrder.setProductOrderConfirmDate(new Date());
+            productOrderMapper.update(productOrder,wrapper);
+        }
+
+        //若取消订单，则将产品的库存复原
+        if(orderStatus == 4){
+            for (ProductOrderItem orderItem : orderItems) {
+                Product product = productService.getProductById(orderItem.getProductId());
+                Product productUpdate = new Product();
+                productUpdate.setProductId(product.getProductId());
+                productUpdate.setProductQuantity(product.getProductQuantity()+orderItem.getProductOrderItemNumber());
+                productService.updateProduct(product);
+            }
+
+            //订单状态
+            productOrder.setProductOrderStatus(orderStatus);
+            productOrderMapper.update(productOrder,wrapper);
+
         }
     }
 

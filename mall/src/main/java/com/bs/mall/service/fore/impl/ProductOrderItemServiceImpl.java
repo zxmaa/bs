@@ -64,7 +64,7 @@ public class ProductOrderItemServiceImpl implements IProductOrderItemService {
     public List<ProductOrderItem> selectOrderItemCartByUserId(Integer userId) {
         QueryWrapper<ProductOrderItem> wrapper = new QueryWrapper<>();
         wrapper.eq("user_id",userId)
-                .eq("product_order_id",null);
+                .isNull("product_order_id");
         List<ProductOrderItem> result = productOrderItemMapper.selectList(wrapper);
         return result;
     }
@@ -92,7 +92,7 @@ public class ProductOrderItemServiceImpl implements IProductOrderItemService {
                 temp.setProductOrderItemId(productOrderItem.getProductOrderItemId());
                 Integer number = productOrderItem.getProductOrderItemNumber()+orderItemCartReqDto.getProductNumber();
                 temp.setProductOrderItemNumber(number);
-                temp.setProductOrderItemPrice(number*product.getProductSalePrice());
+              //emp.setProductOrderItemPrice(number*product.getProductSalePrice());
                 productOrderItemMapper.updateById(temp);
                 return true;
             }
@@ -101,7 +101,7 @@ public class ProductOrderItemServiceImpl implements IProductOrderItemService {
         temp = new ProductOrderItem();
         temp.setProductId(orderItemCartReqDto.getProductId());
         temp.setProductOrderItemNumber(orderItemCartReqDto.getProductNumber());
-        temp.setProductOrderItemPrice(orderItemCartReqDto.getProductNumber()*product.getProductSalePrice());
+       // temp.setProductOrderItemPrice(orderItemCartReqDto.getProductNumber()*product.getProductSalePrice());
         temp.setUserId(orderItemCartReqDto.getUserId());
         productOrderItemMapper.insert(temp);
         return  true;
@@ -116,7 +116,7 @@ public class ProductOrderItemServiceImpl implements IProductOrderItemService {
     public Integer getOrderItemCartNumber(Integer userId) {
         QueryWrapper<ProductOrderItem> wrapper = new QueryWrapper<>();
         wrapper.eq("user_id",userId)
-                .eq("product_order_id",null);
+                .isNull("product_order_id");
         Integer count = productOrderItemMapper.selectCount(wrapper);
         return count;
     }
@@ -131,9 +131,6 @@ public class ProductOrderItemServiceImpl implements IProductOrderItemService {
         List<ForeShowOrderItemResDto> result= new ArrayList<>();
 
         List<ProductOrderItem> productOrderItems = selectOrderItemCartByUserId(userId);
-        if(null == productOrderItems){
-            return null;
-        }
 
         ForeShowOrderItemResDto temp;
         for (ProductOrderItem productOrderItem : productOrderItems) {
@@ -182,7 +179,7 @@ public class ProductOrderItemServiceImpl implements IProductOrderItemService {
             temp = new ProductOrderItem();
             temp.setProductOrderItemId(productOrderItem.getProductOrderItemId());
             temp.setProductOrderItemNumber(productOrderItem.getProductOrderItemNumber());
-            temp.setProductOrderItemPrice(product.getProductSalePrice()*productOrderItem.getProductOrderItemNumber());
+          //  temp.setProductOrderItemPrice(product.getProductSalePrice()*productOrderItem.getProductOrderItemNumber());
             productOrderItemMapper.updateById(temp);
         }
         return null;
@@ -226,7 +223,7 @@ public class ProductOrderItemServiceImpl implements IProductOrderItemService {
      * @return
      */
     @Override
-    public Double calculateOrerItemCartMaoney(Integer[] orderItemList) {
+    public Double calculateOrderItemCartMoney(Integer[] orderItemList) {
         Double result = 0.0;
         for (Integer orderItemId : orderItemList) {
             ProductOrderItem productOrderItem = productOrderItemMapper.selectById(orderItemId);

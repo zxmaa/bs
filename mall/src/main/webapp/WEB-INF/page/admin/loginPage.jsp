@@ -5,7 +5,8 @@
   Time: 21:24
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8;charset=UTF-8"%><%--language="java"--%>
+<%@ page contentType="text/html;charset=UTF-8"%><%--language="java"--%>
+<%@ include file="include/header.jsp" %>
 <html>
 <head>
     <script src="${pageContext.request.contextPath}/res/js/admin/admin_login.js"></script>
@@ -22,20 +23,20 @@
         <span id="txt_peel">换肤</span>
         <ul id="div_peelPanel">
             <%--jsp绝对路径的获取方式和绝对路径--%>
-             <li value="url(${PageContent.request.contextPath}/res/img/admin/loginPage/background-1.jpg)">
-                <img src="${PageContext.request.contentPath}/res/img/admin/loginPage/background-mini-1.jpg">
+             <li value="url(${pageContext.request.contextPath}/res/img/admin/loginPage/background-1.jpg)">
+                <img src="${pageContext.request.contextPath}/res/img/admin/loginPage/background-mini-1.jpg">
              </li>
-             <li value="url(${PageContent.request.contextPath}/res/img/admin/loginPage/background-2.jpg)">
-                <img src="${PageContext.request.contentPath}/res/img/admin/loginPage/background-mini-2.jpg">
+             <li value="url(${pageContext.request.contextPath}/res/img/admin/loginPage/background-2.jpg)">
+                <img src="${pageContext.request.contextPath}/res/img/admin/loginPage/background-mini-2.jpg">
              </li>
-             <li value="url(${PageContent.request.contextPath}/res/img/admin/loginPage/background-3.jpg)">
-                 <img src="${PageContext.request.contentPath}/res/img/admin/loginPage/background-mini-3.jpg">
+             <li value="url(${pageContext.request.contextPath}/res/img/admin/loginPage/background-3.jpg)">
+                 <img src="${pageContext.request.contextPath}/res/img/admin/loginPage/background-mini-3.jpg">
              </li>
-             <li value="url(${PageContent.request.contextPath}/res/img/admin/loginPage/background-4.jpg)">
-                 <img src="${PageContext.request.contentPath}/res/img/admin/loginPage/background-mini-4.jpg">
+             <li value="url(${pageContext.request.contextPath}/res/img/admin/loginPage/background-4.jpg)">
+                 <img src="${pageContext.request.contextPath}/res/img/admin/loginPage/background-mini-4.jpg">
              </li>
-             <li value="url(${PageContent.request.contextPath}/res/img/admin/loginPage/background-5.jpg)">
-                 <img src="${PageContext.request.contentPath}/res/img/admin/loginPage/background-mini-5.jpg">
+             <li value="url(${pageContext.request.contextPath}/res/img/admin/loginPage/background-5.jpg)">
+                 <img src="${pageContext.request.contextPath}/res/img/admin/loginPage/background-mini-5.jpg">
              </li>
         </ul>
 

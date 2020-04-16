@@ -73,7 +73,7 @@
         </if>
     </select>
 
-    <select id="selectOne" resultMap="productOrderMap" parameterType="int">
+    <select id="selectOneProductOrder" resultMap="productOrderMap" parameterType="int">
         SELECT
         product_order_id,product_order_code,product_order_detail_address,product_order_post,product_order_receiver,product_order_mobile,product_order_pay_date,product_order_delivery_date,product_order_confirm_date,product_order_status,product_order_address,user_id
         FROM product_order

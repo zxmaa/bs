@@ -1,10 +1,12 @@
 package com.bs.mall.dto.res;
 
 
+import lombok.Data;
 
 /**
  *用户常用地址响应
  */
+@Data
 public class ForeUserAddressResDto {
 
     private Integer userAddressId;

@@ -73,7 +73,7 @@ public interface IProductOrderItemService {
      * @param orderItemList
      * @return
      */
-    Double calculateOrerItemCartMaoney(Integer [] orderItemList);
+    Double calculateOrderItemCartMoney(Integer [] orderItemList);
 
 
     /**
@@ -93,7 +93,7 @@ public interface IProductOrderItemService {
     void addOrderItem(ProductOrderItem productOrderItem);
 
     /**
-     * 修改订单项
+     * 根据订单项id,修改订单项
      * @param productOrderItem
      */
     void updateOrderItem(ProductOrderItem productOrderItem);

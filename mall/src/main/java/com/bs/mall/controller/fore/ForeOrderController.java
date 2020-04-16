@@ -150,12 +150,12 @@ public class ForeOrderController  extends BaseController {
             }
         }
         logger.info("验证通过，获取订单项的详细信息");
-        //用户所有常用地址：若为null:则用户无常用地址，让用户去添加
+        //用户所有常用地址：list的长度为0:则用户无常用地址，让用户去添加
         List<ForeUserAddressResDto> allUserAddress = userAddressService.getAllUserAddress(userId);
         //用户结算的订单项详情
         List<ForeShowOrderItemResDto> orderItems = productOrderItemService.getCalculateCart(orderItemList);
         //结算的总金额
-        Double orderTotalMoney = productOrderItemService.calculateOrerItemCartMaoney(orderItemList);
+        Double orderTotalMoney = productOrderItemService.calculateOrderItemCartMoney(orderItemList);
 
         model.addAttribute("allUserAddress",allUserAddress);
         model.addAttribute("orderItems",orderItems);
@@ -368,16 +368,11 @@ public class ForeOrderController  extends BaseController {
             return object.toJSONString();
         }
         //支付后，更改产品和订单相关信息
-        String s = productOrderService.payOrder(orderCode);
-        if(s != null){
-            object.put("success", false);
-            String message = s+"的库存不足，请修改数量！";
-            object.put("url", "/order/0/10");
-            object.put("message",message);
-        }else{
-            object.put("success", true);
-            object.put("url", "/order/pay/success/" + orderCode);
-        }
+        productOrderService.payOrder(orderCode);
+
+        object.put("success", true);
+        object.put("url", "/order/pay/success/" + orderCode);
+
 
         return object.toJSONString();
 
@@ -716,14 +711,17 @@ public class ForeOrderController  extends BaseController {
         createOrderByOneReqDto.setProductId(orderItemProductId);
         createOrderByOneReqDto.setProductNum(orderItemNumber);
         createOrderByOneReqDto.setUserMessage(userMessage);
-        String  productOrderCode = productOrderService.createOrderByOne(createOrderByOneReqDto);
-        if(productOrderCode != null){
-            object.put("success", true);
-            object.put("url", "/order/pay/" + productOrderCode);
-        }else{
-            throw new RuntimeException();
-        }
 
+        ForeCreateOrderResDto createOrderResDto = productOrderService.createOrderByOne(createOrderByOneReqDto);
+
+
+        if(createOrderResDto.getFlag()){
+            object.put("success", true);
+            object.put("url", "/order/pay/" + createOrderResDto.getProductOrderCode());
+        }else{//返回库存不足的产品名
+            object.put("success", false);
+            object.put("productName",createOrderResDto.getProductName());
+        }
         return object.toJSONString();
     }
 
@@ -783,13 +781,16 @@ public class ForeOrderController  extends BaseController {
         }
 
         //生成订单
-        String  productOrderCode= productOrderService.createOrderByList(createOrderByListReqDto);
-        if(productOrderCode != null){
+        ForeCreateOrderResDto createOrderResDto = productOrderService.createOrderByList(createOrderByListReqDto);
+        if(createOrderResDto.getFlag()){
             object.put("success", true);
-            object.put("url", "/order/pay/" + productOrderCode);
-        }else{
-            throw new RuntimeException();
+            object.put("url", "/order/pay/" + createOrderResDto.getProductOrderCode());
+        }else{//返回库存不足的产品名
+            object.put("success", false);
+            object.put("productName",createOrderResDto.getProductName());
         }
+
+
 
         return object.toJSONString();
 

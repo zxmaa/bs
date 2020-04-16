@@ -23,7 +23,7 @@ public class ProductImageServiceImpl implements IProductImageService {
     public List<ProductImage> getImagesByType(Integer productId, Integer type) {
         QueryWrapper<ProductImage> wrapper = new QueryWrapper<>();
         List<ProductImage> productImages = null;
-        if(type.equals(3)){
+        if(type.equals(2)){
             wrapper.eq("product_image_product_id",productId);
             productImages = productImageMapper.selectList(wrapper);
         }else{

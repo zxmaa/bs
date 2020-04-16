@@ -28,7 +28,7 @@ public interface IUserAddressService {
     void deleteUserAddress(Integer userAddressId);
 
     /**
-     * 修改用户常用地址
+     * 根据AddressId,修改用户常用地址(需传入用户ID)
      * @param userAddress
      */
     void updateUserAddress(UserAddress userAddress);

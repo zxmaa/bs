@@ -23,7 +23,7 @@ public interface ProductOrderMapper extends BaseMapper<ProductOrder> {
     Integer selectTotal(@Param("productOrder") com.bs.mall.entity.ProductOrder productOrder, @Param("productOrder_status_array") Byte[] productOrder_status_array);
     List<OrderGroup> getTotalByDate(@Param("beginDate") Date beginDate, @Param("endDate") Date endDate);
     List<com.bs.mall.entity.ProductOrder> select(@Param("productOrder") com.bs.mall.entity.ProductOrder productOrder, @Param("product_order_status_array") Byte[] productOrder_status_array, @Param("orderUtil") OrderUtil orderUtil, @Param("pageUtil") PageUtil pageUtil);
-    com.bs.mall.entity.ProductOrder selectOne(@Param("productOrderId") Integer productOrderId);
+    com.bs.mall.entity.ProductOrder selectOneProductOrder(@Param("productOrderId") Integer productOrderId);
     Integer updateOne(@Param("productOrder") com.bs.mall.entity.ProductOrder productOrder);
 
 

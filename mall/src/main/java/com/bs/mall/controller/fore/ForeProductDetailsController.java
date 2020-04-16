@@ -34,7 +34,7 @@ public class ForeProductDetailsController extends BaseController {
      */
     @RequestMapping("/product/{pid}")
     public String goToProductDetailPage( @PathVariable("pid") String pid,Model model) {
-      /*  Integer productId = Integer.parseInt(pid);
+        Integer productId = Integer.parseInt(pid);
 
         Product product = productService.getProductById(productId);
         if(null == product){
@@ -49,7 +49,9 @@ public class ForeProductDetailsController extends BaseController {
         //属性列表
         model.addAttribute("propertyList",productDetails.getPropertyValue());
         //猜你喜欢
-        model.addAttribute("guessLikeList",productDetails.getProductGuess());*/
+        model.addAttribute("guessLikeList",productDetails.getProductGuess());
+        //评论
+        model.addAttribute("reviewRes",productDetails.getReviewResDto());
 
         logger.info("转发到产品详情页");
         return "user/productDetailsPage";
@@ -63,6 +65,7 @@ public class ForeProductDetailsController extends BaseController {
      * @param pageSize 每页大小
      * @return
      */
+  /*  @Deprecated
     @ResponseBody
     @RequestMapping(value = "/product/review/{pid}",method = RequestMethod.GET)
     public ForeReviewResDto getProductReiewList(@PathVariable("pid")String pid,
@@ -78,12 +81,13 @@ public class ForeProductDetailsController extends BaseController {
 
         return reviewList;
     }
-
+*/
     /**
      * ajax异步请求：根据id返回产品属性及其值
      * @param pid
      * @return
      */
+    @Deprecated
     @ResponseBody
     @RequestMapping("/property/{pid}")
     public ForeProductPropertyResDto getProductProperty(@PathVariable("pid")String pid){
