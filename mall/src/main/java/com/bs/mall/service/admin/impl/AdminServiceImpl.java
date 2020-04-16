@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.bs.mall.dao.AdminMapper;
 import com.bs.mall.dao.pojo.Admin;
+import com.bs.mall.service.admin.BaseService;
 import com.bs.mall.service.admin.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpSession;
 ;
 
 @Service("adminService")
-public class AdminServiceImpl implements IAdminService {
+public class AdminServiceImpl extends BaseService implements IAdminService {
     @Autowired
     AdminMapper adminMapper;
     public void setAdminMapper(AdminMapper adminMapper) {
@@ -27,10 +28,10 @@ public class AdminServiceImpl implements IAdminService {
 
         JSONObject object = new JSONObject();
         if(admin == null){
-            //logger.info("登录验证失败");
+            logger.info("登录验证失败");
             object.put("success",false);
         } else {
-            //logger.info("登录验证成功，管理员ID传入会话");
+            logger.info("登录验证成功，管理员ID传入会话");
             session.setAttribute("adminId",admin.getAdminId());
             object.put("success",true);
         }
@@ -44,14 +45,14 @@ public class AdminServiceImpl implements IAdminService {
         Admin admin=adminMapper.selectOne(wrapper);
         JSONObject object = new JSONObject();
         if(admin == null){
-            //logger.info("未找到头像路径");
+            logger.info("未找到头像路径");
             object.put("success",false);
         } else {
-            //logger.info("成功获取头像路径");
+            logger.info("成功获取头像路径");
             object.put("success",true);
             object.put("srcString",admin.getAdminProfilePictureSrc());
         }
-        return object.toString();
+        return object.toJSONString();
     }
 
 

@@ -124,7 +124,7 @@ public class AdminProductServiceImpl extends BaseService{
         map.put("propertyList", propertyList);
 
         logger.info("转到后台管理-产品添加页-ajax方式");
-        return "include/productDetails";
+        return "admin/include/productDetails";
     }
 
     //添加产品的信息
