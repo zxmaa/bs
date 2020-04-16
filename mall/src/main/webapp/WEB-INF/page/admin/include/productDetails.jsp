@@ -90,9 +90,9 @@
                 });
             } else {
                 //设置产品种类值
-                $('#select_product_category').selectpicker('val','${requestScope.product.product_category.category_id}');
+                $('#select_product_category').selectpicker('val','${requestScope.product.productCategory.categoryId}');
                 //设置产品状态
-                var product_isEnabled = '${requestScope.product.product_isEnabled}';
+                var product_isEnabled = '${requestScope.product.productIsEnabled}';
                 $("input[name='radio_product_isEnabled']").each(function () {
                     if($(this).val() === product_isEnabled){
                         $(this).prop("checked",true);
@@ -103,9 +103,9 @@
                     }
                 });
                 //设置产品编号
-                $("#span_product_id").text('${requestScope.product.product_id}');
+                $("#span_product_id").text('${requestScope.product.productId}');
                 //设置产品创建日期
-                $("#span_product_create_date").text('${requestScope.product.product_create_date}');
+                $("#span_product_create_date").text('${requestScope.product.productCreateDate}');
                 //判断文件是否允许上传
                 checkFileUpload($("#product_single_list"),5);
                 checkFileUpload($("#product_details_list"),8);
@@ -231,7 +231,7 @@
                 } else {
                     $("#btn-ok").unbind("click").click(function () {
                         $.ajax({
-                            url: "/tmall/admin/productImage/" + productImage_id,
+                            url: "/mall/admin/productImage/" + productImage_id,
                             type: "delete",
                             data: null,
                             success: function (data) {
@@ -283,11 +283,11 @@
                         //显示产品属性数据
                         if(data.propertyList.length > 0){
                             for(var i = 0;i<data.propertyList.length;i++){
-                                var propertyId = data.propertyList[i].property_id;
-                                var propertyName = data.propertyList[i].property_name;
+                                var propertyId = data.propertyList[i].propertyId;
+                                var propertyName = data.propertyList[i].propertyName;
                                 if(data.propertyList[i+1] !== undefined){
-                                    var nextPropertyId = data.propertyList[i+1].property_id;
-                                    var nextPropertyName = data.propertyList[i+1].property_name;
+                                    var nextPropertyId = data.propertyList[i+1].propertyId;
+                                    var nextPropertyName = data.propertyList[i+1].propertyName;
                                     i++;
                                     listDiv.append("<label class='frm_label lbl_property_name text_info' id='lbl_product_property_" + propertyId + "' for='input_product_property_" + propertyId + "'>" + propertyName + "</label><input class='frm_input' id='input_product_property_" + propertyId + "' type='text' maxlength='50'/><label class='frm_label lbl_property_name text_info' id='lbl_product_property_" + nextPropertyId + "' for='input_product_property_" + nextPropertyId + "'>" + nextPropertyName + "</label><input class='frm_input' id='input_product_property_" + nextPropertyId + "' type='text' maxlength='50'/><div class='br'></div>");
                                 } else {
@@ -347,7 +347,7 @@
             formData.append("imageType", type);
             //上传图片
             $.ajax({
-                url: "/tmall/admin/uploadProductImage",
+                url: "/mall/admin/uploadProductImage",
                 type: "post",
                 data: formData,
                 contentType: false,
@@ -358,10 +358,10 @@
                     $(fileDom).attr("disabled", false).prev("span").text("上传图片");
                     if (data.success) {
                         if (type === "single") {
-                            $(fileDom).parent('.details_picList_fileUpload').before("<li><img src='${pageContext.request.contextPath}/res/images/item/productSinglePicture/" + data.fileName + "' width='128px' height='128px' name='new'/></li>");
+                            $(fileDom).parent('.details_picList_fileUpload').before("<li><img src='${pageContext.request.contextPath}/res/img/item/productSinglePicture/" + data.fileName + "' width='128px' height='128px' name='new'/></li>");
                             checkFileUpload(ul, 5);
                         } else {
-                            $(fileDom).parent('.details_picList_fileUpload').before("<li><img src='${pageContext.request.contextPath}/res/images/item/productDetailsPicture/" + data.fileName + "' width='128px' height='128px' name='new'/></li>");
+                            $(fileDom).parent('.details_picList_fileUpload').before("<li><img src='${pageContext.request.contextPath}/res/img/item/productDetailsPicture/" + data.fileName + "' width='128px' height='128px' name='new'/></li>");
                             checkFileUpload(ul, 8);
                         }
                     } else {
@@ -400,7 +400,7 @@
                             $('#modalDiv').modal("hide");
                             setTimeout(function () {
                                 //ajax请求页面
-                                ajaxUtil.getPage("product/" + data.product_id, null, true);
+                                ajaxUtil.getPage("product/" + data.productId, null, true);
                             }, 170);
                         });
                         $(".modal-body").text("保存成功！");
@@ -441,12 +441,12 @@
 </head>
 <body>
 <div class="details_div_first">
-    <input type="hidden" value="${requestScope.product.product_id}" id="details_product_id"/>
+    <input type="hidden" value="${requestScope.product.productId}" id="details_product_id"/>
     <div class="frm_div_last warn_height">
         <label class="frm_label text_info" id="lbl_product_category_id" for="select_product_category">产品类型</label>
         <select class="selectpicker" id="select_product_category" data-size="8">
             <c:forEach items="${requestScope.categoryList}" var="category">
-                <option value="${category.category_id}">${category.category_name}</option>
+                <option value="${category.categoryId}">${category.categoryName}</option>
             </c:forEach>
         </select>
         <label class="frm_label text_info" id="lbl_product_isEnabled" for="radio_product_isEnabled_true">产品状态</label>
@@ -469,16 +469,16 @@
     </div>
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_product_name" for="input_product_name">产品名称</label>
-        <input class="frm_input" id="input_product_name" type="text" maxlength="50" value="${requestScope.product.product_name}"/>
+        <input class="frm_input" id="input_product_name" type="text" maxlength="50" value="${requestScope.product.productName}"/>
         <label class="frm_label text_info" id="lbl_product_title" for="input_product_title">产品标题</label>
-        <input class="frm_input" id="input_product_title" type="text" maxlength="50" value="${requestScope.product.product_title}"/>
+        <input class="frm_input" id="input_product_title" type="text" maxlength="50" value="${requestScope.product.productTitle}"/>
     </div>
     <div class="frm_div_last">
         <label class="frm_label text_info" id="lbl_product_price" for="input_product_price">产品原价</label>
-        <input class="frm_input details_unit"  id="input_product_price" type="text" maxlength="10" value="${requestScope.product.product_price}"/>
+        <input class="frm_input details_unit"  id="input_product_price" type="text" maxlength="10" value="${requestScope.product.productPrice}"/>
         <span class="details_unit text_info">元</span>
         <label class="frm_label text_info" id="lbl_product_sale_price" for="input_product_sale_price">产品促销价</label>
-        <input class="frm_input details_unit"  id="input_product_sale_price" type="text" maxlength="10" value="${requestScope.product.product_sale_price}"/>
+        <input class="frm_input details_unit"  id="input_product_sale_price" type="text" maxlength="10" value="${requestScope.product.productSalePrice}"/>
         <span class="details_unit text_info">元</span>
     </div>
 </div>
@@ -487,9 +487,9 @@
     <ul class="details_picList" id="product_single_list">
         <c:forEach items="${requestScope.product.singleProductImageList}" var="image">
             <li><img
-                    src="${pageContext.request.contextPath}/res/images/item/productSinglePicture/${image.productImage_src}"
-                    id="pic_single_${image.productImage_id}" width="128px" height="128px"
-                    name="${image.productImage_id}"/></li>
+                    src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${image.productImageSrc}"
+                    id="pic_single_${image.productImageId}" width="128px" height="128px"
+                    name="${image.productImageId}"/></li>
         </c:forEach>
         <li class="details_picList_fileUpload">
             <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1528"  width="40" height="40">
@@ -506,9 +506,9 @@
     <ul class="details_picList" id="product_details_list">
         <c:forEach items="${requestScope.product.detailProductImageList}" var="image">
             <li><img
-                    src="${pageContext.request.contextPath}/res/images/item/productDetailsPicture/${image.productImage_src}"
-                    id="pic_details_${image.productImage_id}" width="128px" height="128px"
-                    name="${image.productImage_id}"/></li>
+                    src="${pageContext.request.contextPath}/res/img/item/productDetailsPicture/${image.productImageSrc}"
+                    id="pic_details_${image.productImageId}" width="128px" height="128px"
+                    name="${image.productImageId}"/></li>
         </c:forEach>
         <li class="details_picList_fileUpload">
             <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1528"  width="40" height="40">
@@ -525,35 +525,35 @@
     <c:forEach items="${requestScope.propertyList}" var="property" varStatus="status">
         <c:choose>
             <c:when test="${status.index % 2 == 0}">
-                <label class="frm_label lbl_property_name text_info" id="lbl_product_property_${property.property_id}"
-                       for="input_product_property_${property.property_id}">${property.property_name}</label>
+                <label class="frm_label lbl_property_name text_info" id="lbl_product_property_${property.propertyId}"
+                       for="input_product_property_${property.propertyId}">${property.propertyName}</label>
                 <c:choose>
                     <c:when test="${property.propertyValueList != null}">
                         <c:forEach items="${property.propertyValueList}" var="propertyValue">
-                            <input class="frm_input" id="input_product_property_${property.property_id}" type="text"
-                                   maxlength="50" value="${propertyValue.propertyValue_value}"
-                                   data-pvid="${propertyValue.propertyValue_id}"/>
+                            <input class="frm_input" id="input_product_property_${property.propertyId}" type="text"
+                                   maxlength="50" value="${propertyValue.propertyValueValue}"
+                                   data-pvid="${propertyValue.propertyValueId}"/>
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
-                        <input class="frm_input" id="input_product_property_${property.property_id}" type="text"
+                        <input class="frm_input" id="input_product_property_${property.propertyId}" type="text"
                                maxlength="50"/>
                     </c:otherwise>
                 </c:choose>
             </c:when>
             <c:otherwise>
-                <label class="frm_label lbl_property_name text_info" id="lbl_product_property_${property.property_id}"
-                       for="input_product_property_${property.property_id}">${property.property_name}</label>
+                <label class="frm_label lbl_property_name text_info" id="lbl_product_property_${property.propertyId}"
+                       for="input_product_property_${property.propertyId}">${property.propertyName}</label>
                 <c:choose>
                     <c:when test="${property.propertyValueList != null}">
                         <c:forEach items="${property.propertyValueList}" var="propertyValue">
-                            <input class="frm_input" id="input_product_property_${property.property_id}" type="text"
-                                   maxlength="50" value="${propertyValue.propertyValue_value}"
-                                   data-pvid="${propertyValue.propertyValue_id}"/>
+                            <input class="frm_input" id="input_product_property_${property.propertyId}" type="text"
+                                   maxlength="50" value="${propertyValue.propertyValueValue}"
+                                   data-pvid="${propertyValue.propertyValueId}"/>
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
-                        <input class="frm_input" id="input_product_property_${property.property_id}" type="text"
+                        <input class="frm_input" id="input_product_property_${property.propertyId}" type="text"
                                maxlength="50"/>
                     </c:otherwise>
                 </c:choose>

@@ -14,7 +14,7 @@
     <script>
         var myChart;
         $(function () {
-            $.getJSON('/tmall/res/js/basicTheme.json', function (themeJSON) {
+            $.getJSON('/mall/res/js/basicTheme.json', function (themeJSON) {
                 echarts.registerTheme('basicTheme', themeJSON);
                 // 基于准备好的dom，初始化eCharts实例
                 myChart = echarts.init($("#chartDiv")[0], "basicTheme");
@@ -268,7 +268,7 @@
         function getChartData(beginDate, endDate, jsonObject) {
             if (jsonObject == null) {
                 $.ajax({
-                    url: "/tmall/admin/home/charts",
+                    url: "/mall/admin/home/charts",
                     type: "get",
                     data: {"beginDate": beginDate, "endDate": endDate},
                     dataType: "json",

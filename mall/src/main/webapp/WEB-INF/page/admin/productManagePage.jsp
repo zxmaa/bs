@@ -118,7 +118,7 @@
                             var isEnabledClass;
                             var isEnabledTitle;
                             var isEnabled;
-                            switch (data.productList[i].product_isEnabled) {
+                            switch (data.productList[i].productIsEnabled) {
                                 case 0:
                                     isEnabledClass = "td_success";
                                     isEnabledTitle = "产品正常销售中";
@@ -135,12 +135,12 @@
                                     isEnabled = "停售中";
                                     break;
                             }
-                            var product_price = data.productList[i].product_price.toFixed(1);
-                            var product_sale_price = data.productList[i].product_sale_price.toFixed(1);
-                            var product_id = data.productList[i].product_id;
-                            var product_name = data.productList[i].product_name;
-                            var product_title = data.productList[i].product_title;
-                            var product_create_date = data.productList[i].product_create_date;
+                            var product_price = data.productList[i].productPrice.toFixed(1);
+                            var product_sale_price = data.productList[i].productSalePrice.toFixed(1);
+                            var product_id = data.productList[i].productId;
+                            var product_name = data.productList[i].productName;
+                            var product_title = data.productList[i].productTitle;
+                            var product_create_date = data.productList[i].productCreateDate;
                             //显示产品数据
                             tbody.append("<tr><td><input type='checkbox' class='cbx_select' id='cbx_product_select_" + product_id + "'><label for='cbx_product_select_" + product_id + "'></label></td><td title='"+product_name+"'>" + product_name + "</td><td title='"+product_title+"'>" + product_title + "</td><td title='"+product_price+"'>" + product_price + "</td><td title='"+product_sale_price+"'>" + product_sale_price + "</td><td title='"+product_create_date+"'>" + product_create_date + "</td><td><span class='" + isEnabledClass + "' title='"+isEnabledTitle+"'>"+ isEnabled + "</span></td><td><span class='td_special' title='查看产品详情'><a href='javascript:void(0);' onclick='getChildPage(this)'>详情</a></span></td><td hidden><span class='product_id'>" + product_id + "</span></td></tr>");
                         }
@@ -212,7 +212,7 @@
         <select class="selectpicker" id="select_product_category" data-size="8">
             <option value="0">全部</option>
             <c:forEach items="${requestScope.categoryList}" var="category">
-                <option value="${category.category_id}">${category.category_name}</option>
+                <option value="${category.categoryId}">${category.categoryName}</option>
             </c:forEach>
         </select>
         <input class="frm_btn" id="btn_product_submit" type="button" value="查询"/>
@@ -293,21 +293,21 @@
         <tbody>
         <c:forEach items="${requestScope.productList}" var="product">
             <tr>
-                <td><input type="checkbox" class="cbx_select" id="cbx_product_select_${product.product_id}"><label for="cbx_product_select_${product.product_id}"></label></td>
-                <td title="${product.product_name}">${product.product_name}</td>
-                <td title="${product.product_title}">${product.product_title}</td>
-                <td title="${product.product_price}">${product.product_price}</td>
-                <td title="${product.product_sale_price}">${product.product_sale_price}</td>
-                <td title="${product.product_create_date}">${product.product_create_date}</td>
+                <td><input type="checkbox" class="cbx_select" id="cbx_product_select_${product.productId}"><label for="cbx_product_select_${product.productId}"></label></td>
+                <td title="${product.productName}">${product.productName}</td>
+                <td title="${product.productTitle}">${product.productTitle}</td>
+                <td title="${product.productPrice}">${product.productPrice}</td>
+                <td title="${product.productSalePrice}">${product.productSalePrice}</td>
+                <td title="${product.productCreateDate}">${product.productCreateDate}</td>
                 <td>
                     <c:choose>
-                        <c:when test="${product.product_isEnabled==0}"><span class="td_success" title="产品正常销售中">销售中</span></c:when>
-                        <c:when test="${product.product_isEnabled==2}"><span class="td_warn" title="产品显示在主页促销中">促销中</span></c:when>
+                        <c:when test="${product.productIsEnabled==0}"><span class="td_success" title="产品正常销售中">销售中</span></c:when>
+                        <c:when test="${product.productIsEnabled==2}"><span class="td_warn" title="产品显示在主页促销中">促销中</span></c:when>
                         <c:otherwise><span class="td_error" title="产品缺货或违规停售中">停售中</span></c:otherwise>
                     </c:choose>
                 </td>
                 <td><span class="td_special" title="查看产品详情"><a href="javascript:void(0)" onclick="getChildPage(this)">详情</a></span></td>
-                <td hidden><span class="product_id">${product.product_id}</span></td>
+                <td hidden><span class="product_id">${product.productId}</span></td>
             </tr>
         </c:forEach>
         </tbody>
