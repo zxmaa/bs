@@ -20,6 +20,7 @@
              * event
              * *****/
             //点击查询按钮时
+            //$.trim()函数用于去除字符串两端的空白字符,他会清除换行符、空格、制表等常见的空白符
             $("#btn_category_submit").click(function () {
                 var category_name = $.trim($("#input_category_name").val());
                 //封装数据
@@ -152,7 +153,8 @@
         <tbody>
         <c:forEach items="${requestScope.categoryList}" var="category">
             <tr>
-                <td><input type="checkbox" class="cbx_select" id="cbx_category_select_${category.category_id}"><label for="cbx_category_select_${category.category_id}"></label></td>
+                <td><input type="checkbox" class="cbx_select" id="cbx_category_select_${category.category_id}">
+                    <label for="cbx_category_select_${category.category_id}"></label></td>
                 <td title="${category.category_name}">${category.category_name}</td>
                 <td><span class="td_special" title="查看分类详情"><a href="javascript:void(0)"
                                                                onclick="getChildPage(this)">详情</a></span></td>
