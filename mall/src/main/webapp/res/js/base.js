@@ -121,7 +121,7 @@ var ajaxUtil = {
                     success : function (data) {
                         $("#div_home_context_main").html(data);
                         window.scrollTo(0, 0);
-                        if(!isChild){//测试窗口是否为指定父窗口的子窗口
+                        if(!isChild){
                             /******
                              * event
                              ******/

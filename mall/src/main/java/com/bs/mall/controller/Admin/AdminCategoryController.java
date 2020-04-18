@@ -32,7 +32,7 @@ public class AdminCategoryController {
     //转到后台管理-产品类型详情页-ajax
     @RequestMapping(value = "admin/category/{cid}", method = RequestMethod.GET)
     public String goToDetailsPage(HttpSession session, Map<String, Object> map, @PathVariable Integer cid/* 分类ID */) {
-        return adminCategoryService.goToPage(session, map);
+        return adminCategoryService.goToDetailsPage(session, map, cid);
     }
 
     //转到后台管理-产品类型添加页-ajax

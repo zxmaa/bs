@@ -153,12 +153,12 @@
         <tbody>
         <c:forEach items="${requestScope.categoryList}" var="category">
             <tr>
-                <td><input type="checkbox" class="cbx_select" id="cbx_category_select_${category.category_id}">
-                    <label for="cbx_category_select_${category.category_id}"></label></td>
-                <td title="${category.category_name}">${category.category_name}</td>
+                <td><input type="checkbox" class="cbx_select" id="cbx_category_select_${category.categoryId}">
+                    <label for="cbx_category_select_${category.categoryId}"></label></td>
+                <td title="${category.categoryName}">${category.categoryName}</td>
                 <td><span class="td_special" title="查看分类详情"><a href="javascript:void(0)"
                                                                onclick="getChildPage(this)">详情</a></span></td>
-                <td hidden><span class="category_id">${category.category_id}</span></td>
+                <td hidden><span class="category_id">${category.categoryId}</span></td>
             </tr>
         </c:forEach>
         </tbody>

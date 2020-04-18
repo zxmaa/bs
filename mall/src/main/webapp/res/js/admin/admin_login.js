@@ -91,7 +91,7 @@ function initialCookie() {
             getUserProfilePicture(username);
         }
     } else {
-        $("#div_background").css("background-image", "url(/mall/res/img/admin/loginPage/background-1.jpg)");
+        $("#div_background").css("background-image", "url(/mall/res/img/admin/loginPage/background-803da9e6-8f33-43b4-9aac-6ad41cf8b4d5.jpg)");
     }
 
 }

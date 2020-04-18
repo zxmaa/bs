@@ -97,16 +97,16 @@
                     if (data.userList.length > 0) {
                         for (var i = 0; i < data.userList.length; i++) {
                             var gender;
-                            if (data.userList[i].user_gender === 0) {
+                            if (data.userList[i].userGender === 0) {
                                 gender = "男";
                             } else {
                                 gender = "女";
                             }
                             var user_id = data.userList[i].user_id;
-                            var user_name = data.userList[i].user_name;
-                            var user_nickname = data.userList[i].user_nickname;
-                            var user_realname = data.userList[i].user_realname;
-                            var user_birthday = data.userList[i].user_birthday;
+                            var user_name = data.userList[i].userName;
+                            var user_nickname = data.userList[i].userNickname;
+                            var user_realname = data.userList[i].userRealname;
+                            var user_birthday = data.userList[i].userBirthday;
                             //显示用户数据
                             tbody.append("<tr><td><input type='checkbox' class='cbx_select' id='cbx_user_select_" + user_id + "'><label for='cbx_user_select_" + user_id + "'></label></td><td title='" + user_name + "'>" + user_name + "</td><td title='" + user_nickname + "'>" + user_nickname + "</td><td title='" + user_realname + "'>" + user_realname + "</td><td title='" + user_birthday + "'>" + user_birthday + "</td><td title='" + gender + "'>" + gender + "</td><td><span class='td_special' title='查看用户详情'><a href='javascript:void(0);' onclick='getChildPage(this)'>详情</a></span></td><td hidden  class='user_id'>" + user_id + "</td></tr>");
                         }
@@ -139,8 +139,10 @@
             //设置样式
             $("#div_home_title").children("span").text("用户详情");
             document.title = "Tmall管理后台 - 用户详情";
+            var url=$(obj).parents("tr").find(".user_id").text();
+            alert(url);
             //ajax请求页面
-            ajaxUtil.getPage("user/" + $(obj).parents("tr").find(".user_id").text(), null, true);
+            ajaxUtil.getPage("user/" + url, null, true);
         }
 
         //获取页码数据
@@ -225,20 +227,20 @@
         <tbody>
         <c:forEach items="${requestScope.userList}" var="user">
             <tr>
-                <td><input type="checkbox" class="cbx_select" id="cbx_user_select_${user.user_id}"><label for="cbx_user_select_${user.user_id}"></label></td>
-                <td title="${user.user_name}">${user.user_name}</td>
-                <td title="${user.user_nickname}">${user.user_nickname}</td>
-                <td title="${user.user_realname}">${user.user_realname}</td>
-                <td title="${user.user_birthday}">${user.user_birthday}</td>
+                <td><input type="checkbox" class="cbx_select" id="cbx_user_select_${user.userId}"><label for="cbx_user_select_${user.userId}"></label></td>
+                <td title="${user.userName}">${user.userName}</td>
+                <td title="${user.userNickname}">${user.userNickname}</td>
+                <td title="${user.userRealname}">${user.userRealname}</td>
+                <td title="${user.userBirthday}">${user.userBirthday}</td>
                 <td>
                     <c:choose>
-                        <c:when test="${user.user_gender==0}">男</c:when>
+                        <c:when test="${user.userGender==0}">男</c:when>
                         <c:otherwise>女</c:otherwise>
                     </c:choose>
                 </td>
                 <td><span class="td_special" title="查看用户详情"><a href='javascript:void(0)'
                                                                onclick='getChildPage(this)'>详情</a></span></td>
-                <td hidden class="user_id">${user.user_id}</td>
+                <td hidden class="user_id">${user.userId}</td>
             </tr>
         </c:forEach>
         </tbody>

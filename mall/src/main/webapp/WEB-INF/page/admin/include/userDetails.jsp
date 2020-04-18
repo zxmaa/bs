@@ -35,14 +35,14 @@
 </head>
 <body>
 <div class="details_div_first">
-    <input type="hidden" value="${requestScope.user.user_id}" id="details_user_id"/>
+    <input type="hidden" value="${requestScope.user.userId}" id="details_user_id"/>
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_user_id">用户编号</label>
-        <span class="details_value" id="span_user_id">${requestScope.user.user_id}</span>
+        <span class="details_value" id="span_user_id">${requestScope.user.userId}</span>
     </div>
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_user_name">用户名</label>
-        <span class="details_value" id="span_user_name">${requestScope.user.user_name}</span>
+        <span class="details_value" id="span_user_name">${requestScope.user.userName}</span>
     </div>
 </div>
 <div class="details_div">
@@ -50,40 +50,40 @@
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_user_profile_picture">用户头像</label>
         <img
-                src="${pageContext.request.contextPath}/res/images/item/userProfilePicture/${requestScope.user.user_profile_picture_src}"
+                src="${pageContext.request.contextPath}/res/img/item/userProfilePicture/${requestScope.user.userProfilePictureSrc}"
                 id="user_profile_picture" width="84px" height="84px"
-                onerror="this.src='${pageContext.request.contextPath}/res/images/admin/loginPage/default_profile_picture-128x128.png'"/>
+                onerror="this.src='${pageContext.request.contextPath}/res/img/admin/loginPage/default_profile_picture-128x128.png'"/>
     </div>
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_user_nickname">用户昵称</label>
-        <span class="details_value td_wait" id="span_user_nickname">${requestScope.user.user_nickname}</span>
+        <span class="details_value td_wait" id="span_user_nickname">${requestScope.user.userNickname}</span>
     </div>
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_user_realname">用户姓名</label>
-        <span class="details_value" id="span_user_realname">${requestScope.user.user_realname}</span>
+        <span class="details_value" id="span_user_realname">${requestScope.user.userRealname}</span>
     </div>
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_user_gender">性别</label>
         <span class="details_value" id="span_user_gender">
             <c:choose>
-                <c:when test="${user.user_gender==0}">男</c:when>
+                <c:when test="${user.userGender==0}">男</c:when>
                 <c:otherwise>女</c:otherwise>
             </c:choose>
         </span>
     </div>
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_user_birthday">出生日期</label>
-        <span class="details_value" id="span_user_birthday">${requestScope.user.user_birthday}</span>
+        <span class="details_value" id="span_user_birthday">${requestScope.user.userBirthday}</span>
     </div>
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_user_address">所在地</label>
         <span class="details_value details_value_noRows"
-              id="span_user_address">${requestScope.user.user_address.address_name}</span>
+              id="span_user_address">${requestScope.user.userAddress.addressName}</span>
     </div>
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_user_homeplace">家乡</label>
         <span class="details_value details_value_noRows"
-              id="span_user_homeplace">${requestScope.user.user_homeplace.address_name}</span>
+              id="span_user_homeplace">${requestScope.user.userHomeplace.addressName}</span>
     </div>
 </div>
 <div class="details_div details_div_last">
@@ -105,18 +105,18 @@
         <c:forEach items="${requestScope.user.productOrderItemList}" var="item" varStatus="i">
             <tr>
                 <td title="产品图片"><img
-                        src="${pageContext.request.contextPath}/res/images/item/productSinglePicture/${item.productOrderItem_product.singleProductImageList[0].productImage_src}"
-                        id="pic_single_${item.productOrderItem_product.singleProductImageList[0].productImage_id}"
+                        src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${item.productOrderItemProduct.singleProductImageList[0].productImageSrc}"
+                        id="pic_single_${item.productOrderItemProduct.singleProductImageList[0].productImageId}"
                         width="42px" height="42px"
-                        name="${item.productOrderItem_product.singleProductImageList[0].productImage_id}"/></td>
-                <td title="${item.productOrderItem_product.product_name}">${item.productOrderItem_product.product_name}</td>
-                <td title="${item.productOrderItem_product.product_sale_price}">${item.productOrderItem_product.product_sale_price}</td>
-                <td title="${item.productOrderItem_number}">${item.productOrderItem_number}</td>
-                <td title="${item.productOrderItem_price}">${item.productOrderItem_price}</td>
-                <td title="${item.productOrderItem_userMessage}">${item.productOrderItem_userMessage}</td>
+                        name="${item.productOrderItemProduct.singleProductImageList[0].productImageId}"/></td>
+                <td title="${item.productOrderItemProduct.productName}">${item.productOrderItemProduct.productName}</td>
+                <td title="${item.productOrderItemProduct.productSalePrice}">${item.productOrderItemProduct.productSalePrice}</td>
+                <td title="${item.productOrderItemNumber}">${item.productOrderItemNumber}</td>
+                <td title="${item.productOrderItemPrice}">${item.productOrderItemPrice}</td>
+                <td title="${item.productOrderItemUserMessage}">${item.productOrderItemUserMessage}</td>
                 <td><span class="td_special" title="查看产品详情"><a href="javascript:void(0)"
                                                                onclick="getChildPage(this)">详情</a></span></td>
-                <td hidden><span class="product_id">${item.productOrderItem_product.product_id}</span></td>
+                <td hidden><span class="product_id">${item.productOrderItemProduct.productId}</span></td>
             </tr>
         </c:forEach>
         </tbody>

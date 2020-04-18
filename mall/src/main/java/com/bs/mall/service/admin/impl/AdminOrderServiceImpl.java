@@ -151,7 +151,7 @@ public class AdminOrderServiceImpl extends BaseService implements IAdminOrderSer
         productOrder.setProductOrderCode(productOrder_code);
         productOrder.setProductOrderPost(productOrder_post);
         OrderUtil orderUtil = null;
-        if (orderBy==null){
+        if (orderBy!=null){
             logger.info("根据{}排序，是否倒序:{}",orderBy,isDesc);
             orderUtil = new OrderUtil(orderBy, isDesc);
         }else {

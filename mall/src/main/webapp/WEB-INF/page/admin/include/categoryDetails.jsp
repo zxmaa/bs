@@ -40,7 +40,7 @@
                 });
             } else {
                 //设置分类编号
-                $("#span_category_id").text('${requestScope.category.category_id}');
+                $("#span_category_id").text('${requestScope.category.categoryId}');
                 //判断文件是否允许上传
                 if ($("#pic_category").attr("src") === undefined) {
                     $(".details_picList_fileUpload").css("display", "inline-block");
@@ -133,7 +133,7 @@
             formData.append("file", file);
             //上传图片
             $.ajax({
-                url: "/tmall/admin/uploadCategoryImage",
+                url: "/mall/admin/uploadCategoryImage",
                 type: "post",
                 data: formData,
                 contentType: false,
@@ -204,7 +204,7 @@
 </head>
 <body>
 <div class="details_div_first">
-    <input type="hidden" value="${requestScope.category.category_id}" id="details_category_id"/>
+    <input type="hidden" value="${requestScope.category.categoryId}" id="details_category_id"/>
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_category_id">分类编号</label>
         <span class="details_value" id="span_category_id">系统指定</span>
@@ -212,15 +212,15 @@
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_category_name" for="input_category_name">分类名称</label>
         <input class="frm_input" id="input_category_name" type="text" maxlength="50"
-               value="${requestScope.category.category_name}"/>
+               value="${requestScope.category.categoryName}"/>
     </div>
 </div>
 <div class="details_div">
     <span class="details_title text_info">分类图片</span>
     <ul class="details_picList" id="category_list">
-        <c:if test="${requestScope.category.category_image_src != null}">
+        <c:if test="${requestScope.category.categoryImageSrc != null}">
             <li><img
-                    src="${pageContext.request.contextPath}/res/img/item/categoryPicture/${requestScope.category.category_image_src}"
+                    src="${pageContext.request.contextPath}/res/img/item/categoryPicture/${requestScope.category.categoryImageSrc}"
                     id="pic_category" width="1190px" height="150px"/></li>
         </c:if>
         <li class="details_picList_fileUpload">
@@ -243,14 +243,14 @@
         <c:forEach items="${requestScope.category.propertyList}" var="property" varStatus="status">
             <c:choose>
                 <c:when test="${status.index % 2 == 0}">
-                    <input class="frm_input" id="input_category_property_${property.property_id}" type="text"
-                           maxlength="50" value="${property.property_name}"
-                           data-pvid="${property.property_id}"/>
+                    <input class="frm_input" id="input_category_property_${property.propertyId}" type="text"
+                           maxlength="50" value="${property.propertyName}"
+                           data-pvid="${property.propertyId}"/>
                 </c:when>
                 <c:otherwise>
-                    <input class="frm_input" id="input_category_property_${property.property_id}" type="text"
-                           maxlength="50" value="${property.property_name}"
-                           data-pvid="${property.property_id}"/>
+                    <input class="frm_input" id="input_category_property_${property.propertyId}" type="text"
+                           maxlength="50" value="${property.propertyName}"
+                           data-pvid="${property.propertyId}"/>
                     <div class="br"></div>
                 </c:otherwise>
             </c:choose>

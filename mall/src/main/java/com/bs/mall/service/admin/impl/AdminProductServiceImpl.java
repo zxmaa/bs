@@ -516,9 +516,9 @@ public class AdminProductServiceImpl extends BaseService{
         String filePath;
         String fileName = UUID.randomUUID() + extension;
         if ("single".equals(imageType)){
-            filePath = session.getServletContext().getRealPath("/") + "res/image/item/productSinglePicture/" + fileName;
+            filePath = session.getServletContext().getRealPath("/") + "res/img/item/productSinglePicture/" + fileName;
         }else {
-            filePath = session.getServletContext().getRealPath("/") + "res/image/item/productDetailsPicture/" + fileName;
+            filePath = session.getServletContext().getRealPath("/") + "res/img/item/productDetailsPicture/" + fileName;
         }
         logger.info("文件上传路径：{}", filePath);
         JSONObject object = new JSONObject();//返回值

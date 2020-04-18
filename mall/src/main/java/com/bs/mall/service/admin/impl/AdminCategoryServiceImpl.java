@@ -163,7 +163,7 @@ public class AdminCategoryServiceImpl extends BaseService implements IAdminCateg
         logger.info("获取图片原始文件名:  {}", originalFileName);
         String extension = originalFileName.substring(originalFileName.lastIndexOf('.'));
         String fileName = UUID.randomUUID() + extension;
-        String filePath = session.getServletContext().getRealPath("/") + "res/image/item/categoryPicture/" + fileName;
+        String filePath = session.getServletContext().getRealPath("/") + "res/img/item/categoryPicture/" + fileName;
 
         logger.info("文件上传路径：{}", filePath);
         JSONObject object = new JSONObject();

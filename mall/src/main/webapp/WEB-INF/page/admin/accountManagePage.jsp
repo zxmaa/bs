@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Title</title>
-    <script type="text/javascript" src="../../../res/js/jquery-1.11.3.min.js"></script>
+<%--    <script type="text/javascript" src="../../../res/js/jquery-1.11.3.min.js"></script>--%>
     <script>
         $(function () {
 
@@ -59,7 +59,7 @@
                     "admin_password": admin_password,
                     "admin_newPassword": admin_newPassword
                 };
-                doAction(dataList, "admin/account/" +${requestScope.admin.admin_id}, "PUT");
+                doAction(dataList, "admin/account/" +${requestScope.admin.adminId}, "PUT");
             });
         });
 
@@ -136,7 +136,7 @@
             formData.append("file", file);
             //上传图片
             $.ajax({
-                url: "/tmall/admin/uploadAdminHeadImage",
+                url: "/mall/admin/uploadAdminHeadImage",
                 type: "post",
                 data: formData,
                 contentType: false,
@@ -146,7 +146,7 @@
                 success: function (data) {
                     $(".loader").css("display", "none");
                     if (data.success) {
-                        $("#admin_profile_picture").addClass("new").attr("src", "${pageContext.request.contextPath}/res/images/item/adminProfilePicture/" + data.fileName);
+                        $("#admin_profile_picture").addClass("new").attr("src", "${pageContext.request.contextPath}/res/img/item/adminProfilePicture/" + data.fileName);
                     } else {
                         alert("图片上传异常！");
                     }
@@ -185,14 +185,14 @@
 </head>
 <body>
 <div class="details_div_first">
-    <input type="hidden" value="${requestScope.admin.admin_id}" id="details_admin_id"/>
+    <input type="hidden" value="${requestScope.admin.adminId}" id="details_admin_id"/>
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_admin_id">管理员编号</label>
-        <span class="details_value" id="span_admin_id">${requestScope.admin.admin_id}</span>
+        <span class="details_value" id="span_admin_id">${requestScope.admin.adminId}</span>
     </div>
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_admin_name">账户名</label>
-        <span class="details_value" id="span_admin_name">${requestScope.admin.admin_name}</span>
+        <span class="details_value" id="span_admin_name">${requestScope.admin.adminName}</span>
     </div>
 </div>
 <div class="details_div">
@@ -200,15 +200,15 @@
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_admin_profile_picture">管理员头像</label>
         <img
-                src="${pageContext.request.contextPath}/res/images/item/adminProfilePicture/${requestScope.admin.admin_profile_picture_src}"
+                src="${pageContext.request.contextPath}/res/img/item/adminProfilePicture/${requestScope.admin.adminProfilePictureSrc}"
                 id="admin_profile_picture" width="84px" height="84px"
-                onerror="this.src='${pageContext.request.contextPath}/res/images/admin/loginPage/default_profile_picture-128x128.png'"/>
+                onerror="this.src='${pageContext.request.contextPath}/res/img/admin/loginPage/default_profile_picture-128x128.png'"/>
         <input type="file" onchange="uploadImage(this)" accept="image/*" id="uploadImage">
     </div>
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_admin_nickname" for="input_admin_nickname">管理员昵称</label>
         <input class="frm_input" id="input_admin_nickname" type="text" maxlength="50"
-               value="${requestScope.admin.admin_nickname}"/>
+               value="${requestScope.admin.adminNickName}"/>
     </div>
 </div>
 <div class="details_div">

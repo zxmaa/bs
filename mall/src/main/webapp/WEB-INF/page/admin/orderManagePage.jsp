@@ -111,7 +111,7 @@
                             var productOrderStatusClass;
                             var productOrderStatusTitle;
                             var productOrderStatus;
-                            switch (data.productOrderList[i].productOrder_status) {
+                            switch (data.productOrderList[i].productOrderStatus) {
                                 case 0:
                                     productOrderStatusClass = "td_await";
                                     productOrderStatusTitle = "等待买家付款";
@@ -138,12 +138,12 @@
                                     productOrderStatus = "交易关闭";
                                     break;
                             }
-                            var productOrder_id = data.productOrderList[i].productOrder_id;
-                            var productOrder_code = data.productOrderList[i].productOrder_code;
-                            var productOrder_post = data.productOrderList[i].productOrder_post;
-                            var productOrder_receiver = data.productOrderList[i].productOrder_receiver;
-                            var productOrder_mobile = data.productOrderList[i].productOrder_mobile;
-                            var productOrder_userMessage = data.productOrderList[i].productOrder_userMessage;
+                            var productOrder_id = data.productOrderList[i].productOrderId;
+                            var productOrder_code = data.productOrderList[i].productOrderCode;
+                            var productOrder_post = data.productOrderList[i].productOrderPost;
+                            var productOrder_receiver = data.productOrderList[i].productOrderReceiver;
+                            var productOrder_mobile = data.productOrderList[i].productOrderMobile;
+                            var productOrder_userMessage = data.productOrderList[i].productOrderUserMessage;
                             //显示用户数据
                             tbody.append("<tr><td><input type='checkbox' class='cbx_select' id='cbx_productOrder_select_" + productOrder_id + "'><label for='cbx_productOrder_select_" + productOrder_id + "'></label></td><td title='" + productOrder_code + "'>" + productOrder_code + "</td><td title='" + productOrder_post + "'>" + productOrder_post + "</td><td title='" + productOrder_receiver + "'>" + productOrder_receiver + "</td><td title='" + productOrder_mobile + "'>" + productOrder_mobile + "</td><td><span class='" + productOrderStatusClass + "' title= '" + productOrderStatusTitle + "'>" + productOrderStatus + "</span></td><td><span class='td_special' title='查看订单详情'><a href='javascript:void(0)' onclick='getChildPage(this)'>详情</a></span></td><td hidden class='order_id'>" + productOrder_id + "</td></tr>");
                         }
@@ -263,23 +263,23 @@
         <tbody>
         <c:forEach items="${requestScope.productOrderList}" var="productOrder">
             <tr>
-                <td><input type="checkbox" class="cbx_select" id="cbx_productOrder_select_${productOrder.productOrder_id}"><label for="cbx_productOrder_select_${productOrder.productOrder_id}"></label></td>
-                <td title="${productOrder.productOrder_code}">${productOrder.productOrder_code}</td>
-                <td title="${productOrder.productOrder_post}">${productOrder.productOrder_post}</td>
-                <td title="${productOrder.productOrder_receiver}">${productOrder.productOrder_receiver}</td>
-                <td title="${productOrder.productOrder_mobile}">${productOrder.productOrder_mobile}</td>
+                <td><input type="checkbox" class="cbx_select" id="cbx_productOrder_select_${productOrder.productOrderId}"><label for="cbx_productOrder_select_${productOrder.productOrderId}"></label></td>
+                <td title="${productOrder.productOrderCode}">${productOrder.productOrderCode}</td>
+                <td title="${productOrder.productOrderPost}">${productOrder.productOrderPost}</td>
+                <td title="${productOrder.productOrderReceiver}">${productOrder.productOrderReceiver}</td>
+                <td title="${productOrder.productOrderMobile}">${productOrder.productOrderMobile}</td>
                 <td>
                     <c:choose>
-                        <c:when test="${productOrder.productOrder_status==0}">
+                        <c:when test="${productOrder.productOrderStatus==0}">
                             <span class="td_await" title="等待买家付款">等待买家付款</span>
                         </c:when>
-                        <c:when test="${productOrder.productOrder_status==1}">
+                        <c:when test="${productOrder.productOrderStatus==1}">
                             <span class="td_warn" title="买家已付款，等待卖家发货">等待卖家发货</span>
                         </c:when>
-                        <c:when test="${productOrder.productOrder_status==2}">
+                        <c:when test="${productOrder.productOrderStatus==2}">
                             <span class="td_wait" title="卖家已发货，等待买家确认">等待买家确认</span>
                         </c:when>
-                        <c:when test="${productOrder.productOrder_status==3}">
+                        <c:when test="${productOrder.productOrderStatus==3}">
                             <span class="td_success" title="交易成功">交易成功</span>
                         </c:when>
                         <c:otherwise><span class="td_error" title="交易关闭">交易关闭</span></c:otherwise>
@@ -287,7 +287,7 @@
                 </td>
                 <td><span class="td_special" title="查看订单详情"><a href="javascript:void(0)" onclick="getChildPage(this)">详情</a></span>
                 </td>
-                <td hidden class="order_id">${productOrder.productOrder_id}</td>
+                <td hidden class="order_id">${productOrder.productOrderId}</td>
             </tr>
         </c:forEach>
         </tbody>
