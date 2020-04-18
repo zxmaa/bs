@@ -220,7 +220,7 @@
     <ul class="details_picList" id="category_list">
         <c:if test="${requestScope.category.category_image_src != null}">
             <li><img
-                    src="${pageContext.request.contextPath}/res/images/item/categoryPicture/${requestScope.category.category_image_src}"
+                    src="${pageContext.request.contextPath}/res/img/item/categoryPicture/${requestScope.category.category_image_src}"
                     id="pic_category" width="1190px" height="150px"/></li>
         </c:if>
         <li class="details_picList_fileUpload">
