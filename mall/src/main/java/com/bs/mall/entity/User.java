@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -85,5 +86,9 @@ public class User {
     private List<ProductOrderItem> productOrderItemList/*订单项（购物车）集合*/;
     private List<ProductOrder> productOrderList/*订单集合*/;
 
+    public String formatTime(Date date) {
+        SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+        return df.format(date);
+    }
 
 }

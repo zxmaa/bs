@@ -63,7 +63,7 @@ public class AdminAccountServiceImpl extends BaseService implements IAdminAccoun
         //生成唯一的随机名
         String fileName= UUID.randomUUID()+extension;
         //获取上传路径
-        String filePath=session.getServletContext().getRealPath("/")+"res/image/item/adminProfilePicture/"+fileName;
+        String filePath=session.getServletContext().getRealPath("/")+"res/img/item/adminProfilePicture/"+fileName;
 
         logger.info("文件上传路径：{}", filePath);
         JSONObject jsonObject = new JSONObject();//返回的结果

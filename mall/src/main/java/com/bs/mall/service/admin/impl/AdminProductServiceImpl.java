@@ -71,13 +71,12 @@ public class AdminProductServiceImpl extends BaseService{
 
         logger.info("获取单个产品预览图片信息");
         List<com.bs.mall.entity.ProductImage> singleProductImageList=productImageMapper.select(product_id, (byte) 0, null);
-        product.setDetailProductImageList(singleProductImageList);
-        map.put("product", product);
-
+        product.setSingleProductImageList(singleProductImageList);
 
         logger.info("获取产品详情图片信息");
         List<com.bs.mall.entity.ProductImage> detailsProductImageList=productImageMapper.select(product_id, (byte) 1, null);
         product.setDetailProductImageList(detailsProductImageList);
+        map.put("product", product);
 
         logger.info("获取产品详情-属性值信息");
         com.bs.mall.entity.PropertyValue propertyValue=new com.bs.mall.entity.PropertyValue();
@@ -389,7 +388,7 @@ public class AdminProductServiceImpl extends BaseService{
         if (productDetailsImageList != null && productDetailsImageList.length > 0){
             logger.info("整合产品子信息-产品详情图片");
             List<com.bs.mall.entity.ProductImage> productImageList = new ArrayList<>(5);
-            for (String imageName : productSingleImageList){
+            for (String imageName : productDetailsImageList){
                 com.bs.mall.entity.ProductImage productImage=new com.bs.mall.entity.ProductImage();
                 productImage.setProductImageType((byte) 1);
                 productImage.setProductImageSrc(imageName.substring(imageName.lastIndexOf("/") + 1));

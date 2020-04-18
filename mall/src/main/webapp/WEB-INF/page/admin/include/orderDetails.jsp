@@ -222,19 +222,19 @@
         <div class="frm_div">
             <label class="frm_label text_info" id="lbl_order_pay_date">支付日期</label>
             <span class="details_value details_value_noRows"
-                  id="span_order_pay_date">${requestScope.order.productOrderPayDate}</span>
+                  id="span_order_pay_date">${requestScope.order.formatTime(order.productOrderPayDate)}</span>
         </div>
         <c:if test="${requestScope.order.productOrderStatus != 1}">
             <div class="frm_div">
                 <label class="frm_label text_info" id="lbl_order_delivery_date">发货日期</label>
                 <span class="details_value details_value_noRows"
-                      id="span_order_delivery_date">${requestScope.order.productOrderDeliveryDate}</span>
+                      id="span_order_delivery_date">${requestScope.order.formatTime(order.productOrderDeliveryDate)}</span>
             </div>
             <c:if test="${requestScope.order.productOrderStatus == 3}">
                 <div class="frm_div">
                     <label class="frm_label text_info" id="lbl_order_confirm_date">确认日期</label>
                     <span class="details_value details_value_noRows"
-                          id="span_order_confirm_date">${requestScope.order.productOrderConfirmDate}</span>
+                          id="span_order_confirm_date">${requestScope.order.formatTime(order.productOrderConfirmDate)}</span>
                 </div>
             </c:if>
         </c:if>

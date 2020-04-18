@@ -298,7 +298,7 @@
                 <td title="${product.productTitle}">${product.productTitle}</td>
                 <td title="${product.productPrice}">${product.productPrice}</td>
                 <td title="${product.productSalePrice}">${product.productSalePrice}</td>
-                <td title="${product.productCreateDate}">${product.productCreateDate}</td>
+                <td title="${product.formatTime(product.productCreateDate)}">${product.formatTime(product.productCreateDate)}</td>
                 <td>
                     <c:choose>
                         <c:when test="${product.productIsEnabled==0}"><span class="td_success" title="产品正常销售中">销售中</span></c:when>

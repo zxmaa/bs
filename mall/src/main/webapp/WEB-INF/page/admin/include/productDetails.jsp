@@ -105,7 +105,7 @@
                 //设置产品编号
                 $("#span_product_id").text('${requestScope.product.productId}');
                 //设置产品创建日期
-                $("#span_product_create_date").text('${requestScope.product.productCreateDate}');
+                $("#span_product_create_date").text('${requestScope.product.formatTime(product.productCreateDate)}');
                 //判断文件是否允许上传
                 checkFileUpload($("#product_single_list"),5);
                 checkFileUpload($("#product_details_list"),8);
@@ -400,7 +400,7 @@
                             $('#modalDiv').modal("hide");
                             setTimeout(function () {
                                 //ajax请求页面
-                                ajaxUtil.getPage("product/" + data.productId, null, true);
+                                ajaxUtil.getPage("product/" + data.product_id, null, true);
                             }, 170);
                         });
                         $(".modal-body").text("保存成功！");

@@ -73,7 +73,7 @@
     </div>
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_user_birthday">出生日期</label>
-        <span class="details_value" id="span_user_birthday">${requestScope.user.userBirthday}</span>
+        <span class="details_value" id="span_user_birthday">${requestScope.user.formatTime(user.userBirthday)}</span>
     </div>
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_user_address">所在地</label>

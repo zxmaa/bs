@@ -58,8 +58,8 @@
                     $("#category_count_data").text(data.categoryCount);
                     if(data.categoryList.length > 0) {
                         for (var i = 0; i < data.categoryList.length; i++) {
-                            var category_id = data.categoryList[i].category_id;
-                            var category_name = data.categoryList[i].category_name;
+                            var category_id = data.categoryList[i].categoryId;
+                            var category_name = data.categoryList[i].categoryName;
                             //显示分类数据
                             tbody.append("<tr><td><input type='checkbox' class='cbx_select' id='cbx_category_select_" + category_id + "'><label for='cbx_category_select_" + category_id + "'></label></td><td title='" + category_name + "'>" + category_name + "</td><td><span class='td_special' title='查看分类详情'><a href='javascript:void(0)' onclick='getChildPage(this)'>详情</a></span></td><td hidden class='category_id'>" + category_id + "</td></tr>");
                         }

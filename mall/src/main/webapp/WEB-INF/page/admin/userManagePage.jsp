@@ -102,7 +102,7 @@
                             } else {
                                 gender = "女";
                             }
-                            var user_id = data.userList[i].user_id;
+                            var user_id = data.userList[i].userId;
                             var user_name = data.userList[i].userName;
                             var user_nickname = data.userList[i].userNickname;
                             var user_realname = data.userList[i].userRealname;
@@ -231,7 +231,7 @@
                 <td title="${user.userName}">${user.userName}</td>
                 <td title="${user.userNickname}">${user.userNickname}</td>
                 <td title="${user.userRealname}">${user.userRealname}</td>
-                <td title="${user.userBirthday}">${user.userBirthday}</td>
+                <td title="${user.formatTime(user.userBirthday)}">${user.formatTime(user.userBirthday)}</td>
                 <td>
                     <c:choose>
                         <c:when test="${user.userGender==0}">男</c:when>

@@ -128,6 +128,7 @@ public class AdminOrderServiceImpl extends BaseService implements IAdminOrderSer
             jsonObject.put("success", false);
             throw new RuntimeException();
         }
+        jsonObject.put("order_id", order_id);
         return jsonObject.toJSONString();
     }
 
