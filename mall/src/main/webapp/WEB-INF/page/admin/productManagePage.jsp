@@ -27,7 +27,7 @@
             /******
              * event
              ******/
-            //点击查询按钮时
+            //点击查询按钮时执行以下函数
             $("#btn_product_submit").click(function () {
                 var product_name = $.trim($("#input_product_name").val());
                 var category_id = parseInt($("#select_product_category").val());
@@ -182,7 +182,7 @@
 
             //设置样式
             $("#div_home_title").children("span").text(title);
-            document.title = "Tmall管理后台 - "+title;
+            document.title = "mall管理后台 - "+title;
             //ajax请求页面
             ajaxUtil.getPage(url,null,true);
         }
