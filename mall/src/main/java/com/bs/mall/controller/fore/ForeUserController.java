@@ -2,6 +2,7 @@ package com.bs.mall.controller.fore;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bs.mall.controller.BaseController;
+import com.bs.mall.dao.pojo.User;
 import com.bs.mall.dto.ForeUserDto;
 import com.bs.mall.dto.req.ForeUserReqDto;
 import com.bs.mall.service.fore.IUserService;
@@ -36,16 +37,22 @@ public class ForeUserController extends BaseController {
      */
     @RequestMapping("/userDetails")
     public String goToUserDetail(Model model,HttpSession session){
+        Object o = checkUser(session);
+        if(o == null){
+             return "redirect:/login";
+        }
 
         String userName = (String) session.getAttribute("userName");
         ForeUserDto userDto = userService.findUserByUsereName(userName);
+
+        System.out.println("========="+userDto);
         model.addAttribute("user",userDto);
 
         return "user/userDetails";
     }
 
     @ResponseBody
-    @RequestMapping("/user/uploadUserHeadImage")
+    @RequestMapping(value = "/user/uploadUserHeadImage",method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     public String  uploadUserHeadImage(@RequestParam MultipartFile file, HttpSession session){
         //获取上传文件的名字
         String originalFileName = file.getOriginalFilename();
@@ -53,8 +60,8 @@ public class ForeUserController extends BaseController {
         String extension = originalFileName.substring(originalFileName.lastIndexOf('.'));
         String fileName = UUID.randomUUID() + extension;
         //上传文件的位置
-        String filePath = session.getServletContext().getRealPath("/") + "res/images/item/userProfilePicture/" + fileName;
-        logger.info("文件上传路径：", filePath);
+        String filePath = session.getServletContext().getRealPath("/") + "res/img/item/userProfilePicture/" + fileName;
+        logger.info("文件上传路径：{}", filePath);
         JSONObject jsonObject = new JSONObject();
         try {
             logger.info("文件上传中...");
@@ -78,15 +85,25 @@ public class ForeUserController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/user/updateBasic")
-    public String updateUserInfo(@RequestBody ForeUserDto userDto){
+    public String updateUserInfo(@RequestBody ForeUserDto userDto,HttpSession session){
+        logger.info("修改用户基本信息！");
+        Object o = checkUser(session);
+        if(o == null){
+            return "redirect:/login";
+        }
+        //出数据库中得到该用户
+        ForeUserDto user = userService.findUserByUsereName((String) o);
+
         JSONObject jsonObject = new JSONObject();
-        Boolean flag = userService.telIsExist(userDto.getUserTel());
-        if(flag){
+        User userPhone = userService.telIsExist(userDto.getUserTel());
+        //排除自身已在数据库中存放的号码
+        if(userPhone != null && !userPhone.getUserTel().equals(user.getUserTel()) ){
             jsonObject.put("success",false);
             jsonObject.put("message","该号码已被注册，请重新输入！");
+            return jsonObject.toJSONString();
         }
-        String userName = userDto.getUserName();
-        ForeUserDto temp = userService.findUserByUsereName(userName);
+
+        userDto.setUserId(user.getUserId());
         userService.updateUser(userDto);
 
         jsonObject.put("success",true);
@@ -102,16 +119,25 @@ public class ForeUserController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/user/updateAccount")
-    public String updateUserAccount(@RequestBody ForeUserDto userDto){
+    public String updateUserAccount(@RequestBody ForeUserDto userDto,HttpSession session){
+        logger.info("修改用户账号信息！");
+        Object o = checkUser(session);
+        if(o == null){
+            return "redirect:/login";
+        }
+        //出数据库中得到该用户
+        ForeUserDto user = userService.findUserByUsereName((String) o);
+
         String userName = userDto.getUserName();
         ForeUserDto temp = userService.findUserByUsereName(userName);
-        if(temp != null){
+        if(temp != null && !temp.getUserName().equals(user.getUserName())){
             logger.info("已存在该用户名");
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("success",false);
-            jsonObject.put("msg","已存在该用户名，请重新输入！");
+            jsonObject.put("message","已存在该用户名，请重新输入！");
             return jsonObject.toJSONString();
         }
+        userDto.setUserId(user.getUserId());
         userService.updateUser(userDto);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("success",true);

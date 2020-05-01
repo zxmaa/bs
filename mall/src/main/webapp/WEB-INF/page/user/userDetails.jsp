@@ -104,12 +104,12 @@
 <div class="content">
     <div class="mt-menu" id="J_MtSideMenu">
         <div class="mt-avatar">
-            <img src="${pageContext.request.contextPath}/res/img/item/userProfilePicture/${requestScope.user.user_profile_picture_src}"
+            <img src="${pageContext.request.contextPath}/res/img/item/userProfilePicture/${requestScope.user.userProfilePictureSrc}"
                  onerror="this.src='${pageContext.request.contextPath}/res/img/admin/loginPage/default_profile_picture-128x128.png'"
                  width="128px" height="128px">
         </div>
         <div class="mt-menu-tree">
-            <p>积分：</p>
+            <p>积分：${requestScope.user.integral}</p>
         </div>
     </div>
     <div class="J_TabBarBox tabBarBox" id="J_TabBarBox">
@@ -126,15 +126,15 @@
         <div class="J_data">
             <div id="tips-box">
                 <label class="font_we">亲爱的</label>
-                <b>${requestScope.user.user_name}</b>，
+                <b>${requestScope.user.userName}</b>，
                 <label class="font_we">填写真实的资料，有助于好友找到你哦。</label>
             </div>
-            <form action="${pageContext.request.contextPath}/user/update" method="post" id="register_form1">
+            <%--<form action="${pageContext.request.contextPath}/user/update" method="post" id="register_form1">--%>
                 <div class="form-item">
                     <label class="form-label tsl">当前头像：</label>
                     <ul class="details_picList" id="product_single_list">
                         <li class="details_picList_fileUpload">
-                            <img src="${pageContext.request.contextPath}/res/img/item/userProfilePicture/${requestScope.user.user_profile_picture_src}"
+                            <img src="${pageContext.request.contextPath}/res/img/item/userProfilePicture/${requestScope.user.userProfilePictureSrc}"
                                  onerror="this.src='${pageContext.request.contextPath}/res/img/admin/loginPage/default_profile_picture-128x128.png'"
                                  id="header_image" width="128px" height="128px">
                             <input type="file" onchange="uploadImage(this)" id="user_profile_picture_src"
@@ -144,35 +144,34 @@
                     </ul>
                 </div>
                 <div class="form-item">
-                    <label class="form-label tsl">昵称：</label>
-                    <input name="user_nickname" value="${requestScope.user.user_nickname}" id="user_nickname"
-                           class="form-text err-input" maxlength="20" readonly="readonly">
+                    <label class="form-label tsl">用户名：</label>
+                    <input name="user_name" id="user_name" class="form-text err-input" placeholder="请输入用户名" maxlength="20" readonly="readonly" value="${requestScope.user.userName}">
                     <span class="form_span"></span>
                 </div>
+
                 <div class="form-item">
-                    <label class="form-label tsl">真实姓名：</label>
-                    <input name="user_realname" value="${requestScope.user.user_realname}" id="user_realname"
-                           class="form-text err-input" maxlength="20">
+                    <label class="form-label tsl">联系电话：</label>
+                    <input name="userTel" id="userTel" class="form-text err-input" placeholder="请输入联系电话" maxlength="20" value="${requestScope.user.userTel}">
                     <span class="form_span"></span>
                 </div>
                 <div class="form-item">
                     <label class="form-label tsl">性别：</label>
                     <input name="user_gender" type="radio" id="form_radion" value="0"
-                           <c:if test="${requestScope.user.user_gender == 0}">checked="checked"</c:if>><span
+                           <c:if test="${requestScope.user.userGender == 0}">checked="checked"</c:if>><span
                         class="radio_value">男</span>
                     <input name="user_gender" type="radio" id="form_radions" value="1"
-                           <c:if test="${requestScope.user.user_gender == 1}">checked="checked"</c:if>><span
+                           <c:if test="${requestScope.user.userGender == 1}">checked="checked"</c:if>><span
                         class="radio_value">女</span>
                 </div>
                 <div class="form-item">
                     <label class="form-label tsl">生日：</label>
                     <input type="date" name="user_birthday" id="user_birthday" class="form-text err-input"
-                           value="${requestScope.user.user_birthday}" maxlength="20">
+                           value="${requestScope.user.userBirthday}" maxlength="20">
                     <span class="form_span"></span>
                 </div>
 
                 <div class="form-item">
-                    <input type="submit" id="register_sub" class="btns btn-large tsl" value="提 交"/>
+                    <input type="button" id="register_sub" class="btns btn-large tsl" value="提 交"/>
                 </div>
             </form>
         </div>
@@ -180,21 +179,27 @@
         <div class="J_account account">
             <form action="${pageContext.request.contextPath}/user/update" method="post" id="register_form2">
                 <div class="form-item">
-                    <label class="form-label tsl">用户昵称：</label>
-                    <input name="user_password" type="password" id="user_password" class="form-text err-input"
-                           placeholder="请设置昵称" maxlength="20">
+                    <label class="form-label tsl">用户名：</label>
+                    <input name="user_name1"  id="user_name1" class="form-text err-input"
+                           placeholder="请设置用户名" maxlength="20" value="${requestScope.user.userName}">
                     <span class="form_span"></span>
                 </div>
                 <div class="form-item">
                     <label class="form-label tsl">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-                    <input name="user_password_one" type="password" id="user_password_one" class="form-text err-input"
-                           placeholder="请输入你的密码" maxlength="20">
+                    <input name="user_password" type="password" id="user_password" class="form-text err-input"
+                           placeholder="请输入你的密码" maxlength="20" value="${requestScope.user.userPassword}">
                     <span class="form_span"></span>
                 </div>
                 <div class="form-item">
-                    <input type="submit" id="register_sub1" class="btns btn-large tsl" value="提 交"/>
+                    <label class="form-label tsl">确认密码：</label>
+                    <input name="user_password_one" type="password" id="user_password_one" class="form-text err-input"
+                           placeholder="请再次输入你的密码" maxlength="20" value="${requestScope.user.userPassword}"/>
+                    <span class="form_span"></span>
                 </div>
-            </form>
+                <div class="form-item">
+                    <input type="button" id="register_sub1" class="btns btn-large tsl" value="提 交"/>
+                </div>
+           <%-- </form>--%>
         </div>
     </div>
 

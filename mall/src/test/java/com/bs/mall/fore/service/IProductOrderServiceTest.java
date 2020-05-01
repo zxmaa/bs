@@ -1,14 +1,15 @@
 package com.bs.mall.fore.service;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.bs.mall.dao.pojo.ProductOrder;
 import com.bs.mall.dto.req.ForeCreateOrderByListReqDto;
 import com.bs.mall.dto.req.ForeCreateOrderByListSimpleReqDto;
 import com.bs.mall.dto.req.ForeCreateOrderByOneReqDto;
-import com.bs.mall.dto.res.ForeCreateOrderResDto;
-import com.bs.mall.dto.res.ForePayResDto;
-import com.bs.mall.dto.res.ForePaySuccessResDto;
+import com.bs.mall.dto.req.ForeOrderShowReqDto;
+import com.bs.mall.dto.res.*;
 import com.bs.mall.service.fore.IProductOrderService;
+import com.github.pagehelper.PageInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,57 @@ public class IProductOrderServiceTest {
     public void getPayPageInfoByOrderCodeTest(){
         ForePayResDto payPageInfoByOrderCode = productOrderService.getPayPageInfoByOrderCode("2018052314045801");
         System.out.println(payPageInfoByOrderCode);
+    }
+
+    @Test
+    public void payOrderTest(){
+        productOrderService.payOrder("2020041323545254191263");
+    }
+
+    @Test
+    public void getPaySuccessInfoByOrderCodeTest(){
+        ForePaySuccessResDto paySuccessInfoByOrderCode = productOrderService.getPaySuccessInfoByOrderCode("2020041323545254191263");
+        System.out.println(paySuccessInfoByOrderCode);
+    }
+
+    @Test
+    public void updateOrderStatusTest(){
+        productOrderService.updateOrderStatus("2020041323523313045184",2);
+    }
+
+    @Test
+    public void getConfirmReceiptInfoTest(){
+        ForeConfirmReceiptResDto confirmReceiptInfo = productOrderService.getConfirmReceiptInfo("2020041323523313045184");
+        System.out.println(confirmReceiptInfo);
+    }
+
+    @Test
+    public void getOrderSuccessInfoTest(){
+        ForeOrderSuceessResDto orderSuccessInfo = productOrderService.getOrderSuccessInfo("2020041323545254191263");
+        System.out.println(orderSuccessInfo);
+    }
+
+    @Test
+    public void getOrderShowTest(){
+        ForeOrderShowReqDto orderShowReqDto = new ForeOrderShowReqDto();
+        orderShowReqDto.setUserId(1);
+        orderShowReqDto.setStatus(1);
+        orderShowReqDto.setPageSize(10);
+        orderShowReqDto.setPageNumber(1);
+        PageInfo<ForeOrderShowResDto> orderShow = productOrderService.getOrderShow(orderShowReqDto);
+        System.out.println(JSONObject.toJSONString(orderShow));
+    }
+
+    @Test
+    public void getProductOrderByIdTest(){
+        ProductOrder productOrderById = productOrderService.getProductOrderById(239);
+        System.out.println(productOrderById);
+    }
+
+    @Test
+    public void getWriteReviewInfoTest(){
+        ForeWriteReviewResDto writeReviewInfo = productOrderService.getWriteReviewInfo(302);
+        System.out.println(writeReviewInfo);
     }
 
 }

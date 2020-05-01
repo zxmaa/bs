@@ -31,7 +31,7 @@
     <div class="nav_main">
         <p id="container_login">
             <c:choose>
-                <c:when test="${requestScope.userName==null}">
+                <c:when test="${sessionScope.userName==null}">
                     <em>喵，欢迎来天猫</em>
                     <a href="${pageContext.request.contextPath}/login">请登录</a>
                     <a href="${pageContext.request.contextPath}/register">免费注册</a>
@@ -39,7 +39,7 @@
                 <c:otherwise>
                     <em>Hi，</em>
                     <a href="${pageContext.request.contextPath}/userDetails" class="userName"
-                       target="_blank">${requestScope.userName}</a>
+                       target="_blank">${sessionScope.userName}</a>
                     <a href="${pageContext.request.contextPath}/login/logout">退出</a>
                 </c:otherwise>
             </c:choose>

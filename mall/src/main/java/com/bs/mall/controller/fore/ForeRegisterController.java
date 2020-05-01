@@ -2,6 +2,7 @@ package com.bs.mall.controller.fore;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bs.mall.controller.BaseController;
+import com.bs.mall.dao.pojo.User;
 import com.bs.mall.dto.ForeUserDto;
 import com.bs.mall.service.fore.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,6 @@ public class ForeRegisterController extends BaseController {
         JSONObject jsonObject = new JSONObject();
         String userName = userDto.getUserName();
         ForeUserDto temp = userService.findUserByUsereName(userName);
-
         //注：其余的字段格式合法性，由前端直接验证
         if(temp != null){
             logger.info("已存在该用户名");
@@ -40,8 +40,8 @@ public class ForeRegisterController extends BaseController {
             jsonObject.put("message","用户名已存在，请重新输入！");
             return jsonObject.toJSONString();
         }
-        Boolean flag = userService.telIsExist(userDto.getUserTel());
-        if(flag){
+        User user = userService.telIsExist(userDto.getUserTel());
+        if(user != null){
             jsonObject.put("success",false);
             jsonObject.put("message","该号码已被注册，请重新输入！");
             return jsonObject.toJSONString();

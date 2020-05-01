@@ -307,7 +307,6 @@ public class ProductOrderServiceImpl implements IProductOrderService {
         ProductOrder productOrder = new ProductOrder();
         //若更改状态为已支付，则需修改用户的积分字段
         if(orderStatus == 1) {
-
             //积分
             int integral = 0;
             for (ProductOrderItem orderItem : orderItems) {
@@ -317,7 +316,7 @@ public class ProductOrderServiceImpl implements IProductOrderService {
             User updateUser = new User();
             updateUser.setUserId(prodctOrder.getUserId());
             updateUser.setIntegral(user.getIntegral() + integral);
-            userService.updateUser(user);
+            userService.updateUser(updateUser);
 
             //订单状态
             productOrder.setProductOrderStatus(orderStatus);
@@ -346,13 +345,11 @@ public class ProductOrderServiceImpl implements IProductOrderService {
                 Product productUpdate = new Product();
                 productUpdate.setProductId(product.getProductId());
                 productUpdate.setProductQuantity(product.getProductQuantity()+orderItem.getProductOrderItemNumber());
-                productService.updateProduct(product);
+                productService.updateProduct(productUpdate);
             }
-
             //订单状态
             productOrder.setProductOrderStatus(orderStatus);
             productOrderMapper.update(productOrder,wrapper);
-
         }
     }
 

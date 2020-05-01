@@ -86,22 +86,20 @@ public class ProductOrderItemServiceImpl implements IProductOrderItemService {
 
         ProductOrderItem temp;
         for (ProductOrderItem productOrderItem : productOrderItems) {
-            //若用户的购物车中存在该产品,则将购物车的产品数量增加
+            //若用户的购物车中存在该商品,则将购物车的产品数量增加
             if (productOrderItem.getProductId().equals(orderItemCartReqDto.getProductId())){
                 temp = new ProductOrderItem();
                 temp.setProductOrderItemId(productOrderItem.getProductOrderItemId());
                 Integer number = productOrderItem.getProductOrderItemNumber()+orderItemCartReqDto.getProductNumber();
                 temp.setProductOrderItemNumber(number);
-              //emp.setProductOrderItemPrice(number*product.getProductSalePrice());
                 productOrderItemMapper.updateById(temp);
                 return true;
             }
         }
-        //若该产品品，不存在购物车中，则新建订单项
+        //若该商品，不存在购物车中，则新建订单项
         temp = new ProductOrderItem();
         temp.setProductId(orderItemCartReqDto.getProductId());
         temp.setProductOrderItemNumber(orderItemCartReqDto.getProductNumber());
-       // temp.setProductOrderItemPrice(orderItemCartReqDto.getProductNumber()*product.getProductSalePrice());
         temp.setUserId(orderItemCartReqDto.getUserId());
         productOrderItemMapper.insert(temp);
         return  true;

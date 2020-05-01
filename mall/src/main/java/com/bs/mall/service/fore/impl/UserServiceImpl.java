@@ -108,14 +108,11 @@ public class UserServiceImpl implements IUserService {
      * @return
      */
     @Override
-    public Boolean telIsExist(String tel) {
+    public User telIsExist(String tel) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("user_tel",tel);
-        Integer count = userMapper.selectCount(wrapper);
-        if (count>0){
-            return true;
-        }
-        return false;
+        User user= userMapper.selectOne(wrapper);
+        return user;
     }
 
 

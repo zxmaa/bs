@@ -40,7 +40,7 @@ public class ForeUserLoginController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/login/doLogin")
-    public String userLogin(@RequestBody ForeUserReqDto userReqDto, Model model, HttpSession session){
+    public String userLogin(@RequestBody ForeUserReqDto userReqDto,HttpSession session){
         ForeUserDto userDto = userService.userLogin(userReqDto);
 
         JSONObject jsonObject = new JSONObject();
@@ -49,6 +49,7 @@ public class ForeUserLoginController extends BaseController {
             jsonObject.put("success", false);
         }else{
             //设置session的值
+            logger.info("登录成功:"+userDto.getUserName());
             session.setAttribute("userName",userDto.getUserName());
             jsonObject.put("success", true);
         }
@@ -69,6 +70,7 @@ public class ForeUserLoginController extends BaseController {
             session.invalidate();
             logger.info("登录信息已清除，重定向到用户登录页");
         }
-        return "redirect:/fore/loginPages";
+        logger.info("跳转到登录！！");
+        return "redirect:/login";
     }
 }

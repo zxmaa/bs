@@ -84,7 +84,7 @@ public class ProductServiceImpl implements IProductService {
         Page<?> page = PageHelper.startPage(foreProductGuessReqDto.getPageNum(), foreProductGuessReqDto.getPageSize());
         QueryWrapper<Product>queryWrapper  = new QueryWrapper<>();
         queryWrapper.eq("product_category_id", foreProductGuessReqDto.getCategoryId());
-        queryWrapper.ne("product_isEnabled",1); //排除停售的
+        queryWrapper.ne("product_isEnabled",1);
         List<Product> products = productMapper.selectList(queryWrapper);
 
 

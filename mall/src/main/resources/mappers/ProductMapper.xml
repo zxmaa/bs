@@ -161,7 +161,6 @@
                     category_name LIKE concat('%',#{item},'%')
                 </foreach>)
             </if>
-
         </where>
         <if test="null != orderBy and orderBy!= ''">
             order by ${orderBy}

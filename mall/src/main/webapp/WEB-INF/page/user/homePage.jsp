@@ -15,6 +15,7 @@
 </head>
 <body>
 <nav>
+    <%--登录的那一条--%>
     <%@ include file="include/navigator.jsp" %>
     <div class="header">
         <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/HomeLogoA.png">

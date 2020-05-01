@@ -1,6 +1,6 @@
 $(function () {
     //刷新下拉框
-    $('#select_user_address_province').selectpicker('refresh');
+   /* $('#select_user_address_province').selectpicker('refresh');
     $('#select_user_address_city').selectpicker('refresh');
     $('#select_user_address_district').selectpicker('refresh');
     //改变订单信息时
@@ -74,13 +74,9 @@ $(function () {
     });
     $("#select_user_address_district").change(function () {
         $("span.address_district").text($(this).find("option:selected").text());
-    });
+    });*/
 
-    //用户名input获取光标
-    $("#user_name").focus(function () {
-        $(this).css("border", "1px solid #3879D9")
-            .next().text("请输入用户名").css("display", "inline-block").css("color", "#00A0E9");
-    });
+
     //密码input获取光标
     $("#user_password").focus(function () {
         $(this).css("border", "1px solid #3879D9")
@@ -91,20 +87,17 @@ $(function () {
         $(this).css("border", "1px solid #3879D9")
             .next().text("请再次输入密码").css("display", "inline-block").css("color", "#00A0E9");
     });
-    //昵称input获取光标
-    $("#user_nickname").focus(function () {
-        $(this).css("border", "1px solid #3879D9")
-            .next().text("请输入昵称").css("display", "inline-block").css("color", "#00A0E9");
-    });
+
     //出生日期input获取光标
     $("#user_birthday").focus(function () {
         $(this).css("border", "1px solid #3879D9")
             .next().text("请输入出生日期").css("display", "inline-block").css("color", "#00A0E9");
     });
-    //真实姓名input获取光标
-    $("#user_realname").focus(function () {
+
+    //电话号码input获取光标
+    $("#userTel").focus(function () {
         $(this).css("border", "1px solid #3879D9")
-            .next().text("请输入真实姓名").css("display", "inline-block").css("color", "#00A0E9");
+            .next().text("请输入电话号码").css("display", "inline-block").css("color", "#00A0E9");
     });
 
     //input离开光标
@@ -115,24 +108,80 @@ $(function () {
 
     //非空验证
     $("#register_sub").click(function () {
-        //真实姓名
-        var user_realname = $.trim($("input[name=user_realname]").val());
+        //图片路径#user_profile_picture_src_value
+        var userProfilePictureSrc =$.trim($("input[name=user_profile_picture_src]").val());
+        //联系电话
+        var userTel = $.trim($("input[name=userTel]").val());
+
+        //出生日期
+        var user_birthday = $.trim($("input[name=user_birthday]").val());
+
+        //验证电话号码格式
+        var tel=new RegExp(/^1[3456789]\d{9}$/);
+
+        if (userTel == null || userTel === "") {
+            $("#userTel").css("border", "1px solid red")
+                .next().text("请输入联系电话").css("display", "inline-block").css("color", "red");
+            return false;
+        }else if (!tel.test(userTel) ) {
+            $("#userTel").css("border", "1px solid red")
+                .next().text("请输入正确的电话号码").css("display", "inline-block").css("color", "red");
+            return false;
+        } else if (user_birthday == null || user_birthday === "") {
+            $("#user_birthday").css("border", "1px solid red")
+                .next().text("请选择出生日期").css("display", "inline-block").css("color", "red");
+            return false;
+        }
+
+        var obj = {};
+        obj['userTel'] = userTel;
+        obj['userBirthday'] = user_birthday;
+        obj['userGender'] = $("input[name=user_gender]:checked").val();
+        obj['userProfilePictureSrc'] = userProfilePictureSrc;
+        $.ajax({
+            type: "POST",
+            url: "/mall/user/updateBasic",
+            dataType: "json",
+            contentType:"application/json",
+            data:JSON.stringify(obj),
+
+            success: function (data) {
+                if (data.success) {
+                 /* $(".msg").stop(true, true).animate({
+                        opacity: 1
+                    }, 550, function () {
+                        $(".msg").animate({
+                            opacity: 0
+                        }, 1500, function () {*/
+                            location.href = "/mall/userDetails";
+                  /*    });
+                    });*/
+                } else {
+                    alert(data.message);
+                }
+            },
+            error: function (data) {
+                location.reload(true);
+            },
+            beforeSend: function () {
+            }
+        });
+    });
+
+    $("#register_sub1").click(function () {
+        //用户名
+        var user_name = $.trim($("input[name=user_name1]").val());
         //密码
         var user_password = $.trim($("input[name=user_password]").val());
         //确认密码
         var user_password_one = $.trim($("input[name=user_password_one]").val());
-        //昵称
-        var user_nickname = $.trim($("input[name=user_nickname]").val());
-        //出生日期
-        var user_birthday = $.trim($("input[name=user_birthday]").val());
 
-        //验证密码的格式 包含数字和英文字母
         var reg = new RegExp(/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/);
-        if (user_realname == null || user_realname === "") {
-            $("#user_realname").css("border", "1px solid red")
-                .next().text("请输入真实姓名").css("display", "inline-block").css("color", "red");
+        if (user_name == null || user_name === "") {
+            $("#user_name1").css("border", "1px solid red")
+                .next().text("请输入用户名").css("display", "inline-block").css("color", "red");
             return false;
-        } else if (user_password == null || user_password === "") {
+        }  else if (user_password == null || user_password === "") {
             $("#user_password").css("border", "1px solid red")
                 .next().text("请输入密码").css("display", "inline-block").css("color", "red");
             return false;
@@ -148,18 +197,44 @@ $(function () {
             $("#user_password_one").css("border", "1px solid red")
                 .next().text("两次输入密码不相同").css("display", "inline-block").css("color", "red");
             return false;
-        } else if (user_nickname == null || user_nickname === "") {
-            $("#user_nickname").css("border", "1px solid red")
-                .next().text("请输入昵称").css("display", "inline-block").css("color", "red");
-            return false;
-        } else if (user_birthday == null || user_birthday === "") {
-            $("#user_birthday").css("border", "1px solid red")
-                .next().text("请选择出生日期").css("display", "inline-block").css("color", "red");
-            return false;
         }
-        return true;
+
+        var obj = {};
+        obj['userName'] = user_name;
+        obj['userPassword'] = user_password;
+
+        $.ajax({
+            type: "POST",
+            url: "/mall/user/updateAccount",
+            dataType: "json",
+            contentType:"application/json",
+            data:JSON.stringify(obj),
+
+            success: function (data) {
+                if (data.success) {
+                    $(".msg").stop(true, true).animate({
+                        opacity: 1
+                    }, 550, function () {
+                        $(".msg").animate({
+                            opacity: 0
+                        }, 1500, function () {
+                            location.href = "/mall/login";
+                        });
+                    });
+                } else {
+                    alert(data.message);
+                }
+            },
+            error: function (data) {
+                location.reload(true);
+            },
+            beforeSend: function () {
+            }
+        });
     });
 });
+
+
 
 //图片上传
 function uploadImage(fileDom) {
