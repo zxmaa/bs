@@ -140,7 +140,7 @@
             $("#div_home_title").children("span").text("用户详情");
             document.title = "Tmall管理后台 - 用户详情";
             var url=$(obj).parents("tr").find(".user_id").text();
-            alert(url);
+            //alert(url);
             //ajax请求页面
             ajaxUtil.getPage("user/" + url, null, true);
         }
