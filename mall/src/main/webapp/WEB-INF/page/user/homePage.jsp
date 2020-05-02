@@ -22,7 +22,7 @@
         <div class="mallSearch">
             <form action="${pageContext.request.contextPath}/product" method="get">
                 <div class="mallSearch-input">
-                    <input class="header_search_input" type="text" name="product_name" placeholder="搜索 商品/品牌/店铺"
+                    <input class="header_search_input" type="text" name="productName" placeholder="搜索 商品/品牌/店铺"
                            maxlength="50">
                     <input class="header_search_button" type="submit" value="搜索">
                 </div>

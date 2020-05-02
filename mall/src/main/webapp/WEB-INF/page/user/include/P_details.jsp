@@ -79,12 +79,12 @@
 <body>
 <div class="P_details">
     <div class="P_details_list">
-        <p class="P_details_list_header">产品名称：<span>${requestScope.product.product_name}</span></p>
+        <p class="P_details_list_header">产品名称：<span>${requestScope.product.product.productName}</span></p>
         <p class="P_details_list_title">产品参数：</p>
         <ul class="P_details_list_body">
-            <c:forEach items="${requestScope.propertyList}" var="property">
-                <c:if test="${property.propertyValueList[0].propertyValue_value != null}">
-                    <li title="${property.propertyValueList[0].propertyValue_value}">${property.property_name}：${property.propertyValueList[0].propertyValue_value}</li>
+            <c:forEach items="${requestScope.propertyList.property}" var="property">
+                <c:if test="${property.propertyValueValue != null}">
+                    <li title="${property.propertyValueValue}">${property.propertyName}：${property.propertyValueValue}</li>
                 </c:if>
             </c:forEach>
         </ul>

@@ -174,11 +174,11 @@ function getGuessLoveProducts() {
         dataType: "json",
         success: function (data) {
             if (data.success) {
-                $("#guessNumber").val(data.guessNumber);
-                for (var i = 0; i < data.loveProductList.length; i++) {
-                    var src = data.loveProductList[i].singleProductImageList[0].productImage_src;
-                    var product_id = data.loveProductList[i].product_id;
-                    var product_sale_price = data.loveProductList[i].product_sale_price;
+                //$("#guessNumber").val(data.guessNumber);
+                for (var i = 0; i < data.guessLikeList.length; i++) {
+                    var src = data.guessLikeList[i].productImageSrc;
+                    var product_id = data.guessLikeList[i].productId;
+                    var product_sale_price = data.guessLikeList[i].productSalePrice;
                     $(".context_ul_goodsList").children("ul").append("<li class='context_ul_main'><div class='context_ul_img'>" +
                         "<a href='/mall/product/" + product_id + "'><img src='/mall/res/img/item/productSinglePicture/" + src + "'/></a><p>¥" + product_sale_price + ".00</p></div></li>"
                     );

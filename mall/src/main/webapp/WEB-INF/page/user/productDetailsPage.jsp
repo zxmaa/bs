@@ -12,7 +12,7 @@
     <script src="${pageContext.request.contextPath}/res/js/user/fore_login.js"></script>
     <script src="${pageContext.request.contextPath}/res/js/user/fore_productDetails.js"></script>
     <link href="${pageContext.request.contextPath}/res/css/user/fore_productDetails.css" rel="stylesheet">
-    <title>${requestScope.product.product_name}-网上购物商城</title>
+    <title>${requestScope.product.product.productName}-网上购物商城</title>
 </head>
 <body>
 <nav>
@@ -20,14 +20,14 @@
     <div class="header">
         <a href="${pageContext.request.contextPath}">
             <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoB.png"></a>
-        <span class="shopNameHeader">${requestScope.product.product_category.category_name}官方旗舰店</span>
-        <input id="tid" type="hidden" value="${requestScope.product.product_category.category_id}"/>
+        <span class="shopNameHeader">${requestScope.product.category.categoryName}官方旗舰店</span>
+        <input id="tid" type="hidden" value="${requestScope.product.category.categoryId}"/>
         <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/detailsHeaderA.png"
              class="shopAssessHeader">
         <div class="shopSearchHeader">
             <form action="${pageContext.request.contextPath}/product" method="get">
                 <div class="shopSearchInput">
-                    <input type="text" class="searchInput" name="product_name" placeholder="搜索 商品/品牌/店铺"
+                    <input type="text" class="searchInput" name="productName" placeholder="搜索 商品/品牌/店铺"
                            maxlength="50">
                     <input type="submit" value="搜商品" class="searchTmall">
                 </div>
@@ -36,7 +36,7 @@
             <ul>
                 <c:forEach items="${requestScope.categoryList}" var="category" varStatus="i">
                     <li>
-                        <a href="${pageContext.request.contextPath}/product?category_id=${category.category_id}">${category.category_name}</a>
+                        <a href="${pageContext.request.contextPath}/product?categoryId=${category.categoryId}">${category.categoryName}</a>
                     </li>
                 </c:forEach>
             </ul>
@@ -103,31 +103,31 @@
     </div>
 </div>
 <div class="shopImg">
-    <img src="${pageContext.request.contextPath}/res/img/item/categoryPicture/${requestScope.product.product_category.category_image_src}">
+    <img src="${pageContext.request.contextPath}/res/img/item/categoryPicture/${requestScope.product.category.categoryImageSrc}">
 </div>
 <div class="context">
     <div class="context_left">
         <div class="context_img_ks">
-            <img src="${pageContext.request.contextPath}/res/images/item/productSinglePicture/${requestScope.product.singleProductImageList[0].productImage_src}"
+            <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${requestScope.product.previewPicture[0].productImageSrc}"
                  width="800px" height="800px">
         </div>
         <div class="context_img">
-            <img src="${pageContext.request.contextPath}/res/images/item/productSinglePicture/${requestScope.product.singleProductImageList[0].productImage_src}"
+            <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${requestScope.product.previewPicture[0].productImageSrc}"
                  class="context_img_main" width="400px" height="400px"/>
             <div class="context_img_winSelector"></div>
         </div>
         <ul class="context_img_ul">
-            <c:forEach var="img" items="${requestScope.product.singleProductImageList}">
+            <c:forEach var="img" items="${requestScope.product.previewPicture}">
                 <li class="context_img_li"><img
-                        src="${pageContext.request.contextPath}/res/images/item/productSinglePicture/${img.productImage_src}"/>
+                        src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${img.productImageSrc}"/>
                 </li>
             </c:forEach>
         </ul>
     </div>
     <div class="context_info">
         <div class="context_info_name_div">
-            <p class="context_info_name">${requestScope.product.product_name}</p>
-            <span class="context_info_title">${requestScope.product.product_title}</span>
+            <p class="context_info_name">${requestScope.product.product.productName}</p>
+            <span class="context_info_title">${requestScope.product.product.productTitle}</span>
         </div>
         <div class="context_info_main">
             <div class="context_info_main_ad">
@@ -138,24 +138,24 @@
             </div>
             <dl class="context_price_panel">
                 <dt>价格</dt>
-                <dd><em>¥</em><span>${requestScope.product.product_price}0</span></dd>
+                <dd><em>¥</em><span>${requestScope.product.product.productPrice}0</span></dd>
             </dl>
             <dl class="context_promotePrice_panel">
                 <dt>促销价</dt>
-                <dd><em>¥</em><span>${requestScope.product.product_sale_price}0</span></dd>
+                <dd><em>¥</em><span>${requestScope.product.product.productSalePrice}0</span></dd>
             </dl>
         </div>
         <ul class="context_other_panel">
             <li>总销量<span><c:choose>
-                <c:when test="${requestScope.product.product_sale_count != null}">
-                    ${requestScope.product.product_sale_count}
+                <c:when test="${requestScope.product.product.productSaleCount != null}">
+                    ${requestScope.product.product.productSaleCount}
                 </c:when>
                 <c:otherwise>0</c:otherwise>
             </c:choose></span>
             </li>
-            <li>累计评价<span>${requestScope.product.product_review_count}</span></li>
+            <li>累计评价<span>${requestScope.product.product.productReviewCount}</span></li>
             <li class="tmall_points">送天猫积分<span><fmt:formatNumber type="number"
-                                                                  value="${requestScope.product.product_sale_price/10}"
+                                                                  value="${requestScope.product.product.productSalePrice/10}"
                                                                   maxFractionDigits="0"/></span></li>
         </ul>
         <dl class="context_info_member">
@@ -170,7 +170,7 @@
                          class="amount_value-down">
                 </span>
                 <span class="amount_unit">件</span>
-                <em>库存1000件</em>
+                <em>库存${requestScope.product.product.productQuantity}件</em>
             </dd>
         </dl>
         <div class="context_buy">
@@ -178,7 +178,7 @@
                 $(function () {
                     //点击购买按钮时
                     $(".context_buy_form").submit(function () {
-                        if ('${sessionScope.userId}' === "") {//未登录不能购买
+                        if ('${sessionScope.userName}' === "") {//未登录不能购买
                             $(".loginModel").show();
                             $(".loginDiv").show();
                             return false;
@@ -187,13 +187,13 @@
                         if (number) {
                             location.reload();
                         } else {
-                            location.href = "${pageContext.request.contextPath}/order/create/${requestScope.product.product_id}?product_number=" + $.trim($(".context_buymember").val());
+                            location.href = "${pageContext.request.contextPath}/order/create/${requestScope.product.product.productId}?productNumber=" + $.trim($(".context_buymember").val());
                         }
                         return false;
                     });
                     //点击加入购物车按钮时
                     $(".context_buyCar_form").submit(function () {
-                        if ('${sessionScope.userId}' === "") {//未登录不能加入购物车
+                        if ('${sessionScope.userName}' === "") {//未登录不能加入购物车
                             $(".loginModel").show();
                             $(".loginDiv").show();
                             return false;
@@ -203,9 +203,9 @@
                             location.reload();
                         } else {
                             $.ajax({
-                                url: "${pageContext.request.contextPath}/orderItem/create/${requestScope.product.product_id}?product_number=" + $.trim($(".context_buymember").val()),
+                                url: "${pageContext.request.contextPath}/orderItem/create/${requestScope.product.product.productId}?productNumber=" + $.trim($(".context_buymember").val()),
                                 type: "POST",
-                                data: {"product_number": number},
+                                data: {"productNumber": number},
                                 dataType: "json",
                                 success: function (data) {
                                     if (data.success) {
@@ -257,13 +257,13 @@
         </div>
         <div class="context_ul_goodsList">
             <ul>
-                <c:forEach items="${requestScope.loveProductList}" var="product">
+                <c:forEach items="${requestScope.guessLikeList}" var="product">
                     <li class="context_ul_main">
                         <div class="context_ul_img">
-                            <a href="/tmall/product/${product.product_id}">
-                                <img src="${pageContext.request.contextPath}/res/images/item/productSinglePicture/${product.singleProductImageList[0].productImage_src}">
+                            <a href="/tmall/product/${product.productId}">
+                                <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${product.productImageSrc}">
                             </a>
-                            <p>¥${product.product_sale_price}0</p>
+                            <p>¥${product.productSalePrice}0</p>
                         </div>
                     </li>
                 </c:forEach>
@@ -280,11 +280,11 @@
     <div class="P_TabBarBox">
         <ul>
             <li class="P_GoodsDetails">
-                <a href="javascript:void(0)" class="detailsClick" onclick="getDetailsPage(this,'J_details')">商品详情</a>
+                <a href="javascript:void(0)" class="detailsClick" onclick="getDetailsPage(this,'P_details')">商品详情</a>
             </li>
             <li class="P_GoodsReviews">
                 <a href="javascript:void(0)"
-                   onclick="getDetailsPage(this,'J_reviews')">累计评价<span>${requestScope.product.product_review_count}</span></a>
+                   onclick="getDetailsPage(this,'P_reviews')">累计评价<span>${requestScope.reviewRes.count}</span></a>
             </li>
         </ul>
     </div>
@@ -293,8 +293,8 @@
         <%@include file="include/P_review.jsp" %>
     </div>
     <div class="P_img">
-        <c:forEach items="${requestScope.product.detailProductImageList}" var="image">
-            <img src="${pageContext.request.contextPath}/res/images/item/productDetailsPicture/${image.productImage_src}"/>
+        <c:forEach items="${requestScope.product.detailPicture}" var="image">
+            <img src="${pageContext.request.contextPath}/res/img/item/productDetailsPicture/${image.productImageSrc}"/>
         </c:forEach>
     </div>
 </div>

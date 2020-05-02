@@ -15,8 +15,8 @@
         <c:when test="${requestScope.searchValue != null}">${requestScope.searchValue}</c:when>
         <c:otherwise>
             <c:choose>
-                <c:when test="${requestScope.productList != null && fn:length(requestScope.productList)>0}">
-                    ${requestScope.productList[0].product_category.category_name}
+                <c:when test="${requestScope.productPageInfo.list != null && fn:length(requestScope.productPageInfo.list)>0}">
+                    ${requestScope.productPageInfo.list[0].productCategoryId}
                 </c:when>
                 <c:otherwise>没找到相关商品</c:otherwise>
             </c:choose>
@@ -35,7 +35,7 @@
         <div class="shopSearchHeader">
             <form action="${pageContext.request.contextPath}/product" method="get">
                 <div class="shopSearchInput">
-                    <input type="text" class="searchInput" name="product_name" placeholder="搜索 商品/品牌/店铺"
+                    <input type="text" class="searchInput" name="productName" placeholder="搜索 商品/品牌/店铺"
                            value="${requestScope.searchValue}" maxlength="50">
                     <input type="submit" value="搜 索" class="searchBtn">
                 </div>
@@ -43,7 +43,7 @@
             <ul>
                 <c:forEach items="${requestScope.categoryList}" var="category" varStatus="i">
                     <li>
-                        <a href="${pageContext.request.contextPath}/product?category_id=${category.category_id}">${category.category_name}</a>
+                        <a href="${pageContext.request.contextPath}/product?categoryId=${category.categoryId}">${category.categoryName}</a>
                     </li>
                 </c:forEach>
             </ul>
@@ -52,29 +52,29 @@
 </nav>
 <div class="context">
     <c:choose>
-        <c:when test="${requestScope.productList != null && fn:length(requestScope.productList)>0}">
+        <c:when test="${requestScope.productPageInfo.list != null && fn:length(requestScope.productPageInfo.list)>0}">
             <div class="context_menu">
                 <ul <c:choose>
                     <c:when test="${requestScope.searchValue != null}"> data-value="${requestScope.searchValue}"</c:when>
                     <c:otherwise>data-type = ${requestScope.searchType}</c:otherwise>
                 </c:choose>>
                     <li data-name="product_name"
-                        <c:if test="${requestScope.orderBy =='product_name' || requestScope.orderBy ==null}">class="orderBySelect"</c:if>>
+                        <c:if test="${requestScope.orderBy =='productName' || requestScope.orderBy ==null}">class="orderBySelect"</c:if>>
                         <span>综合</span>
                         <span class="orderByAsc"></span>
                     </li>
                     <li data-name="product_create_date"
-                        <c:if test="${requestScope.orderBy =='product_create_date'}">class="orderBySelect"</c:if>>
+                        <c:if test="${requestScope.orderBy =='productCreateDate'}">class="orderBySelect"</c:if>>
                         <span>新品</span>
                         <span class="orderByAsc"></span>
                     </li>
                     <li data-name="product_sale_count"
-                        <c:if test="${requestScope.orderBy =='product_sale_count'}">class="orderBySelect"</c:if>>
+                        <c:if test="${requestScope.orderBy =='productSaleCount'}">class="orderBySelect"</c:if>>
                         <span>销量</span>
                         <span class="orderByAsc"></span>
                     </li>
                     <li data-name="product_sale_price"
-                        <c:if test="${requestScope.orderBy =='product_sale_price'}">class="orderBySelect"</c:if>>
+                        <c:if test="${requestScope.orderBy =='productSalePrice'}">class="orderBySelect"</c:if>>
                         <span style="position: relative;left: 3px">价格</span>
                         <span class="orderByDesc <c:if test="${requestScope.isDesc == true}">orderBySelect</c:if>"
                               style="bottom: 5px; left: 6px;"></span>
@@ -84,28 +84,28 @@
                 </ul>
             </div>
             <div class="context_main">
-                <c:forEach items="${requestScope.productList}" var="product">
+                <c:forEach items="${requestScope.productPageInfo.list}" var="product">
                     <div class="context_productStyle">
                         <div class="context_product">
-                            <a href="${pageContext.request.contextPath}/product/${product.product_id}" target="_blank">
-                                <img class="context_product_imgMain" src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${product.singleProductImageList[0].productImage_src}"/>
+                            <a href="${pageContext.request.contextPath}/product/${product.productId}" target="_blank">
+                                <img class="context_product_imgMain" src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${product.previewPicture[0].productImageSrc}"/>
                             </a>
                             <ul class="context_product_imgList">
-                                <c:forEach items="${product.singleProductImageList}" var="img">
+                                <c:forEach items="${product.previewPicture}" var="img">
                                     <li>
-                                        <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${img.productImage_src}"/>
+                                        <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${img.productImageSrc}"/>
                                     </li>
                                 </c:forEach>
                             </ul>
-                            <p class="context_product_price"><span>¥</span>${product.product_sale_price}</p>
-                            <p class="context_product_name"><a href="/mall/product/${product.product_id}"
-                                                               target="_blank">${product.product_name}</a></p>
-                            <p class="context_product_shop"><span>${product.product_category.category_name}旗舰店</span>
+                            <p class="context_product_price"><span>¥</span>${product.productSalePrice}</p>
+                            <p class="context_product_name"><a href="/mall/product/${product.productId}"
+                                                               target="_blank">${product.productName}</a></p>
+                            <p class="context_product_shop"><span>${product.categoryName}旗舰店</span>
                             </p>
                             <p class="context_product_status">
                                 <span class="status_left">总成交<em><c:choose><c:when
-                                        test="${product.product_sale_count != null}">${product.product_sale_count}</c:when><c:otherwise>0</c:otherwise></c:choose>笔</em></span>
-                                <span class="status_middle">评价<em>${product.product_review_count}</em></span>
+                                        test="${product.productSaleCount != null}">${product.productSaleCount}</c:when><c:otherwise>0</c:otherwise></c:choose>笔</em></span>
+                                <span class="status_middle">评价<em>${product.productReviewCount}</em></span>
                                 <span class="status_right">
                                     <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/T11lggFoXcXXc1v.nr-93-93.png"/></span>
                             </p>

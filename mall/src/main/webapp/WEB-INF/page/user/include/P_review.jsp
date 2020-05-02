@@ -54,17 +54,17 @@
 <body>
 <div class="P_reviews">
     <div class="reviews_main">
-        <c:forEach items="${requestScope.product.reviewList}" var="review">
+        <c:forEach items="${requestScope.reviewRes.review}" var="review">
             <div class="reviews_info">
                 <div class="reviews_main">
                     <div class="reviews_content">
-                        <p>${review.review_content}</p>
+                        <p>${review.reviewContent}</p>
                     </div>
                     <div class="reviews_date">
-                        <span>${review.review_createDate}</span>
+                        <span>${review.reviewCreatedate}</span>
                     </div>
                 </div>
-                <div class="reviews_author">${review.review_user.user_nickname}</div>
+                <div class="reviews_author">${review.userName}</div>
             </div>
         </c:forEach>
     </div>

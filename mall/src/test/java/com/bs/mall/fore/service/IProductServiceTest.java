@@ -35,9 +35,9 @@ public class IProductServiceTest {
         queryProductListReqDto.setPageSize(10);
         queryProductListReqDto.setOrderBy("product_sale_price");
         queryProductListReqDto.setIsDesc(false);
-        PageInfo<Product> productPageInfo = productService.queryProductList(queryProductListReqDto);
+        PageInfo<ForeProductListResDto> productPageInfo = productService.queryProductList(queryProductListReqDto);
         System.out.println(productPageInfo);
-        for (Product o : productPageInfo.getList()) {
+        for (ForeProductListResDto o : productPageInfo.getList()) {
             System.out.println(o);
         }
     }
@@ -46,12 +46,9 @@ public class IProductServiceTest {
     public void getProductGuessLikeTest(){
         ForeProductGuessReqDto foreProductGuessReqDto = new ForeProductGuessReqDto();
         foreProductGuessReqDto.setCategoryId(1);
-        foreProductGuessReqDto.setPageNum(2);
-        foreProductGuessReqDto.setPageSize(5);
-        PageInfo<ForeProductGuessResDto> productGuessLike = productService.getProductGuessLike(foreProductGuessReqDto);
+        List<ForeProductGuessResDto> productGuessLike = productService.getProductGuessLike(foreProductGuessReqDto);
         System.out.println(productGuessLike);
-        System.out.println(productGuessLike.getPageNum());
-        for (ForeProductGuessResDto foreProductGuessResDto : productGuessLike.getList()) {
+        for (ForeProductGuessResDto foreProductGuessResDto : productGuessLike) {
             System.out.println(foreProductGuessResDto);
         }
     }
@@ -118,7 +115,7 @@ public class IProductServiceTest {
             System.out.println(productImage1);
         }
 
-        for (ForeProductGuessResDto foreProductGuessResDto : productDetails.getProductGuess().getList()) {
+        for (ForeProductGuessResDto foreProductGuessResDto : productDetails.getProductGuess()) {
             System.out.println("========foreProductGuessResDto===============");
             System.out.println(foreProductGuessResDto);
         }
