@@ -1,22 +1,25 @@
-package com.bs.mall.dao.pojo;
+package com.bs.mall.dto.res;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.bs.mall.dao.pojo.Product;
+import com.bs.mall.dao.pojo.ProductImage;
 import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
 
-/**
- *产品
- */
 @Data
-public class Product {
+public class ForeProductListResDto {
+    /**
+     * 参评类型名
+     */
+    private String categoryName;
+
     /**
      * 产品ID
      */
-    @TableId(type = IdType.AUTO)
     private Integer productId;
 
     /**
@@ -52,7 +55,6 @@ public class Product {
     /**
      * 产品状态:销售中0 停售中1 促销中2
      */
-    @TableField("product_isEnabled")
     private Integer productIsEnabled;
 
     /**
@@ -71,5 +73,11 @@ public class Product {
      */
     private Integer productQuantity;
 
+
+
+    /**
+     * 该产品对应的预览图片
+     */
+    List<ProductImage> previewPicture;
 
 }

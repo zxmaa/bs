@@ -31,4 +31,11 @@ public interface ICategoryService {
      */
     List<ForeProductSimpleDto> getProductByCategoryId(Integer categoryId);
 
+    /**
+     * 根据categoryId得该category的详细信息
+     * @param categoryId
+     * @return
+     */
+    Category getCategoryById(Integer categoryId);
+
 }

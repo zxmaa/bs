@@ -107,4 +107,14 @@ public class CategoryServiceImpl implements ICategoryService {
         }
         return result;
     }
+
+    /**
+     * 根据categoryId得该category的详细信息
+     * @param categoryId
+     * @return
+     */
+    @Override
+    public Category getCategoryById(Integer categoryId) {
+        return categoryMapper.selectById(categoryId);
+    }
 }

@@ -18,4 +18,9 @@ public class ForeProductGuessResDto {
      */
     private String productImageSrc;
 
+    /**
+     * 产品的售价
+     */
+    private Double productSalePrice;
+
 }

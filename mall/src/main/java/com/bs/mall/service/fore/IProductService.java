@@ -4,10 +4,7 @@ import com.bs.mall.dao.pojo.Product;
 import com.bs.mall.dto.req.ForeProductGuessReqDto;
 import com.bs.mall.dto.req.ForeQueryProductListReqDto;
 import com.bs.mall.dto.req.ForeReviewReqDto;
-import com.bs.mall.dto.res.ForeProductDetailsResDto;
-import com.bs.mall.dto.res.ForeProductGuessResDto;
-import com.bs.mall.dto.res.ForeProductPropertyResDto;
-import com.bs.mall.dto.res.ForeReviewResDto;
+import com.bs.mall.dto.res.*;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
@@ -22,7 +19,7 @@ public interface IProductService {
      * @param foreQueryProductListReqDto
      * @return
      */
-    PageInfo<Product> queryProductList(ForeQueryProductListReqDto foreQueryProductListReqDto);
+    PageInfo<ForeProductListResDto> queryProductList(ForeQueryProductListReqDto foreQueryProductListReqDto);
 
 
     /**
@@ -30,7 +27,7 @@ public interface IProductService {
      * @param foreProductGuessReqDto
      * @return
      */
-    PageInfo<ForeProductGuessResDto> getProductGuessLike(ForeProductGuessReqDto foreProductGuessReqDto);
+    List<ForeProductGuessResDto> getProductGuessLike(ForeProductGuessReqDto foreProductGuessReqDto);
 
     /**
      * 根据productId得到属性列表

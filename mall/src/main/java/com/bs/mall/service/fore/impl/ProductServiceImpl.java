@@ -9,6 +9,7 @@ import com.bs.mall.dao.ReviewMapper;
 import com.bs.mall.dao.pojo.Category;
 import com.bs.mall.dao.pojo.Product;
 import com.bs.mall.dao.pojo.ProductImage;
+import com.bs.mall.dto.ForeProductSimpleDto;
 import com.bs.mall.dto.req.ForeProductGuessReqDto;
 import com.bs.mall.dto.req.ForeQueryProductListReqDto;
 import com.bs.mall.dto.req.ForeReviewReqDto;
@@ -18,10 +19,13 @@ import com.bs.mall.service.fore.IProductService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,7 +51,7 @@ public class ProductServiceImpl implements IProductService {
      * @return
      */
     @Override
-    public PageInfo<Product> queryProductList(ForeQueryProductListReqDto foreQueryProductListReqDto) {
+    public PageInfo<ForeProductListResDto> queryProductList(ForeQueryProductListReqDto foreQueryProductListReqDto) {
         if(null == foreQueryProductListReqDto.getPageNum()){
             //默认第一页
             foreQueryProductListReqDto.setPageNum(1);
@@ -62,7 +66,27 @@ public class ProductServiceImpl implements IProductService {
         }
         PageHelper.startPage(foreQueryProductListReqDto.getPageNum(), foreQueryProductListReqDto.getPageSize());
         List<Product> products = productMapper.queryProductListFore(foreQueryProductListReqDto);
-        PageInfo<Product> pageInfo = new PageInfo<Product>(products);
+        List<ForeProductListResDto> result = new ArrayList<>();
+
+        ForeProductListResDto temp;
+        for (Product product : products) {
+            temp = new ForeProductListResDto();
+            BeanUtils.copyProperties(product,temp);
+            //得到产品的类型名
+            Category category = categoryService.getCategoryById(product.getProductCategoryId());
+            temp.setCategoryName(category.getCategoryName());
+            //得到预览图片
+            QueryWrapper<ProductImage> wrapper1 = new QueryWrapper<>();
+            wrapper1.eq("product_image_product_id",product.getProductId());
+            wrapper1.eq("product_image_type",0);
+            List<ProductImage> previewImages = productImageMapper.selectList(wrapper1);
+            temp.setPreviewPicture(previewImages);
+            result.add(temp);
+        }
+
+
+        PageInfo pageInfo = new PageInfo<Product>(products);
+        pageInfo.setList(result);
         return pageInfo;
     }
 
@@ -72,27 +96,33 @@ public class ProductServiceImpl implements IProductService {
      * @return
      */
     @Override
-    public PageInfo<ForeProductGuessResDto> getProductGuessLike(ForeProductGuessReqDto foreProductGuessReqDto) {
-        if(null == foreProductGuessReqDto.getPageNum()){
-            //默认第一页
-            foreProductGuessReqDto.setPageNum(1);
-        }
-        if(null == foreProductGuessReqDto.getPageSize()){
-            //默认每页3个产品
-            foreProductGuessReqDto.setPageSize(3);
-        }
-        Page<?> page = PageHelper.startPage(foreProductGuessReqDto.getPageNum(), foreProductGuessReqDto.getPageSize());
+    public List<ForeProductGuessResDto> getProductGuessLike(ForeProductGuessReqDto foreProductGuessReqDto) {
+
         QueryWrapper<Product>queryWrapper  = new QueryWrapper<>();
         queryWrapper.eq("product_category_id", foreProductGuessReqDto.getCategoryId());
         queryWrapper.ne("product_isEnabled",1);
-        List<Product> products = productMapper.selectList(queryWrapper);
+        List<Product> productList = productMapper.selectList(queryWrapper);
+        //打乱顺序
+        Collections.shuffle(productList);
 
+        //返回三个
+        List<Product> products = null;
+        if(productList != null && productList.size()>3){
+            products = productList.stream().limit(3).collect(Collectors.toList());
+        }else if(productList != null){
+            for (Product product : productList) {
+                Product temp = new Product();
+                BeanUtils.copyProperties(product,temp);
+                products.add(product);
+            }
+        }
 
         List<ForeProductGuessResDto> productGuess = new ArrayList<>();
         ForeProductGuessResDto temp ;
         for (Product product : products) {
             temp = new ForeProductGuessResDto();
             temp.setProductId(product.getProductId());
+            temp.setProductSalePrice(product.getProductSalePrice());
 
             QueryWrapper<ProductImage> wrapper = new QueryWrapper<>();
             wrapper.eq("product_image_product_id",product.getProductId());
@@ -107,9 +137,8 @@ public class ProductServiceImpl implements IProductService {
 
         }
 
-       PageInfo pageInfo = new PageInfo(products);
-        pageInfo.setList(productGuess);
-        return pageInfo;
+
+        return productGuess;
     }
 
 
@@ -165,13 +194,13 @@ public class ProductServiceImpl implements IProductService {
         Product product = productMapper.selectById(productId);
         result.setProduct(product);
 
-        //该产品的类型名
-        String categoryName = getCategoryNameByProductId(productId);
-        result.setCategoryName(categoryName);
+        //该产品的类型
+        Category category = categoryService.getCategoryById(product.getProductCategoryId());
+        result.setCategory(category);
 
-        //返回所有的类型名
+        //返回类型名的前三个
         List<Category> allCategory = categoryService.getAllCategory();
-        result.setCategories(allCategory);
+        result.setCategories(allCategory.stream().limit(3).collect(Collectors.toList()));
 
         //预览图片
         QueryWrapper<ProductImage> wrapper1 = new QueryWrapper<>();
@@ -190,7 +219,7 @@ public class ProductServiceImpl implements IProductService {
         //猜你喜欢
         ForeProductGuessReqDto productGuess = new ForeProductGuessReqDto();
         productGuess.setCategoryId(product.getProductCategoryId());
-        PageInfo<ForeProductGuessResDto> guessLikes = getProductGuessLike(productGuess);
+        List<ForeProductGuessResDto> guessLikes = getProductGuessLike(productGuess);
         result.setProductGuess(guessLikes);
 
         //商品属性值

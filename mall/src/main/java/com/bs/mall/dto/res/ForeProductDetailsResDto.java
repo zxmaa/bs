@@ -19,9 +19,10 @@ public class ForeProductDetailsResDto {
     Product product;
 
     /**
-     * 该产品的所属的类型名：用于显示头部的：xx旗舰店
+     *( 该产品的所属的类型名：用于显示头部的：xx旗舰店)
+     * 该产品所对应的类型详情
      */
-    String categoryName;
+    Category category;
 
     /**
      * 类型：用于搜索框下面
@@ -41,7 +42,7 @@ public class ForeProductDetailsResDto {
     /**
      * 猜你喜欢
      */
-    PageInfo<ForeProductGuessResDto> productGuess;
+    List<ForeProductGuessResDto> productGuess;
 
     /**
      * 评论

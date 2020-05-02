@@ -4,6 +4,7 @@ import com.bs.mall.controller.BaseController;
 import com.bs.mall.dao.pojo.Category;
 import com.bs.mall.dao.pojo.Product;
 import com.bs.mall.dto.req.ForeQueryProductListReqDto;
+import com.bs.mall.dto.res.ForeProductListResDto;
 import com.bs.mall.service.fore.ICategoryService;
 import com.bs.mall.service.fore.IProductService;
 import com.github.pagehelper.PageInfo;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ForeProductListController  extends BaseController {
@@ -59,12 +61,13 @@ public class ForeProductListController  extends BaseController {
         ForeQueryProductListReqDto queryProductListReqDto = new ForeQueryProductListReqDto();
         queryProductListReqDto.setCategoryId(categoryId);
         queryProductListReqDto.setSearchValueSplit(productNameSplit);
-        PageInfo<Product> productPageInfo = productService.queryProductList(queryProductListReqDto);
+        PageInfo<ForeProductListResDto> productPageInfo = productService.queryProductList(queryProductListReqDto);
 
         List<Category> allCategory = categoryService.getAllCategory();
+        List<Category> categorys = allCategory.stream().limit(5).collect(Collectors.toList());
 
         model.addAttribute("productPageInfo",productPageInfo);
-        model.addAttribute("allCategory",allCategory);
+        model.addAttribute("categoryList",categorys);
         model.addAttribute("searchValue",searchValue);
         model.addAttribute("searchType",searchType);
 
@@ -115,12 +118,13 @@ public class ForeProductListController  extends BaseController {
         queryProductListReqDto.setOrderBy(orderBy);
         queryProductListReqDto.setPageNum(pageNumber);
         queryProductListReqDto.setPageSize(pageSize);
-        PageInfo<Product> productPageInfo = productService.queryProductList(queryProductListReqDto);
+        PageInfo<ForeProductListResDto> productPageInfo = productService.queryProductList(queryProductListReqDto);
 
         List<Category> allCategory = categoryService.getAllCategory();
+        List<Category> categorys = allCategory.stream().limit(5).collect(Collectors.toList());
 
         model.addAttribute("productPageInfo",productPageInfo);
-        model.addAttribute("allCategory",allCategory);
+        model.addAttribute("categoryList",categorys);
         model.addAttribute("searchValue",searchValue);
         model.addAttribute("searchType",searchType);
         model.addAttribute("orderBy", orderBy);

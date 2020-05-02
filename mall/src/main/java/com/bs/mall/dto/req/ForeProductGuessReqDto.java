@@ -12,13 +12,4 @@ public class ForeProductGuessReqDto {
      */
     private Integer categoryId;
 
-    /**
-     * 第几页
-     */
-    private Integer pageNum;
-
-    /**
-     * 每页大小
-     */
-    private Integer pageSize;
 }
