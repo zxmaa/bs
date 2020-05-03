@@ -101,7 +101,6 @@
 
 <script>
     var firstTrObj = document.getElementsByClassName("order_table")[0].getElementsByTagName("table")[0].getElementsByTagName("tr")[1];
-
     var defaultAddr=firstTrObj.children[firstTrObj.children.length-1];
     var spanObj=defaultAddr.getElementsByTagName("span")[0];
     console.log(spanObj.innerText);
@@ -110,9 +109,6 @@
     if(flag == 1){
         defaultAddr.innerHTML="<div class='defaultAddr'>默认地址</div>";
     }
-
-
-
 </script>
 
 

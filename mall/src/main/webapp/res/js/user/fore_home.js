@@ -1,17 +1,13 @@
-var index = 1;
 $(function () {
-    //主页切换动画
-    getTimer();
-    var timer = setInterval(getTimer, 3000);
-    $(".banner_main > a").attr("href", "/mall/product/" + $("#banner1").attr("name"));
+    $(".nav_col > a").attr("href", "/mall/product/" + $("#banner1").attr("name"));
     //单击商品分类链接时
     $(".banner_div a").click(function () {
-        $(".banner_main").unbind("click");
+        $(".nav_col").unbind("click");
     });
     //悬浮到分类导航时
     $(".banner_nav>li").hover(function () {
         $(this).find(">a").css("color", "#6347ED");
-        var div = $(this).find(">.banner_div").css("display", "block");
+        var div = $(this).find(">.banner_div").css({"display":"block","position":"absolute","float":"left","background-color":"white"});
         if ($(this).attr("data-status") === "ajaxShow") {
             return;
         }
@@ -66,40 +62,25 @@ $(function () {
             return false;
         }
     });
-    //悬浮到指定节点时
-    $(".banner_slider>li").hover(function () {
-        index = parseInt($(this).attr("id").substring($(this).attr("id").indexOf("_") + 1));
-        clearInterval(timer);
-        getTimer();
-    }, function () {
-        timer = setInterval(getTimer, 3000);
-    });
 });
 
-function getTimer() {
-    var banner = $(".banner");
-    var sliders = $(".banner_slider>li");
-    var color;
-    var img = $("#banner" + index);
-    $(".banner_main > a").attr("href", "/mall/product/" + img.attr("name"));
-    if (index === 1) {
-        color = "#0F1322";
-    } else if (index === 2 || index === 5) {
-        color = "#E8E8E8";
-    } else if (index === 3) {
-        color = "#FBB4B0";
-    } else if (index === 4) {
-        color = "#262C42";
-    } else {
-        color = "#BD160D";
-    }
-    sliders.css("background", "rgba(0,0,0,0.4)");
-    $("#slider_" + index).css("background", "rgba(255,255,255,0.4)");
-    img.stop(true, true).fadeIn(1000);
-    banner.stop(true, true).animate({
-        "backgroundColor": color
-    }, 800);
-    img.siblings('img').stop(true, true).fadeOut(1000);
-    index++;
-    index = index > 6 ? 1 : index;//循环1-5
-}
+//滑动间隔时间
+$(".carousel").carousel({
+    interval:3000
+})
+
+// $(".collapse").collapse();
+// $(".collapse.in").collapse('hide');
+// $(function () {
+// //修复collapse不能正常折叠的问题
+//     $(".collapsed").click(function () {
+//         var itemHref = $(this).attr("href");
+//         var itemClass = $(itemHref).attr("class");
+//         if (itemClass === "panel-collapse collapse") {
+//             $(itemHref).attr("class", "panel-collapse collapse in").css("height", "auto");
+//         } else {
+//             $(itemHref).attr("class", "panel-collapse collapse").css("height", "0px");
+//         }
+//         return false;//停止运行bootstrap自带的函数
+//     });
+// })

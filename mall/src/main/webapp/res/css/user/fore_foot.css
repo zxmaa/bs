@@ -1,32 +1,33 @@
-/*尾部样式*/
-.footer-copyright {
+/*脚部样式*/
+#foot_container {
     border-top: 2px solid #FF0036;
     background: #000;
-    text-align: left;
     min-height: 177px;
-}
-
-.footer-copyright > .footer {
-    overflow: hidden;
-    width: 1190px;
-    margin: 0 auto;
+    width: 100%;
     font: 12px/1.5 "Microsoft YaHei UI", arial, "\5b8b\4f53";
+    line-height: 25px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
-.footer > p {
+#foot_container > .row {
+    margin: 0px 5px;
+}
+
+#foot_container > p {
     color: #ffffff;
     padding: 5px 0;
     line-height: 25px;
-    margin: 0;
+    margin: 0 auto;
 }
 
-.footer a {
+#foot_container a {
     color: #FFFFFF;
-    margin-right: 3px;
+    margin-right: 10px;
     text-decoration: none;
 }
 
-.footer a:hover {
+#foot_container a:hover {
     text-decoration: underline;
 }
 
@@ -34,28 +35,26 @@
     display: none;
 }
 
-.copyright {
+#copyright {
     color: #a4a4a4;
     line-height: 25px;
 }
 
-.copyright > a {
+#copyright > a {
     color: #999;
     margin-right: 65px;
 }
 
-.copyright img {
+#copyright img {
     position: relative;
     bottom: 2px;
     vertical-align: middle;
     border: 0;
+    max-width: 100%;
 }
 
-.copyright > b {
+#copyright > b {
     font-weight: 400;
     color: #686868;
 }
 
-.footertwo > a {
-    margin-right: 10px;
-}

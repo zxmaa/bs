@@ -10,7 +10,8 @@
     <title>已买到的宝贝</title>
     <script>
         $(function () {
-            $('#btn-ok').click(function () {<%-- “确定”按钮点击触发事件 --%>
+            //模态框中确定按钮点击事件
+            $('#btn-ok').click(function () {
                 $.ajax({
                     url: "${pageContext.request.contextPath}/order/close/" + $("#order_id_hidden").val(),
                     type: "PUT",
@@ -32,7 +33,7 @@
                 });
             });
         });
-
+        //取消订单
         function closeOrder(orderCode) {
             if (isNaN(orderCode) || orderCode === null) {
                 return;
@@ -40,7 +41,7 @@
             $("#order_id_hidden").val(orderCode);
             $('#modalDiv').modal();
         }
-
+        //根据订单状态切换页面
         function getPage(index) {
             var name = $(".tab_select").children("a").attr("name");
             if (name === undefined) {
@@ -89,6 +90,7 @@
         <li <c:if test="${requestScope.status == 3}">class="tab_select"</c:if>><a
                 href="${pageContext.request.contextPath}/order/0/10?status=3" name="status=3">已完成</a></li>
     </ul>
+    <%--分页--%>
     <%@include file="include/page.jsp" %>
     <table class="table_orderList">
         <thead>

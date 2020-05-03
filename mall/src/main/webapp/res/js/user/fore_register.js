@@ -52,6 +52,7 @@ $(function () {
 
         //验证密码的格式 包含数字和英文字母
         var reg = new RegExp(/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/);
+        //验证电话号码格式
         var tel=new RegExp(/^1[3456789]\d{9}$/);
         if (user_name == null || user_name === "") {
             $("#user_name").css("border", "1px solid red")

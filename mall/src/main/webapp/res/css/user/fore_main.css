@@ -9,11 +9,11 @@ input {
 }
 
 html{
-    min-width: 1270px;
+    /*min-width: 1270px;*/
 }
 
 body {
-    min-width: 1270px;
+    /*min-width: 1270px;*/
     position: relative;
 }
 

@@ -3,7 +3,7 @@ $(function () {
     $('#select_order_address_province').selectpicker('refresh');
     $('#select_order_address_city').selectpicker('refresh');
     $('#select_order_address_district').selectpicker('refresh');
-    //改变订单信息时
+    //改变地址信息时
     $('#select_order_address_province').change(function () {
         $.ajax({
             type: "GET",

@@ -25,6 +25,7 @@ $(function () {
             $(this).removeClass("loginSwitch_two").addClass("loginSwitch");
         }
     });
+    //密码登录点击事件
     $("#pwdLogin").click(function () {
         var messageSpan = $(".loginMessageMain").children("span");
         $(".pwdLogin").css("display", "block");

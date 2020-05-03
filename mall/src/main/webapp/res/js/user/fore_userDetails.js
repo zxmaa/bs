@@ -279,7 +279,6 @@ function uploadImage(fileDom) {
         }
     });
 }
-
 //页面隐藏与显示
 function getDataPage(obj, className) {
     $(".J_TabBarBox").find("li").removeClass("tab-selected");

@@ -306,6 +306,7 @@
             var productOrder_mobile = $.trim($("#input_order_phone").val());
 
             var yn = true;
+            //非空验证
             if (productOrder_detail_address === "") {
                 styleUtil.specialBasicErrorShow($("#label_details_address"));
                 yn = false;
@@ -314,11 +315,13 @@
                 styleUtil.specialBasicErrorShow($("#label_order_receiver"));
                 yn = false;
             }
+            //验证电话号码格式
             var re = /^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/;
             if (!re.test(productOrder_mobile)) {
                 styleUtil.specialBasicErrorShow($("#label_order_phone"));
                 yn = false;
             }
+            //验证邮政编码格式
             re = /^[1-9][0-9]{5}$/;
             if (!re.test(productOrder_post) && productOrder_post !== "") {
                 styleUtil.specialBasicErrorShow($("#label_order_post"));

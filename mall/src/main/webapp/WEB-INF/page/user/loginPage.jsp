@@ -40,8 +40,9 @@
         <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoA.png"/>
     </a>
 </nav>
+<div class="container">
 <div class="content">
-    <div class="contentMain"></div>
+    <div class="bg"></div>
     <div class="loginDiv">
         <div class="loginSwitch" id="loginSwitch"></div>
         <div class="loginMessage">
@@ -95,6 +96,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <%@ include file="include/footer.jsp" %>
 <link href="${pageContext.request.contextPath}/res/css/user/fore_foot_special.css" rel="stylesheet"/>

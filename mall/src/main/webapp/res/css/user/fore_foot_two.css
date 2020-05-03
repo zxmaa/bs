@@ -1,37 +1,45 @@
-.banner_footer {
+#banner_footer {
     border-top: 1px solid #D1D7DC;
     padding: 0;
 }
 
-.banner_footer > .mall-ensure {
-    background: url(../../img/user/WebsiteImage/TB14dANRXXXXXbdXXXXXXXXXXXX-1190-100.jpg);
-    width: 1190px;
+#banner_footer > .mall-ensure {
+    background: url(../../img/user/WebsiteImage/TB14dANRXXXXXbdXXXXXXXXXXXX-1190-100.jpg) no-repeat center;
+    background-size: contain;
+    width: 100%;
     height: 100px;
     margin: 25px auto;
 }
 
-.mall-ensure > a {
+#banner_footer .mall-ensure .foot_a{
+    width: 20%;
+    height: 100px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+#banner_footer .mall-ensure .foot_a> a {
     float: left;
     display: block;
-    width: 297px;
+    width: 100%;
     height: 100px;
     text-indent: -1000em;
 }
 
-.banner_footer > .mall-desc {
-    background: url(../../img/user/WebsiteImage/TB1dl28RXXXXXbzaFXXXXXXXXXX-136-50.png) 45px bottom no-repeat;
-    background-size: 68px 25px;
-    width: 1190px;
+#banner_footer  .mall-desc {
+    /*background: url(../../img/user/WebsiteImage/TB1dl28RXXXXXbzaFXXXXXXXXXX-136-50.png)45px bottom no-repeat;*/
+    /*background-size: 68px 25px;*/
+    width: 100%;
     padding-top: 22px;
-    height: 190px;
+    /*height: 50%;*/
     margin: auto;
     border-top: 1px solid #ededed;
 }
 
 .mall-desc > dl {
     float: left;
-    width: 186px;
-    padding-left: 52px;
+    width: 150px;
+    padding-left: 40px;
 }
 
 .mall-desc > dl > dt {

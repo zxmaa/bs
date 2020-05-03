@@ -7,35 +7,45 @@
     <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="banner_footer">
-    <div class="mall-ensure">
-        <a href="http://pages.tmall.com/wow/seller/act/newpinzhibaozhang"></a>
-        <a href="http://www.tmall.com/wow/seller/act/seven-day"></a>
-        <a href="http://www.tmall.com/wow/seller/act/special-service?spm=875.7931836/B.a2226n1.3.71ca4265dmsU86"></a>
-        <a href="http://service.tmall.com/support/tmall/tmallHelp.htm"></a>
+<div class="container" id="banner_footer">
+    <div class="mall-ensure row " >
+        <div class="col-md-3 col-xs-3 text-center foot_a">
+            <a href="http://pages.tmall.com/wow/seller/act/newpinzhibaozhang"></a>
+        </div>
+        <div class="col-md-3 col-xs-3 text-center foot_a">
+            <a href="http://www.tmall.com/wow/seller/act/seven-day"></a>
+        </div>
+        <div class="col-md-3 col-xs-3 text-center foot_a">
+            <a href="http://www.tmall.com/wow/seller/act/special-service?spm=875.7931836/B.a2226n1.3.71ca4265dmsU86"></a>
+        </div>
+        <div class="col-md-3 col-xs-3 text-center foot_a">
+            <a href="http://service.tmall.com/support/tmall/tmallHelp.htm"></a>
+        </div>
     </div>
     <div class="mall-desc">
         <dl>
             <dt><span>购物指南</span></dt>
-            <dd><a href="http://register.tmall.com/" target="_blank">免费注册</a> <a
-                    href="https://www.alipay.com/user/reg_select.htm" target="_blank">开通支付宝</a> <a
-                    href="https://www.alipay.com/user/login.htm?goto=https%3A%2F%2Fwww.alipay.com%2Fuser%2Finpour_request.htm"
-                    target="_blank">支付宝充值</a></dd>
+            <dd><a href="http://register.tmall.com/" target="_blank">免费注册</a>
+                <a href="https://www.alipay.com/user/reg_select.htm" target="_blank">开通支付宝</a>
+                <a href="https://www.alipay.com/user/login.htm?goto=https%3A%2F%2Fwww.alipay.com%2Fuser%2Finpour_request.htm" target="_blank">支付宝充值</a>
+            </dd>
         </dl>
         <dl>
             <dt><span>天猫保障</span></dt>
-            <dd data-spm-anchor-id="875.7931836/B.a2226n1.i0.71ca4265hUvhyq"><a
-                    href="http://service.tmall.com/support/tmall/knowledge-1140860.htm" target="_blank">发票保障</a> <a
-                    href="http://service.tmall.com/support/tmall/knowledge-1124063.htm" target="_blank">售后规则</a> <a
-                    href="http://service.tmall.com/support/tmall/knowledge-1126800.htm" target="_blank">缺货赔付</a></dd>
+            <dd data-spm-anchor-id="875.7931836/B.a2226n1.i0.71ca4265hUvhyq">
+                <a href="http://service.tmall.com/support/tmall/knowledge-1140860.htm" target="_blank">发票保障</a>
+                <a href="http://service.tmall.com/support/tmall/knowledge-1124063.htm" target="_blank">售后规则</a>
+                <a href="http://service.tmall.com/support/tmall/knowledge-1126800.htm" target="_blank">缺货赔付</a>
+            </dd>
         </dl>
         <dl>
             <dt><span>支付方式</span></dt>
-            <dd><a href="https://payservice.alipay.com/intro/index.htm?c=kjzf" target="_blank">快捷支付</a> <a
-                    href="https://payservice.alipay.com/intro/index.htm?c=xyk" target="_blank">信用卡</a> <a
-                    href="https://payservice.alipay.com/intro/index.htm?c=yeb" target="_blank">余额宝</a> <a
-                    href="https://payservice.alipay.com/intro/index.htm?c=hb" target="_blank">蚂蚁花呗</a> <a
-                    href="http://tms.alicdn.com/market/cainiao/codchn.php" target="_blank">货到付款</a></dd>
+            <dd><a href="https://payservice.alipay.com/intro/index.htm?c=kjzf" target="_blank">快捷支付</a>
+                <a href="https://payservice.alipay.com/intro/index.htm?c=xyk" target="_blank">信用卡</a>
+                <a href="https://payservice.alipay.com/intro/index.htm?c=yeb" target="_blank">余额宝</a>
+                <a href="https://payservice.alipay.com/intro/index.htm?c=hb" target="_blank">蚂蚁花呗</a>
+                <a href="http://tms.alicdn.com/market/cainiao/codchn.php" target="_blank">货到付款</a>
+            </dd>
         </dl>
         <dl>
             <dt><span>商家服务</span></dt>
