@@ -13,7 +13,7 @@
     <style rel="stylesheet">
         #baseNavigator {
             padding: 22px 0;
-            width: 1190px;
+            width: 100%;
             height: 44px;
             margin: auto;
         }

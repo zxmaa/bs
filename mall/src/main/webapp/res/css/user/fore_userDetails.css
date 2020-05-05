@@ -3,7 +3,7 @@ nav {
 }
 
 .header {
-    width: 1230px;
+    width: 100%;
     margin: 0 auto;
     height: 96px;
 }
@@ -31,7 +31,7 @@ nav {
     cursor: pointer;
     vertical-align: top;
 }
-
+/*个人中心文本设计*/
 #mallLogo .span_tmallRegister {
     font-family: "Microsoft YaHei UI Light", serif;
     display: inline-block;
@@ -46,15 +46,17 @@ nav {
 .content {
     color: #333;
     position: relative;
-    width: 1190px;
+    width: 100%;
     min-height: 550px;
     font-family: Arial, serif;
-    margin: 40px auto;
+    /*margin: 40px auto;*/
+    margin-bottom: 80px;
+    margin-left: 8px;
 }
 
 .mt-menu {
     float: left;
-    min-height: 500px;
+    min-height: 100px;
     margin-right: 20px;
 }
 
@@ -85,7 +87,8 @@ nav {
 }
 
 #profile {
-    min-width: 860px;
+    /*min-width: 460px;*/
+    width: 88%;
     float: left;
     border: 1px solid #ccc;
 }
@@ -105,7 +108,7 @@ nav {
 }
 
 .form-item {
-    padding: 10px 0;
+    padding: 8px 0;
     line-height: 5px;
     zoom: 1;
     clear: both;
@@ -124,6 +127,8 @@ nav {
     padding-right: 10px;
 }
 
+
+/*无*/
 .tsls {
     float: left;
     min-width: 90px;
@@ -138,7 +143,7 @@ nav {
 
 .form-text {
     border: 1px solid #ccc;
-    width: 240px;
+    /*width: 240px;*/
     height: 10px;
     line-height: 17px;
     padding: 9px;
@@ -210,6 +215,7 @@ input[type=radio] {
     position: relative;
 }
 
+/*无*/
 .steps_tsl {
     color: #3e3e3e;
     font-size: 16px;
@@ -236,8 +242,8 @@ input[type=radio] {
     background: #ff0036;
     border: 0;
     border-radius: 3px;
-    margin-left: 110px;
-    margin-top: 20px;
+    margin-left: 100px;
+    /*margin-top: 20px;*/
 }
 
 .form-item img {

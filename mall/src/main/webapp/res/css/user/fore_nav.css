@@ -1,7 +1,7 @@
 #nav_container{
     margin-right: 10px;
     margin-left: 10px;
-    height: 30px;
+    /*height: 30px;*/
     width: 98%;
     padding-right: 0px;
 }
@@ -12,7 +12,7 @@ body #nav_main{
 }
 
 #nav_main #nav_container #nav_head a{
-    height: 20px;
+    /*height: 20px;*/
     padding:7px 12px 5px 12px;
     font-size: 13px;
 }
@@ -37,7 +37,7 @@ body #nav_main{
     text-decoration: none;
 }
 #nav_container #nav_head  .nav_right{
-    height: 30px;
+    /*height: 30px;*/
     padding-top: 0px;
     padding-right: 20px;
 }

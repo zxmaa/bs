@@ -25,19 +25,31 @@
 </title>
 </head>
 <body>
-<nav>
+<nav class="navbar navbar-default " id="nav_product">
     <%@ include file="include/navigator.jsp" %>
-    <div class="header">
-        <div id="mallLogo">
-            <a href="${pageContext.request.contextPath}">
-                <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoA.png"></a>
+    <div class="container header">
+        <div class="navbar-header " id="mallLogo">
+            <button type="button" id="coll_btn" class="navbar-toggle collapsed " data-toggle="collapse" data-target="#nav_prosearch" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}">
+                <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoA.png">
+            </a>
         </div>
-        <div class="shopSearchHeader">
-            <form action="${pageContext.request.contextPath}/product" method="get">
-                <div class="shopSearchInput">
-                    <input type="text" class="searchInput" name="productName" placeholder="搜索 商品/品牌/店铺"
+        <%--<div id="mallLogo">--%>
+            <%--<a href="${pageContext.request.contextPath}">--%>
+                <%--<img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoA.png">--%>
+            <%--</a>--%>
+        <%--</div>--%>
+        <div class="collapse navbar-collapse shopSearchHeader" id="nav_prosearch">
+            <form class="navbar-form" action="${pageContext.request.contextPath}/product" method="get">
+                <div class="form-group shopSearchInput">
+                    <input type="text" class="form-control searchInput" name="productName" placeholder="搜索 商品/品牌/店铺"
                            value="${requestScope.searchValue}" maxlength="50">
-                    <input type="submit" value="搜 索" class="searchBtn">
+                    <input type="submit" value="搜 索" class="btn searchBtn">
                 </div>
             </form>
             <ul>

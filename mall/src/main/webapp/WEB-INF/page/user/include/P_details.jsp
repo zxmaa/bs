@@ -22,7 +22,7 @@
             display: block;
             padding: 8px 20px 10px;
             border-top: 1px solid #e6e6e6;
-            height: 40px;
+            height: 25px;
             line-height: 40px;
             color: #666;
             margin: 0;

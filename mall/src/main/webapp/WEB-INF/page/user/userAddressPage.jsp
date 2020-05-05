@@ -17,6 +17,13 @@
     <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/res/css/user/fore_userAddressPage.css" rel="stylesheet"/>
     <script src="${pageContext.request.contextPath}/res/js/user/fore_productBuy.js"></script>
+    <script>
+        $(function () {
+            $("span.address_province").text($("#select_order_address_province").find("option:selected").text());
+            $("span.address_city").text($("#select_order_address_city").find("option:selected").text());
+            $("span.address_district").text($("#select_order_address_district").find("option:selected").text());
+        })
+    </script>
 </head>
 <body>
 <nav>
@@ -84,7 +91,7 @@
                 <td>四川省 成都市 青羊区 草市街</td>
                 <td>人民中路二段51号附一</td>
                 <td>000000</td>
-                <td>13********88</td>
+                <td>13187876766</td>
                 <td>
                     <a href="#">删除</a>
                 </td>
@@ -114,5 +121,7 @@
 
 <%@include file="include/footer_two.jsp" %>
 <%@include file="include/footer.jsp" %>
+<script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>
+<script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>
 </body>
 </html>

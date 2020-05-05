@@ -48,31 +48,6 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<%--<div class="container" id="nav_container">--%>
-<%--<div class="row header">--%>
-<%--<div class="col-md-3 col-xs-12 text-center " id="nav_logo">--%>
-<%--<img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/HomeLogoA.png" width="240px" height:="130px">--%>
-<%--</div>--%>
-<%--<div class="mallSearch col-xs-12 col-md-6 ">--%>
-<%--<form action="${pageContext.request.contextPath}/product" method="get">--%>
-<%--<div class="mallSearch-input">--%>
-<%--<input class="header_search_input" type="text" name="product_name" placeholder="搜索 商品/品牌/店铺"--%> <%--maxlength="50">--%>
-<%--<input class="header_search_button " type="submit" value="搜索">--%>
-<%--</div>--%>
-<%--</form>--%>
-<%--<ul>--%>
-<%--<c:forEach items="${requestScope.categoryList}" var="category" varStatus="i">--%>
-<%--<c:if test="${i.index<9}">--%>
-<%--<li><a href="${pageContext.request.contextPath}/product?categoryId=${category.categoryId}"--%>
-<%--<c:if--%> <%--test="${i.index % 2 != 0}"> style="color: #FF0036"</c:if>>${fn:substring(category.categoryName,0,fn:indexOf(category.categoryName,' /'))}</a>--%>
-<%--</li>--%>
-<%--</c:if>--%>
-<%--</c:forEach>--%>
-<%--</ul>--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--</div>--%>
-<p style="visibility: hidden">1111111111111</p>
 <nav class="navbar navbar-default  " id="nav_all" role="navigation">
     <div class="container" id="home_nav">
         <div class="navbar-header nav_myhead">
@@ -89,7 +64,7 @@
                     <c:forEach items="${requestScope.categoryList}" var="category">
                         <li data-toggle="${category.categoryId}" data-status="" >
                             <%--<img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/small/${category.categoryId}.png">--%>
-                            <a href="${pageContext.request.contextPath}/product?categoryId=${category.categoryId}">                            <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/small/${category.categoryId}.png">
+                            <a href="${pageContext.request.contextPath}/product?categoryId=${category.categoryId}"><img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/small/${category.categoryId}.png">
                                     ${category.categoryName}
                             </a>
                             <div class="banner_div" name="${category.categoryName}">

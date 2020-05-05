@@ -1,9 +1,9 @@
 .content {
     position: relative;
     width: 100%;
-    min-width: 1190px;
+    /*min-width: 1190px;*/
     margin-bottom: 40px;
-    background-color: rgb(241, 220, 165);
+    /*background-color: rgb(241, 220, 165);*/
     font-family: "Microsoft YaHei UI", serif;
 }
 

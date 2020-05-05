@@ -18,20 +18,30 @@
 <nav>
     <%@ include file="include/navigator.jsp" %>
     <div class="header">
-        <a href="${pageContext.request.contextPath}">
-            <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoB.png"></a>
+        <a href="${pageContext.request.contextPath}" class="mall_logo">
+            <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoB.png">
+        </a>
         <span class="shopNameHeader">${requestScope.product.category.categoryName}官方旗舰店</span>
         <input id="tid" type="hidden" value="${requestScope.product.category.categoryId}"/>
-        <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/detailsHeaderA.png"
+        <img style="padding-left: 10px" src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/detailsHeaderA.png"
              class="shopAssessHeader">
         <div class="shopSearchHeader">
             <form action="${pageContext.request.contextPath}/product" method="get">
-                <div class="shopSearchInput">
-                    <input type="text" class="searchInput" name="productName" placeholder="搜索 商品/品牌/店铺"
-                           maxlength="50">
-                    <input type="submit" value="搜商品" class="searchTmall">
+                <div class="input-group input_g">
+                    <input type="text" class="form-control search_input" placeholder="搜索 商品/品牌/店铺">
+                    <div class="input-group-btn group_btn">
+                        <!-- Buttons -->
+                        <button class="btn btn-default btn_mall" type="submit">搜商品</button>
+                        <button class="btn btn-default btn_store" type="submit">搜本店</button>
+                    </div>
                 </div>
-                <input type="submit" value="搜本店" class="searchShop">
+                <%--<div class="shopSearchInput">--%>
+                    <%--<input type="text" class="searchInput" name="productName" placeholder="搜索 商品/品牌/店铺"--%>
+                           <%--maxlength="50">--%>
+                    <%--<input type="submit" value="搜商品" class="searchTmall">--%>
+                    <%--<input type="submit" value="搜本店" class="searchShop">--%>
+                <%--</div>--%>
+                <%--<input type="submit" value="搜本店" class="searchShop">--%>
             </form>
             <ul>
                 <c:forEach items="${requestScope.categoryList}" var="category" varStatus="i">
@@ -103,178 +113,179 @@
     </div>
 </div>
 <div class="shopImg">
-    <img src="${pageContext.request.contextPath}/res/img/item/categoryPicture/${requestScope.product.category.categoryImageSrc}">
+    <img  style="width: 100%" src="${pageContext.request.contextPath}/res/img/item/categoryPicture/${requestScope.product.category.categoryImageSrc}">
 </div>
-<div class="context">
-    <div class="context_left">
-        <div class="context_img_ks">
-            <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${requestScope.product.previewPicture[0].productImageSrc}"
-                 width="800px" height="800px">
-        </div>
-        <div class="context_img">
-            <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${requestScope.product.previewPicture[0].productImageSrc}"
-                 class="context_img_main" width="400px" height="400px"/>
-            <div class="context_img_winSelector"></div>
-        </div>
-        <ul class="context_img_ul">
-            <c:forEach var="img" items="${requestScope.product.previewPicture}">
-                <li class="context_img_li"><img
-                        src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${img.productImageSrc}"/>
-                </li>
-            </c:forEach>
-        </ul>
-    </div>
-    <div class="context_info">
-        <div class="context_info_name_div">
-            <p class="context_info_name">${requestScope.product.product.productName}</p>
-            <span class="context_info_title">${requestScope.product.product.productTitle}</span>
-        </div>
-        <div class="context_info_main">
-            <div class="context_info_main_ad">
-                <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/context_ad.png">
-                <span>全天猫实物商品通用</span>
-                <a href="#">去领券
-                    <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallItemContentB.png"></a>
+<div class="context container-fluid" id="context_container">
+    <div class="row">
+        <div class="context_left col-xs-12 col-md-5">
+            <div class="context_img_ks">
+                <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${requestScope.product.previewPicture[0].productImageSrc}"
+                     width="800px" height="800px" class="img-responsive">
             </div>
-            <dl class="context_price_panel">
-                <dt>价格</dt>
-                <dd><em>¥</em><span>${requestScope.product.product.productPrice}0</span></dd>
-            </dl>
-            <dl class="context_promotePrice_panel">
-                <dt>促销价</dt>
-                <dd><em>¥</em><span>${requestScope.product.product.productSalePrice}0</span></dd>
-            </dl>
-        </div>
-        <ul class="context_other_panel">
-            <li>总销量<span><c:choose>
-                <c:when test="${requestScope.product.product.productSaleCount != null}">
-                    ${requestScope.product.product.productSaleCount}
-                </c:when>
-                <c:otherwise>0</c:otherwise>
-            </c:choose></span>
-            </li>
-            <li>累计评价<span>${requestScope.product.product.productReviewCount}</span></li>
-            <li class="tmall_points">送天猫积分<span><fmt:formatNumber type="number"
-                                                                  value="${requestScope.product.product.productSalePrice/10}"
-                                                                  maxFractionDigits="0"/></span></li>
-        </ul>
-        <dl class="context_info_member">
-            <dt>数量</dt>
-            <dd>
-                <input type="text" value="1" maxlength="8" title="请输入购买量" class="context_buymember">
-                <input type="hidden" id="stock" value="1000">
-                <span class="amount-btn">
-                    <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/up.png"
-                         class="amount_value_up">
-                    <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/down.png"
-                         class="amount_value-down">
-                </span>
-                <span class="amount_unit">件</span>
-                <em>库存${requestScope.product.product.productQuantity}件</em>
-            </dd>
-        </dl>
-        <div class="context_buy">
-            <script>
-                $(function () {
-                    //点击购买按钮时
-                    $(".context_buy_form").submit(function () {
-                        if ('${sessionScope.userName}' === "") {//未登录不能购买
-                            $(".loginModel").show();
-                            $(".loginDiv").show();
-                            return false;
-                        }
-                        var number = isNaN($.trim($(".context_buymember").val()));
-                        if (number) {
-                            location.reload();
-                        } else {
-                            location.href = "${pageContext.request.contextPath}/order/create/${requestScope.product.product.productId}?productNumber=" + $.trim($(".context_buymember").val());
-                        }
-                        return false;
-                    });
-                    //点击加入购物车按钮时
-                    $(".context_buyCar_form").submit(function () {
-                        if ('${sessionScope.userName}' === "") {//未登录不能加入购物车
-                            $(".loginModel").show();
-                            $(".loginDiv").show();
-                            return false;
-                        }
-                        var number = isNaN($.trim($(".context_buymember").val()));//NAN：非数字值的特殊值
-                        if (number) {
-                            location.reload();
-                        } else {
-                            $.ajax({
-                                url: "${pageContext.request.contextPath}/orderItem/create/${requestScope.product.product.productId}?productNumber=" + $.trim($(".context_buymember").val()),
-                                type: "POST",
-                                data: {"productNumber": number},
-                                dataType: "json",
-                                success: function (data) {
-                                    if (data.success) {
-                                        $(".msg").stop(true, true).animate({//显示已加入购物车
-                                            opacity: 1
-                                        }, 550, function () {
-                                            $(".msg").animate({
-                                                opacity: 0
-                                            }, 1500);
-                                        });
-                                    } else {
-                                        if (data.url != null) {
-                                            location.href = "/mall" + data.url;
-                                        } else {
-                                            alert("加入购物车失败，请稍后再试！");
-                                        }
-                                    }
-                                },
-                                beforeSend: function () {
-
-                                },
-                                error: function () {
-                                    alert("加入购物车失败，请稍后再试！");
-                                }
-                            });
-                            return false;
-                        }
-                    });
-                });
-            </script>
-            <form method="get" class="context_buy_form">
-                <input class="context_buyNow" type="submit" value="立即购买"/>
-            </form>
-            <form method="get" class="context_buyCar_form">
-                <input class="context_addShopCart" type="submit" value="加入购物车"/>
-            </form>
-        </div>
-        <div class="context_clear">
-            <span>服务承诺</span>
-            <a href="#">正品保证</a>
-            <a href="#">极速退款</a>
-            <a href="#">七天无理由退换</a>
-        </div>
-    </div>
-    <div class="context_ul">
-        <div class="context_ul_head">
-            <s></s>
-            <span>看了又看</span>
-        </div>
-        <div class="context_ul_goodsList">
-            <ul>
-                <c:forEach items="${requestScope.guessLikeList}" var="product">
-                    <li class="context_ul_main">
-                        <div class="context_ul_img">
-                            <a href="/tmall/product/${product.productId}">
-                                <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${product.productImageSrc}">
-                            </a>
-                            <p>¥${product.productSalePrice}0</p>
-                        </div>
+            <div class="context_img">
+                <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${requestScope.product.previewPicture[0].productImageSrc}"
+                     class="context_img_main" width="400px" height="400px"/>
+                <div class="context_img_winSelector"></div>
+            </div>
+            <ul class="context_img_ul">
+                <c:forEach var="img" items="${requestScope.product.previewPicture}">
+                    <li class="context_img_li"><img
+                            src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${img.productImageSrc}"/>
                     </li>
                 </c:forEach>
             </ul>
-            <input type="hidden" id="guessNumber" value="${requestScope.guessNumber}">
         </div>
-        <ul class="context_ul_trigger">
-            <li class="ul_trigger_up"><a href="#"></a></li>
-            <li class="ul_trigger_down"><a href="#"></a></li>
-        </ul>
+        <div class="context_info col-xs-12 col-md-6">
+            <div class="context_info_name_div">
+                <p class="context_info_name">${requestScope.product.product.productName}</p><span class="context_info_title">${requestScope.product.product.productTitle}</span>
+            </div>
+            <div class="context_info_main">
+                <div class="context_info_main_ad">
+                    <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/context_ad.png">
+                    <span>全天猫实物商品通用</span>
+                    <a href="#">去领券
+                        <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallItemContentB.png"></a>
+                </div>
+                <dl class="context_price_panel">
+                    <dt>价格</dt>
+                    <dd><em>¥</em><span>${requestScope.product.product.productPrice}0</span></dd>
+                </dl>
+                <dl class="context_promotePrice_panel">
+                    <dt>促销价</dt>
+                    <dd><em>¥</em><span>${requestScope.product.product.productSalePrice}0</span></dd>
+                </dl>
+            </div>
+            <ul class="context_other_panel">
+                <li>总销量<span><c:choose>
+                    <c:when test="${requestScope.product.product.productSaleCount != null}">
+                        ${requestScope.product.product.productSaleCount}
+                    </c:when>
+                    <c:otherwise>0</c:otherwise>
+                </c:choose></span>
+                </li>
+                <li>累计评价<span>${requestScope.product.product.productReviewCount}</span></li>
+                <li class="tmall_points">送天猫积分<span><fmt:formatNumber type="number"
+                                                                      value="${requestScope.product.product.productSalePrice/10}"
+                                                                      maxFractionDigits="0"/></span></li>
+            </ul>
+            <dl class="context_info_member">
+                <dt>数量</dt>
+                <dd>
+                    <input type="text" value="1" maxlength="8" title="请输入购买量" class="context_buymember">
+                    <input type="hidden" id="stock" value="1000">
+                    <span class="amount-btn">
+                        <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/up.png"
+                             class="amount_value_up">
+                        <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/down.png"
+                             class="amount_value-down">
+                    </span>
+                    <span class="amount_unit">件</span>
+                    <em>库存${requestScope.product.product.productQuantity}件</em>
+                </dd>
+            </dl>
+            <div class="context_buy">
+                <script>
+                    $(function () {
+                        //点击购买按钮时
+                        $(".context_buy_form").submit(function () {
+                            if ('${sessionScope.userName}' === "") {//未登录不能购买
+                                $(".loginModel").show();
+                                $(".loginDiv").show();
+                                return false;
+                            }
+                            var number = isNaN($.trim($(".context_buymember").val()));
+                            if (number) {
+                                location.reload();
+                            } else {
+                                location.href = "${pageContext.request.contextPath}/order/create/${requestScope.product.product.productId}?productNumber=" + $.trim($(".context_buymember").val());
+                            }
+                            return false;
+                        });
+                        //点击加入购物车按钮时
+                        $(".context_buyCar_form").submit(function () {
+                            if ('${sessionScope.userName}' === "") {//未登录不能加入购物车
+                                $(".loginModel").show();
+                                $(".loginDiv").show();
+                                return false;
+                            }
+                            var number = isNaN($.trim($(".context_buymember").val()));//NAN：非数字值的特殊值
+                            if (number) {
+                                location.reload();
+                            } else {
+                                $.ajax({
+                                    url: "${pageContext.request.contextPath}/orderItem/create/${requestScope.product.product.productId}?productNumber=" + $.trim($(".context_buymember").val()),
+                                    type: "POST",
+                                    data: {"productNumber": number},
+                                    dataType: "json",
+                                    success: function (data) {
+                                        if (data.success) {
+                                            $(".msg").stop(true, true).animate({//显示已加入购物车
+                                                opacity: 1
+                                            }, 550, function () {
+                                                $(".msg").animate({
+                                                    opacity: 0
+                                                }, 1500);
+                                            });
+                                        } else {
+                                            if (data.url != null) {
+                                                location.href = "/mall" + data.url;
+                                            } else {
+                                                alert("加入购物车失败，请稍后再试！");
+                                            }
+                                        }
+                                    },
+                                    beforeSend: function () {
+
+                                    },
+                                    error: function () {
+                                        alert("加入购物车失败，请稍后再试！");
+                                    }
+                                });
+                                return false;
+                            }
+                        });
+                    });
+                </script>
+                <form method="get" class="context_buy_form">
+                    <input class="context_buyNow" type="submit" value="立即购买"/>
+                </form>
+                <form method="get" class="context_buyCar_form">
+                    <input class="context_addShopCart" type="submit" value="加入购物车"/>
+                </form>
+            </div>
+            <div class="context_clear">
+                <span>服务承诺</span>
+                <a href="#">正品保证</a>
+                <a href="#">极速退款</a>
+                <a href="#">七天无理由退换</a>
+            </div>
+        </div>
     </div>
+</div>
+<div class="context_ul ">
+    <div class="context_ul_head">
+        <s></s>
+        <span>猜你喜欢</span>
+    </div>
+    <div class="context_ul_goodsList">
+        <ul class="list-inline">
+            <c:forEach items="${requestScope.guessLikeList}" var="product">
+                <li class="context_ul_main">
+                    <div class="context_ul_img">
+                        <a href="/tmall/product/${product.productId}">
+                            <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${product.productImageSrc}">
+                        </a>
+                        <p>¥${product.productSalePrice}0</p>
+                    </div>
+                </li>
+            </c:forEach>
+        </ul>
+        <input type="hidden" id="guessNumber" value="${requestScope.guessNumber}">
+    </div>
+    <%--<ul class="context_ul_trigger">--%>
+        <%--<li class="ul_trigger_up"><a href="#"></a></li>--%>
+        <%--<li class="ul_trigger_down"><a href="#"></a></li>--%>
+    <%--</ul>--%>
 </div>
 <div class="mainwrap">
     <div class="P_TabBarBox">

@@ -35,10 +35,10 @@
             z-index: 999;
             border-bottom: 1px solid #e5e5e5;
         }
-
+        /*标签栏*/
         .tabBarBox {
             float: left;
-            width: 860px;
+            width: 88%;
             height: 40px;
             text-align: center;
             line-height: 40px;
@@ -91,20 +91,21 @@
     </style>
 </head>
 <body>
+<%@ include file="include/navigator.jsp" %>
 <nav>
-    <%@ include file="include/navigator.jsp" %>
     <div class="header">
         <div id="mallLogo">
             <a href="${pageContext.request.contextPath}">
                 <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoA.png">
-                <span class="span_tmallRegister">个人中心</span></a>
+                <span class="span_tmallRegister">个人中心</span>
+            </a>
         </div>
     </div>
 </nav>
 <div class="content">
     <div class="mt-menu" id="J_MtSideMenu">
         <div class="mt-avatar">
-            <img src="${pageContext.request.contextPath}/res/img/item/userProfilePicture/${requestScope.user.userProfilePictureSrc}"
+            <img class="img-responsive" src="${pageContext.request.contextPath}/res/img/item/userProfilePicture/${requestScope.user.userProfilePictureSrc}"
                  onerror="this.src='${pageContext.request.contextPath}/res/img/admin/loginPage/default_profile_picture-128x128.png'"
                  width="128px" height="128px">
         </div>
