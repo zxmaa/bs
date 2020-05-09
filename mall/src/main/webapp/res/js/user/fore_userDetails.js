@@ -112,13 +112,10 @@ $(function () {
         var userProfilePictureSrc =$.trim($("input[name=user_profile_picture_src]").val());
         //联系电话
         var userTel = $.trim($("input[name=userTel]").val());
-
         //出生日期
         var user_birthday = $.trim($("input[name=user_birthday]").val());
-
         //验证电话号码格式
         var tel=new RegExp(/^1[3456789]\d{9}$/);
-
         if (userTel == null || userTel === "") {
             $("#userTel").css("border", "1px solid red")
                 .next().text("请输入联系电话").css("display", "inline-block").css("color", "red");
@@ -132,7 +129,6 @@ $(function () {
                 .next().text("请选择出生日期").css("display", "inline-block").css("color", "red");
             return false;
         }
-
         var obj = {};
         obj['userTel'] = userTel;
         obj['userBirthday'] = user_birthday;
@@ -147,15 +143,7 @@ $(function () {
 
             success: function (data) {
                 if (data.success) {
-                 /* $(".msg").stop(true, true).animate({
-                        opacity: 1
-                    }, 550, function () {
-                        $(".msg").animate({
-                            opacity: 0
-                        }, 1500, function () {*/
                             location.href = "/mall/userDetails";
-                  /*    });
-                    });*/
                 } else {
                     alert(data.message);
                 }

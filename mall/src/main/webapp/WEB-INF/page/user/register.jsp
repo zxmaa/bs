@@ -21,89 +21,79 @@
     </style>
 </head>
 <body>
-<div class="container">
-<nav>
-    <div class="header col-xs-12">
-        <div id="mallLogo">
-            <a href="${pageContext.request.contextPath}">
-                <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoA.png">
-                <span class="span_tmallRegister">用户注册</span>
-            </a>
+<%--<div class="container">--%>
+    <nav>
+        <div class="header col-xs-12">
+            <div id="mallLogo">
+                <a href="${pageContext.request.contextPath}">
+                    <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoA.png">
+                    <span class="span_tmallRegister">用户注册</span>
+                </a>
+            </div>
         </div>
+    </nav>
+    <div class=" container content" id="regi_content">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-sm-2  control-label tsls">设置会员名</label>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="user_name">用户名：</label>
+                <div class="col-sm-7 ">
+                    <input name="user_name" id="user_name" class="form-control form-text err-input" placeholder="请输入用户名" maxlength="20">
+                    <span class="form_span"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label tsls">设置登录密码</label>
+                <label class="col-sm-3  control-label">登录时验证，保护账号信息</label>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="user_password">登录密码：</label>
+                <div class="col-sm-7">
+                    <input name="user_password" type="password" id="user_password" class="form-control form-text err-input" placeholder="请设置登录密码" maxlength="20">
+                    <span class="form_span"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="user_password_one">确认密码：</label>
+                <div class="col-sm-7">
+                    <input name="user_password_one" type="password" id="user_password_one" class="form-control form-text err-input" placeholder="请再次输入你的密码" maxlength="20">
+                    <span class="form_span"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label tsls">填写基本信息</label>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">联系电话：</label>
+                <div class="col-sm-7">
+                    <input name="userTel" id="userTel" class="form-control form-text err-input" placeholder="请输入联系电话" maxlength="20">
+                    <span class="form_span"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">性别：</label>
+                <div class="col-sm-7">
+                    <input name="user_gender" type="radio" id="form_radion" value="0" checked="checked">男
+                    <input name="user_gender" type="radio" id="form_radions" value="1">女
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="user_birthday">出生日期：</label>
+                <div class="col-sm-7">
+                    <input type="date" name="user_birthday" id="user_birthday" class="form-control form-text err-input"/>
+                    <span class="form_span"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-1">
+                    <input type="button" id="register_sub" class="btns btn-large tsl" value="注 册"/>
+                </div>
+            </div>
+        </form>
     </div>
-</nav>
-<div class="content">
-    <form class="form-horizontal" role="form">
-        <div class="form-group">
-            <label class="col-lg-3 col-lg-push-1 col-md-4  col-sm-6  control-label tsls">设置会员名</label>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 col-lg-offset-1 col-md-4  col-sm-6 control-label">用户名：</label>
-            <div class="col-lg-2  col-md-4  col-sm-6 ">
-                <input name="user_name" id="user_name" class="form-control form-text err-input" placeholder="请输入用户名" maxlength="20">
-            </div>
-            <div class="col-lg-3 col-md-4  col-sm-6">
-                <span class="form_span"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 col-lg-offset-1 col-md-4  col-sm-6 control-label tsls">设置登录密码</label>
-            <label class="col-lg-2  control-label">登录时验证，保护账号信息</label>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 col-lg-offset-1 col-md-4  col-sm-6 control-label">登录密码：</label>
-            <div class="col-lg-2 ">
-                <input name="user_password" type="password" id="user_password" class="form-control form-text err-input" placeholder="请设置登录密码" maxlength="20">
-            </div>
-            <div class="col-lg-2">
-                <span class="form_span"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 col-lg-offset-1 col-md-4  col-sm-6 control-label">确认密码：</label>
-            <div class="col-lg-2">
-                <input name="user_password_one" type="password" id="user_password_one" class="form-control form-text err-input" placeholder="请再次输入你的密码" maxlength="20">
-            </div>
-            <div class="col-lg-2">
-                <span class="form_span"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 col-lg-offset-1 col-md-4  col-sm-6 control-label tsls">填写基本信息</label>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 col-lg-offset-1 col-md-4  col-sm-6 control-label">联系电话：</label>
-            <div class="col-lg-2">
-                <input name="userTel" id="userTel" class="form-control form-text err-input" placeholder="请输入联系电话" maxlength="20">
-            </div>
-            <div class="col-lg-2">
-                <span class="form_span"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 col-lg-offset-1 col-md-4  col-sm-6 control-label">性别：</label>
-            <div class="col-lg-1">
-                <input name="user_gender" type="radio" id="form_radion" value="0" checked="checked">男
-                <input name="user_gender" type="radio" id="form_radions" value="1">女
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 col-lg-offset-1 col-md-4  col-sm-6 control-label">出生日期：</label>
-            <div class="col-lg-2">
-                <input type="date" name="user_birthday" id="user_birthday" class="form-control form-text err-input"/>
-            </div>
-            <div class="col-lg-2">
-                <span class="form_span"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-lg-3 col-lg-offset-3 col-md-4  col-sm-6 col-xs-12 col-xs-push-2">
-                <input type="button" id="register_sub" class="btns btn-large tsl" value="注 册"/>
-            </div>
-        </div>
-    </form>
-</div>
-</div>
+
 <%@include file="include/footer.jsp" %>
 <link href="${pageContext.request.contextPath}/res/css/user/fore_foot_special.css" rel="stylesheet"/>
 <div class="msg">

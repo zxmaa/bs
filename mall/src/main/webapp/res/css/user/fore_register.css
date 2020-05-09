@@ -52,42 +52,12 @@ nav {
     color:#000;
     position: relative;
     width: 100%;
-    min-width: 1190px;
+    /*min-width: 1190px;*/
     font-family: Arial, serif;
     margin: auto auto 40px;
 }
 
-
-/*.form-list {*/
-    /*width: 720px;*/
-    /*margin: 0 auto;*/
-    /*font-size: 15px;*/
-    /*padding: 20px 0;*/
-/*}*/
-/*.form-item {*/
-    /*padding: 10px 0 10px  100px;*/
-    /*line-height: 10px;*/
-    /*zoom: 1;*/
-    /*clear: both;*/
-/*}*/
-/*.form-label {*/
-    /*min-width: 100px;*/
-    /*line-height: 30px;*/
-    /*text-align: right;*/
-    /*font-weight: normal;*/
-    /*margin-left: 10px;*/
-/*}*/
-
-.steps {
-    border-bottom: 2px solid #e6e6e6;
-    position: relative;
-}
-
-.steps_main {
-    width: 1190px;
-    margin: auto auto -1px;
-}
-.tsls{
+#regi_content .form-horizontal .form-group .tsls{
     font-weight: bolder;
 }
 
@@ -121,7 +91,7 @@ nav {
 .form_span{
     display: none;
     padding-left: 15px;
-    font-size: 12px;
+    font-size: 14px;
 }
 #form_radion{
     line-height: 10px;

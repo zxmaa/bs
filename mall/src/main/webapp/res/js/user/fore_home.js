@@ -7,7 +7,7 @@ $(function () {
     //悬浮到分类导航时
     $(".banner_nav>li").hover(function () {
         $(this).find(">a").css("color", "#6347ED");
-        var div = $(this).find(">.banner_div").css({"display":"block","position":"absolute","float":"left","background-color":"white"});
+        var div = $(this).find(">.banner_div").css("display","block");
         if ($(this).attr("data-status") === "ajaxShow") {
             return;
         }

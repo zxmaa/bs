@@ -187,18 +187,14 @@
     </div>
 
     <script>
-
         var listCards = document.querySelector(".address-list").getElementsByClassName("addr-item");
         var orderAccpetAddr = document.getElementsByClassName("order_count_div_address")[0].getElementsByTagName("span")[0];
         var orderAcceptUser = document.getElementsByClassName("order_count_div_phone")[0].getElementsByTagName("span")[0];
-
         var defaultUrl = "${pageContext.request.contextPath}/res/img/user/WebsiteImage/blackWhiteBorder.png";
         var url = "${pageContext.request.contextPath}/res/img/user/WebsiteImage/colorfulBorder.png";
         listCards[0].style.backgroundImage = "url(" + url + ")";
-
         var tips = document.createElement("div");
         tips.className = "tips";
-
         (function(){
             listCards[0].appendChild(tips);
             var firstName=listCards[0].children[0].getElementsByTagName("span")[1].innerText;
@@ -226,7 +222,7 @@
             };
         }
 
-
+        // 只有一个订单项时
         function payOne() {
             var addressId = $("#select_order_address_province").val();
             var cityAddressId = $("#select_order_address_city").val();
@@ -296,6 +292,7 @@
             });
         }
 
+        // 有多个订单项
         function payList() {
             var addressId = $("#select_order_address_province").val();
             var cityAddressId = $("#select_order_address_city").val();

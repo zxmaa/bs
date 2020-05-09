@@ -48,8 +48,7 @@ $(function () {
         //联系电话
         var userTel = $.trim($("input[name=userTel]").val());
         //出生日期
-        var user_birthday = $.trim($("input[name=user_birthday]").val());
-
+        var user_birthday = $.trim($("input[name=user_birthday]").val())
         //验证密码的格式 包含数字和英文字母
         var reg = new RegExp(/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/);
         //验证电话号码格式

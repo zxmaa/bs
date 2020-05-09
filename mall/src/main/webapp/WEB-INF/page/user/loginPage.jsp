@@ -12,8 +12,8 @@
     <link href="${pageContext.request.contextPath}/res/css/user/fore_login.css" rel="stylesheet">
     <style rel="stylesheet">
         #baseNavigator {
-            padding: 22px 0;
-            width: 100%;
+            padding: 22px 30px;
+            /*width: 100%;*/
             height: 44px;
             margin: auto;
         }
@@ -40,8 +40,8 @@
         <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoA.png"/>
     </a>
 </nav>
-<div class="container">
-<div class="content">
+<%--<div class="container">--%>
+<div class="container-fluid content">
     <div class="bg"></div>
     <div class="loginDiv">
         <div class="loginSwitch" id="loginSwitch"></div>
@@ -97,7 +97,7 @@
         </div>
     </div>
 </div>
-</div>
+<%--</div>--%>
 <%@ include file="include/footer.jsp" %>
 <link href="${pageContext.request.contextPath}/res/css/user/fore_foot_special.css" rel="stylesheet"/>
 <script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>
