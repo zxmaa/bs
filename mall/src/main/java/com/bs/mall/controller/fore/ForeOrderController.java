@@ -90,7 +90,7 @@ public class ForeOrderController  extends BaseController {
     @RequestMapping(value = "/order/create/{productId}",method = RequestMethod.GET)
     public String goToOrderConfirmPage(@PathVariable("productId") Integer productId,
                                        @RequestParam(required = false, defaultValue = "1") Integer productNumber,HttpSession session,Model model){
-      /*  Object o = checkUser(session);
+        Object o = checkUser(session);
         if(null == o){
             return "redirect:/login";
         }
@@ -111,8 +111,8 @@ public class ForeOrderController  extends BaseController {
         Double orderTotalMoney = orderItem.getProductOrderItem().getProductOrderItemPrice();
 
         model.addAttribute("allUserAddress",allUserAddress);
-        model.addAttribute("orderItems",orderItems);
-        model.addAttribute("orderTotalMoney",orderTotalMoney);*/
+        model.addAttribute("orderItemList",orderItems);
+        model.addAttribute("orderTotalMoney",orderTotalMoney);
 
         logger.info("转到前台--订单建立页");
         return "user/productBuyPage";
@@ -158,7 +158,7 @@ public class ForeOrderController  extends BaseController {
         Double orderTotalMoney = productOrderItemService.calculateOrderItemCartMoney(orderItemList);
 
         model.addAttribute("allUserAddress",allUserAddress);
-        model.addAttribute("orderItems",orderItems);
+        model.addAttribute("orderItemList",orderItems);
         model.addAttribute("orderTotalMoney",orderTotalMoney);
 
         logger.info("转到前台--订单建立页");
@@ -534,7 +534,7 @@ public class ForeOrderController  extends BaseController {
         model.addAttribute("orderItemList",orderItemList);
 
         logger.info("转到前台-购物车页");
-        return "user/productBuyCarPage";
+        return "user/productShopCartPage";
     }
 
 
@@ -548,7 +548,7 @@ public class ForeOrderController  extends BaseController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/orderItem",method = RequestMethod.PUT)
+    @RequestMapping(value = "/orderItem",method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     public String updateOrderItem(@RequestParam String orderItemMap,HttpSession session){
         JSONObject object = new JSONObject();
         Object o = checkUser(session);
@@ -682,7 +682,7 @@ public class ForeOrderController  extends BaseController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/order", method = RequestMethod.POST)
+    @RequestMapping(value = "/order/one", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     public String createOrderByOne(HttpSession session,
                                    @RequestParam Integer userAddressId,
                                    @RequestParam Integer orderItemProductId,
@@ -718,9 +718,11 @@ public class ForeOrderController  extends BaseController {
         if(createOrderResDto.getFlag()){
             object.put("success", true);
             object.put("url", "/order/pay/" + createOrderResDto.getProductOrderCode());
+            object.put("message","订单创建失败，请稍后再试！");
+
         }else{//返回库存不足的产品名
             object.put("success", false);
-            object.put("productName",createOrderResDto.getProductName());
+            object.put("message",createOrderResDto.getProductName()+"的库存不足！");
         }
         return object.toJSONString();
     }
@@ -735,7 +737,7 @@ public class ForeOrderController  extends BaseController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/order/list",method = RequestMethod.POST)
+    @RequestMapping(value = "/order/list",method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     public String createOrderByList(HttpSession session,
                                     @RequestParam Integer userAddressId,
                                     @RequestParam String orderItemJSON){
@@ -752,21 +754,24 @@ public class ForeOrderController  extends BaseController {
 
         ForeCreateOrderByListReqDto createOrderByListReqDto = new ForeCreateOrderByListReqDto();
         createOrderByListReqDto.setUserId(user.getUserId());
+        createOrderByListReqDto.setUserAddressId(userAddressId);
         List<ForeCreateOrderByListSimpleReqDto> list = new ArrayList<>();
         ForeCreateOrderByListSimpleReqDto temp;
         if(orderItemIds.size()>0){
             for (String orderItemId : orderItemIds) {
                 ProductOrderItem productOrderItem = productOrderItemService.selectOrderItemById(Integer.parseInt(orderItemId));
-                if(productOrderItem == null || productOrderItem.getUserId().equals(user.getUserId())){
+                if(productOrderItem == null || !productOrderItem.getUserId().equals(user.getUserId())){
                     logger.warn("订单项为空或用户状态不一致！");
                     object.put("success", false);
                     object.put("url", "/cart");
+                    object.put("message","订单创建失败，请稍后再试！");
                     return object.toJSONString();
                 }
                 if(productOrderItem.getProductOrderId() != null){
                     logger.warn("用户订单项不属于购物车，回到购物车页");
                     object.put("success", false);
                     object.put("url", "/cart");
+                    object.put("message","订单创建失败，请稍后再试！");
                     return object.toJSONString();
                 }
                 temp= new ForeCreateOrderByListSimpleReqDto();
@@ -777,8 +782,10 @@ public class ForeOrderController  extends BaseController {
         } else {
             object.put("success", false);
             object.put("url", "/cart");
+            object.put("message","订单创建失败，请稍后再试！");
             return object.toJSONString();
         }
+        createOrderByListReqDto.setCreateOrderByListSimpleReqDtos(list);
 
         //生成订单
         ForeCreateOrderResDto createOrderResDto = productOrderService.createOrderByList(createOrderByListReqDto);
@@ -787,7 +794,7 @@ public class ForeOrderController  extends BaseController {
             object.put("url", "/order/pay/" + createOrderResDto.getProductOrderCode());
         }else{//返回库存不足的产品名
             object.put("success", false);
-            object.put("productName",createOrderResDto.getProductName());
+            object.put("message",createOrderResDto.getProductName()+"的库存不足!");
         }
 
 

@@ -114,13 +114,13 @@ $(function () {
                     $("#select_order_address_city").empty();
                     $("#select_order_address_district").empty();
                     for (var i = 0; i < data.addressList.length; i++) {
-                        var address_id = data.addressList[i].address_areaId;
-                        var address_name = data.addressList[i].address_name;
+                        var address_id = data.addressList[i].addressAreaId;
+                        var address_name = data.addressList[i].addressName;
                         $("#select_order_address_city").append("<option value='" + address_id + "'>" + address_name + "</option>")
                     }
                     for (var j = 0; j < data.childAddressList.length; j++) {
-                        var childAddress_id = data.childAddressList[j].address_areaId;
-                        var childAddress_name = data.childAddressList[j].address_name;
+                        var childAddress_id = data.childAddressList[j].addressAreaId;
+                        var childAddress_name = data.childAddressList[j].addressName;
                         $("#select_order_address_district").append("<option value='" + childAddress_id + "'>" + childAddress_name + "</option>")
                     }
                     $('#select_order_address_city').selectpicker('refresh');
@@ -151,8 +151,8 @@ $(function () {
                 if (data.success) {
                     $("#select_order_address_district").empty();
                     for (var i = 0; i < data.addressList.length; i++) {
-                        var address_id = data.addressList[i].address_areaId;
-                        var address_name = data.addressList[i].address_name;
+                        var address_id = data.addressList[i].addressAreaId;
+                        var address_name = data.addressList[i].addressName;
                         $("#select_order_address_district").append("<option value='" + address_id + "'>" + address_name + "</option>")
                     }
                     $('#select_order_address_district').selectpicker('refresh');

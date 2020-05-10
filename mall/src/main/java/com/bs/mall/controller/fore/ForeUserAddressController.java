@@ -1,5 +1,6 @@
 package com.bs.mall.controller.fore;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bs.mall.controller.BaseController;
 import com.bs.mall.dao.pojo.Address;
 import com.bs.mall.dao.pojo.UserAddress;
@@ -11,9 +12,7 @@ import com.bs.mall.service.fore.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -34,7 +33,7 @@ public class ForeUserAddressController extends BaseController {
      */
     @RequestMapping(value = "/userAddress")
     public String goToUserAddressPage(HttpSession session, Model model){
-      /*  logger.info("检查用户是否登录");
+        logger.info("检查用户是否登录");
         Object o = checkUser(session);
         if(null == o){
             return "redirect:/login";
@@ -56,11 +55,12 @@ public class ForeUserAddressController extends BaseController {
         model.addAttribute("addressId",addressId);
         model.addAttribute("cityAddressId",cityAddressId);
         model.addAttribute("addressList",addressList);
-        model.addAttribute("cityAddress",cityAddress);
-        model.addAttribute("districAddress",districAddress);
+        model.addAttribute("cityList",cityAddress);
+        model.addAttribute("districtList",districAddress);
         model.addAttribute("userAllAddress",userAllAddress);
 
-        logger.info("转到前台，用户地址管理页");*/
+        logger.info("转到前台，用户地址管理页");
+       // return "redirect:/user/userAddressPage";
         return "user/userAddressPage";
 
     }
@@ -68,11 +68,12 @@ public class ForeUserAddressController extends BaseController {
     /**
      * 添加用户地址
      * @param session
-     * @param model
      * @return
      */
-    @RequestMapping("/addUserAddress")
-    public String addUserAddress(HttpSession session,Model model,UserAddress userAddress){
+    @ResponseBody
+    @RequestMapping(value = "/addUserAddress", produces = "application/json;charset=utf-8")
+    public String addUserAddress(HttpSession session,@RequestBody UserAddress userAddress){
+        JSONObject object = new JSONObject();
         logger.info("检查用户是否登录");
         Object o = checkUser(session);
         if(null == o){
@@ -84,11 +85,13 @@ public class ForeUserAddressController extends BaseController {
         userAddress.setUserId(userId);
         userAddressService.addUserAddress(userAddress);
         logger.info("重新加载地址管理页面");
-        return "/userAddress";
+        object.put("success",true);
+       return object.toJSONString();
+        //return "redirect:/userAddress";
     }
 
     /**
-     * 删除用户弟子
+     * 删除用户地址
      * @param session
      * @param userAddressId
      * @return
@@ -100,10 +103,37 @@ public class ForeUserAddressController extends BaseController {
         if(null == o){
             return "redirect:/login";
         }
-
+        logger.info("删除用户地址");
         userAddressService.deleteUserAddress(userAddressId);
         logger.info("重新加载地址管理页面");
-        return "/userAddress";
+        return "redirect:/userAddress";
     }
+
+    /**
+     * 设为默认地址
+     * @param session
+     * @param userAddressId
+     * @return
+     */
+    @RequestMapping("/setDefaultAddress")
+    public String setDefaultAddress(HttpSession session,@RequestParam Integer userAddressId){
+        logger.info("检查用户是否登录");
+        Object o = checkUser(session);
+        if(null == o){
+            return "redirect:/login";
+        }
+        ForeUserDto user = userService.findUserByUsereName((String) o);
+        Integer userId = user.getUserId();
+
+        UserAddress userAddress = new UserAddress();
+        userAddress.setUserAddressId(userAddressId);
+        userAddress.setFlag(1);
+        userAddress.setUserId(userId);
+        userAddressService.updateUserAddress(userAddress);
+        logger.info("重新加载地址管理页面");
+        return "redirect:/userAddress";
+    }
+
+
 
 }

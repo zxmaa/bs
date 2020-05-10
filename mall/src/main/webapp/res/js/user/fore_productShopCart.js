@@ -149,10 +149,10 @@ function create(obj) {
         traditional: true,
         success: function (data) {
             if (data.success) {
-                location.href = "/mall/order/create/buyCart?order_item_list=" + data.orderItemIDArray;
+                location.href = "/mall/order/create/byCart?orderItemList=" + data.orderItemIDArray;
                 return true;
             } else {
-                alert("购物车商品结算异常，请稍候再试！");
+                alert(data.message);
                 location.href = "/mall/cart";
             }
         },

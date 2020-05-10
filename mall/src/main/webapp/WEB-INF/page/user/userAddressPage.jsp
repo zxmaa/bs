@@ -9,21 +9,24 @@
 <%@ include file="include/header.jsp" %>
 <html>
 <head>
+    <script src="${pageContext.request.contextPath}/res/js/user/fore_productBuy.js"></script>
+    <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/res/css/user/fore_userAddressPage.css" rel="stylesheet"/>
+
     <title>管理收货地址</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <%--以最高版本IE来渲染页面--%>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%-- 不同设备之间的自适应--%>
-    <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/res/css/user/fore_userAddressPage.css" rel="stylesheet"/>
-    <script src="${pageContext.request.contextPath}/res/js/user/fore_productBuy.js"></script>
-    <script>
+
+    <%--<script>
         $(function () {
+            alert("test");
             $("span.address_province").text($("#select_order_address_province").find("option:selected").text());
             $("span.address_city").text($("#select_order_address_city").find("option:selected").text());
             $("span.address_district").text($("#select_order_address_district").find("option:selected").text());
         })
-    </script>
+    </script>--%>
 </head>
 <body>
 <nav>
@@ -32,27 +35,28 @@
 
 <div class="order_address">
     <h2>输入收货地址</h2>
-    <form action="" method="post">
+   <%-- <form action="" method="post">--%>
         <label for="select_order_address_province">所在地区</label><span class="mustValue">*</span>
         <select class="selectpicker" id="select_order_address_province" data-size="8" data-live-search="true"
-                style="width:100px;">
+                >
             <c:forEach items="${requestScope.addressList}" var="address" varStatus="i">
-                <option value="${address.address_areaId}"
-                        <c:if test="${requestScope.addressId==address.address_areaId}">selected</c:if>>${address.address_name}</option>
+                <option value="${address.addressAreaId}"
+                        <c:if test="${requestScope.addressId==address.addressAreaId}">selected</c:if>>${address.addressName}</option>
             </c:forEach>
         </select>
         <select class="selectpicker" id="select_order_address_city" data-size="8" data-live-search="true">
             <c:forEach items="${requestScope.cityList}" var="address" varStatus="i">
-                <option value="${address.address_areaId}"
-                        <c:if test="${requestScope.cityAddressId==address.address_areaId}">selected</c:if>>${address.address_name}</option>
+                <option value="${address.addressAreaId}"
+                        <c:if test="${requestScope.cityAddressId==address.addressAreaId}">selected</c:if>>${address.addressName}</option>
             </c:forEach>
         </select>
         <select class="selectpicker" id="select_order_address_district" data-size="8" data-live-search="true">
             <c:forEach items="${requestScope.districtList}" var="address" varStatus="i">
-                <option value="${address.address_areaId}"
-                        <c:if test="${requestScope.districtAddressId==address.address_areaId}">selected</c:if>>${address.address_name}</option>
+                <option value="${address.addressAreaId}"
+                        <c:if test="${requestScope.districtAddressId==address.addressAreaId}">selected</c:if>>${address.addressName}</option>
             </c:forEach>
         </select>
+
         <div class="br"></div>
         <label for="textarea_details_address" id="label_details_address">详细地址</label><span class="mustValue">*</span>
         <textarea id="textarea_details_address" placeholder="请输入详细地址信息，如道路、门牌号、小区、楼栋号、单元等信息"></textarea>
@@ -65,13 +69,13 @@
         <div class="br"></div>
         <label for="input_order_phone" id="label_order_phone">手机号码</label><span class="mustValue">*</span>
         <input id="input_order_phone" type="text" placeholder="请填写正常的手机号码" maxlength="11"/>
-        <input type="checkbox" name="flag" ><span class="flag">设置为默认收货地址</span>
-        <input type="submit" class="submit" value="保存">
-    </form>
+        <input type="checkbox" name="default_address" id = "default_address" ><span class="flag">设置为默认收货地址</span>
+        <input type="submit" class="submit" value="保存" onclick="submitAddress()">
+   <%-- </form>--%>
 </div>
 
 <div class="order_bar">
-    已经保存了3条地址
+    已经保存了 ${fn:length(requestScope.userAllAddress)}条地址
 </div>
 
 <div class="order_table">
@@ -85,18 +89,18 @@
             <th>操作</th>
             <th></th>
         </tr>
-        <c:forEach var="a" begin="1" end="5">
+        <c:forEach items="${requestScope.userAllAddress}" var="address">
             <tr>
-                <td>tom</td>
-                <td>四川省 成都市 青羊区 草市街</td>
-                <td>人民中路二段51号附一</td>
-                <td>000000</td>
-                <td>13187876766</td>
+                <td>${address.receiver}</td>
+                <td>${address.province} ${address.city} ${address.district}</td>
+                <td>${address.detailAddress}</td>
+                <td>${address.postCode}</td>
+                <td>${address.tel}</td>
                 <td>
-                    <a href="#">删除</a>
+                    <a href='/mall/delUserAddress?userAddressId=${address.userAddressId}'>删除</a>
                 </td>
                 <td>
-                    <a href="#">
+                    <a href='/mall/setDefaultAddress?userAddressId=${address.userAddressId}' >
                         设为默认
                     </a>
                     <span style="display: none">1</span>
@@ -116,6 +120,80 @@
     if(flag == 1){
         defaultAddr.innerHTML="<div class='defaultAddr'>默认地址</div>";
     }
+
+
+
+    //增加地址
+    function submitAddress() {
+        var addressId = $("#select_order_address_province").val();
+        var cityAddressId = $("#select_order_address_city").val();
+        var districtAddressId = $("#select_order_address_district").val();
+        var productOrder_detail_address = $.trim($("#textarea_details_address").val());
+        var productOrder_post = $.trim($("#input_order_post").val());
+        var productOrder_receiver = $.trim($("#input_order_receiver").val());
+        var productOrder_mobile = $.trim($("#input_order_phone").val());
+        var flag;
+        if(document.getElementById("default_address").checked == true){
+            flag = 1;
+        }else{
+            flag = 0;
+        }
+
+        var yn = true;
+        if (productOrder_detail_address === "") {
+            styleUtil.specialBasicErrorShow($("#label_details_address"));
+            yn = false;
+        }
+        if (productOrder_receiver === "") {
+            styleUtil.specialBasicErrorShow($("#label_order_receiver"));
+            yn = false;
+        }
+        var re = /^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/;
+        if (!re.test(productOrder_mobile)) {
+            styleUtil.specialBasicErrorShow($("#label_order_phone"));
+            yn = false;
+        }
+        re = /^[1-9][0-9]{5}$/;
+        if (!re.test(productOrder_post) && productOrder_post !== "") {
+            styleUtil.specialBasicErrorShow($("#label_order_post"));
+            yn = false;
+        }
+
+        if (!yn) {
+            window.scrollTo(0, 0);
+            return false;
+        }
+
+        var obj = {};
+        obj['addressAreaId'] = districtAddressId;
+        obj['detailAddress'] = productOrder_detail_address;
+        obj['receiver'] = productOrder_receiver;
+        obj['tel'] = productOrder_mobile;
+        obj['flag'] = flag;
+        obj['postCode'] =productOrder_post;
+
+        $.ajax({
+            type:"POST",
+            url: "/mall/addUserAddress",
+            async:false,
+            dataType: "json",
+            contentType:"application/json",
+            data:JSON.stringify(obj),
+
+            success: function (data) {
+            /*    if (data.success) {
+                   alert("用户地址添加成功！");*/
+                    window.location.href  = "/mall/userAddress";
+              /*  } else {
+                    alert("用户地址添加失败，请稍后再试！");
+                    location.reload(true);
+                }*/
+            }
+        });
+    }
+
+
+
 </script>
 
 

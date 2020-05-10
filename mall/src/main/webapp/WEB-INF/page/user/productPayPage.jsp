@@ -20,22 +20,22 @@
 <div class="content">
     <div class="order_div">
         <c:choose>
-            <c:when test="${fn:length(requestScope.productOrder.productOrderItemList)==1}">
+            <c:when test="${fn:length(requestScope.payPageInfo.productOrderItemList)==1}">
                 <div class="order_name">
-                    <span>商品--${requestScope.productOrder.productOrderItemList[0].productOrderItem_product.product_name}</span>
+                    <span>商品--${requestScope.payPageInfo.product.productName}</span>
                 </div>
                 <div class="order_shop_name">
-                    <span>卖家昵称：${requestScope.productOrder.productOrderItemList[0].productOrderItem_product.product_category.category_name}旗舰店</span>
+                    <span>卖家昵称：${requestScope.payPageInfo.categoryName}旗舰店</span>
                 </div>
             </c:when>
             <c:otherwise>
                 <div class="order_name">
-                    <span>合并订单：${fn:length(requestScope.productOrder.productOrderItemList)}笔</span>
+                    <span>合并订单：${fn:length(requestScope.payPageInfo.productOrderItemList)}笔</span>
                 </div>
             </c:otherwise>
         </c:choose>
         <div class="order_price">
-            <span class="price_value">${requestScope.orderTotalPrice}</span>
+            <span class="price_value">${requestScope.payPageInfo.totalPrice}</span>
             <span class="price_unit">元（不会真实付款）</span>
         </div>
     </div>
@@ -53,7 +53,7 @@
         <script>
             function pay() {
                 $.ajax({
-                    url: "${pageContext.request.contextPath}/order/pay/${requestScope.productOrder.productOrder_code}",
+                    url: "${pageContext.request.contextPath}/order/pay/${requestScope.payPageInfo.productOrder.productOrderCode}",
                     type: "PUT",
                     data: null,
                     dataType: "json",

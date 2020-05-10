@@ -8,13 +8,13 @@
     <script src="${pageContext.request.contextPath}/res/js/user/fore_productBuy.js"></script>
     <link href="${pageContext.request.contextPath}/res/css/user/fore_productBuyPage.css" rel="stylesheet"/>
     <title>确认订单 </title>
-    <script>
+    <%--<script>
         $(function () {
             $("span.address_province").text($("#select_order_address_province").find("option:selected").text());
             $("span.address_city").text($("#select_order_address_city").find("option:selected").text());
             $("span.address_district").text($("#select_order_address_district").find("option:selected").text());
         })
-    </script>
+    </script>--%>
 </head>
 <body>
 <nav>
@@ -53,18 +53,19 @@
     <div class="order_address">
         <h2>选择收货地址</h2>
         <div class="address-list">
-            <c:if test="">
-                您还没有添加地址，请点击 <a href="">管理收货地址</a> 添加
+            <c:if test="${requestScope.allUserAddress == null || fn:length(requestScope.allUserAddress) == 0}">
+                您还没有添加地址，请点击 <a href="/mall/userAddress">管理收货地址</a> 添加
             </c:if>
-            <c:forEach var="i" begin="1" end="5">
+            <c:forEach  items="${requestScope.allUserAddress}" var="address" >
+                <input type="hidden" id="userAddressId" value="${address.userAddressId}">
                 <div class="addr-item">
                     <div class="addr-hd">
-                        <span>四川成都（</span>
-                        <span>XXX</span>
+                        <span>${address.province} ${address.city} ${address.district}(</span>
+                        <span>${address.receiver}</span>
                         <span>收）</span>
                     </div>
                     <div class="addr-bd">
-                        青羊 草市街 人民中路二段51号附一 13888888888
+                        ${address.detailAddress}  ${address.tel}
                     </div>
                     <%--<div class="tips"></div>--%>
                 </div>
@@ -124,7 +125,7 @@
             <c:forEach items="${requestScope.orderItemList}" var="orderItem" varStatus="i">
                 <tr class="tr_shop">
                     <td><span class="span_shopTitle">店铺：</span><span
-                            class="span_shopName">${orderItem.productOrderItem_product.product_category.category_name}旗舰店</span>
+                            class="span_shopName">${orderItem.categoryName}旗舰店</span>
                     </td>
                     <td></td>
                     <td></td>
@@ -132,15 +133,15 @@
                 </tr>
                 <tr class="tr_product_info">
                     <td><img
-                            src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${orderItem.productOrderItem_product.singleProductImageList[0].productImage_src}"
+                            src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${orderItem.productImage.productImageSrc}"
                             style="width: 50px;height: 50px;"/><span class="span_product_name"><a
-                            href="${pageContext.request.contextPath}/product/${orderItem.productOrderItem_product.product_id}">${orderItem.productOrderItem_product.product_name}</a></span>
+                            href="${pageContext.request.contextPath}/product/${orderItem.product.productId}">${orderItem.product.productName}</a></span>
                     </td>
                     <td><span
-                            class="span_product_sale_price">${orderItem.productOrderItem_product.product_sale_price}0</span>
+                            class="span_product_sale_price">${orderItem.product.productSalePrice}0</span>
                     </td>
-                    <td><span class="span_productOrderItem_number">${orderItem.productOrderItem_number}</span></td>
-                    <td><span class="span_productOrderItem_price">${orderItem.productOrderItem_price}0</span></td>
+                    <td><span class="span_productOrderItem_number">${orderItem.productOrderItem.productOrderItemNumber}</span></td>
+                    <td><span class="span_productOrderItem_price">${orderItem.productOrderItem.productOrderItemPrice}0</span></td>
                 </tr>
                 <tr class="tr_userMessage">
                     <td><label for="input_userMessage_${i.count}">给卖家留言：</label><textarea maxlength="500"
@@ -151,12 +152,12 @@
                     <td></td>
                     <td></td>
                     <td colspan="4"><input type="hidden" class="input_orderItem_id"
-                                           value="${orderItem.productOrderItem_id}"/>
+                                           value="${orderItem.productOrderItem.productOrderItemId}"/>
                 </tr>
                 <tr class="tr_orderCount">
                     <td colspan="3"></td>
                     <td><span class="span_price_name">店铺合计(含运费)</span><span
-                            class="span_price_value">￥${orderItem.productOrderItem_price}0</span></td>
+                            class="span_price_value">￥${requestScope.orderTotalMoney}0</span></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -168,7 +169,7 @@
                 <h1 class="order_count_div_price">
                     <span class="order-title">实付款：</span>
                     <span class="realPay-price_unit">￥</span>
-                    <span class="realPay-price">${requestScope.orderTotalPrice}0</span>
+                    <span class="realPay-price">${requestScope.orderTotalMoney}0</span>
                 </h1>
                 <h1 class="order_count_div_address">
                     <span class="order-title">寄送至：</span>
@@ -224,18 +225,20 @@
 
         // 只有一个订单项时
         function payOne() {
-            var addressId = $("#select_order_address_province").val();
+        /*    var addressId = $("#select_order_address_province").val();
             var cityAddressId = $("#select_order_address_city").val();
             var districtAddressId = $("#select_order_address_district").val();
             var productOrder_detail_address = $.trim($("#textarea_details_address").val());
             var productOrder_post = $.trim($("#input_order_post").val());
             var productOrder_receiver = $.trim($("#input_order_receiver").val());
-            var productOrder_mobile = $.trim($("#input_order_phone").val());
-            var userMessage = $.trim($("#input_userMessage_1").val());
-            var orderItem_product_id = parseInt('${requestScope.orderItemList[0].productOrderItem_product.product_id}');
-            var orderItem_number = parseInt('${requestScope.orderItemList[0].productOrderItem_number}');
+            var productOrder_mobile = $.trim($("#input_order_phone").val());*/
 
-            var yn = true;
+            var userAddressId = $.trim($("#userAddressId").val());
+            var userMessage = $.trim($("#input_userMessage_1").val());
+            var orderItem_product_id = parseInt('${requestScope.orderItemList[0].product.productId}');
+            var orderItem_number = parseInt('${requestScope.orderItemList[0].productOrderItem.productOrderItemNumber}');
+
+         /*   var yn = true;
             if (productOrder_detail_address === "") {
                 styleUtil.specialBasicErrorShow($("#label_details_address"));
                 yn = false;
@@ -257,33 +260,31 @@
             if (!yn) {
                 window.scrollTo(0, 0);
                 return false;
-            }
+            }*/
             $.ajax({
-                url: "/mall/order",
+                url: "/mall/order/one",
                 type: "POST",
                 data: {
-                    "addressId": addressId,
+                   /* "addressId": addressId,
                     "cityAddressId": cityAddressId,
                     "districtAddressId": districtAddressId,
                     "productOrder_detail_address": productOrder_detail_address,
                     "productOrder_post": productOrder_post,
                     "productOrder_receiver": productOrder_receiver,
-                    "productOrder_mobile": productOrder_mobile,
+                    "productOrder_mobile": productOrder_mobile,*/
+                   "userAddressId":userAddressId,
                     "userMessage": userMessage,
-                    "orderItem_product_id": orderItem_product_id,
-                    "orderItem_number": orderItem_number
+                    "orderItemProductId": orderItem_product_id,
+                    "orderItemNumber": orderItem_number
                 },
                 dataType: "json",
                 success: function (data) {
                     if (data.success) {
                         location.href = "/mall" + data.url;
                     } else {
-                        alert("订单创建失败，请稍后再试！");
+                        alert(data.message);
                         location.reload(true);
                     }
-                },
-                beforeSend: function () {
-
                 },
                 error: function () {
                     alert("订单提交出现问题，请重新提交！");
@@ -294,16 +295,17 @@
 
         // 有多个订单项
         function payList() {
-            var addressId = $("#select_order_address_province").val();
+          /*  var addressId = $("#select_order_address_province").val();
             var cityAddressId = $("#select_order_address_city").val();
             var districtAddressId = $("#select_order_address_district").val();
             var productOrder_detail_address = $.trim($("#textarea_details_address").val());
             var productOrder_post = $.trim($("#input_order_post").val());
             var productOrder_receiver = $.trim($("#input_order_receiver").val());
-            var productOrder_mobile = $.trim($("#input_order_phone").val());
+            var productOrder_mobile = $.trim($("#input_order_phone").val());*/
 
-            var yn = true;
-            //非空验证
+            var userAddressId = $.trim($("#userAddressId").val());
+
+          /*  var yn = true;
             if (productOrder_detail_address === "") {
                 styleUtil.specialBasicErrorShow($("#label_details_address"));
                 yn = false;
@@ -327,7 +329,7 @@
             if (!yn) {
                 window.scrollTo(0, 0);
                 return false;
-            }
+            }*/
             var orderItemMap = {};
             var tr = $(".tr_userMessage");
             tr.each(function () {
@@ -342,13 +344,14 @@
                 url: "/mall/order/list",
                 type: "POST",
                 data: {
-                    "addressId": addressId,
+                   /* "addressId": addressId,
                     "cityAddressId": cityAddressId,
                     "districtAddressId": districtAddressId,
                     "productOrder_detail_address": productOrder_detail_address,
                     "productOrder_post": productOrder_post,
                     "productOrder_receiver": productOrder_receiver,
-                    "productOrder_mobile": productOrder_mobile,
+                    "productOrder_mobile": productOrder_mobile,*/
+                   "userAddressId":userAddressId,
                     "orderItemJSON": JSON.stringify(orderItemMap)
                 },
                 traditional: true,
@@ -357,11 +360,12 @@
                         location.href = "/mall" + data.url;
                         return true;
                     } else {
-                        alert("订单创建失败，请稍后再试！");
+                        alert(data.message);
                         location.reload(true);
                     }
                 },
                 beforeSend: function () {
+
                 },
                 error: function () {
                     alert("订单创建失败，请稍后再试！");
@@ -372,7 +376,7 @@
     </script>
     <div class="order_info_last">
         <c:choose>
-            <c:when test="${requestScope.orderItemList[0].productOrderItem_id != null}">
+            <c:when test="${requestScope.orderItemList[0].productOrderItem.productOrderItemId != null}">
                 <a href="javascript:void(0)" title="提交订单" class="go-btn" onclick="payList()">提交订单</a>
             </c:when>
             <c:otherwise>

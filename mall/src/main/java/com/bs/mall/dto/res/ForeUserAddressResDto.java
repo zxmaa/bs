@@ -7,7 +7,7 @@ import lombok.Data;
  *用户常用地址响应
  */
 @Data
-public class ForeUserAddressResDto {
+public class  ForeUserAddressResDto {
 
     private Integer userAddressId;
 
