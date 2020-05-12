@@ -4,6 +4,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include/header.jsp" %>
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><%--以最高版本IE来渲染页面--%>
+    <meta name="viewport" content="width=device-width, initial-scale=1"><%-- 不同设备之间的自适应--%>
+    <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/res/css/user/fore_orderPay.css" rel="stylesheet"/>
     <title>网上支付</title>
 </head>
@@ -39,16 +42,16 @@
             <span class="price_unit">元（不会真实付款）</span>
         </div>
     </div>
-    <div class="order_reward_div">
-        <div class="order_reward_alipay_div">
-            <p class="order_reward_name" id="reward_alipay_name">支付宝</p>
-            <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/alipay.jpg"/>
-        </div>
-        <div class="order_reward_weixinpay_div">
-            <p class="order_reward_name" id="reward_weixin_name">微信</p>
-            <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/weixinpay.png">
-        </div>
-    </div>
+    <%--<div class="order_reward_div">--%>
+        <%--<div class="order_reward_alipay_div">--%>
+            <%--<p class="order_reward_name" id="reward_alipay_name">支付宝</p>--%>
+            <%--<img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/alipay.jpg"/>--%>
+        <%--</div>--%>
+        <%--<div class="order_reward_weixinpay_div">--%>
+            <%--<p class="order_reward_name" id="reward_weixin_name">微信</p>--%>
+            <%--<img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/weixinpay.png">--%>
+        <%--</div>--%>
+    <%--</div>--%>
     <div class="order_pay_div">
         <script>
             function pay() {
@@ -78,4 +81,6 @@
 </div>
 <%@include file="include/footer_two.jsp" %>
 <%@include file="include/footer.jsp" %>
+<script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>
+<script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>
 </body>

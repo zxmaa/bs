@@ -1,7 +1,8 @@
 .header {
-    width: 1230px;
+    width: 100%;
     margin: 0 auto;
     height: 96px;
+    padding-left: 20px;
 }
 
 .header > #mallLogo {
@@ -29,7 +30,7 @@
 }
 
 .content {
-    width: 950px;
+    width: 90%;
     margin: 30px auto auto;
     min-height: 400px;
     padding-bottom: 60px;
@@ -48,25 +49,26 @@
 }
 
 .content > .order_div > .order_name, .content > .order_div > .order_shop_name {
-    width: 600px;
-    display: inline-block;
+    /*width: 600px;*/
+    /*display: inline-block;*/
     color: #333;
     font-size: 12px;
-    margin-left: 116px;
+    /*margin-left: 116px;*/
     line-height: 25px;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     text-overflow: ellipsis;
     overflow: hidden;
+    text-align: center;
 }
 
 .content > .order_div > .order_name {
-    margin-top: 25px;
+    /*margin-top: 25px;*/
 }
 
 .content > .order_div > .order_price {
-    position: absolute;
+    /*position: absolute;*/
     right: 27px;
-    top: 30px;
+    /*top: 55px;*/
     float: right;
 }
 

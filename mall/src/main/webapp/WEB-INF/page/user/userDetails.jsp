@@ -6,35 +6,13 @@
 <%@ include file="include/header.jsp" %>
 <html>
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <%--以最高版本IE来渲染页面--%>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%-- 不同设备之间的自适应--%>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><%--以最高版本IE来渲染页面--%>
+    <meta name="viewport" content="width=device-width, initial-scale=1"><%-- 不同设备之间的自适应--%>
     <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/res/js/user/fore_userDetails.js"></script>
     <link href="${pageContext.request.contextPath}/res/css/user/fore_userDetails.css" rel="stylesheet">
     <title>个人中心</title>
     <style rel="stylesheet">
-        #baseNavigator {
-            padding: 22px 0;
-            width: 1190px;
-            height: 44px;
-            margin: auto;
-        }
-        #baseNavigator img {
-            width: 190px;
-            margin-top: 8px;
-        }
-        #nav {
-            width: auto;
-            height: 32px;
-            font-family: "Microsoft YaHei UI", Tahoma, serif;
-            font-size: 12px;
-            position: relative !important;
-            background: #f2f2f2;
-            z-index: 999;
-            border-bottom: 1px solid #e5e5e5;
-        }
         /*标签栏*/
         .tabBarBox {
             float: left;

@@ -28,7 +28,7 @@
         <div class="shopSearchHeader">
             <form action="${pageContext.request.contextPath}/product" method="get">
                 <div class="input-group input_g">
-                    <input type="text" class="form-control search_input" placeholder="搜索 商品/品牌/店铺">
+                    <input type="text" class="form-control search_input" name="productName" value="${requestScope.searchValue}" placeholder="搜索 商品/品牌/店铺">
                     <div class="input-group-btn group_btn">
                         <!-- Buttons -->
                         <button class="btn btn-default btn_mall" type="submit">搜商品</button>

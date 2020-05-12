@@ -5,6 +5,9 @@
 <%@ include file="include/header.jsp" %>
 <html>
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><%--以最高版本IE来渲染页面--%>
+    <meta name="viewport" content="width=device-width, initial-scale=1"><%-- 不同设备之间的自适应--%>
+    <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/res/js/user/fore_productBuy.js"></script>
     <link href="${pageContext.request.contextPath}/res/css/user/fore_productBuyPage.css" rel="stylesheet"/>
     <title>确认订单 </title>
@@ -29,25 +32,25 @@
                 </a>
             </span>
         </div>
-        <ol class="header-extra">
-            <li class="step-done">
-                <div class="step-name">拍下商品</div>
-                <div class="step-no_first"></div>
-            </li>
-            <li class="step-no">
-                <div class="step-name">付款到支付宝</div>
-                <div class="step-no">2</div>
-            </li>
-            <li class="step-no">
-                <div class="step-name">确认收货</div>
-                <div class="step-no">3</div>
-            </li>
-            <li class="step-no">
-                <div class="step-name">评价</div>
-                <div class="step-no_last">4</div>
-            </li>
-        </ol>
     </div>
+    <ol class="header-extra">
+        <li class="step-done">
+            <div class="step-name">拍下商品</div>
+            <div class="step-no_first"></div>
+        </li>
+        <li class="step-no">
+            <div class="step-name">付款到支付宝</div>
+            <div class="step-no">2</div>
+        </li>
+        <li class="step-no">
+            <div class="step-name">确认收货</div>
+            <div class="step-no">3</div>
+        </li>
+        <li class="step-no">
+            <div class="step-name">评价</div>
+            <div class="step-no_last">4</div>
+        </li>
+    </ol>
 </div>
 <div class="content">
     <div class="order_address">
@@ -155,9 +158,10 @@
                                            value="${orderItem.productOrderItem.productOrderItemId}"/>
                 </tr>
                 <tr class="tr_orderCount">
-                    <td colspan="3"></td>
-                    <td><span class="span_price_name">店铺合计(含运费)</span><span
+                    <td colspan="4"><span class="span_price_name">店铺合计(含运费)</span><span
                             class="span_price_value">￥${requestScope.orderTotalMoney}0</span></td>
+                    <%--<td><span class="span_price_name">店铺合计(含运费)</span><span--%>
+                            <%--class="span_price_value">￥${requestScope.orderTotalMoney}0</span></td>--%>
                 </tr>
             </c:forEach>
             </tbody>
@@ -388,5 +392,7 @@
 <%@include file="include/footer_two.jsp" %>
 <%@include file="include/footer.jsp" %>
 <div class="loader"></div>
+<script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>
+<script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>
 </body>
 </html>

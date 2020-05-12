@@ -33,7 +33,7 @@
         <div class="collapse navbar-collapse mallSearch" id="nav_search">
             <form class="navbar-form form_search" action="${pageContext.request.contextPath}/product" method="get">
                 <div class="form-group form_div">
-                    <input type="text" name="product_name"  class="form-control form_input" placeholder="搜索 商品/品牌/店铺"><button type="submit" class="btn btn-default nav_btn">搜索</button>
+                    <input type="text" name="productName"  class="form-control form_input" placeholder="搜索 商品/品牌/店铺" value="${requestScope.searchValue}"><button type="submit" class="btn btn-default nav_btn">搜索</button>
                 </div>
             </form>
             <ul>

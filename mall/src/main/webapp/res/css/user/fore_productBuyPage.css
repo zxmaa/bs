@@ -1,5 +1,5 @@
 .headerLayout {
-    width: 1230px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -9,9 +9,10 @@
 }
 
 .headerContext > .mallLogo {
-    width: 400px;
+    width: 17%;
     float: left;
     padding-top: 28px;
+    padding-left: 20px;
     height: 64px;
     line-height: 64px;
     position: relative;
@@ -47,7 +48,7 @@
 
 .headerContext > .header-extra {
     margin-left: 0;
-    width: 728px;
+    width: 82%;
     position: absolute;
     top: 0;
     right: -50px;
@@ -57,7 +58,7 @@
 }
 
 .header-extra > li {
-    width: 182px;
+    width: 25%;
     display: block;
     float: left;
     text-align: center;
@@ -107,7 +108,7 @@
 }
 
 .content {
-    width: 1230px;
+    width: 100%;
     margin: auto;
     min-height: 400px;
     padding-bottom: 60px;
@@ -116,6 +117,7 @@
 
 .content > .order_address {
     margin: 30px 0;
+    padding-top: 25px;
 }
 
 .order_address > h2, .order_info > h2 {
@@ -125,6 +127,7 @@
     color: #333;
     font-weight: 700;
     font-size: 14px;
+    margin-left: 20px;
 }
 
 .order_address > label {
@@ -166,7 +169,7 @@
 }
 
 .address-list{
-    width: 1044px;
+    width: 95%;
     margin: 0 auto;
     display:flex;
     justify-content: start;
@@ -306,7 +309,7 @@
 .tr_userMessage > td > textarea {
     box-sizing: content-box;
     vertical-align: top;
-    width: 328px;
+    width: 190px;
     resize: none;
     height: 18px;
     line-height: 18px;

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"><%-- 不同设备之间的自适应--%>
     <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/res/css/user/fore_orderList.css" rel="stylesheet"/>
-    <title>已买到的宝贝</title>
+    <title>我的订单</title>
     <script>
         $(function () {
             //模态框中确定按钮点击事件
@@ -61,10 +61,12 @@
         </div>
         <div class="shopSearchHeader">
             <form action="${pageContext.request.contextPath}/product" method="get">
-                <div class="shopSearchInput">
-                    <input type="text" class="searchInput" name="product_name" placeholder="搜索 商品/品牌/店铺"
-                           maxlength="50">
-                    <input type="submit" value="搜 索" class="searchBtn">
+                <div class="input-group shopSearchInput">
+                    <input type="text" class="searchInput" name="productName" placeholder="搜索 商品/品牌/店铺"
+                           value="${requestScope.searchValue}" maxlength="50">
+                    <span class="input-group-btn">
+                        <input type="submit" value="搜 索" class="searchBtn">
+                    </span>
                 </div>
             </form>
             <ul>
@@ -96,11 +98,11 @@
         <thead>
         <tr>
             <th>宝贝</th>
-            <th width="80px">单价</th>
-            <th width="80px">数量</th>
-            <th width="140px">实付款</th>
-            <th width="140px">交易状态</th>
-            <th width="140px">交易操作</th>
+            <th width="">单价</th>
+            <th width="">数量</th>
+            <th width="">实付款</th>
+            <th width="">交易状态</th>
+            <th width="">交易操作</th>
         </tr>
         </thead>
         <c:choose>

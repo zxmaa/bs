@@ -3,6 +3,9 @@
 <%@ include file="include/header.jsp" %>
 <html>
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><%--以最高版本IE来渲染页面--%>
+    <meta name="viewport" content="width=device-width, initial-scale=1"><%-- 不同设备之间的自适应--%>
+    <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/res/js/user/fore_productShopCart.js"></script>
     <link href="${pageContext.request.contextPath}/res/css/user/fore_productShopCartPage.css" rel="stylesheet"/>
     <title>购物车</title>
@@ -51,10 +54,12 @@
         </div>
         <div class="shopSearchHeader">
             <form action="${pageContext.request.contextPath}/product" method="get">
-                <div class="shopSearchInput">
+                <div class="input-group shopSearchInput">
                     <input type="text" class="searchInput" name="productName" placeholder="搜索 商品/品牌/店铺"
                            value="${requestScope.searchValue}" maxlength="50">
-                    <input type="submit" value="搜 索" class="searchBtn">
+                    <span class="input-group-btn">
+                        <input type="submit" value="搜 索" class="searchBtn">
+                    </span>
                 </div>
             </form>
             <ul>
@@ -106,7 +111,7 @@
                 <tr>
                     <th class="selectAll_th"><input type="checkbox" class="cbx_select" id="cbx_select_all"><label
                             for="cbx_select_all">全选</label></th>
-                    <th width="474px" class="productInfo_th"><span>商品信息</span></th>
+                    <th width="150px" class="productInfo_th"><span>商品信息</span></th>
                     <th width="120px"><span>单价</span></th>
                     <th width="120px"><span>数量</span></th>
                     <th width="120px"><span>金额</span></th>
@@ -154,37 +159,36 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <div id="J_FloatBar">
-                <div id="J_SelectAll2">
+            <div id="J_FloatBar" class="row">
+                <div id="J_SelectAll2" class="col-md-1 col-xs-4">
                     <div class="cart_checkbox">
                         <input class="J_checkboxShop" id="J_SelectAllCbx2" type="checkbox" value="true"/>
                         <label for="J_SelectAllCbx2" title="勾选购物车内所有商品"></label>
                     </div>
                     <span class="span_selectAll">&nbsp;全选</span>
                 </div>
-              <%--  <div class="operations">
-                    <a href="javascript:void(0)" onclick="remove()">删除</a>
-                </div>--%>
-                <div class="float-bar-right">
-                    <div id="J_ShowSelectedItems">
-                        <span class="txt">已选商品</span>
-                        <em id="J_SelectedItemsCount">0</em>
-                        <span class="txt">件</span>
-                    </div>
-                    <div class="price_sum">
-                        <span class="txt">合计（不含运费）:</span>
-                        <strong class="price">
-                            <em id="J_Total">
-                                <span class="total_symbol">&nbsp;  ￥</span>
-                                <span class="total_value"> 0.00</span>
-                            </em>
-                        </strong>
-                    </div>
-                    <div class="btn_area">
-                        <a href="javascript:void(0)" id="J_Go" onclick="create(this)">
-                            <span>结&nbsp;算</span>
-                        </a>
-                    </div>
+                <div class="col-md-11 col-xs-8">
+                    <div class="row float-bar-right ">
+                        <div id="J_ShowSelectedItems" class="col-md-1 col-md-offset-7">
+                            <span class="txt">已选商品</span>
+                            <em id="J_SelectedItemsCount">0</em>
+                            <span class="txt">件</span>
+                        </div>
+                        <div class="price_sum col-md-2">
+                            <span class="txt">合计（不含运费）:</span>
+                            <strong class="price">
+                                <em id="J_Total">
+                                    <span class="total_symbol">&nbsp;  ￥</span>
+                                    <span class="total_value"> 0.00</span>
+                                </em>
+                            </strong>
+                        </div>
+                        <div class="btn_area col-md-1">
+                            <a href="javascript:void(0)" id="J_Go" onclick="create(this)">
+                                <span>结&nbsp;算</span>
+                            </a>
+                        </div>
+                </div>
                 </div>
             </div>
         </c:otherwise>
@@ -211,5 +215,7 @@
 </div>
 <%@include file="include/footer_two.jsp" %>
 <%@include file="include/footer.jsp" %>
+<script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>
+<script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>
 </body>
 </html>

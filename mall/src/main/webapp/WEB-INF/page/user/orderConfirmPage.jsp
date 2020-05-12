@@ -20,10 +20,12 @@
     </div>
     <div class="shopSearchHeader">
         <form action="${pageContext.request.contextPath}/product" method="get">
-            <div class="shopSearchInput">
-                <input type="text" class="searchInput" name="product_name" placeholder="搜索 商品/品牌/店铺"
-                       maxlength="50">
-                <input type="submit" value="搜 索" class="searchBtn">
+            <div class="input-group shopSearchInput">
+                <input type="text" class="searchInput" name="productName" placeholder="搜索 商品/品牌/店铺"
+                       value="${requestScope.searchValue}"  maxlength="50">
+                <span class="input-group-btn">
+                        <input type="submit" value="搜 索" class="searchBtn">
+                </span>
             </div>
         </form>
     </div>

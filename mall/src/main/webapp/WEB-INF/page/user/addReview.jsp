@@ -2,6 +2,9 @@
 <%@ include file="include/header.jsp" %>
 <html>
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><%--以最高版本IE来渲染页面--%>
+    <meta name="viewport" content="width=device-width, initial-scale=1"><%-- 不同设备之间的自适应--%>
+    <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/res/css/user/fore_addReview.css" rel="stylesheet"/>
     <title>添加评论</title>
     <script>
@@ -30,10 +33,12 @@
     </div>
     <div class="shopSearchHeader">
         <form action="${pageContext.request.contextPath}/product" method="get">
-            <div class="shopSearchInput">
-                <input type="text" class="searchInput" name="product_name" placeholder="搜索 商品/品牌/店铺"
-                       maxlength="50">
-                <input type="submit" value="搜 索" class="searchBtn">
+            <div class="input-group shopSearchInput">
+                <input type="text" class="searchInput" name="productName" placeholder="搜索 商品/品牌/店铺"
+                       value="${requestScope.searchValue}"  maxlength="50">
+                <span class="input-group-btn">
+                        <input type="submit" value="搜 索" class="searchBtn">
+                </span>
             </div>
         </form>
     </div>
@@ -98,5 +103,7 @@
 </div>
 <%@include file="include/footer_two.jsp" %>
 <%@include file="include/footer.jsp" %>
+<script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>
+<script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>
 </body>
 </html>
