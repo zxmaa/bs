@@ -45,7 +45,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的淘宝<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="${pageContext.request.contextPath}/userDetails">个人中心</a></li>
-                        <li><a href="${pageContext.request.contextPath}/order/0/10">我的订单</a></li>
+                        <li><a href="${pageContext.request.contextPath}/order/1/10">我的订单</a></li>
                     </ul>
                 </li>
                 <li class="quick_li_cart">

@@ -39,7 +39,7 @@ public class ForeOrderController  extends BaseController {
 
     @RequestMapping(value = "/order",method = RequestMethod.GET)
     public String goToPageSimple(){
-        return "redirect:/order/0/10";
+        return "redirect:/order/1/10";
     }
 
     /**
@@ -187,15 +187,15 @@ public class ForeOrderController  extends BaseController {
         ProductOrder order = productOrderService.getProductOrderByOrderCode(orderCode);
         if(order == null){
             logger.warn("订单不存在，返回订单列表页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         if(order.getProductOrderStatus() != 0){
             logger.warn("订单状态不正确，返回订单列表页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         if(!order.getUserId().equals(userId)){
             logger.warn("用户与订单信息不一致，返回订单列表页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         ForePayResDto payPageInfo = productOrderService.getPayPageInfoByOrderCode(orderCode);
 
@@ -226,15 +226,15 @@ public class ForeOrderController  extends BaseController {
         ProductOrder order = productOrderService.getProductOrderByOrderCode(orderCode);
         if(order == null){
             logger.warn("订单不存在，返回订单列表页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
-        if(order.getProductOrderStatus() != 1){
+        if(order.getProductOrderStatus() != 2){
             logger.warn("订单状态不正确，返回订单列表页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         if(!order.getUserId().equals(userId)){
             logger.warn("用户与订单信息不一致，返回订单列表页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         ForeConfirmReceiptResDto confirmReceiptInfo = productOrderService.getConfirmReceiptInfo(orderCode);
         model.addAttribute("confirmReceiptInfo",confirmReceiptInfo);
@@ -267,15 +267,15 @@ public class ForeOrderController  extends BaseController {
         ProductOrder order = productOrderService.getProductOrderByOrderCode(orderCode);
         if(order == null){
             logger.warn("订单不存在，返回订单列表页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         if(order.getProductOrderStatus() != 1){
             logger.warn("订单状态不正确，返回订单列表页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         if(!order.getUserId().equals(userId)){
             logger.warn("用户与订单信息不一致，返回订单列表页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         ForePaySuccessResDto paySuccessInfo = productOrderService.getPaySuccessInfoByOrderCode(orderCode);
         model.addAttribute("paySuccessInfo",paySuccessInfo);
@@ -306,15 +306,15 @@ public class ForeOrderController  extends BaseController {
         ProductOrder order = productOrderService.getProductOrderByOrderCode(orderCode);
         if(order == null){
             logger.warn("订单不存在，返回订单列表页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         if(order.getProductOrderStatus() != 3){
             logger.warn("订单状态不正确，返回订单列表页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         if(!order.getUserId().equals(userId)){
             logger.warn("用户与订单信息不一致，返回订单列表页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         //orderSuccessInfo.product != null 才显示
         ForeOrderSuceessResDto orderSuccessInfo = productOrderService.getOrderSuccessInfo(orderCode);
@@ -352,19 +352,19 @@ public class ForeOrderController  extends BaseController {
         if(order == null){
             logger.warn("订单不存在，返回订单列表页");
             object.put("success", false);
-            object.put("url", "/order/0/10");
+            object.put("url", "/order/1/10");
             return object.toJSONString();
         }
         if(order.getProductOrderStatus() != 0){
             logger.warn("订单状态不正确，返回订单列表页");
             object.put("success", false);
-            object.put("url", "/order/0/10");
+            object.put("url", "/order/1/10");
             return object.toJSONString();
         }
         if(!order.getUserId().equals(userId)){
             logger.warn("用户与订单信息不一致，返回订单列表页");
             object.put("success", false);
-            object.put("url", "/order/0/10");
+            object.put("url", "/order/1/10");
             return object.toJSONString();
         }
         //支付后，更改产品和订单相关信息
@@ -399,20 +399,20 @@ public class ForeOrderController  extends BaseController {
         ProductOrder order = productOrderService.getProductOrderByOrderCode(orderCode);
         if(order == null){
             logger.warn("订单不存在，返回订单列表页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         if(order.getProductOrderStatus() != 1){
             logger.warn("订单状态不正确，返回订单列表页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         if(!order.getUserId().equals(userId)){
             logger.warn("用户与订单信息不一致，返回订单列表页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         //将订单信息更改为，已发货
         productOrderService.updateOrderStatus(orderCode,2);
 
-        return "redirect:/order/0/10";
+        return "redirect:/order/1/10";
     }
 
     /**
@@ -441,19 +441,19 @@ public class ForeOrderController  extends BaseController {
         if(order == null){
             logger.warn("订单不存在，返回订单列表页");
             object.put("success", false);
-            object.put("url", "/order/0/10");
+            object.put("url", "/order/1/10");
             return object.toJSONString();
         }
         if(order.getProductOrderStatus() != 2){
             logger.warn("订单状态不正确，返回订单列表页");
             object.put("success", false);
-            object.put("url", "/order/0/10");
+            object.put("url", "/order/1/10");
             return object.toJSONString();
         }
         if(!order.getUserId().equals(userId)){
             logger.warn("用户与订单信息不一致，返回订单列表页");
             object.put("success", false);
-            object.put("url", "/order/0/10");
+            object.put("url", "/order/1/10");
             return object.toJSONString();
         }
         logger.info("更新订单信息,为已确认收货（交易成功）");
@@ -490,19 +490,19 @@ public class ForeOrderController  extends BaseController {
         if(order == null){
             logger.warn("订单不存在，返回订单列表页");
             object.put("success", false);
-            object.put("url", "/order/0/10");
+            object.put("url", "/order/1/10");
             return object.toJSONString();
         }
         if(order.getProductOrderStatus() != 0){
             logger.warn("订单状态不正确，返回订单列表页");
             object.put("success", false);
-            object.put("url", "/order/0/10");
+            object.put("url", "/order/1/10");
             return object.toJSONString();
         }
         if(!order.getUserId().equals(userId)){
             logger.warn("用户与订单信息不一致，返回订单列表页");
             object.put("success", false);
-            object.put("url", "/order/0/10");
+            object.put("url", "/order/1/10");
             return object.toJSONString();
         }
         logger.info("更新订单信息");

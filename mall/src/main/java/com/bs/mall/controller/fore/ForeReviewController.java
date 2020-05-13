@@ -50,24 +50,24 @@ public class ForeReviewController extends BaseController {
         ProductOrderItem orderItem = productOrderItemService.selectOrderItemById(orderItemId);
         if(orderItem == null){
             logger.warn("订单项不存在，返回订单页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         if(!orderItem.getUserId().equals(userId)){
             logger.warn("订单项与用户不匹配，返回订单页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         if(orderItem.getProductOrderId() == null){
             logger.warn("订单项状态有误，返回订单页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         ProductOrder productOrder = productOrderService.getProductOrderById(orderItem.getProductOrderId());
         if(productOrder == null || productOrder.getProductOrderStatus() !=3){
             logger.warn("订单项状态有误，返回订单页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         if(reviewService.getTotalByOrderItemId(orderItemId)>0){
             logger.warn("订单项所属商品已被评价，返回订单页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         ForeWriteReviewResDto reviewPageInfo = productOrderService.getWriteReviewInfo(orderItemId);
         model.addAttribute("reviewPageInfo",reviewPageInfo);
@@ -100,24 +100,24 @@ public class ForeReviewController extends BaseController {
         ProductOrderItem orderItem = productOrderItemService.selectOrderItemById(orderItemId);
         if(orderItem == null){
             logger.warn("订单项不存在，返回订单页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         if(!orderItem.getUserId().equals(userId)){
             logger.warn("订单项与用户不匹配，返回订单页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         if(orderItem.getProductOrderId() == null){
             logger.warn("订单项状态有误，返回订单页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         ProductOrder productOrder = productOrderService.getProductOrderById(orderItem.getProductOrderId());
         if(productOrder == null || productOrder.getProductOrderStatus() !=3){
             logger.warn("订单项状态有误，返回订单页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         if(reviewService.getTotalByOrderItemId(orderItemId)>0){
             logger.warn("订单项所属商品已被评价，返回订单页");
-            return "redirect:/order/0/10";
+            return "redirect:/order/1/10";
         }
         ForeAddReviewReqDto foreAddReviewReqDto = new ForeAddReviewReqDto();
         foreAddReviewReqDto.setOrderItemId(orderItemId);

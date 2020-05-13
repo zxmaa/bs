@@ -71,7 +71,7 @@
                     },
                     error: function () {
                         alert("订单支付出现问题，请重新支付！");
-                        location.href = "/mall/order/0/10";
+                        location.href = "/mall/order/1/10";
                     }
                 });
             }

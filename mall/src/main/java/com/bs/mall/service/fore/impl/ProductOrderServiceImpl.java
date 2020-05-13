@@ -462,6 +462,7 @@ public class ProductOrderServiceImpl implements IProductOrderService {
                     }
                     showOrderItemResDto.setProductOrderItem(orderItem);
                     showOrderItemResDto.setProduct(product);
+                    showOrderItemResDto.setProductImage(productImageService.getImagesByType(orderItem.getProductId(),0).get(0));
 
                     orderItemList.add(showOrderItemResDto);
                 }
@@ -499,9 +500,10 @@ public class ProductOrderServiceImpl implements IProductOrderService {
 
         ProductOrderItem productOrderItem = productOrderItemService.selectOrderItemById(orderItemId);
         Product product = productService.getProductById(productOrderItem.getProductId());
-
+        ProductImage productImage = productImageService.getImagesByType(product.getProductId(), 0).get(0);
         result.setProduct(product);
         result.setProductOrderItem(productOrderItem);
+        result.setProductImage(productImage);
         return result;
     }
 

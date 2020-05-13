@@ -21,7 +21,7 @@
         </div>
         <div class="shopSearchHeader">
             <form action="${pageContext.request.contextPath}/product" method="get">
-                <div class="input-group shopSearchInput">
+                <div class="shopSearchInput">
                     <input type="text" class="searchInput" name="productName" placeholder="搜索 商品/品牌/店铺"
                            value="${requestScope.searchValue}" maxlength="50">
                     <span class="input-group-btn">
@@ -46,15 +46,17 @@
             <div class="summary_pay_done">
                 <ul>
                     <li>
-                        收货地址：<span>${requestScope.productOrder.productOrderDetailAddress} ${requestScope.productOrder.productOrderReceiver} ${requestScope.productOrder.productOrderMobile}</span>
+                        收货地址：<span>${requestScope.paySuccessInfo.addressDetail.province} ${requestScope.paySuccessInfo.addressDetail.city} ${requestScope.paySuccessInfo.addressDetail.district}
+                                        ${requestScope.paySuccessInfo.productOrder.productOrderReceiver} ${requestScope.paySuccessInfo.productOrder.productOrderMobile}
+                    </span>
                     </li>
-                    <li>实付款：<span><em>￥${requestScope.totalPrice}</em></span></li>
+                    <li>实付款：<span><em>￥${requestScope.paySuccessInfo.totalPrice}</em></span></li>
                 </ul>
             </div>
         </div>
         <div id="J_ButtonList">
             <span class="info">您可以 </span>
-            <a class="J_MakePoint" href="${pageContext.request.contextPath}/order/0/10">查看已买到的宝贝</a>
+            <a class="J_MakePoint" href="${pageContext.request.contextPath}/order/1/10">查看已买到的宝贝</a>
         </div>
         <div id="J_RemindList">
             <ul>
