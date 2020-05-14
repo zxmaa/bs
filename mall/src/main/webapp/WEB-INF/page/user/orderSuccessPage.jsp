@@ -22,7 +22,7 @@
     </div>
     <div class="shopSearchHeader">
         <form action="${pageContext.request.contextPath}/product" method="get">
-            <div class="shopSearchInput">
+            <div class="input-group shopSearchInput">
                 <input type="text" class="searchInput" name="productName" placeholder="搜索 商品/品牌/店铺"
                        maxlength="50">
                 <span class="input-group-btn">

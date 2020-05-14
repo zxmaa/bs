@@ -81,7 +81,7 @@
             <tbody>
             <c:forEach items="${requestScope.confirmReceiptInfo.orderItemDetails}" var="orderItem" varStatus="i">
                 <tr class="tr_product_info">
-                    <td width="500px">
+                    <td width="">
                         <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${orderItem.productImage.productImageSrc}"
                             style="width: 50px;height: 50px;"/><span class="span_product_name"><a
                             href="${pageContext.request.contextPath}/product/${orderItem.productOrderItem.productId}"

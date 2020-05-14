@@ -11,6 +11,7 @@
     <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/res/js/user/fore_userDetails.js"></script>
     <link href="${pageContext.request.contextPath}/res/css/user/fore_userDetails.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/res/css/user/fore_foot_special.css" rel="stylesheet"/>
     <title>个人中心</title>
     <style rel="stylesheet">
         /*标签栏*/
@@ -69,8 +70,9 @@
     </style>
 </head>
 <body>
-<%@ include file="include/navigator.jsp" %>
+
 <nav>
+    <%@ include file="include/navigator.jsp" %>
     <div class="header">
         <div id="mallLogo">
             <a href="${pageContext.request.contextPath}">
@@ -194,11 +196,11 @@
         }
     }
 </script>
-<%@include file="include/footer.jsp" %>
-<link href="${pageContext.request.contextPath}/res/css/user/fore_foot_special.css" rel="stylesheet"/>
+
 <div class="msg">
     <span>修改成功，请重新登录！</span>
 </div>
+<%@include file="include/footer.jsp" %>
 <script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>
 <script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>
 </body>

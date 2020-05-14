@@ -1,14 +1,15 @@
 .header {
-    width: 1230px;
+    width: 100%;
     margin: 0 auto;
-    height: 96px;
+    height: auto;
 }
 
 .header > #mallLogo {
     float: left;
-    padding-top: 28px;
-    width: 280px;
-    height: 64px;
+    padding-top: 20px;
+    padding-left: 20px;
+    width: 250px;
+    height: 40px;
     line-height: 64px;
     position: relative;
 }
@@ -29,10 +30,11 @@
 }
 
 .header > .shopSearchHeader {
-    float: right;
+    /*float: right;*/
     overflow: hidden;
-    width: 597px;
-    padding-top: 25px;
+    width: 70%;
+    padding-top: 15px;
+    margin-left: 20px;
 }
 
 .shopSearchHeader > form {
@@ -65,7 +67,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+*/
 .shopSearchInput > .searchInput {
     font-size: 12px;
     color: #000;
-    width: 496px;
+    /*width: 496px;*/
     height: 20px;
     line-height: 20px;
     padding: 5px 3px 5px 5px;
@@ -75,7 +77,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+*/
     float: left;
 }
 
-.shopSearchInput > .searchBtn {
+.shopSearchInput .input-group-btn > .searchBtn {
     width: 90px;
     height: 30px;
     font-size: 16px;
@@ -89,7 +91,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+*/
 }
 
 .content {
-    width: 1230px;
+    width: 100%;
     margin: auto;
     min-height: 800px;
     padding-bottom: 60px;
@@ -97,47 +99,29 @@ input:-ms-input-placeholder { /* Internet Explorer 10+*/
 
 .content > .details_box {
     position: relative;
-    width: 990px;
-    margin: 20px auto;
+    width: 82%;
+    margin: 20px 0px;
     min-height: 300px;
-}
-
-.details_box > .db-showpanel {
-    width: 462px;
-    height: 462px;
-    float: left;
-    border: 1px solid #e7e7e7;
 }
 
 .db-showpanel > a {
     display: table-cell;
     vertical-align: middle;
-    width: 462px;
-    height: 462px;
+    width: 100%;
+    height: 100%;
     text-align: center;
+    border: 1px solid #e7e7e7;
 }
 
 .db-showpanel > a > img {
-    max-height: 460px;
-    max-width: 460px;
+    width: 100%;
     margin: 1px;
     border: none;
 }
 
-.details_box > .db-icbu {
-    overflow: hidden;
-    width: 526px;
-    height: 462px;
-    margin-left: 463px;
-    border-top: 1px solid #e7e7e7;
-    margin-bottom: 17px;
-}
-
 .db-icbu > .ui-form-bd {
     display: block;
-    padding: 19px;
     min-height: 160px;
-    margin-top: 20px;
 }
 
 .ui-form-bd .ui-form-row {
@@ -197,6 +181,8 @@ input:-ms-input-placeholder { /* Internet Explorer 10+*/
     height: 38px;
     margin-bottom: 5px;
     background: #f6f3f1;
+    width: 100%;
+    margin-top: 15px;
 }
 
 .banner-totalevolute > .tv-leftbox {
@@ -242,31 +228,18 @@ input:-ms-input-placeholder { /* Internet Explorer 10+*/
     text-align: center;
 }
 
-.banner-totalevolute > .tv-rightbox {
-    display: inline-block;
-    overflow: hidden;
-    border-bottom: 1px solid #d5d4d4;
-    height: 38px;
-    width: 809px;
-    float: right;
-}
-
-.tv-rightbox > .tv-rb-cover {
-    height: 32px;
-    background: #fff;
-}
-
 .tv-lb-bottom {
     height: 5px;
     background: #f6f5f1;
     border-left: 1px solid #d5d4d4;
+    border-right: 1px solid #d5d4d4;
 }
 
 .rate-compose {
     position: relative;
     top: 50px;
     border: 2px solid #f0eceb;
-    margin: 20px 0;
+    /*margin: 20px 0;*/
 }
 
 .rate-compose > form {
@@ -312,7 +285,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+*/
     height: 117px;
     border: 1px solid #E7E7E7;
     border-left: 0;
-    width: 600px;
+    width: 70%;
     position: relative;
     float: left;
 }

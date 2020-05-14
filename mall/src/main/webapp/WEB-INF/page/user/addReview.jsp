@@ -33,36 +33,40 @@
     </div>
     <div class="shopSearchHeader">
         <form action="${pageContext.request.contextPath}/product" method="get">
-            <div class="shopSearchInput">
+            <div class="input-group shopSearchInput">
                 <input type="text" class="searchInput" name="productName" placeholder="搜索 商品/品牌/店铺"
                        maxlength="50">
-                <input type="submit" value="搜 索" class="searchBtn">
+                <span class="input-group-btn">
+                        <input type="submit" value="搜 索" class="searchBtn">
+                </span>
             </div>
         </form>
     </div>
 </div>
-<div class="content">
+<div class="container content">
     <div class="details_box">
-        <div class="db-showpanel">
-            <a href="${pageContext.request.contextPath}/product/${reviewPageInfo.product.productId}"
-               target="_blank"><img
-                    src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${reviewPageInfo.productImage.productImageSrc}"></a>
-        </div>
-        <div class="db-icbu">
-            <ol class="ui-form-bd">
-                <li class="ui-form-row"><h3>${reviewPageInfo.product.productName}</h3></li>
-                <li class="ui-form-row superstar-price">
-                    <label class="ui-form-label">价格</label>
-                    <div class="ui-form_right">
-                        <em>${reviewPageInfo.product.productSalePrice}</em>
-                        <span>元</span>
-                    </div>
-                </li>
-                <li class="ui-from-row">
-                    <label class="ui-form-label">配送</label>
-                    <div class="ui-form_right"><span class="ul_right_special">快递：0.00</span></div>
-                </li>
-            </ol>
+        <div class="row">
+            <div class="col-md-5 col-xs-12 db-showpanel">
+                <a href="${pageContext.request.contextPath}/product/${reviewPageInfo.product.productId}"
+                   target="_blank"><img
+                        src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${reviewPageInfo.productImage.productImageSrc}"></a>
+            </div>
+            <div class="col-md-6 col-xs-12 db-icbu">
+                <ol class="ui-form-bd">
+                    <li class="ui-form-row"><h3>${reviewPageInfo.product.productName}</h3></li>
+                    <li class="ui-form-row superstar-price">
+                        <label class="ui-form-label">价格</label>
+                        <div class="ui-form_right">
+                            <em>${reviewPageInfo.product.productSalePrice}</em>
+                            <span>元</span>
+                        </div>
+                    </li>
+                    <li class="ui-from-row">
+                        <label class="ui-form-label">配送</label>
+                        <div class="ui-form_right"><span class="ul_right_special">快递：0.00</span></div>
+                    </li>
+                </ol>
+            </div>
         </div>
         <div class="banner-totalevolute">
             <div class="tv-leftbox">
@@ -73,10 +77,10 @@
                 </div>
                 <div class="tv-lb-bottom"></div>
             </div>
-            <div class="tv-rightbox">
-                <div class="tv-rb-cover"></div>
-                <div class="tv-rb-bottom"></div>
-            </div>
+            <%--<div class="tv-rightbox">--%>
+                <%--<div class="tv-rb-cover"></div>--%>
+                <%--<div class="tv-rb-bottom"></div>--%>
+            <%--</div>--%>
         </div>
         <div class="rate-compose">
             <form method="post" action="${pageContext.request.contextPath}/review" id="review_form">

@@ -61,10 +61,12 @@
         </div>
         <div class="shopSearchHeader">
             <form action="${pageContext.request.contextPath}/product" method="get">
-                <div class="shopSearchInput">
+                <div class="input-group shopSearchInput">
                     <input type="text" class="searchInput" name="productName" placeholder="搜索 商品/品牌/店铺"
                            maxlength="50">
-                    <input type="submit" value="搜 索" class="searchBtn">
+                    <span class="input-group-btn">
+                        <input type="submit" value="搜 索" class="searchBtn">
+                    </span>
                 </div>
             </form>
             <ul>
@@ -116,7 +118,7 @@
                         <tr class="tr_orderItem_info">
                             <td><img class="orderItem_product_image"
                                      src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${productOrderItem.productImage.productImageSrc}"
-                                     style="width: 80px;height: 80px;"/><span class="orderItem_product_name">
+                                     style=""/><span class="orderItem_product_name">
                                 <a href="${pageContext.request.contextPath}/product/${productOrderItem.product.productId}">${productOrderItem.product.productName}</a></span>
                             </td>
                             <td><span
