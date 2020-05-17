@@ -25,7 +25,7 @@ public class ForeAdressController extends BaseController {
      * @param areaId
      * @return
      */
-    @RequestMapping(value = "/address/{areaId}",method = RequestMethod.GET)
+    @RequestMapping(value = "/address/{areaId}",method = RequestMethod.GET,produces = "application/json;charset=utf-8")
     public String getAddressByAreaId(@PathVariable String areaId){
         JSONObject object = new JSONObject();
         logger.info("获取以areaId为父地址的地区信息");

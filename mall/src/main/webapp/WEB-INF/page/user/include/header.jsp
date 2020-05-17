@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/user/fore_main.css"/>
     <script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>
     <script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/res/js/bootstrap-select.min.js"></script>
     <script src="${pageContext.request.contextPath}/res/js/defaults-zh_CN.min.js"></script>
     <script src="${pageContext.request.contextPath}/res/js/base.js"></script>
 </head>

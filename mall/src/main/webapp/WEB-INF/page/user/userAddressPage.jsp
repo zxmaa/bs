@@ -11,13 +11,13 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"><%--以最高版本IE来渲染页面--%>
     <meta name="viewport" content="width=device-width, initial-scale=1"><%-- 不同设备之间的自适应--%>
-    <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
+   <%-- <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">--%>
     <script src="${pageContext.request.contextPath}/res/js/user/fore_productBuy.js"></script>
     <link href="${pageContext.request.contextPath}/res/css/user/fore_userAddressPage.css" rel="stylesheet"/>
     <title>管理收货地址</title>
     <%--<script>--%>
+        <%--alert("test");--%>
         <%--$(function () {--%>
-            <%--alert("test");--%>
             <%--$("span.address_province").text($("#select_order_address_province").find("option:selected").text());--%>
             <%--$("span.address_city").text($("#select_order_address_city").find("option:selected").text());--%>
             <%--$("span.address_district").text($("#select_order_address_district").find("option:selected").text());--%>
@@ -191,9 +191,10 @@
 </script>
 
 
+
 <%@include file="include/footer_two.jsp" %>
 <%@include file="include/footer.jsp" %>
-<script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>
 <script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/res/js/bootstrap-select.min.js"></script>
 </body>
 </html>
