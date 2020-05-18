@@ -286,6 +286,10 @@ nav {
     padding-left: 20px;
  }
 
+.header .mall_logo:hover{
+    text-decoration: none;
+}
+
 .header > .shopNameHeader {
     display: inline-block;
     height: 38px;
@@ -844,9 +848,9 @@ nav {
     position: relative;
 }
 
-.context_ul_goodsList > ul > .context_ul_main {
-    height: 160px;
-}
+/*.context_ul_goodsList > ul > .context_ul_main {*/
+    /*height: 160px;*/
+/*}*/
 
 .context_ul_goodsList .list-inline >li{
     padding: 5px 10px;
@@ -893,22 +897,25 @@ nav {
     height: 27px;
     margin: 0;
     text-align: center;
+    display: inline-flex;
 }
 
-.context_ul_goodsList .list-inline .ul_trigger_up {
+.context_ul .context_ul_trigger .ul_trigger_up {
     float: top;
     cursor: pointer;
     width: 27px;
     height: 26px;
+    padding: 0 10px;
     background: transparent url(../../img/user/WebsiteImage/T1Z0VbFEdcXXbcIIcR-80-112.png) 0 0;
 }
 
-.context_ul_goodsList .list-inline .ul_trigger_down {
+.context_ul .context_ul_trigger .ul_trigger_down {
     /*float: right;*/
     top:20px;
     cursor: pointer;
     width: 27px;
     height: 27px;
+    padding: 0 10px;
     background: transparent url(../../img/user/WebsiteImage/T1Z0VbFEdcXXbcIIcR-80-112.png) 0 -30px;
 }
 

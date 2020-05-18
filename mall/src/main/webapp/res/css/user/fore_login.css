@@ -14,7 +14,7 @@
     margin: auto;
     background-image: url(../../img/user/WebsiteImage/loginbz3.jpg);
     background-repeat: no-repeat;
-    background-size:contain;
+    background-size:cover;
 }
 
 .loginDiv {
@@ -22,7 +22,7 @@
     height: 400px;
     position: absolute;
     top: 91px;
-    right: 9%;
+    left: 9%;
     background: #ffffff;
     color: #404040;
 }

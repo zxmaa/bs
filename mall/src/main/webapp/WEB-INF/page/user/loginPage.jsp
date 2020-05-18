@@ -12,24 +12,14 @@
     <link href="${pageContext.request.contextPath}/res/css/user/fore_login.css" rel="stylesheet">
     <style rel="stylesheet">
         #baseNavigator {
-            padding: 22px 30px;
-            /*width: 100%;*/
-            height: 44px;
+            padding: 10px 30px;
+            height: 64px;
             margin: auto;
         }
         #baseNavigator img {
-            width: 190px;
-            margin-top: 8px;
-        }
-        #nav {
-            width: auto;
-            height: 32px;
-            font-family: "Microsoft YaHei UI", Tahoma, serif;
-            font-size: 12px;
-            position: relative !important;
-            background: #f2f2f2;
-            z-index: 999;
-            border-bottom: 1px solid #e5e5e5;
+            width: 200px;
+            height: 60px;
+
         }
     </style>
     <title>购物商场-登录</title>

@@ -24,6 +24,10 @@ nav {
     overflow: hidden;
 }
 
+#mallLogo > a:hover{
+    text-decoration: none;
+}
+
 #mallLogo img {
     display: inline-block;
     width: 190px;

@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <p>
-                        <a href="http://pages.tmall.com/wow/seller/act/zhaoshangproduce" target="_blank">关于天猫</a>
+                        <a href="http://pages.tmall.com/wow/seller/act/zhaoshangproduce" target="_blank">关于爱购</a>
                         <a href="http://service.tmall.com/support/tmall/tmallHelp.htm" target="_blank">帮助中心</a>
                         <a href="http://open.taobao.com" target="_blank">开放平台</a>
                         <a href="http://job.alibaba.com/zhaopin/index.htm" target="_blank">诚聘英才</a>
