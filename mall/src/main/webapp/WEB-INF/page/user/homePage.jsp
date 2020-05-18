@@ -164,7 +164,7 @@
             </c:forEach>
         </div>
         <div class="row">
-            <div class="col-lg-12  endDiv"></div>
+            <div class="col-lg-12  endDiv text-center">--- 我是有底线的 ---</div>
         </div>
     </div>
 </div>

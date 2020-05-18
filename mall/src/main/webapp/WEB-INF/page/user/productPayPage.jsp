@@ -42,16 +42,16 @@
             <span class="price_unit">元（不会真实付款）</span>
         </div>
     </div>
-    <%--<div class="order_reward_div">--%>
-        <%--<div class="order_reward_alipay_div">--%>
-            <%--<p class="order_reward_name" id="reward_alipay_name">支付宝</p>--%>
-            <%--<img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/alipay.jpg"/>--%>
-        <%--</div>--%>
-        <%--<div class="order_reward_weixinpay_div">--%>
-            <%--<p class="order_reward_name" id="reward_weixin_name">微信</p>--%>
-            <%--<img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/weixinpay.png">--%>
-        <%--</div>--%>
-    <%--</div>--%>
+    <div class="order_reward_div">
+        <div class="order_reward_alipay_div">
+            <p class="order_reward_name" id="reward_alipay_name">支付宝</p>
+            <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/alipay.jpg"/>
+        </div>
+        <div class="order_reward_weixinpay_div">
+            <p class="order_reward_name" id="reward_weixin_name">微信</p>
+            <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/weixinpay.png">
+        </div>
+    </div>
     <div class="order_pay_div">
         <script>
             function pay() {

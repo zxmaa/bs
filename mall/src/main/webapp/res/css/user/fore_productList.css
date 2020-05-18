@@ -19,14 +19,14 @@
     position: relative;
     display: block;
     width: 190px;
-    height: 30px;
+    height: 50px;
     overflow: hidden;
     margin-left: 15px;
 }
 
 #mallLogo img {
     width: 190px;
-    height: 28px;
+    height: 50px;
     cursor: pointer;
     vertical-align: top;
 }
@@ -211,7 +211,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+*/
     width: 100%;
     margin: 0 auto;
     padding: 10px 5px;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 .context_main > .context_productStyle {

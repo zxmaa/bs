@@ -64,16 +64,6 @@ body #nav_main{
     font-style: normal;
 }
 
-#nav_head .quick_li_mobile .quick_qrcode img {
-    padding: 12px 15px;
-    position: absolute;
-    background: #ffffff;
-    left: -48px;
-    top: 26px;
-    display: none;
-    box-shadow: 0 0 5px #aaa;
-}
-
 #nav_main #nav_container .nav_button{
     margin-right: 30px;
     width: 34px;

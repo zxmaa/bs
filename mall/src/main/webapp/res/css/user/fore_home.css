@@ -355,12 +355,8 @@
 }
 
 #mycontainer .banner_do .row .endDiv {
-    background: url(../../img/user/WebsiteImage/TB1wQDAPXXXXXXgaFXXXXXXXXXX-62-35.png)no-repeat center;
     position: relative;
-    text-align: center;
-    width: 80px;
-    height: 62px;
-    margin: 15px auto 0;
+    color: #999;
     background-size: cover;
 }
 

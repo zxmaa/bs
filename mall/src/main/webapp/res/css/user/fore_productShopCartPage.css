@@ -10,10 +10,10 @@ nav {
 
 .header > #mallLogo {
     float: left;
-    padding-top: 15px;
+    padding-top: 10px;
     padding-left: 10px;
     width: 280px;
-    height: 40px;
+    height: 60px;
     line-height: 64px;
     position: relative;
 }
@@ -21,14 +21,14 @@ nav {
 #mallLogo > a {
     position: relative;
     display: block;
-    height: 30px;
+    height: 50px;
     overflow: hidden;
 }
 
 #mallLogo img {
     display: inline-block;
     width: 190px;
-    height: 28px;
+    height: 50px;
     cursor: pointer;
     vertical-align: top;
 }
@@ -40,8 +40,9 @@ nav {
     line-height: 28px;
     font-size: 20px;
     color: #333;
+    margin-top: 10px;
     font-weight: bold;
-    vertical-align: top;
+    vertical-align: super;
 }
 
 .header > .shopSearchHeader {

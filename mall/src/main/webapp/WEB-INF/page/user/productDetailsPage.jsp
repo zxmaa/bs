@@ -142,7 +142,7 @@
             <div class="context_info_main">
                 <div class="context_info_main_ad">
                     <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/context_ad.png">
-                    <span>全天猫实物商品通用</span>
+                    <span>全网实物商品通用</span>
                     <a href="#">去领券
                         <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallItemContentB.png"></a>
                 </div>

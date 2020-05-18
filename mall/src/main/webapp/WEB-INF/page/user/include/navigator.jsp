@@ -59,12 +59,8 @@
                     </ul>
                 </li>
                 <li class="quick_li_separator"></li>
-                <li class="quick_li_mobile">
-                    <a href="#" title="天猫无线">手机版</a>
-                    <div class="quick_qrcode">
-                        <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/qrcode.png"alt="">
-                        <b></b>
-                    </div>
+                <li class="quick_li_address">
+                    <a href="${pageContext.request.contextPath}/userAddress">地址管理</a>
                 </li>
                 <li class="quick_home"><a href="${pageContext.request.contextPath}">淘宝网</a></li>
                 <li class="dropdown quick_DirectPromo">

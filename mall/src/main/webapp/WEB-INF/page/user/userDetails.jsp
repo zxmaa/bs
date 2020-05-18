@@ -201,7 +201,7 @@
     <span>修改成功，请重新登录！</span>
 </div>
 <%@include file="include/footer.jsp" %>
-<script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>
-<script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>
+<%--<script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>--%>
+<%--<script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>--%>
 </body>
 </html>

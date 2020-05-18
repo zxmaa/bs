@@ -15,7 +15,7 @@ nav {
 
 .header > #mallLogo {
     float: left;
-    padding-top: 28px;
+    padding-top: 10px;
     width: 280px;
     height: 64px;
     line-height: 64px;
@@ -25,14 +25,14 @@ nav {
 #mallLogo > a {
     position: relative;
     display: block;
-    height: 30px;
+    height: 60px;
     overflow: hidden;
 }
 
 #mallLogo img {
     display: inline-block;
     width: 190px;
-    height: 28px;
+    height: 60px;
     cursor: pointer;
     vertical-align: top;
 }
@@ -43,9 +43,10 @@ nav {
     height: 28px;
     line-height: 28px;
     font-size: 20px;
+    margin-top: 15px;
     color: #333;
     font-weight: bold;
-    vertical-align: top;
+    vertical-align: super;
 }
 
 .content {
