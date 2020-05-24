@@ -61,7 +61,7 @@
                         <p>${review.reviewContent}</p>
                     </div>
                     <div class="reviews_date">
-                        <span>${review.reviewCreatedate}</span>
+                        <span><fmt:formatDate value="${review.reviewCreatedate}"  pattern="yyyy-MM-dd HH:mm:ss"/> </span>
                     </div>
                 </div>
                 <div class="reviews_author">${review.userName}</div>

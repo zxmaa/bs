@@ -7,7 +7,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"><%--以最高版本IE来渲染页面--%>
     <meta name="viewport" content="width=device-width, initial-scale=1"><%-- 不同设备之间的自适应--%>
-    <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/res/css/.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/res/css/user/fore_foot_two.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/res/js/user/fore_login.js"></script>
     <script src="${pageContext.request.contextPath}/res/js/user/fore_productDetails.js"></script>

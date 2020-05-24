@@ -110,7 +110,7 @@
                 <c:forEach items="${requestScope.orderShow.list}" var="productOrder">
                     <tbody>
                     <tr class="tr_order_info">
-                        <td colspan="6"><span class="span_pay_date">${productOrder.productOrderPayDate}</span><span
+                        <td colspan="6"><span class="span_pay_date"><fmt:formatDate value="${productOrder.productOrderPayDate}" pattern="yyyy-MM-dd HH:mm:ss"/></span><span
                                 class="span_order_code_title">订单号:</span><span
                                 class="span_order_code">${productOrder.productOrderCode}</span></td>
                     </tr>

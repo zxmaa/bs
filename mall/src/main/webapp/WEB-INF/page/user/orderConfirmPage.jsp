@@ -37,21 +37,21 @@
                 <div class="step-name">拍下商品</div>
                 <div class="step-no_first"></div>
                 <div class="step-time">
-                    <div class="step-time-wraper">${requestScope.confirmReceiptInfo.productOrder.productOrderReserveDate}</div>
+                    <div class="step-time-wraper"><fmt:formatDate value="${requestScope.confirmReceiptInfo.productOrder.productOrderReserveDate}"  pattern="yyyy-MM-dd HH:mm:ss"/></div>
                 </div>
             </li>
             <li class="step-done">
                 <div class="step-name">付款到支付宝</div>
                 <div class="step-no step-no-select"></div>
                 <div class="step-time">
-                    <div class="step-time-wraper">${requestScope.confirmReceiptInfo.productOrder.productOrderPayDate}</div>
+                    <div class="step-time-wraper"><fmt:formatDate value="${requestScope.confirmReceiptInfo.productOrder.productOrderPayDate}"  pattern="yyyy-MM-dd HH:mm:ss"/></div>
                 </div>
             </li>
             <li class="step-done">
                 <div class="step-name">卖家发货</div>
                 <div class="step-no step-no-select"></div>
                 <div class="step-time">
-                    <div class="step-time-wraper">${requestScope.confirmReceiptInfo.productOrder.productOrderDeliveryDate}</div>
+                    <div class="step-time-wraper"><fmt:formatDate value="${requestScope.confirmReceiptInfo.productOrder.productOrderDeliveryDate}"  pattern="yyyy-MM-dd HH:mm:ss"/></div>
                 </div>
             </li>
             <li class="step-no">
@@ -120,7 +120,7 @@
             <tr>
                 <td colspan="4">
                     <span class="info_label">成交时间：</span>
-                    <span class="info_value">${requestScope.confirmReceiptInfo.productOrder.productOrderPayDate}</span>
+                    <span class="info_value"><fmt:formatDate value="${requestScope.confirmReceiptInfo.productOrder.productOrderPayDate}"  pattern="yyyy-MM-dd HH:mm:ss"/></span>
                 </td>
             </tr>
             </tbody>

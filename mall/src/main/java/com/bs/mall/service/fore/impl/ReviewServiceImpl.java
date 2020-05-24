@@ -58,9 +58,9 @@ public class ReviewServiceImpl implements IReviewService {
 
         //更新产品评论信息
         Product updateProduct = new Product();
-        product.setProductId(product.getProductId());
-        product.setProductReviewCount(product.getProductReviewCount()+1);
-        productService.updateProduct(product);
+        updateProduct.setProductId(product.getProductId());
+        updateProduct.setProductReviewCount(product.getProductReviewCount()+1);
+        productService.updateProduct(updateProduct);
 
         return;
 

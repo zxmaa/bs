@@ -147,7 +147,7 @@
                 <div class="form-item">
                     <label class="form-label tsl">生日：</label>
                     <input type="date" name="user_birthday" id="user_birthday" class="form-text err-input"
-                           value="${requestScope.user.userBirthday}" maxlength="20">
+                           value='<fmt:formatDate value="${requestScope.user.userBirthday}" pattern="yyyy-MM-dd" />'  maxlength="20">
                     <span class="form_span"></span>
                 </div>
 
