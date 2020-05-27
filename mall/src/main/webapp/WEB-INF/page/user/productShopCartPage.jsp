@@ -24,7 +24,6 @@
                         location.href = "/mall/cart";
                     },
                     beforeSend: function () {
-
                     },
                     error: function () {
                         alert("购物车产品删除异常，请稍后再试！");
@@ -127,22 +126,21 @@
                         </td>
                     </tr>
                     <tr class="orderItem_info">
-                        <td class="tbody_checkbox"><input type="checkbox" class="cbx_select"
-                                                          id="cbx_orderItem_select_${orderItem.productOrderItem.productOrderItemId}"
-                                                          name="orderItem_id"><label
-                                for="cbx_orderItem_select_${orderItem.productOrderItem.productOrderItemId}"></label></td>
-                        <td><img class="orderItem_product_image"
-                                 src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${orderItem.productImage.productImageSrc}"
-                                 style="width: 80px;height: 80px;"/><span class="orderItem_product_name"><a
-                                href="${pageContext.request.contextPath}/product/${orderItem.product.productId}">${orderItem.product.productName}</a></span>
+                        <td class="tbody_checkbox">
+                            <input type="checkbox" class="cbx_select" id="cbx_orderItem_select_${orderItem.productOrderItem.productOrderItemId}" name="orderItem_id">
+                            <label for="cbx_orderItem_select_${orderItem.productOrderItem.productOrderItemId}"></label>
                         </td>
-                        <td><span
-                                class="orderItem_product_price">￥${orderItem.product.productSalePrice}</span>
+                        <td><img class="orderItem_product_image" src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${orderItem.productImage.productImageSrc}" style="width: 80px;height: 80px;"/>
+                            <span class="orderItem_product_name">
+                                <a href="${pageContext.request.contextPath}/product/${orderItem.product.productId}">${orderItem.product.productName}</a>
+                            </span>
+                        </td>
+                        <td>
+                            <span class="orderItem_product_price">￥${orderItem.product.productSalePrice}</span>
                         </td>
                         <td>
                             <div class="item_amount">
-                                <a href="javascript:void(0)" onclick="up(this)"
-                                   class="J_Minus <c:if test="${orderItem.productOrderItem.productOrderItemNumber<=1}">no_minus</c:if>">-</a>
+                                <a href="javascript:void(0)" onclick="up(this)" class="J_Minus <c:if test="${orderItem.productOrderItem.productOrderItemNumber<=1}">no_minus</c:if>">-</a>
                                 <input type="text" value="${orderItem.productOrderItem.productOrderItemNumber}"/>
                                 <a href="javascript:void(0)" onclick="down(this)" class="J_Plus">+</a>
                             </div>
@@ -150,8 +148,9 @@
                         <td>
                             <span class="orderItem_product_realPrice">￥${orderItem.productOrderItem.productOrderItemPrice}</span>
                         </td>
-                        <td><a href="javascript:void(0)" onclick="removeItem('${orderItem.productOrderItem.productOrderItemId}')"
-                               class="remove_order">删除</a></td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="removeItem('${orderItem.productOrderItem.productOrderItemId}')" class="remove_order">删除</a>
+                        </td>
                         <td>
                             <input type="hidden" class="input_orderItem" name="${orderItem.productOrderItem.productOrderItemId}"/>
                         </td>
@@ -208,10 +207,8 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal" id="btn-close">关闭</button>
                 <input type="hidden" id="order_id_hidden">
             </div>
-        </div>
-        <%-- /.modal-content --%>
-    </div>
-    <%-- /.modal --%>
+        </div><%-- /.modal-content --%>
+    </div><%-- /.modal --%>
 </div>
 <%@include file="include/footer_two.jsp" %>
 <%@include file="include/footer.jsp" %>

@@ -50,12 +50,12 @@
         <dl>
             <dt><span>商家服务</span></dt>
             <dd>
-                <a href="http://guize.tmall.com/" target="_blank">天猫规则</a>
+                <a href="http://guize.tmall.com/" target="_blank">爱购规则</a>
                 <a href="http://zhaoshang.tmall.com/" target="_blank">商家入驻</a>
                 <a href="http://shangjia.tmall.com/portal.htm" target="_blank">商家中心</a>
-                <a href="http://peixun.tmall.com/" target="_blank">天猫智库</a>
+                <a href="http://peixun.tmall.com/" target="_blank">爱购智库</a>
                 <a href="http://e56.tmall.com" target="_blank">物流服务</a>
-                <a href="http://maowo.tmall.com/" target="_blank">喵言喵语</a>
+                <a href="http://maowo.tmall.com/" target="_blank">爱言爱语</a>
                 <a href="http://fw.tmall.com/" target="_blank">运营服务</a></dd>
         </dl>
         <dl>

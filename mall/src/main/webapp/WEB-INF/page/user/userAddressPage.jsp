@@ -4,28 +4,19 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"><%--以最高版本IE来渲染页面--%>
     <meta name="viewport" content="width=device-width, initial-scale=1"><%-- 不同设备之间的自适应--%>
-   <%-- <link href="${pageContext.request.contextPath}/res/css/bootstrap.min.css" rel="stylesheet">--%>
     <script src="${pageContext.request.contextPath}/res/js/user/fore_productBuy.js"></script>
     <link href="${pageContext.request.contextPath}/res/css/user/fore_userAddressPage.css" rel="stylesheet"/>
     <title>管理收货地址</title>
-    <%--<script>--%>
-        <%--alert("test");--%>
-        <%--$(function () {--%>
-            <%--$("span.address_province").text($("#select_order_address_province").find("option:selected").text());--%>
-            <%--$("span.address_city").text($("#select_order_address_city").find("option:selected").text());--%>
-            <%--$("span.address_district").text($("#select_order_address_district").find("option:selected").text());--%>
-        <%--})--%>
-    <%--</script>--%>
 </head>
 <body>
 <nav>
     <%@ include file="include/navigator.jsp" %>
     <div id="mallLogo">
-        <a href="${pageContext.request.contextPath}"><img
-                src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoA.png"></a>
+        <a href="${pageContext.request.contextPath}">
+            <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoA.png">
+        </a>
     </div>
 </nav>
-
 <div class="order_address">
     <h2>输入收货地址</h2>
     <form action="" method="post">
@@ -65,11 +56,9 @@
         <input type="submit" class="submit" value="保存" onclick="submitAddress()">
     </form>
 </div>
-
 <div class="order_bar">
     已经保存了 ${fn:length(requestScope.userAllAddress)}条地址
 </div>
-
 <div class="order_table">
     <table cellpadding="0" cellspacing="0">
         <tr>
@@ -101,7 +90,6 @@
         </c:forEach>
     </table>
 </div>
-
 <script>
     var firstTrObj = document.getElementsByClassName("order_table")[0].getElementsByTagName("table")[0].getElementsByTagName("tr")[1];
     var defaultAddr=firstTrObj.children[firstTrObj.children.length-1];
@@ -112,7 +100,6 @@
     if(flag == 1){
         defaultAddr.innerHTML="<div class='defaultAddr'>默认地址</div>";
     }
-
     //增加地址
     function submitAddress() {
         var addressId = $("#select_order_address_province").val();
@@ -169,22 +156,12 @@
             dataType: "json",
             contentType:"application/json",
             data:JSON.stringify(obj),
-
             success: function (data) {
-            /*    if (data.success) {
-                   alert("用户地址添加成功！");*/
                     window.location.href  = "/mall/userAddress";
-              /*  } else {
-                    alert("用户地址添加失败，请稍后再试！");
-                    location.reload(true);
-                }*/
             }
         });
     }
 </script>
-
-
-
 <%@include file="include/footer_two.jsp" %>
 <%@include file="include/footer.jsp" %>
 <script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>

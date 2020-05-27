@@ -1,10 +1,4 @@
 $(function () {
-  /*  //刷新下拉框
-    $('#select_user_address_province').selectpicker('refresh');
-    $('#select_user_address_city').selectpicker('refresh');
-    $('#select_user_address_district').selectpicker('refresh');*/
-
-
     //用户名input获取光标
     $("#user_name").focus(function () {
         $(this).css("border", "1px solid #3879D9")
@@ -30,7 +24,6 @@ $(function () {
         $(this).css("border", "1px solid #3879D9")
             .next().text("请输入出生日期").css("display", "inline-block").css("color", "#00A0E9");
     });
-
     //input离开光标
     $(".form-text").blur(function () {
         $(this).css("border-color", "#cccccc")
@@ -86,7 +79,6 @@ $(function () {
                 .next().text("请选择出生日期").css("display", "inline-block").css("color", "red");
             return false;
         }
-
         var obj = {};
         obj['userName'] = user_name;
         obj['userPassword'] = user_password;
@@ -99,7 +91,6 @@ $(function () {
             dataType: "json",
             contentType:"application/json",
             data:JSON.stringify(obj),
-
             success: function (data) {
                 if (data.success) {
                     $(".msg").stop(true, true).animate({

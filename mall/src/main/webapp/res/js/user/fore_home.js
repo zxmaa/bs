@@ -45,10 +45,8 @@ $(function () {
                 }
             },
             error: function (data) {
-
             },
             beforeSend: function () {
-
             }
         });
     }, function () {
@@ -63,24 +61,7 @@ $(function () {
         }
     });
 });
-
 //滑动间隔时间
 $(".carousel").carousel({
     interval:3000
 })
-
-// $(".collapse").collapse();
-// $(".collapse.in").collapse('hide');
-// $(function () {
-// //修复collapse不能正常折叠的问题
-//     $(".collapsed").click(function () {
-//         var itemHref = $(this).attr("href");
-//         var itemClass = $(itemHref).attr("class");
-//         if (itemClass === "panel-collapse collapse") {
-//             $(itemHref).attr("class", "panel-collapse collapse in").css("height", "auto");
-//         } else {
-//             $(itemHref).attr("class", "panel-collapse collapse").css("height", "0px");
-//         }
-//         return false;//停止运行bootstrap自带的函数
-//     });
-// })

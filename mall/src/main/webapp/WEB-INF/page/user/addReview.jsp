@@ -47,9 +47,9 @@
     <div class="details_box">
         <div class="row">
             <div class="col-md-5 col-xs-12 db-showpanel">
-                <a href="${pageContext.request.contextPath}/product/${reviewPageInfo.product.productId}"
-                   target="_blank"><img
-                        src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${reviewPageInfo.productImage.productImageSrc}"></a>
+                <a href="${pageContext.request.contextPath}/product/${reviewPageInfo.product.productId}" target="_blank">
+                    <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${reviewPageInfo.productImage.productImageSrc}">
+                </a>
             </div>
             <div class="col-md-6 col-xs-12 db-icbu">
                 <ol class="ui-form-bd">
@@ -77,10 +77,6 @@
                 </div>
                 <div class="tv-lb-bottom"></div>
             </div>
-            <%--<div class="tv-rightbox">--%>
-                <%--<div class="tv-rb-cover"></div>--%>
-                <%--<div class="tv-rb-bottom"></div>--%>
-            <%--</div>--%>
         </div>
         <div class="rate-compose">
             <form method="post" action="${pageContext.request.contextPath}/review" id="review_form">

@@ -1,6 +1,4 @@
-<%--
-  个人中心
---%>
+<%-- 个人中心 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="include/header.jsp" %>
@@ -104,13 +102,14 @@
         </ul>
     </div>
     <div class="J_choose" id="profile">
+        <%-- 个人信息 --%>
         <div class="J_data">
             <div id="tips-box">
                 <label class="font_we">亲爱的</label>
                 <b>${requestScope.user.userName}</b>，
                 <label class="font_we">填写真实的资料，有助于好友找到你哦。</label>
             </div>
-            <%--<form action="${pageContext.request.contextPath}/user/update" method="post" id="register_form1">--%>
+            <form action="${pageContext.request.contextPath}/user/update" method="post" id="register_form1">
                 <div class="form-item">
                     <label class="form-label tsl">当前头像：</label>
                     <ul class="details_picList" id="product_single_list">
@@ -129,7 +128,6 @@
                     <input name="user_name" id="user_name" class="form-text err-input" placeholder="请输入用户名" maxlength="20" readonly="readonly" value="${requestScope.user.userName}">
                     <span class="form_span"></span>
                 </div>
-
                 <div class="form-item">
                     <label class="form-label tsl">联系电话：</label>
                     <input name="userTel" id="userTel" class="form-text err-input" placeholder="请输入联系电话" maxlength="20" value="${requestScope.user.userTel}">
@@ -150,13 +148,12 @@
                            value='<fmt:formatDate value="${requestScope.user.userBirthday}" pattern="yyyy-MM-dd" />'  maxlength="20">
                     <span class="form_span"></span>
                 </div>
-
                 <div class="form-item">
                     <input type="button" id="register_sub" class="btns btn-large tsl" value="提 交"/>
                 </div>
             </form>
         </div>
-
+        <%-- 账户安全 --%>
         <div class="J_account account">
             <form action="${pageContext.request.contextPath}/user/update" method="post" id="register_form2">
                 <div class="form-item">
@@ -180,7 +177,7 @@
                 <div class="form-item">
                     <input type="button" id="register_sub1" class="btns btn-large tsl" value="提 交"/>
                 </div>
-           <%-- </form>--%>
+            </form>
         </div>
     </div>
 
@@ -196,12 +193,9 @@
         }
     }
 </script>
-
 <div class="msg">
     <span>修改成功，请重新登录！</span>
 </div>
 <%@include file="include/footer.jsp" %>
-<%--<script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>--%>
-<%--<script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>--%>
 </body>
 </html>

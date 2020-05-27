@@ -1,9 +1,7 @@
 $(function () {
     var ul = $(".context_ul_goodsList").children("ul");
-
     $(".P_GoodsDetails").addClass("tab-selected");
     $(".context_img_li").eq(0).addClass("context_img_li_hover");
-
     //搜索框验证
     $('form').submit(function () {
         if ($(this).find("input[name='product_name']").val() === "") {
@@ -42,44 +40,6 @@ $(function () {
         } else {
             $(".context_buyNow").removeClass("context_notBuy").attr("disabled", null);
             $(".context_addShopCart").removeClass("context_notCar").attr("disabled", null);
-        }
-    });
-    //点击猜你喜欢翻页按钮时
-    $(".ul_trigger_up").click(function () {
-        var ulTop = parseInt(ul.css("top"));
-        var fTop = ulTop + 480;
-        if (fTop > 0) {
-            ul.animate({
-                top: ulTop + 40
-            }, 100, function () {
-                ul.animate({
-                    top: 0
-                }, 100);
-            });
-        } else {
-            ul.animate({
-                top: fTop
-            }, 200);
-        }
-    });
-    $(".ul_trigger_down").click(function () {
-        var ulTop = parseInt(ul.css("top"));
-        var fTop = ulTop - 480;
-        if (ul.height() < 2880) {
-            getGuessLoveProducts();
-        }
-        if (fTop < -2400) {
-            ul.animate({
-                top: ulTop - 40
-            }, 100, function () {
-                ul.animate({
-                    top: -2400
-                }, 100);
-            });
-        } else {
-            ul.animate({
-                top: fTop
-            }, 200);
         }
     });
     //放大镜逻辑
@@ -139,6 +99,64 @@ $(function () {
         $(".loginModel").hide();
         $(".loginDiv").hide();
     });
+    //点击购买按钮时
+    $(".context_buy_form").submit(function () {
+        if ('${sessionScope.userName}' === "") {//未登录不能购买
+            $(".loginModel").show();
+            $(".loginDiv").show();
+            return false;
+        }
+        var number = isNaN($.trim($(".context_buymember").val()));
+        if (number) {
+            location.reload();
+        } else {
+            location.href = "${pageContext.request.contextPath}/order/create/${requestScope.product.product.productId}?productNumber=" + $.trim($(".context_buymember").val());
+        }
+        return false;
+    });
+    //点击加入购物车按钮时
+    $(".context_buyCar_form").submit(function () {
+        if ('${sessionScope.userName}' === "") {//未登录不能加入购物车
+            $(".loginModel").show();
+            $(".loginDiv").show();
+            return false;
+        }
+        var number = isNaN($.trim($(".context_buymember").val()));//NAN：非数字值的特殊值
+        if (number) {
+            location.reload();
+        } else {
+            $.ajax({
+                url: "${pageContext.request.contextPath}/orderItem/create/${requestScope.product.product.productId}?productNumber=" + $.trim($(".context_buymember").val()),
+                type: "POST",
+                data: {"productNumber": number},
+                dataType: "json",
+                success: function (data) {
+                    if (data.success) {
+                        $(".msg").stop(true, true).animate({//显示已加入购物车
+                            opacity: 1 //透明度
+                        }, 550, function () {
+                            $(".msg").animate({
+                                opacity: 0
+                            }, 1500);
+                        });
+                    } else {
+                        if (data.url != null) {
+                            location.href = "/mall" + data.url;
+                        } else {
+                            alert("加入购物车失败，请稍后再试！");
+                        }
+                    }
+                },
+                beforeSend: function () {
+
+                },
+                error: function () {
+                    alert("加入购物车失败，请稍后再试！");
+                }
+            });
+            return false;
+        }
+    });
 });
 
 function getDetailsPage(obj, className) {
@@ -170,7 +188,7 @@ function SelectorMousemove(e) {
         top: -y * 1.917
     });
 }
-
+//猜你喜欢功能
 function getGuessLoveProducts() {
     $.ajax({
         type: "GET",
@@ -179,7 +197,6 @@ function getGuessLoveProducts() {
         dataType: "json",
         success: function (data) {
             if (data.success) {
-                //$("#guessNumber").val(data.guessNumber);
                 for (var i = 0; i < data.guessLikeList.length; i++) {
                     var src = data.guessLikeList[i].productImageSrc;
                     var product_id = data.guessLikeList[i].productId;

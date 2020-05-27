@@ -1,6 +1,4 @@
-<%--
-  商品详情
---%>
+<%-- 商品详情 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include/header.jsp" %>
 <html>
@@ -23,25 +21,16 @@
         </a>
         <span class="shopNameHeader">${requestScope.product.category.categoryName}官方旗舰店</span>
         <input id="tid" type="hidden" value="${requestScope.product.category.categoryId}"/>
-        <img style="padding-left: 10px" src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/detailsHeaderA.png"
-             class="shopAssessHeader">
+        <img style="padding-left: 10px" src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/detailsHeaderA.png" class="shopAssessHeader">
         <div class="shopSearchHeader">
             <form action="${pageContext.request.contextPath}/product" method="get">
                 <div class="input-group input_g">
                     <input type="text" class="form-control search_input" name="productName" value="${requestScope.searchValue}" placeholder="搜索 商品/品牌/店铺">
                     <div class="input-group-btn group_btn">
-                        <!-- Buttons -->
                         <button class="btn btn-default btn_mall" type="submit">搜商品</button>
                         <button class="btn btn-default btn_store" type="submit">搜本店</button>
                     </div>
                 </div>
-                <%--<div class="shopSearchInput">--%>
-                    <%--<input type="text" class="searchInput" name="productName" placeholder="搜索 商品/品牌/店铺"--%>
-                           <%--maxlength="50">--%>
-                    <%--<input type="submit" value="搜商品" class="searchTmall">--%>
-                    <%--<input type="submit" value="搜本店" class="searchShop">--%>
-                <%--</div>--%>
-                <%--<input type="submit" value="搜本店" class="searchShop">--%>
             </form>
             <ul>
                 <c:forEach items="${requestScope.categoryList}" var="category" varStatus="i">
@@ -184,68 +173,6 @@
                 </dd>
             </dl>
             <div class="context_buy">
-                <script>
-                    $(function () {
-                        //点击购买按钮时
-                        $(".context_buy_form").submit(function () {
-                            if ('${sessionScope.userName}' === "") {//未登录不能购买
-                                $(".loginModel").show();
-                                $(".loginDiv").show();
-                                return false;
-                            }
-                            var number = isNaN($.trim($(".context_buymember").val()));
-                            if (number) {
-                                location.reload();
-                            } else {
-                                location.href = "${pageContext.request.contextPath}/order/create/${requestScope.product.product.productId}?productNumber=" + $.trim($(".context_buymember").val());
-                            }
-                            return false;
-                        });
-                        //点击加入购物车按钮时
-                        $(".context_buyCar_form").submit(function () {
-                            if ('${sessionScope.userName}' === "") {//未登录不能加入购物车
-                                $(".loginModel").show();
-                                $(".loginDiv").show();
-                                return false;
-                            }
-                            var number = isNaN($.trim($(".context_buymember").val()));//NAN：非数字值的特殊值
-                            if (number) {
-                                location.reload();
-                            } else {
-                                $.ajax({
-                                    url: "${pageContext.request.contextPath}/orderItem/create/${requestScope.product.product.productId}?productNumber=" + $.trim($(".context_buymember").val()),
-                                    type: "POST",
-                                    data: {"productNumber": number},
-                                    dataType: "json",
-                                    success: function (data) {
-                                        if (data.success) {
-                                            $(".msg").stop(true, true).animate({//显示已加入购物车
-                                                opacity: 1
-                                            }, 550, function () {
-                                                $(".msg").animate({
-                                                    opacity: 0
-                                                }, 1500);
-                                            });
-                                        } else {
-                                            if (data.url != null) {
-                                                location.href = "/mall" + data.url;
-                                            } else {
-                                                alert("加入购物车失败，请稍后再试！");
-                                            }
-                                        }
-                                    },
-                                    beforeSend: function () {
-
-                                    },
-                                    error: function () {
-                                        alert("加入购物车失败，请稍后再试！");
-                                    }
-                                });
-                                return false;
-                            }
-                        });
-                    });
-                </script>
                 <form method="get" class="context_buy_form">
                     <input class="context_buyNow" type="submit" value="立即购买"/>
                 </form>
@@ -272,7 +199,7 @@
             <c:forEach items="${requestScope.guessLikeList}" var="product">
                 <li class="context_ul_main">
                     <div class="context_ul_img">
-                        <a href="/tmall/product/${product.productId}">
+                        <a href="/mall/product/${product.productId}">
                             <img src="${pageContext.request.contextPath}/res/img/item/productSinglePicture/${product.productImageSrc}">
                         </a>
                         <p>¥${product.productSalePrice}0</p>
@@ -282,10 +209,6 @@
         </ul>
         <input type="hidden" id="guessNumber" value="${requestScope.guessNumber}">
     </div>
-    <%--<ul class="context_ul_trigger">--%>
-        <%--<li class="ul_trigger_up"><a href="#"></a></li>--%>
-        <%--<li class="ul_trigger_down"><a href="#"></a></li>--%>
-    <%--</ul>--%>
 </div>
 <div class="mainwrap">
     <div class="P_TabBarBox">

@@ -1,4 +1,4 @@
-
+<%-- 商品详情页面的评论模块 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

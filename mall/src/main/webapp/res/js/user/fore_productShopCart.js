@@ -50,7 +50,7 @@ $(function () {
         sumPrice();
     });
 });
-
+//商品数量+
 function up(obj) {
     obj = $(obj);
     var number = obj.next("input");
@@ -85,7 +85,7 @@ function up(obj) {
         sumPrice();
     }
 }
-
+//商品数量-
 function down(obj) {
     obj = $(obj);
     var number = obj.prev("input");
@@ -112,7 +112,7 @@ function down(obj) {
         sumPrice();
     }
 }
-
+//计算总金额
 function sumPrice() {
     var price_sum = 0.00;
     var obj = $("input.cbx_select:checked").parents("tr.orderItem_info");
@@ -128,7 +128,7 @@ function sumPrice() {
     }
     $("#J_SelectedItemsCount").text(obj.length);
 }
-
+//结算，生成订单
 function create(obj) {
     obj = $(obj);
     if (!obj.hasClass("selected")) {

@@ -1,6 +1,4 @@
-<%--
-  支付成功后转此页面
---%>
+<%-- 支付成功后转此页面 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include/header.jsp" %>
 <html>

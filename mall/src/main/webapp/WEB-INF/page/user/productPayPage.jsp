@@ -1,6 +1,4 @@
-<%--
-  确认订单后支付
---%>
+<%-- 确认订单后支付 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include/header.jsp" %>
 <head>
@@ -15,8 +13,9 @@
     <%@ include file="include/navigator.jsp" %>
     <div class="header">
         <div id="mallLogo">
-            <a href="${pageContext.request.contextPath}"><img
-                    src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoA.png"></a>
+            <a href="${pageContext.request.contextPath}">
+                <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoA.png">
+            </a>
         </div>
     </div>
 </nav>
@@ -54,6 +53,7 @@
     </div>
     <div class="order_pay_div">
         <script>
+            //点击确认支付
             function pay() {
                 $.ajax({
                     url: "${pageContext.request.contextPath}/order/pay/${requestScope.payPageInfo.productOrder.productOrderCode}",

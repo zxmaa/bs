@@ -1,6 +1,4 @@
-<%--
-  商品列表
---%>
+<%-- 商品列表 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include/header.jsp" %>
 <html>
@@ -39,11 +37,6 @@
                 <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoA.png">
             </a>
         </div>
-        <%--<div id="mallLogo">--%>
-            <%--<a href="${pageContext.request.contextPath}">--%>
-                <%--<img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoA.png">--%>
-            <%--</a>--%>
-        <%--</div>--%>
         <div class="collapse navbar-collapse shopSearchHeader" id="nav_prosearch">
             <form class="navbar-form" action="${pageContext.request.contextPath}/product" method="get">
                 <div class="form-group shopSearchInput">

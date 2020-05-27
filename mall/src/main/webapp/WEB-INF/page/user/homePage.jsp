@@ -1,6 +1,4 @@
-<%--
-  主页
---%>
+<%-- 主页 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include/header.jsp" %>
 <html>
@@ -30,7 +28,7 @@
                 <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/HomeLogoA.png" width="240px" height:="130px">
             </a>
         </div>
-        <div class="collapse navbar-collapse mallSearch" id="nav_search">
+        <div class="collapse navbar-collapse mallSearch" id="nav_search" aria-expanded="false">
             <form class="navbar-form form_search" action="${pageContext.request.contextPath}/product" method="get">
                 <div class="form-group form_div">
                     <input type="text" name="productName"  class="form-control form_input" placeholder="搜索 商品/品牌/店铺"><button type="submit" class="btn btn-default nav_btn">搜索</button>
@@ -63,9 +61,8 @@
                 <ul class="dropdown-menu banner_nav" style="min-width: 170px;">
                     <c:forEach items="${requestScope.categoryList}" var="category">
                         <li data-toggle="${category.categoryId}" data-status="" >
-                            <%--<img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/small/${category.categoryId}.png">--%>
-                            <a href="${pageContext.request.contextPath}/product?categoryId=${category.categoryId}"><img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/small/${category.categoryId}.png">
-                                    ${category.categoryName}
+                            <a href="${pageContext.request.contextPath}/product?categoryId=${category.categoryId}">
+                                <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/small/${category.categoryId}.png">${category.categoryName}
                             </a>
                             <div class="banner_div" name="${category.categoryName}">
                             </div>
@@ -139,11 +136,6 @@
                             <span></span>
                             <p>${categoryAndProduct.categoryName}</p>
                         </div>
-                            <%--每个分类显示的大图片，由category来显示--%>
-                        <%--<a href="${pageContext.request.contextPath}/product?categoryId=${categoryAndProduct.categoryId}">--%>
-                            <%--<img class="banner_goods_show"--%>
-                                <%--src="res/img/user/WebsiteImage/show/${categoryAndProduct.categoryId}.jpg">--%>
-                        <%--</a>--%>
                         <div class="row">
                             <div class="col-md-12 col-sm-6 col-xs-12 banner_goods_items">
                                 <c:forEach items="${categoryAndProduct.foreProductSimpleDtos}" var="product" varStatus="i">

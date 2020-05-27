@@ -1,6 +1,4 @@
-<%--
-  用户登录页面
---%>
+<%-- 用户登录页面 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include/header.jsp" %>
 <html>
@@ -30,7 +28,6 @@
         <img src="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmallLogoA.png"/>
     </a>
 </nav>
-<%--<div class="container">--%>
 <div class="container-fluid content">
     <div class="bg"></div>
     <div class="loginDiv">
@@ -87,7 +84,6 @@
         </div>
     </div>
 </div>
-<%--</div>--%>
 <%@ include file="include/footer.jsp" %>
 <link href="${pageContext.request.contextPath}/res/css/user/fore_foot_special.css" rel="stylesheet"/>
 <script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>

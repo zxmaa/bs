@@ -16,5 +16,4 @@
     <script src="${pageContext.request.contextPath}/res/js/defaults-zh_CN.min.js"></script>
     <script src="${pageContext.request.contextPath}/res/js/base.js"></script>
 </head>
-
 </html>

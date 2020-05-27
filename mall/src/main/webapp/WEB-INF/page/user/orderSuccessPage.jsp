@@ -1,6 +1,4 @@
-<%--
- 确认收货后的交易成功页面
---%>
+<%-- 确认收货后的交易成功页面 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include/header.jsp" %>
 <html>

@@ -1,3 +1,4 @@
+<%-- 商品详情页面的商品参数模块 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

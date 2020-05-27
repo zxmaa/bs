@@ -7,21 +7,8 @@
     <script src="${pageContext.request.contextPath}/res/js/user/fore_register.js" type="text/javascript"></script>
     <link href="${pageContext.request.contextPath}/res/css/user/fore_register.css" rel="stylesheet">
     <title>网上注册</title>
-    <style rel="stylesheet">
-        .nav {
-            width: auto;
-            height: 32px;
-            font-family: "Microsoft YaHei UI", Tahoma, serif;
-            font-size: 12px;
-            position: relative !important;
-            background: #f2f2f2;
-            z-index: 999;
-            border-bottom: 1px solid #e5e5e5;
-        }
-    </style>
 </head>
 <body>
-<%--<div class="container">--%>
     <nav>
         <div class="header col-xs-12">
             <div id="mallLogo">
@@ -93,7 +80,6 @@
             </div>
         </form>
     </div>
-
 <%@include file="include/footer.jsp" %>
 <link href="${pageContext.request.contextPath}/res/css/user/fore_foot_special.css" rel="stylesheet"/>
 <div class="msg">
