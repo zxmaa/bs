@@ -66,43 +66,43 @@ public class AdminUserServiceImpl extends BaseService implements IAdminUserServi
         logger.info("获取user_id为{}的用户信息",uid);
         User user=userMapper.selectOneUser(uid);
         logger.info("获取用户详情-所在地地址信息");
-        Address address=addressMapper.selectOne(user.getUserAddress().getAddressAreaId());
-        Stack<String> addressStack = new Stack<>();
-        //最后一级地址
-        addressStack.push(address.getAddressName() + " ");
-        //如果不是一级地址
-        while (!address.getAddressAreaId().equals(address.getAddressRegionId().getAddressAreaId())){
-            address=addressMapper.selectOne(address.getAddressRegionId().getAddressAreaId());
-            addressStack.push(address.getAddressName() + " ");
-        }
-        StringBuilder builder = new StringBuilder();
-        while (!addressStack.empty()) {
-            builder.append(addressStack.pop());
-        }
-
-        logger.info("所在地地址字符串：{}", builder);
-        Address tempAddress=new Address();
-        tempAddress.setAddressName(builder.toString());
-        user.setUserAddress(tempAddress);
-
-        logger.info("获取用户详情-家乡地址信息");
-        address=addressMapper.selectOne(user.getUserHomeplace().getAddressAreaId());
-        //最后一级地址
-        addressStack.push(address.getAddressName()+" ");
-        //如果不是第一级地址
-        while (!address.getAddressAreaId().equals(address.getAddressRegionId().getAddressAreaId())){
-            address=addressMapper.selectOne(address.getAddressRegionId().getAddressAreaId());
-            addressStack.push(address.getAddressName()+" ");
-        }
-        builder = new StringBuilder();
-        while (!addressStack.empty()){
-            builder.append(addressStack.pop());
-        }
-
-        logger.info("家乡地址字符串：{}", builder);
-        tempAddress=new Address();
-        tempAddress.setAddressName(builder.toString());
-        user.setUserHomeplace(tempAddress);
+        //Address address=addressMapper.selectOne(user.getUserAddress().getAddressAreaId());
+//        Stack<String> addressStack = new Stack<>();
+//        //最后一级地址
+//        addressStack.push(address.getAddressName() + " ");
+//        //如果不是一级地址
+//        while (!address.getAddressAreaId().equals(address.getAddressRegionId().getAddressAreaId())){
+//            address=addressMapper.selectOne(address.getAddressRegionId().getAddressAreaId());
+//            addressStack.push(address.getAddressName() + " ");
+//        }
+//        StringBuilder builder = new StringBuilder();
+//        while (!addressStack.empty()) {
+//            builder.append(addressStack.pop());
+//        }
+//
+//        logger.info("所在地地址字符串：{}", builder);
+//        Address tempAddress=new Address();
+//        tempAddress.setAddressName(builder.toString());
+//        user.setUserAddress(tempAddress);
+//
+//        logger.info("获取用户详情-家乡地址信息");
+//        address=addressMapper.selectOne(user.getUserHomeplace().getAddressAreaId());
+//        //最后一级地址
+//        addressStack.push(address.getAddressName()+" ");
+//        //如果不是第一级地址
+//        while (!address.getAddressAreaId().equals(address.getAddressRegionId().getAddressAreaId())){
+//            address=addressMapper.selectOne(address.getAddressRegionId().getAddressAreaId());
+//            addressStack.push(address.getAddressName()+" ");
+//        }
+//        builder = new StringBuilder();
+//        while (!addressStack.empty()){
+//            builder.append(addressStack.pop());
+//        }
+//
+//        logger.info("家乡地址字符串：{}", builder);
+//        tempAddress=new Address();
+//        tempAddress.setAddressName(builder.toString());
+//        user.setUserHomeplace(tempAddress);
 
         logger.info("获取用户详情-购物车订单项信息");
         List<ProductOrderItem> productOrderItemList=productOrderItemMapper.selectByUserId(user.getUserId(), null);

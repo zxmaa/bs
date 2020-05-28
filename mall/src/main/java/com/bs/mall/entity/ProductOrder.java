@@ -77,6 +77,10 @@ public class ProductOrder {
 
     public String formatTime(Date date) {
         SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return df.format(date);
+        if (date!=null){
+            return df.format(date);
+        }
+        return null;
+
     }
 }

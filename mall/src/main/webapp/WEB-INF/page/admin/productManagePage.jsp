@@ -11,6 +11,23 @@
 <head>
     <title>Title</title>
     <script>
+        //时间戳转换为yyyy-MM-dd hh:mm:ss
+        function formatDateTime(inputTime) {
+            var date = new Date(inputTime);  //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            var y = date.getFullYear();
+            var m = date.getMonth() + 1;
+            m = m < 10 ? ('0' + m) : m;
+            var d = date.getDate();
+            d = d < 10 ? ('0' + d) : d;
+            var h = date.getHours();
+            h = h < 10 ? ('0' + h) : h;
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
+            minute = minute < 10 ? ('0' + minute) : minute;
+            second = second < 10 ? ('0' + second) : second;
+            return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;
+        }; 
+
         //检索数据集
         var dataList = {
             "product_name": null,
@@ -140,7 +157,7 @@
                             var product_id = data.productList[i].productId;
                             var product_name = data.productList[i].productName;
                             var product_title = data.productList[i].productTitle;
-                            var product_create_date = data.productList[i].productCreateDate;
+                            var product_create_date = formatDateTime(data.productList[i].productCreateDate);//new Date(data.productList[i].productCreateDate).format("yyyy-MM-dd hh:mm:ss");
                             //显示产品数据
                             tbody.append("<tr><td><input type='checkbox' class='cbx_select' id='cbx_product_select_" + product_id + "'><label for='cbx_product_select_" + product_id + "'></label></td><td title='"+product_name+"'>" + product_name + "</td><td title='"+product_title+"'>" + product_title + "</td><td title='"+product_price+"'>" + product_price + "</td><td title='"+product_sale_price+"'>" + product_sale_price + "</td><td title='"+product_create_date+"'>" + product_create_date + "</td><td><span class='" + isEnabledClass + "' title='"+isEnabledTitle+"'>"+ isEnabled + "</span></td><td><span class='td_special' title='查看产品详情'><a href='javascript:void(0);' onclick='getChildPage(this)'>详情</a></span></td><td hidden><span class='product_id'>" + product_id + "</span></td></tr>");
                         }
