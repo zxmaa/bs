@@ -75,7 +75,7 @@ public class AdminHomeServiceImpl extends BaseService implements IAdminHomeServi
         int[] orderTotalArray = new int[7];
         logger.info("从数据库中获取统计的订单集合数据");
         List<OrderGroup> orderGroupList = productOrderMapper.getTotalByDate(beginDate, endDate);
-        boolean bool=orderGroupList.get(0)==null;
+        //boolean bool=orderGroupList.get(0)==null;
         //初始化日期数组
         JSONArray dateStr = new JSONArray(days);
         //按指定的天数进行循环
