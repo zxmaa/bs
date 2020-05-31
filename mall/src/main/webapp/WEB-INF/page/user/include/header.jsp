@@ -7,10 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"><%--以最高版本IE来渲染页面--%>
     <meta name="viewport" content="width=device-width, initial-scale=1"><%-- 不同设备之间的自适应--%>
 
-    <link href="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmall_48px_1193412_easyicon.net.ico" rel="icon" type="image/x-ico">
+<%--    <link href="${pageContext.request.contextPath}/res/img/user/WebsiteImage/tmall_48px_1193412_easyicon.net.ico" rel="icon" type="image/x-ico">--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/bootstrap-select.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/user/fore_main.css"/>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/res/img/icon/favicon1.ico" type="image/x-icon"/>
     <script src="${pageContext.request.contextPath}/res/js/jquery-1.11.3.min.js"></script>
     <script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/res/js/defaults-zh_CN.min.js"></script>

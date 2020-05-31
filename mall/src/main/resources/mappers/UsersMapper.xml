@@ -4,18 +4,17 @@
     <resultMap id="userMap" type="com.bs.mall.entity.User">
         <id property="userId" column="user_id"/>
         <result property="userName" column="user_name"/>
-        <result property="userNickname" column="user_nickname"/>
         <result property="userPassword" column="user_password"/>
-        <result property="userRealname" column="user_realname"/>
         <result property="userGender" column="user_gender"/>
         <result property="userBirthday" column="user_birthday"/>
+        <result property="userRegisterTime" column="user_register_time"/>
         <result property="userProfilePictureSrc" column="user_profile_picture_src"/>
-        <association property="userAddress" javaType="com.bs.mall.entity.Address">
-            <id property="addressAreaId" column="user_address"/>
-        </association>
-        <association property="userHomeplace" javaType="com.bs.mall.entity.Address">
-            <id property="addressAreaId" column="user_homeplace"/>
-        </association>
+<!--        <association property="userAddress" javaType="com.bs.mall.entity.Address">-->
+<!--            <id property="addressAreaId" column="user_address"/>-->
+<!--        </association>-->
+<!--        <association property="userHomeplace" javaType="com.bs.mall.entity.Address">-->
+<!--            <id property="addressAreaId" column="user_homeplace"/>-->
+<!--        </association>-->
     </resultMap>
 
     <select id="findUser" resultType="com.bs.mall.dao.pojo.User">
@@ -24,11 +23,11 @@
     </select>
 
     <select id="selectList" resultMap="userMap">
-        SELECT user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace FROM user
+        SELECT * FROM user
         <if test="user != null">
             <where>
                 <if test="user.userName != null">
-                    (user_name LIKE concat('%',#{user.userName},'%') or user_nickname LIKE concat('%',#{user.userName},'%'))
+                    (user_name LIKE concat('%',#{user.userName},'%') )
                 </if>
                 <if test="user.userGender != null">
                     and user_gender = #{user.userGender}
@@ -48,7 +47,7 @@
         <if test="user != null">
             <where>
                 <if test="user.userName != null">
-                    (user_name LIKE concat('%',#{user.userName},'%') or user_nickname LIKE concat('%',#{user.userName},'%'))
+                    (user_name LIKE concat('%',#{user.userName},'%'))
                 </if>
                 <if test="user.userGender != null">
                     and user_gender = #{user.userGender}
@@ -58,7 +57,7 @@
     </select>
 
     <select id="selectOneUser" resultMap="userMap" parameterType="int">
-        SELECT user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace FROM user
+        SELECT user_id,user_name,user_password,register_time,user_gender,user_birthday,user_profile_picture_src FROM user
         <where>
             user_id = #{user_id}
         </where>

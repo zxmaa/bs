@@ -65,7 +65,7 @@ public class AdminHomeServiceImpl extends BaseService implements IAdminHomeServi
         logger.info("根据订单状态分类");
         //未付款订单数统计数组
         int[] orderUnpaidArray = new int[7];
-        //未发货订单数统计数祖
+        //未发货订单数统计叔祖
         int[] orderNotShippedArray = new int[7];
         //未确认订单数统计数组
         int[] orderUnconfirmedArray = new int[7];
@@ -75,6 +75,7 @@ public class AdminHomeServiceImpl extends BaseService implements IAdminHomeServi
         int[] orderTotalArray = new int[7];
         logger.info("从数据库中获取统计的订单集合数据");
         List<OrderGroup> orderGroupList = productOrderMapper.getTotalByDate(beginDate, endDate);
+        //boolean bool=orderGroupList.get(0)==null;
         //初始化日期数组
         JSONArray dateStr = new JSONArray(days);
         //按指定的天数进行循环
@@ -91,30 +92,32 @@ public class AdminHomeServiceImpl extends BaseService implements IAdminHomeServi
             for(int j = 0; j < orderGroupList.size(); j++){
                 OrderGroup orderGroup = orderGroupList.get(j);
                 //如果该订单日期与当前日期一致
-                if(orderGroup.getProductOrder_pay_date().equals(formatDate)){
-                    //从结果集中移除数据
-                    orderGroupList.remove(j);
-                    //根据订单状态将统计结果存入对应的订单状态数组中
-                    switch (orderGroup.getProductOrder_status()) {
-                        case 0:
-                            //未付款订单
-                            orderUnpaidArray[i] = orderGroup.getProductOrder_count();
-                            break;
-                        case 1:
-                            //未发货订单
-                            orderNotShippedArray[i] = orderGroup.getProductOrder_count();
-                            break;
-                        case 2:
-                            //未确认订单
-                            orderUnconfirmedArray[i] = orderGroup.getProductOrder_count();
-                            break;
-                        case 3:
-                            //交易成功订单
-                            orderSuccessArray[i] = orderGroup.getProductOrder_count();
-                            break;
+                if (orderGroup != null){
+                    if(orderGroup.getProduct_order_pay_date()!=null && orderGroup.getProduct_order_pay_date().equals(formatDate)){
+                        //从结果集中移除数据
+                        orderGroupList.remove(j);
+                        //根据订单状态将统计结果存入对应的订单状态数组中
+                        switch (orderGroup.getProduct_order_status()) {
+                            case 0:
+                                //未付款订单
+                                orderUnpaidArray[i] = orderGroup.getProduct_order_count();
+                                break;
+                            case 1:
+                                //未发货订单
+                                orderNotShippedArray[i] = orderGroup.getProduct_order_count();
+                                break;
+                            case 2:
+                                //未确认订单
+                                orderUnconfirmedArray[i] = orderGroup.getProduct_order_count();
+                                break;
+                            case 3:
+                                //交易成功订单
+                                orderSuccessArray[i] = orderGroup.getProduct_order_count();
+                                break;
+                        }
+                        //累加当前日期的订单总数
+                        orderCount += orderGroup.getProduct_order_count();
                     }
-                    //累加当前日期的订单总数
-                    orderCount += orderGroup.getProductOrder_count();
                 }
             }
             //将统计的订单总数存入总交易订单数统计数组

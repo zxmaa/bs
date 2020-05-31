@@ -55,14 +55,6 @@
                 onerror="this.src='${pageContext.request.contextPath}/res/img/admin/loginPage/default_profile_picture-128x128.png'"/>
     </div>
     <div class="frm_div">
-        <label class="frm_label text_info" id="lbl_user_nickname">用户昵称</label>
-        <span class="details_value td_wait" id="span_user_nickname">${requestScope.user.userNickname}</span>
-    </div>
-    <div class="frm_div">
-        <label class="frm_label text_info" id="lbl_user_realname">用户姓名</label>
-        <span class="details_value" id="span_user_realname">${requestScope.user.userRealname}</span>
-    </div>
-    <div class="frm_div">
         <label class="frm_label text_info" id="lbl_user_gender">性别</label>
         <span class="details_value" id="span_user_gender">
             <c:choose>
@@ -76,15 +68,11 @@
         <span class="details_value" id="span_user_birthday">${requestScope.user.formatTime(user.userBirthday)}</span>
     </div>
     <div class="frm_div">
-        <label class="frm_label text_info" id="lbl_user_address">所在地</label>
+        <label class="frm_label text_info" id="lbl_user_register_time">注册时间</label>
         <span class="details_value details_value_noRows"
-              id="span_user_address">${requestScope.user.userAddress.addressName}</span>
+              id="span_user_address">${requestScope.user.formatTime1(user.registerTime)}</span>
     </div>
-    <div class="frm_div">
-        <label class="frm_label text_info" id="lbl_user_homeplace">家乡</label>
-        <span class="details_value details_value_noRows"
-              id="span_user_homeplace">${requestScope.user.userHomeplace.addressName}</span>
-    </div>
+
 </div>
 <div class="details_div details_div_last">
     <span class="details_title text_info">购物车信息</span>

@@ -104,11 +104,10 @@
                             }
                             var user_id = data.userList[i].userId;
                             var user_name = data.userList[i].userName;
-                            var user_nickname = data.userList[i].userNickname;
-                            var user_realname = data.userList[i].userRealname;
+                            var user_register_time = data.userList[i].registerTime;
                             var user_birthday = data.userList[i].userBirthday;
                             //显示用户数据
-                            tbody.append("<tr><td><input type='checkbox' class='cbx_select' id='cbx_user_select_" + user_id + "'><label for='cbx_user_select_" + user_id + "'></label></td><td title='" + user_name + "'>" + user_name + "</td><td title='" + user_nickname + "'>" + user_nickname + "</td><td title='" + user_realname + "'>" + user_realname + "</td><td title='" + user_birthday + "'>" + user_birthday + "</td><td title='" + gender + "'>" + gender + "</td><td><span class='td_special' title='查看用户详情'><a href='javascript:void(0);' onclick='getChildPage(this)'>详情</a></span></td><td hidden  class='user_id'>" + user_id + "</td></tr>");
+                            tbody.append("<tr><td><input type='checkbox' class='cbx_select' id='cbx_user_select_" + user_id + "'><label for='cbx_user_select_" + user_id + "'></label></td><td title='" + user_name + "'>" + user_name + "</td><td title='" + user_register_time + "'>" + user_register_time + "</td><td title='" + user_birthday + "'>" + user_birthday + "</td><td title='" + gender + "'>" + gender + "</td><td><span class='td_special' title='查看用户详情'><a href='javascript:void(0);' onclick='getChildPage(this)'>详情</a></span></td><td hidden  class='user_id'>" + user_id + "</td></tr>");
                         }
                         //绑定事件
                         tbody.children("tr").click(function () {
@@ -200,16 +199,13 @@
                 <span class="orderByDesc"></span>
                 <span class="orderByAsc orderBySelect"></span>
             </th>
-            <th class="data_info" data-sort="asc" data-name="user_nickname">
-                <span>昵称</span>
+
+            <th class="data_info" data-sort="asc" data-name="register_time">
+                <span>注册时间</span>
                 <span class="orderByDesc"></span>
                 <span class="orderByAsc orderBySelect"></span>
             </th>
-            <th class="data_info" data-sort="asc" data-name="user_realname">
-                <span>姓名</span>
-                <span class="orderByDesc"></span>
-                <span class="orderByAsc orderBySelect"></span>
-            </th>
+
             <th class="data_info" data-sort="asc" data-name="user_birthday">
                 <span>出生日期</span>
                 <span class="orderByDesc"></span>
@@ -229,8 +225,7 @@
             <tr>
                 <td><input type="checkbox" class="cbx_select" id="cbx_user_select_${user.userId}"><label for="cbx_user_select_${user.userId}"></label></td>
                 <td title="${user.userName}">${user.userName}</td>
-                <td title="${user.userNickname}">${user.userNickname}</td>
-                <td title="${user.userRealname}">${user.userRealname}</td>
+                <td title="${user.formatTime1(user.registerTime)}">${user.formatTime1(user.registerTime)}</td>
                 <td title="${user.formatTime(user.userBirthday)}">${user.formatTime(user.userBirthday)}</td>
                 <td>
                     <c:choose>

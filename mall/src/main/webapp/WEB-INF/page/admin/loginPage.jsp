@@ -11,7 +11,8 @@
 <head>
     <script src="${pageContext.request.contextPath}/res/js/admin/admin_login.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/admin/admin_login.css"/>
-    <title>mall 后台管理-登录</title>
+    <link rel="shortcut icon" href="res/img/icon/favicon.ico" type="image/x-icon"/>
+    <title>IMall后台管理-登录</title>
 </head>
 <body>
 <%--大背景--%>
@@ -42,7 +43,7 @@
 
     </div>
     <div id="div_main">
-        <div id="div_head"><p>天猫<span>管理后台</span></p></div>
+        <div id="div_head"><p>爱购<span>管理后台</span></p></div>
         <div id="div_content">
             <img id="img_profile_picture"
                 src="${pageContext.request.contextPath}/res/img/admin/loginPage/default_profile_picture-128x128.png"
