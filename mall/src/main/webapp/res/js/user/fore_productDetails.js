@@ -99,64 +99,6 @@ $(function () {
         $(".loginModel").hide();
         $(".loginDiv").hide();
     });
-    //点击购买按钮时
-    $(".context_buy_form").submit(function () {
-        if ('${sessionScope.userName}' === "") {//未登录不能购买
-            $(".loginModel").show();
-            $(".loginDiv").show();
-            return false;
-        }
-        var number = isNaN($.trim($(".context_buymember").val()));
-        if (number) {
-            location.reload();
-        } else {
-            location.href = "${pageContext.request.contextPath}/order/create/${requestScope.product.product.productId}?productNumber=" + $.trim($(".context_buymember").val());
-        }
-        return false;
-    });
-    //点击加入购物车按钮时
-    $(".context_buyCar_form").submit(function () {
-        if ('${sessionScope.userName}' === "") {//未登录不能加入购物车
-            $(".loginModel").show();
-            $(".loginDiv").show();
-            return false;
-        }
-        var number = isNaN($.trim($(".context_buymember").val()));//NAN：非数字值的特殊值
-        if (number) {
-            location.reload();
-        } else {
-            $.ajax({
-                url: "${pageContext.request.contextPath}/orderItem/create/${requestScope.product.product.productId}?productNumber=" + $.trim($(".context_buymember").val()),
-                type: "POST",
-                data: {"productNumber": number},
-                dataType: "json",
-                success: function (data) {
-                    if (data.success) {
-                        $(".msg").stop(true, true).animate({//显示已加入购物车
-                            opacity: 1 //透明度
-                        }, 550, function () {
-                            $(".msg").animate({
-                                opacity: 0
-                            }, 1500);
-                        });
-                    } else {
-                        if (data.url != null) {
-                            location.href = "/mall" + data.url;
-                        } else {
-                            alert("加入购物车失败，请稍后再试！");
-                        }
-                    }
-                },
-                beforeSend: function () {
-
-                },
-                error: function () {
-                    alert("加入购物车失败，请稍后再试！");
-                }
-            });
-            return false;
-        }
-    });
 });
 
 function getDetailsPage(obj, className) {
