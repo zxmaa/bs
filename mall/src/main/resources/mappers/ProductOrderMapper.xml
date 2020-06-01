@@ -85,9 +85,9 @@
     <select id="getTotalByDate" resultType="com.bs.mall.util.OrderGroup">
         SELECT
         DATE_FORMAT(product_order_pay_date,'%Y-%m-%d') product_order_pay_date,count(product_order_id) as product_order_count ,product_order_status from product_order
-        <where>
-            product_order_pay_date BETWEEN #{beginDate} AND #{endDate} AND product_order_status != 4
-        </where>
+
+        where product_order_pay_date BETWEEN #{beginDate} AND #{endDate} AND product_order_status != 4
+
         GROUP BY DATE_FORMAT(product_order_pay_date,'%Y-%m-%d'),product_order_status
         ORDER BY product_order_pay_date ASC,product_order_status ASC
     </select>

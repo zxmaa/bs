@@ -11,13 +11,13 @@ import java.util.Locale;
  * date:2020/3/21 16:24
  * description:该类用于辅助后台图表的生成，亦不属于实体类
  */
-
+@Data
 public class OrderGroup {
-    private Date product_order_pay_date/*订单组的支付日期*/;
+    private Date productOrderPayDate/*订单组的支付日期*/;
 
-    private Integer product_order_count/*订单组的统计个数*/;
+    private Integer productOrderCount/*订单组的统计个数*/;
 
-    private Byte product_order_status/*订单组的订单状态*/;
+    private Byte productOrderStatus/*订单组的订单状态*/;
 
 //    public String getProductOrder_pay_date() {
 //        if (product_order_pay_date != null) {
@@ -28,7 +28,7 @@ public class OrderGroup {
 //    }
 
 
-    public String getProduct_order_pay_date() {
+   /* public String getProduct_order_pay_date() {
         if (product_order_pay_date != null) {
             SimpleDateFormat time = new SimpleDateFormat("MM/dd", Locale.UK);
             return time.format(product_order_pay_date);
@@ -63,5 +63,5 @@ public class OrderGroup {
                 ", product_order_count=" + product_order_count +
                 ", product_order_status=" + product_order_status +
                 '}';
-    }
+    }*/
 }
