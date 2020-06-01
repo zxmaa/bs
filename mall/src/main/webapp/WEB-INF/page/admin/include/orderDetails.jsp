@@ -67,7 +67,7 @@
         function getChildPage(obj) {
             //设置样式
             $("#div_home_title").children("span").text("产品详情");
-            document.title = "Tmall管理后台 - 产品详情";
+            document.title = "Imall管理后台 - 产品详情";
             //ajax请求页面
             ajaxUtil.getPage("product/" + $(obj).parents("tr").find(".product_id").text(), null, true);
         }
@@ -76,7 +76,7 @@
         function getUserPage(id) {
             //设置样式
             $("#div_home_title").children("span").text("用户详情");
-            document.title = "Tmall管理后台 - 用户详情";
+            document.title = "Imall管理后台 - 用户详情";
             //ajax请求页面
             ajaxUtil.getPage("user/" + id, null, true);
         }
@@ -138,7 +138,7 @@
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_order_user">所属用户</label>
         <span class="details_value td_wait"><a id="span_order_user" href="javascript:void(0)"
-                                               onclick="getUserPage(${requestScope.order.productOrderUser.userId})">${requestScope.order.productOrderUser.userNickname}</a></span>
+                                               onclick="getUserPage(${requestScope.order.productOrderUser.userId})">${requestScope.order.productOrderUser.userName}</a></span>
     </div>
 </div>
 <div class="details_div">

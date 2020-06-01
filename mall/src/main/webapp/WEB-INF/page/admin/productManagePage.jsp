@@ -199,7 +199,7 @@
 
             //设置样式
             $("#div_home_title").children("span").text(title);
-            document.title = "mall管理后台 - "+title;
+            document.title = "Imall管理后台 - "+title;
             //ajax请求页面
             ajaxUtil.getPage(url,null,true);
         }

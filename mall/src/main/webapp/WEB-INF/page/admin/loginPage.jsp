@@ -12,7 +12,7 @@
     <script src="${pageContext.request.contextPath}/res/js/admin/admin_login.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/admin/admin_login.css"/>
     <link rel="shortcut icon" href="res/img/icon/favicon.ico" type="image/x-icon"/>
-    <title>IMall后台管理-登录</title>
+    <title>Imall后台管理-登录</title>
 </head>
 <body>
 <%--大背景--%>

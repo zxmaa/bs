@@ -11,7 +11,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
 <head>
-    <title>IMall后台管理-登录</title>
+    <title>Imall后台管理-登录</title>
     <meta charset="UTF-8">
     <%--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">--%>
     <link href="${pageContext.request.contextPath}/res/img/admin/mall_48px_1193412_easyicon.net.ico" rel="icon" type="image/x-ico">

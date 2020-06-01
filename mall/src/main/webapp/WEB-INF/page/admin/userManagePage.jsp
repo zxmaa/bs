@@ -137,7 +137,7 @@
         function getChildPage(obj) {
             //设置样式
             $("#div_home_title").children("span").text("用户详情");
-            document.title = "Tmall管理后台 - 用户详情";
+            document.title = "Imall管理后台 - 用户详情";
             var url=$(obj).parents("tr").find(".user_id").text();
             //alert(url);
             //ajax请求页面
