@@ -238,6 +238,7 @@
 /*轮播图*/
 #banner_slider .inner_img img{
     height: auto;
+    margin: 0 auto;
 }
 /*商品图片展示*/
 .banner_do {
