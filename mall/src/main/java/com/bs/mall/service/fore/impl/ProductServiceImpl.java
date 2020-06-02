@@ -106,14 +106,14 @@ public class ProductServiceImpl implements IProductService {
         Collections.shuffle(productList);
 
         //返回三个
-        List<Product> products = null;
+        List<Product> products = new ArrayList<>();
         if(productList != null && productList.size()>3){
             products = productList.stream().limit(3).collect(Collectors.toList());
         }else if(productList != null){
             for (Product product : productList) {
                 Product temp = new Product();
                 BeanUtils.copyProperties(product,temp);
-                products.add(product);
+                products.add(temp);
             }
         }
 

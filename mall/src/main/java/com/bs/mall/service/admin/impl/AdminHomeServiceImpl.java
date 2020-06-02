@@ -93,30 +93,30 @@ public class AdminHomeServiceImpl extends BaseService implements IAdminHomeServi
                 OrderGroup orderGroup = orderGroupList.get(j);
                 //如果该订单日期与当前日期一致
                 if (orderGroup != null){
-                    if(orderGroup.getProduct_order_pay_date()!=null && orderGroup.getProduct_order_pay_date().equals(formatDate)){
+                    if(orderGroup.getProductOrderPayDate()!=null && orderGroup.getProductOrderPayDate().equals(formatDate)){
                         //从结果集中移除数据
                         orderGroupList.remove(j);
                         //根据订单状态将统计结果存入对应的订单状态数组中
-                        switch (orderGroup.getProduct_order_status()) {
+                        switch (orderGroup.getProductOrderStatus()) {
                             case 0:
                                 //未付款订单
-                                orderUnpaidArray[i] = orderGroup.getProduct_order_count();
+                                orderUnpaidArray[i] = orderGroup.getProductOrderCount();
                                 break;
                             case 1:
                                 //未发货订单
-                                orderNotShippedArray[i] = orderGroup.getProduct_order_count();
+                                orderNotShippedArray[i] = orderGroup.getProductOrderCount();
                                 break;
                             case 2:
                                 //未确认订单
-                                orderUnconfirmedArray[i] = orderGroup.getProduct_order_count();
+                                orderUnconfirmedArray[i] = orderGroup.getProductOrderCount();
                                 break;
                             case 3:
                                 //交易成功订单
-                                orderSuccessArray[i] = orderGroup.getProduct_order_count();
+                                orderSuccessArray[i] = orderGroup.getProductOrderCount();
                                 break;
                         }
                         //累加当前日期的订单总数
-                        orderCount += orderGroup.getProduct_order_count();
+                        orderCount += orderGroup.getProductOrderCount();
                     }
                 }
             }
