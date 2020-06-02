@@ -19,13 +19,13 @@ public class OrderGroup {
 
     private Byte productOrderStatus/*订单组的订单状态*/;
 
-//    public String getProductOrder_pay_date() {
-//        if (product_order_pay_date != null) {
-//            SimpleDateFormat time = new SimpleDateFormat("MM/dd", Locale.UK);
-//            return time.format(product_order_pay_date);
-//        }
-//        return null;
-//    }
+    public String getProductOrderPayDate() {
+        if (productOrderPayDate != null) {
+            SimpleDateFormat time = new SimpleDateFormat("MM/dd", Locale.UK);
+            return time.format(productOrderPayDate);
+        }
+        return null;
+    }
 
 
    /* public String getProduct_order_pay_date() {
