@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse" id="nav_head">
             <ul class="nav navbar-nav navbar-right nav_right">
                 <li class="dropdown quick_li_MyTaobao">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的淘宝<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的爱购<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="${pageContext.request.contextPath}/userDetails">个人中心</a></li>
                         <li><a href="${pageContext.request.contextPath}/order/1/10">我的订单</a></li>
@@ -60,7 +60,7 @@
                 <li class="quick_li_address">
                     <a href="${pageContext.request.contextPath}/userAddress">地址管理</a>
                 </li>
-                <li class="quick_home"><a href="${pageContext.request.contextPath}">淘宝网</a></li>
+                <li class="quick_home"><a href="${pageContext.request.contextPath}">爱购主页</a></li>
                 <li class="dropdown quick_DirectPromo">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">商家支持 <span class="caret"></span></a>
                     <ul class="dropdown-menu list-inline">
